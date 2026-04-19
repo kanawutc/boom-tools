@@ -4,7 +4,7 @@ const HASH = 'e40ae2f84c9319b323d3ce59a7f932a7d61e9388fb3534fad15343ed6155a114';
 const STORAGE_KEY = 'boom_tools_auth';
 const EXPIRY_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 
-(function() {
+function initAuth() {
   // Check if already authenticated
   const saved = localStorage.getItem(STORAGE_KEY);
   if (saved) {
@@ -65,38 +65,42 @@ const EXPIRY_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
       <h1>Boom Tools</h1>
       <p>กรุณาใส่รหัสผ่านเพื่อเข้าใช้งาน</p>
       <input type="password" id="auth-input" placeholder="Password" autocomplete="off" />
-      <button id="auth-btn" onclick="checkPw()">เข้าสู่ระบบ</button>
+      <button id="auth-btn">เข้าสู่ระบบ</button>
       <div id="auth-error"></div>
     </div>
   `;
   document.body.appendChild(overlay);
 
-  // Enter key
-  setTimeout(() => {
-    const input = document.getElementById('auth-input');
-    if (input) {
-      input.focus();
-      input.addEventListener('keydown', e => { if (e.key === 'Enter') checkPw(); });
-    }
-  }, 100);
+  const input = document.getElementById('auth-input');
+  const btn = document.getElementById('auth-btn');
+  input.focus();
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') doCheck(overlay); });
+  btn.addEventListener('click', () => doCheck(overlay));
+}
 
-  window.checkPw = async function() {
-    const input = document.getElementById('auth-input');
-    const pw = input.value;
-    if (!pw) return;
+async function doCheck(overlay) {
+  const input = document.getElementById('auth-input');
+  const pw = input.value;
+  if (!pw) return;
 
-    const encoded = new TextEncoder().encode(pw);
-    const hashBuf = await crypto.subtle.digest('SHA-256', encoded);
-    const hashHex = Array.from(new Uint8Array(hashBuf)).map(b => b.toString(16).padStart(2,'0')).join('');
+  const encoded = new TextEncoder().encode(pw);
+  const hashBuf = await crypto.subtle.digest('SHA-256', encoded);
+  const hashHex = Array.from(new Uint8Array(hashBuf)).map(b => b.toString(16).padStart(2,'0')).join('');
 
-    if (hashHex === HASH) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({ hash: HASH, ts: Date.now() }));
-      overlay.remove();
-      document.documentElement.style.overflow = '';
-    } else {
-      input.classList.add('shake');
-      document.getElementById('auth-error').textContent = 'รหัสผ่านไม่ถูกต้อง';
-      setTimeout(() => input.classList.remove('shake'), 400);
-    }
-  };
-})();
+  if (hashHex === HASH) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ hash: HASH, ts: Date.now() }));
+    overlay.remove();
+    document.documentElement.style.overflow = '';
+  } else {
+    input.classList.add('shake');
+    document.getElementById('auth-error').textContent = 'รหัสผ่านไม่ถูกต้อง';
+    setTimeout(() => input.classList.remove('shake'), 400);
+  }
+}
+
+// Wait for DOM to be ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAuth);
+} else {
+  initAuth();
+}
