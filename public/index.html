@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boom Tools</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, 'Segoe UI', sans-serif;
+  background: #0d1117;
+  color: #c9d1d9;
+  min-height: 100vh;
+}
+
+.hero {
+  text-align: center;
+  padding: 60px 20px 40px;
+  background: linear-gradient(135deg, #161b22 0%, #1a1208 50%, #161b22 100%);
+  border-bottom: 1px solid #21262d;
+}
+
+.hero h1 {
+  font-size: 2.4rem;
+  background: linear-gradient(135deg, #f0883e, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+}
+
+.hero p {
+  color: #8b949e;
+  font-size: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.tools-grid {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.tool-card {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.tool-card:hover {
+  border-color: #f0883e;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(240, 136, 62, 0.15);
+}
+
+.tool-icon {
+  font-size: 3rem;
+  padding: 30px 20px 10px;
+  text-align: center;
+}
+
+.tool-body {
+  padding: 10px 20px 20px;
+}
+
+.tool-body h2 {
+  color: #f0883e;
+  font-size: 1.15rem;
+  margin-bottom: 6px;
+}
+
+.tool-body p {
+  color: #8b949e;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.tool-tags {
+  padding: 0 20px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  background: #21262d;
+  color: #8b949e;
+  font-size: 0.72rem;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+.tag-live {
+  background: #1b3a2a;
+  color: #3fb950;
+}
+
+.coming-soon {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.coming-soon .tool-body h2 { color: #484f58; }
+
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  color: #484f58;
+  font-size: 0.78rem;
+  border-top: 1px solid #21262d;
+}
+
+footer a { color: #58a6ff; text-decoration: none; }
+
+@media (max-width: 600px) {
+  .hero { padding: 40px 16px 30px; }
+  .hero h1 { font-size: 1.8rem; }
+  .tools-grid { grid-template-columns: 1fr; margin: 20px auto; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>Boom Tools</h1>
+  <p>เครื่องมือวิเคราะห์ธุรกิจและอสังหาริมทรัพย์</p>
+</div>
+
+<div class="tools-grid">
+
+  <a href="gas-station-zone-checker.html" class="tool-card">
+    <div class="tool-icon">&#9981;</div>
+    <div class="tool-body">
+      <h2>ตรวจสอบโซนผังเมือง</h2>
+      <p>ตรวจสอบว่าที่ดินในสมุทรปราการอยู่โซนไหน ทำปั๊มน้ำมันได้หรือไม่ ใช้ข้อมูลจริง 557 polygons จากกรมโยธาธิการฯ</p>
+    </div>
+    <div class="tool-tags">
+      <span class="tag tag-live">LIVE</span>
+      <span class="tag">ผังเมือง</span>
+      <span class="tag">สมุทรปราการ</span>
+      <span class="tag">GIS</span>
+    </div>
+  </a>
+
+  <div class="tool-card coming-soon">
+    <div class="tool-icon">&#127968;</div>
+    <div class="tool-body">
+      <h2>วิเคราะห์ทำเลอสังหาฯ</h2>
+      <p>เปรียบเทียบทำเลอสังหาริมทรัพย์ ราคาต่อตร.ม. แนวโน้มราคา จุดแข็ง-จุดอ่อน</p>
+    </div>
+    <div class="tool-tags">
+      <span class="tag">เร็วๆ นี้</span>
+    </div>
+  </div>
+
+  <div class="tool-card coming-soon">
+    <div class="tool-icon">&#128200;</div>
+    <div class="tool-body">
+      <h2>คำนวณผลตอบแทนการลงทุน</h2>
+      <p>คำนวณ ROI, Break-even, NPV สำหรับธุรกิจปั๊มน้ำมันและอสังหาริมทรัพย์</p>
+    </div>
+    <div class="tool-tags">
+      <span class="tag">เร็วๆ นี้</span>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Boom Tools &copy; 2026 &mdash; Powered by <a href="#">Boom Oracle</a>
+</footer>
+
+</body>
+</html>
