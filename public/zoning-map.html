@@ -133,6 +133,16 @@ const LAWS = [
   {name:'พ.ร.บ.ควบคุมอาคาร พ.ศ. 2522',desc:'กฎหมายหลักควบคุมอาคารทั้งหมด — ความมั่นคง ปลอดภัย สาธารณสุข ผังเมือง',url:'https://www.thailawforum.com/building-control-act/',applies:['all']},
   {name:'พ.ร.บ.ผังเมือง พ.ศ. 2562',desc:'กำหนด FAR, BCR, OSR, ประเภทการใช้ที่ดิน สีผังเมือง',url:'https://asa.or.th/laws-and-regulations/cpa/',applies:['all']},
   {name:'ผังเมืองรวม กทม. พ.ศ. 2556',desc:'กำหนดสีผังเมือง กทม. + ข้อกำหนดการใช้ที่ดิน (กำลังปรับปรุงครั้งที่ 4 — 2568)',url:'https://download.asa.or.th/03media/04law/cpa/mr56-bma.pdf',applies:['bangkok']},
+  {name:'ข้อบัญญัติ กทม. ควบคุมอาคาร พ.ศ. 2544',desc:'ข้อกำหนดเฉพาะ กทม. — ระยะร่น ความสูง ที่จอดรถ เพิ่มเติมจากกฎกระทรวง',url:'https://webportal.bangkok.go.th/bco',applies:['bangkok']},
+  {name:'EIA/EHIA — ประเมินผลกระทบสิ่งแวดล้อม',desc:'คอนโด ≥80 ยูนิต / โรงแรม ≥80 ห้อง / อาคารสูง ≥23ม. / จัดสรร ≥500 แปลง ต้องทำ EIA',url:'https://eiathailand.onep.go.th/',applies:['high-rise','large']},
+];
+
+const EIA_TRIGGERS = [
+  {type:'คอนโด/อาคารอยู่อาศัยรวม',threshold:'≥ 80 ยูนิต หรือ ≥ 4,000 ตร.ม.'},
+  {type:'โรงแรม/รีสอร์ต',threshold:'≥ 80 ห้อง หรือ ≥ 4,000 ตร.ม.'},
+  {type:'อาคารสูง/ขนาดใหญ่พิเศษ',threshold:'สูง ≥ 23 ม. หรือ ≥ 10,000 ตร.ม.'},
+  {type:'จัดสรรที่ดิน',threshold:'≥ 500 แปลง หรือ > 100 ไร่'},
+  {type:'ห้างสรรพสินค้า',threshold:'≥ 10,000 ตร.ม.'},
 ];
 
 const map = L.map('map').setView([13.7563, 100.5018], 10);
@@ -220,11 +230,22 @@ function showZoneInfo(code, props) {
 
   let lawsHtml = '';
   const isHighRise = rule.height === 'ไม่จำกัด' || parseInt(rule.height) > 5;
+  const isLarge = rule.far >= 5;
   LAWS.forEach(law => {
-    if (law.applies.includes('all') || (law.applies.includes('high-rise') && isHighRise)) {
-      lawsHtml += `<div class="law-card"><h4>${law.name}</h4><p>${law.desc}</p><a href="${law.url}" target="_blank">ดาวน์โหลด PDF</a></div>`;
+    if (law.applies.includes('all') || (law.applies.includes('high-rise') && isHighRise) || (law.applies.includes('large') && isLarge)) {
+      lawsHtml += `<div class="law-card"><h4>${law.name}</h4><p>${law.desc}</p><a href="${law.url}" target="_blank">ดาวน์โหลด PDF / เว็บไซต์</a></div>`;
     }
   });
+
+  // Add EIA triggers for high-FAR zones
+  if (isHighRise || isLarge) {
+    lawsHtml += '<div class="law-card" style="border-color:#d29922"><h4 style="color:#d29922">⚠️ EIA Required — เกณฑ์ที่ต้องทำ EIA</h4>';
+    EIA_TRIGGERS.forEach(t => {
+      lawsHtml += `<p style="margin:2px 0"><strong>${t.type}:</strong> ${t.threshold}</p>`;
+    });
+    lawsHtml += '<a href="https://eiathailand.onep.go.th/" target="_blank">ระบบ EIA สำนักงานนโยบายและแผนทรัพยากรธรรมชาติ</a></div>';
+  }
+
   document.getElementById('z-laws').innerHTML = lawsHtml;
 }
 
