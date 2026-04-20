@@ -57,7 +57,7 @@ body{font-family:'Noto Sans Thai',sans-serif;background:#0d1117;color:#c9d1d9}
 
   <select class="province-select" id="province-select">
     <option value="">— เลือกจังหวัด —</option>
-    <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
+    <option value="กรุงเทพมหานคร">กรุงเทพมหานคร (DPT — 5 zones เท่านั้น)</option>
     <option value="จ.สมุทรปราการ" selected>สมุทรปราการ</option>
     <option value="จ.นนทบุรี">นนทบุรี</option>
     <option value="จ.ปทุมธานี">ปทุมธานี</option>
@@ -97,9 +97,21 @@ body{font-family:'Noto Sans Thai',sans-serif;background:#0d1117;color:#c9d1d9}
   </select>
 
   <button class="btn" id="load-btn" onclick="loadProvince()">โหลดข้อมูลผังเมือง</button>
+  <button class="btn btn-secondary" onclick="openBmaGis()" style="background:#21262d;color:#c9d1d9;margin-top:4px">เปิด BMA GIS (กทม. ละเอียด)</button>
   <div class="loading" id="loading">กำลังโหลดข้อมูลจาก DPT...</div>
 
   <div id="zone-count" style="color:#6b8a6b;font-size:0.82rem;margin:6px 0"></div>
+
+  <div id="bma-notice" style="display:none;background:#1a1f29;border:1px solid #d29922;border-radius:8px;padding:10px;margin:8px 0;font-size:0.8rem">
+    <div style="color:#d29922;font-weight:600;margin-bottom:4px">⚠️ กรุงเทพฯ — ข้อมูล DPT มีจำกัด</div>
+    <div style="color:#8b949e">กทม. ใช้ระบบผังเมืองของ BMA แยกต่างหาก ข้อมูลละเอียดดูได้ที่:</div>
+    <div style="margin-top:6px">
+      <a href="https://cityplangis.bangkok.go.th/cpdPortal/" target="_blank" style="color:#58a6ff;display:block;font-size:0.78rem;margin:2px 0">BMA GIS Portal — ผังเมือง กทม.</a>
+      <a href="https://plan4bangkok.com/" target="_blank" style="color:#58a6ff;display:block;font-size:0.78rem;margin:2px 0">Plan4Bangkok — ร่างผังเมืองใหม่ ครั้งที่ 4</a>
+      <a href="https://www.arcgis.com/apps/instant/media/index.html?appid=52a7f75c756343bb98c47ea46cd8cc60&locale=th" target="_blank" style="color:#58a6ff;display:block;font-size:0.78rem;margin:2px 0">ArcGIS — เปรียบเทียบผัง 2556 vs ร่างใหม่</a>
+      <a href="https://www.ddproperty.com/คู่มือซื้อขาย/e0b881e0b88ee0b8abe0b8a1e0b8b2e0b8a2e0b8aae0b8b5e0b89ce0b8b1e0b887e0b980e0b8a1e0b8b7e0b8ade0b887-e0b89be0b8a3e0b8b0e0b982e0b8a2e0b88a-4294" target="_blank" style="color:#58a6ff;display:block;font-size:0.78rem;margin:2px 0">DDProperty — อธิบายสีผังเมือง กทม. 2569</a>
+    </div>
+  </div>
 
   <!-- Zone Info (shown on click) -->
   <div class="zone-info" id="zone-info">
@@ -302,6 +314,16 @@ function highlightZone(code) {
     });
   }, 3000);
 }
+
+function openBmaGis() {
+  window.open('https://cityplangis.bangkok.go.th/cpdPortal/', '_blank');
+}
+
+// Show BMA notice when Bangkok is selected
+document.getElementById('province-select').addEventListener('change', function() {
+  const notice = document.getElementById('bma-notice');
+  notice.style.display = this.value === 'กรุงเทพมหานคร' ? 'block' : 'none';
+});
 
 // Auto-load default province
 loadProvince();
