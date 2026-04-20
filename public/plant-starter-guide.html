@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>คู่มือเริ่มต้นธุรกิจต้นไม้ — Supplier + สินค้า + ลูกค้า อย่างละเอียด</title>
+<script src="auth.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Noto Sans Thai','Inter',sans-serif;background:#080c08;color:#c0d8c0;line-height:1.8}
+.hero{min-height:40vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#081408,#143020,#081408);padding:50px 20px;text-align:center}
+.hero h1{font-size:2.2rem;font-weight:800;color:#4ade80}.hero .sub{color:#6b9a6b;margin-top:8px}.hero .badge{display:inline-block;background:rgba(74,222,128,0.12);border:1px solid rgba(74,222,128,0.25);color:#4ade80;padding:5px 16px;border-radius:20px;font-size:0.78rem;margin-top:14px}
+.container{max-width:1100px;margin:0 auto;padding:30px 20px}
+h2{font-size:1.4rem;font-weight:700;color:#4ade80;border-left:4px solid #22883a;padding-left:14px;margin:40px 0 16px}
+h3{font-size:1.1rem;font-weight:600;color:#86b896;margin:18px 0 8px}
+p{color:#90b098;font-size:0.9rem;margin-bottom:10px}strong{color:#c0d8c0}
+.card{background:#0e1a12;border:1px solid #1a3020;border-radius:12px;padding:20px;margin:12px 0}
+.card.highlight{border-color:#4ade80;box-shadow:0 0 20px rgba(74,222,128,0.06)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:0.82rem;margin:12px 0}
+th{background:#142018;color:#86b896;padding:10px 12px;text-align:left;font-weight:600}
+th:first-child{border-radius:8px 0 0 0}th:last-child{border-radius:0 8px 0 0}
+td{padding:8px 12px;border-bottom:1px solid #162018;color:#90b098}
+tr:hover td{background:#0e1a12}
+.money{color:#4ade80;font-weight:700;font-family:'Inter',sans-serif}
+.money-red{color:#ef4444;font-weight:600;font-family:'Inter',sans-serif}
+.tag{display:inline-block;padding:2px 8px;border-radius:6px;font-size:0.7rem;font-weight:600}
+.tag-hot{background:rgba(249,115,22,0.15);color:#f97316}.tag-best{background:rgba(74,222,128,0.15);color:#4ade80}.tag-good{background:rgba(202,138,4,0.15);color:#eab308}
+.supplier-card{background:#0e1a12;border:1px solid #1a3020;border-radius:12px;padding:18px;margin:10px 0}
+.supplier-card h4{color:#4ade80;font-size:1rem;margin-bottom:6px}
+.supplier-card .contact{font-size:0.82rem;color:#6b8a6b;margin-top:8px}
+.supplier-card .contact a{color:#4ade80;text-decoration:none}
+.channel-card{background:#0e1a12;border:1px solid #1a3020;border-radius:12px;padding:18px}
+.channel-card h4{color:#4ade80;font-size:0.95rem;margin-bottom:6px}
+.channel-card .pct{font-size:1.5rem;font-weight:800;color:#4ade80;font-family:'Inter'}
+.footer{text-align:center;padding:30px;color:#3a5a3a;font-size:0.75rem;border-top:1px solid #162018}
+.footer a{color:#4ade80;text-decoration:none}
+@media(max-width:768px){.grid2,.grid3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div>
+    <h1>คู่มือเริ่มต้นธุรกิจต้นไม้</h1>
+    <div class="sub">ซื้อจากไหน ซื้ออะไร ขายให้ใคร — รายละเอียดครบทุกขั้นตอน</div>
+    <div class="badge">Starter Guide | ภาษาไทย | April 2026</div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ==================== PART 1: SUPPLIER ==================== -->
+<h2>PART 1: ซื้อจากไหน — Supplier รายละเอียด</h2>
+<p>เรียงตามความแนะนำ พร้อมราคาจริง ช่องทางติดต่อ และวิธีสั่งซื้อ</p>
+
+<!-- Supplier 1 -->
+<div class="supplier-card highlight">
+  <h4>1. Thai Exotic Greenery (TEG) <span class="tag tag-hot">แนะนำอันดับ 1</span></h4>
+  <p><strong>ทำไม:</strong> มี Anthurium hybrid 62+ ชนิด ราคา $5-250 ครอบคลุมทุกระดับ มี Carlablackiae hybrids หลายตัวที่ขายดีมาก</p>
+
+  <table>
+    <thead><tr><th>สินค้า</th><th>ราคา Supplier</th><th>ขาย USA ได้</th><th>กำไร/ต้น</th></tr></thead>
+    <tbody>
+      <tr><td>Anthurium Hybrid (Grower's choice)</td><td class="money-red">$5</td><td class="money">$25-40</td><td class="money">$20-35 (5-8x)</td></tr>
+      <tr><td>Crystallinum Hybrid</td><td class="money-red">$10</td><td class="money">$30-50</td><td class="money">$20-40 (3-5x)</td></tr>
+      <tr><td>Besseae aff x Luxurians</td><td class="money-red">$25</td><td class="money">$60-90</td><td class="money">$35-65 (2-4x)</td></tr>
+      <tr><td>Papillilaminum x Luxurians</td><td class="money-red">$30</td><td class="money">$80-120</td><td class="money">$50-90 (3-4x)</td></tr>
+      <tr><td>Carlablackiae selfing</td><td class="money-red">$40</td><td class="money">$100-200</td><td class="money">$60-160 (3-5x)</td></tr>
+      <tr><td>Carlablackiae x RVDP</td><td class="money-red">$50</td><td class="money">$120-250</td><td class="money">$70-200 (2-5x)</td></tr>
+      <tr><td>Pap Var x Luxurians</td><td class="money-red">$200</td><td class="money">$500-1,000</td><td class="money">$300-800 (3-5x)</td></tr>
+      <tr><td>Delta Force</td><td class="money-red">$70</td><td class="money">$150-250</td><td class="money">$80-180 (2-4x)</td></tr>
+      <tr><td>Warocqueanum x Veitchii</td><td class="money-red">$120</td><td class="money">$250-400</td><td class="money">$130-280 (2-3x)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="contact">
+    <strong>ติดต่อ:</strong><br>
+    Tel: <a href="tel:+6686333868">(+66) 86-333-8468</a><br>
+    Email: <a href="mailto:sales.thaiexoticgreenery@gmail.com">sales.thaiexoticgreenery@gmail.com</a><br>
+    Web: <a href="https://thaiexoticgreenery.com/collections/anthurium" target="_blank">thaiexoticgreenery.com</a><br>
+    Instagram: <a href="https://instagram.com/thaiexoticgreenery" target="_blank">@thaiexoticgreenery</a><br>
+    <strong>วิธีสั่ง:</strong> DM Instagram หรือ email ส่งรายการ + จำนวน → รับ invoice → ชำระเงิน → ส่ง DHL 3-5 วัน + Phyto cert
+  </div>
+</div>
+
+<!-- Supplier 2 -->
+<div class="supplier-card">
+  <h4>2. @equator_keep_liveness <span class="tag tag-best">Supplier เดิมของ Boom</span></h4>
+  <p><strong>ทำไม:</strong> มีความสัมพันธ์อยู่แล้ว รู้ quality + ไว้ใจได้ ใช้เป็นช่องทางหลักสำหรับ species ที่เขามี</p>
+  <div class="contact">
+    Instagram: <a href="https://www.instagram.com/equator_keep_liveness" target="_blank">@equator_keep_liveness</a><br>
+    <strong>วิธีสั่ง:</strong> DM Instagram โดยตรง — ต่อราคาได้เพราะเป็นลูกค้าเดิม
+  </div>
+</div>
+
+<!-- Supplier 3 -->
+<div class="supplier-card">
+  <h4>3. TerraFlora Global <span class="tag tag-good">ง่ายที่สุดสำหรับ USA import</span></h4>
+  <p><strong>ทำไม:</strong> จัดการ import permit ให้ทั้งหมด ไม่ต้องขอ permit เอง สำหรับ order < 13 ต้น</p>
+  <div class="contact">
+    Web: <a href="https://www.terrafloraglobal.com/" target="_blank">terrafloraglobal.com</a><br>
+    <a href="https://www.terrafloraglobal.com/blogs/news/how-to-import-rare-aroids-from-thailand-without-an-import-permit" target="_blank">อ่านคู่มือ import ไม่ต้อง permit</a><br>
+    <strong>วิธีสั่ง:</strong> สั่งผ่านเว็บไซต์ → เขาจัดการ phyto + customs ให้ทั้งหมด
+  </div>
+</div>
+
+<!-- Supplier 4 -->
+<div class="supplier-card">
+  <h4>4. Ecuagenera USA <span class="tag tag-good">Anthurium species จาก Ecuador</span></h4>
+  <p><strong>ทำไม:</strong> มี USA subsidiary ส่งตรงภายใน USA ไม่ต้อง import เลย Villenaorum, Regale, Veitchii, Clarinervium ครบ</p>
+  <table>
+    <thead><tr><th>สินค้า</th><th>ราคา</th></tr></thead>
+    <tbody>
+      <tr><td>Villenaorum</td><td class="money-red">$30-45</td></tr>
+      <tr><td>Regale</td><td class="money-red">$35-65</td></tr>
+      <tr><td>Clarinervium</td><td class="money-red">$20-30</td></tr>
+    </tbody>
+  </table>
+  <div class="contact">
+    Web: <a href="https://ecuageneraus.com/" target="_blank">ecuageneraus.com</a> (USA shop — ส่งภายใน USA)<br>
+    <strong>วิธีสั่ง:</strong> สั่งผ่านเว็บเหมือน online shop ปกติ ส่ง domestic
+  </div>
+</div>
+
+<!-- Supplier 5 -->
+<div class="supplier-card">
+  <h4>5. FloristaPearl Garden <span class="tag tag-good">Wholesale + DOA License</span></h4>
+  <p><strong>ทำไม:</strong> บริษัทจดทะเบียน มี export license จาก DOA รองรับ wholesale ถูกกฎหมาย 100%</p>
+  <div class="contact">
+    Web: <a href="https://floristapearlstore.com/" target="_blank">floristapearlstore.com</a><br>
+    Wholesale page: <a href="https://floristapearlstore.com/pages/wholesale-anthurium-incl-variegated-export-from-thailand" target="_blank">ขอ wholesale quote</a><br>
+    <strong>วิธีสั่ง:</strong> ติดต่อขอ quote → ได้ราคา wholesale → MOQ ตามตกลง
+  </div>
+</div>
+
+<!-- ==================== PART 2: PLANT TYPE ==================== -->
+<h2>PART 2: ซื้ออะไร — สินค้าที่ควรเริ่มต้น</h2>
+<p>เรียงตามกำไร/ความเสี่ยง — แนะนำเริ่มจาก "Safe Bet" ก่อน แล้วค่อยเพิ่ม "High Reward"</p>
+
+<h3>Batch แรก (20 ต้น) — แนะนำซื้อแบบนี้:</h3>
+<div class="card highlight">
+<table>
+  <thead><tr><th>#</th><th>สินค้า</th><th>จำนวน</th><th>ราคาซื้อ/ต้น</th><th>รวมซื้อ</th><th>ขาย/ต้น</th><th>รวมขาย</th><th>ระดับ</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><strong>Anthurium Hybrid (Grower's choice)</strong></td><td>5</td><td class="money-red">$5</td><td class="money-red">$25</td><td class="money">$30</td><td class="money">$150</td><td><span class="tag tag-best">Safe Bet</span></td></tr>
+    <tr><td>2</td><td><strong>Crystallinum Hybrid</strong></td><td>3</td><td class="money-red">$10</td><td class="money-red">$30</td><td class="money">$40</td><td class="money">$120</td><td><span class="tag tag-best">Safe Bet</span></td></tr>
+    <tr><td>3</td><td><strong>Papillilaminum x Luxurians</strong></td><td>3</td><td class="money-red">$30</td><td class="money-red">$90</td><td class="money">$100</td><td class="money">$300</td><td><span class="tag tag-good">Good Margin</span></td></tr>
+    <tr><td>4</td><td><strong>Carlablackiae selfing</strong></td><td>3</td><td class="money-red">$40</td><td class="money-red">$120</td><td class="money">$150</td><td class="money">$450</td><td><span class="tag tag-hot">Hot Item</span></td></tr>
+    <tr><td>5</td><td><strong>Besseae aff x Luxurians</strong></td><td>3</td><td class="money-red">$25</td><td class="money-red">$75</td><td class="money">$70</td><td class="money">$210</td><td><span class="tag tag-good">Good Margin</span></td></tr>
+    <tr><td>6</td><td><strong>Forgetii x Luxurians</strong></td><td>3</td><td class="money-red">$25</td><td class="money-red">$75</td><td class="money">$65</td><td class="money">$195</td><td><span class="tag tag-good">Good Margin</span></td></tr>
+    <tr style="background:#142018"><td></td><td><strong>รวม</strong></td><td><strong>20 ต้น</strong></td><td></td><td><strong class="money-red">$415</strong></td><td></td><td><strong class="money">$1,425</strong></td><td><strong class="money">กำไร $1,010</strong></td></tr>
+  </tbody>
+</table>
+<p style="text-align:center;color:#4ade80;font-weight:600">ต้นทุนสินค้า $415 (฿14,525) → ขายได้ $1,425 (฿49,875) → กำไร $1,010 (฿35,350) = <strong>243% margin</strong></p>
+</div>
+
+<h3>ทำไมเลือกแบบนี้?</h3>
+<div class="grid2">
+  <div class="card">
+    <h4 style="color:#4ade80">Safe Bet (8 ต้น)</h4>
+    <p>Anthurium Hybrid $5 + Crystallinum $10 = ราคาถูก เสี่ยงน้อย ขายง่ายเป็น "entry level" สำหรับ collector มือใหม่ กำไร 3-6x ต่อต้น</p>
+  </div>
+  <div class="card">
+    <h4 style="color:#f97316">Hot Items (12 ต้น)</h4>
+    <p>Carlablackiae, Papillilaminum hybrids = ของที่ collector ตามหา demand สูง ขายได้ $65-150/ต้น markup 2-5x เป็นตัวทำกำไรหลัก</p>
+  </div>
+</div>
+
+<!-- ==================== PART 3: ลูกค้า ==================== -->
+<h2>PART 3: ลูกค้าอยู่ที่ไหน — ขายให้ใคร</h2>
+
+<h3>ลูกค้าของเราคือใคร?</h3>
+<div class="card">
+  <div class="grid3">
+    <div style="text-align:center"><div style="font-size:2.5rem">👩‍💻</div><div style="font-weight:700;color:#4ade80">Millennials + Gen X</div><div style="font-size:0.82rem;color:#6b8a6b">อายุ 28-45 ปี<br>รายได้ $65K+/ปี<br>การศึกษาระดับ ป.ตรี+<br>72% อายุ 40+</div></div>
+    <div style="text-align:center"><div style="font-size:2.5rem">🏡</div><div style="font-weight:700;color:#4ade80">เจ้าของบ้าน</div><div style="font-size:0.82rem;color:#6b8a6b">มีพื้นที่เลี้ยงต้นไม้<br>สนใจ interior design<br>26% มีรายได้ 6 หลัก+<br>ซื้อเพื่อ status + hobby</div></div>
+    <div style="text-align:center"><div style="font-size:2.5rem">📱</div><div style="font-weight:700;color:#4ade80">Instagram/TikTok Users</div><div style="font-size:0.82rem;color:#6b8a6b">ติดตาม plant accounts<br>ซื้อจาก online เป็นหลัก<br>ชอบ "unboxing" content<br>แชร์คอลเลคชั่น</div></div>
+  </div>
+</div>
+
+<h3>ขายที่ไหน? (เรียงตามรายได้)</h3>
+<div class="grid2">
+
+  <div class="channel-card">
+    <div class="pct">40%</div>
+    <h4>Etsy — ช่องทางหลัก</h4>
+    <p style="font-size:0.82rem"><strong>ทำไม:</strong> มีลูกค้า plant collector เยอะที่สุด ค้นหา "rare anthurium" ได้ตรง</p>
+    <p style="font-size:0.82rem"><strong>ค่าธรรมเนียม:</strong> 6.5% + $0.20/listing</p>
+    <p style="font-size:0.82rem"><strong>ข้อดี:</strong> SEO ดี, trust สูง, ระบบ review, ส่งง่าย</p>
+    <p style="font-size:0.82rem"><strong>ขายอะไร:</strong> ทุกชนิด — ตั้งแต่ $25-500+</p>
+    <p style="font-size:0.82rem"><a href="https://www.etsy.com/market/anthurium" target="_blank" style="color:#4ade80">etsy.com/market/anthurium</a></p>
+  </div>
+
+  <div class="channel-card">
+    <div class="pct">25%</div>
+    <h4>Instagram — สร้าง Brand</h4>
+    <p style="font-size:0.82rem"><strong>ทำไม:</strong> Plant community ใหญ่มาก #rarearoid มี 500K+ posts</p>
+    <p style="font-size:0.82rem"><strong>ค่าธรรมเนียม:</strong> ฟรี (ขาย DM)</p>
+    <p style="font-size:0.82rem"><strong>ข้อดี:</strong> สร้าง brand, ถ่ายรูปสวยดึงลูกค้า, DM ขายตรง ไม่เสียค่าคอม</p>
+    <p style="font-size:0.82rem"><strong>ขายอะไร:</strong> Premium items $80+ / pre-order ของหายาก</p>
+    <p style="font-size:0.82rem"><strong>Hashtags:</strong> #rarearoid #anthuriumcollector #plantmail #velvetleaf</p>
+  </div>
+
+  <div class="channel-card">
+    <div class="pct">15%</div>
+    <h4>Palmstreet — Live Auction</h4>
+    <p style="font-size:0.82rem"><strong>ทำไม:</strong> Live shopping สำหรับ plant collector โดยเฉพาะ ราคาประมูลได้สูงกว่าตั้งราคา</p>
+    <p style="font-size:0.82rem"><strong>ค่าธรรมเนียม:</strong> ~15%</p>
+    <p style="font-size:0.82rem"><strong>ข้อดี:</strong> FOMO effect ทำราคาขึ้น, community แน่น, buyer ซื้อจริง</p>
+    <p style="font-size:0.82rem"><strong>ขายอะไร:</strong> ของหายาก 1-of-1, hybrids, large specimens</p>
+    <p style="font-size:0.82rem"><a href="https://palmstreet.app/" target="_blank" style="color:#4ade80">palmstreet.app</a></p>
+  </div>
+
+  <div class="channel-card">
+    <div class="pct">10%</div>
+    <h4>eBay — ตลาดกว้าง</h4>
+    <p style="font-size:0.82rem"><strong>ทำไม:</strong> Audience ใหญ่ที่สุด ลูกค้าที่ไม่ได้อยู่ใน plant community ก็เจอ</p>
+    <p style="font-size:0.82rem"><strong>ค่าธรรมเนียม:</strong> ~13%</p>
+    <p style="font-size:0.82rem"><strong>ข้อดี:</strong> Auction format, buyer protection, global reach</p>
+    <p style="font-size:0.82rem"><strong>ขายอะไร:</strong> ทุกชนิด — ดีสำหรับ volume</p>
+  </div>
+
+  <div class="channel-card">
+    <div class="pct">5%</div>
+    <h4>Facebook Groups — Community</h4>
+    <p style="font-size:0.82rem"><strong>ทำไม:</strong> Groups เฉพาะ เช่น "Rare Aroids BST", "Anthurium Addicts" มี 50K+ members</p>
+    <p style="font-size:0.82rem"><strong>ค่าธรรมเนียม:</strong> ฟรี</p>
+    <p style="font-size:0.82rem"><strong>ข้อดี:</strong> ขายตรงไม่มีค่าคอม, trust จาก community reviews</p>
+    <p style="font-size:0.82rem"><strong>ขายอะไร:</strong> ทุกชนิด — local pickup ได้</p>
+  </div>
+
+  <div class="channel-card">
+    <div class="pct">5%</div>
+    <h4>Farmers Market / Plant Swap</h4>
+    <p style="font-size:0.82rem"><strong>ทำไม:</strong> ลูกค้าเห็นของจริง ตัดสินใจซื้อเร็ว + สร้าง brand awareness</p>
+    <p style="font-size:0.82rem"><strong>ค่าธรรมเนียม:</strong> ค่าบูธ $30-100/วัน</p>
+    <p style="font-size:0.82rem"><strong>ข้อดี:</strong> Cash flow ทันที, สร้าง repeat customers, ไม่ต้องส่งของ</p>
+    <p style="font-size:0.82rem"><strong>ขายอะไร:</strong> ของราคาปานกลาง $20-80 ที่ impulse buy ได้</p>
+  </div>
+</div>
+
+<!-- ==================== PART 4: MATCHING ==================== -->
+<h2>PART 4: จับคู่ — ต้นไม้ไหน ขายช่องทางไหน ให้ลูกค้ากลุ่มไหน</h2>
+
+<table>
+  <thead><tr><th>สินค้า</th><th>ราคาขาย</th><th>ช่องทางหลัก</th><th>ลูกค้าเป้าหมาย</th><th>เหตุผล</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Anthurium Hybrid $5</strong></td><td class="money">$25-40</td><td>Etsy + FB Groups</td><td>มือใหม่เริ่มเก็บ</td><td>ราคาเข้าถึงง่าย impulse buy ได้ volume สูง</td></tr>
+    <tr><td><strong>Crystallinum Hybrid $10</strong></td><td class="money">$30-50</td><td>Etsy + eBay</td><td>มือใหม่ → กลาง</td><td>"Gateway plant" เข้าสู่ collector world</td></tr>
+    <tr><td><strong>Pap x Luxurians $30</strong></td><td class="money">$80-120</td><td>Etsy + Instagram DM</td><td>Collector ระดับกลาง</td><td>Velvet hybrid hot item, Instagram ดึง demand</td></tr>
+    <tr><td><strong>Carlablackiae selfing $40</strong></td><td class="money">$100-200</td><td>Instagram + Palmstreet</td><td>Serious collector</td><td>หายาก ชื่อเสียงดี auction ได้ราคาสูง</td></tr>
+    <tr><td><strong>Carlablackiae x RVDP $50</strong></td><td class="money">$120-250</td><td>Palmstreet auction</td><td>Advanced collector</td><td>1-of-1 hybrids, FOMO bidding, premium price</td></tr>
+    <tr><td><strong>Pap Var x Luxurians $200</strong></td><td class="money">$500-1,000</td><td>Instagram DM only</td><td>Ultra collector + Designer</td><td>ขายเฉพาะคนที่ติดต่อมา exclusive feel</td></tr>
+    <tr><td><strong>Terrarium Kit $15-20</strong></td><td class="money">$60-100</td><td>Etsy + Farmers Market</td><td>Gift buyer + Beginner</td><td>ตลาด mass, volume สูง, ของขวัญ</td></tr>
+    <tr><td><strong>"Boom Hybrid" $2-5</strong></td><td class="money">$40-80</td><td>Instagram + Etsy</td><td>Collector ที่ follow brand</td><td>Exclusive = premium, สร้าง brand loyalty</td></tr>
+  </tbody>
+</table>
+
+<!-- ==================== ACTION PLAN ==================== -->
+<h2>สรุป: ทำเลย 5 ขั้นตอน</h2>
+
+<div class="card highlight" style="text-align:center">
+  <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center">
+    <div style="background:#142018;padding:16px;border-radius:10px;min-width:160px">
+      <div style="font-size:1.5rem">1️⃣</div>
+      <div style="font-weight:700;color:#4ade80">วันนี้</div>
+      <div style="font-size:0.82rem;color:#6b8a6b">DM @equator_keep_liveness<br>+ email TEG ขอ price list</div>
+    </div>
+    <div style="background:#142018;padding:16px;border-radius:10px;min-width:160px">
+      <div style="font-size:1.5rem">2️⃣</div>
+      <div style="font-weight:700;color:#4ade80">สัปดาห์นี้</div>
+      <div style="font-size:0.82rem;color:#6b8a6b">เปิด Etsy Shop<br>+ Instagram @boomplantsusa</div>
+    </div>
+    <div style="background:#142018;padding:16px;border-radius:10px;min-width:160px">
+      <div style="font-size:1.5rem">3️⃣</div>
+      <div style="font-weight:700;color:#4ade80">สั่งซื้อ Batch 1</div>
+      <div style="font-size:0.82rem;color:#6b8a6b">20 ต้น จาก TEG<br>ต้นทุน $415 (฿14,525)</div>
+    </div>
+    <div style="background:#142018;padding:16px;border-radius:10px;min-width:160px">
+      <div style="font-size:1.5rem">4️⃣</div>
+      <div style="font-weight:700;color:#4ade80">ถ่ายรูป + List</div>
+      <div style="font-size:0.82rem;color:#6b8a6b">ถ่ายรูปสวย natural light<br>list ใน Etsy + IG stories</div>
+    </div>
+    <div style="background:#142018;padding:16px;border-radius:10px;min-width:160px">
+      <div style="font-size:1.5rem">5️⃣</div>
+      <div style="font-weight:700;color:#4ade80">ขาย + Repeat</div>
+      <div style="font-size:0.82rem;color:#6b8a6b">คาดว่าขายหมดใน 2-4 สัปดาห์<br>กำไร $1,010 → สั่ง batch 2</div>
+    </div>
+  </div>
+</div>
+
+<!-- Sources -->
+<div style="margin-top:30px">
+  <h2>แหล่งข้อมูล</h2>
+  <div style="font-size:0.78rem;columns:2;column-gap:16px;color:#5a7a5a">
+    <div style="break-inside:avoid;margin-bottom:4px"><a href="https://thaiexoticgreenery.com/collections/anthurium" target="_blank" style="color:#4ade80">TEG — 62 Anthurium products + prices</a></div>
+    <div style="break-inside:avoid;margin-bottom:4px"><a href="https://floristapearlstore.com/pages/wholesale-anthurium-incl-variegated-export-from-thailand" target="_blank" style="color:#4ade80">FloristaPearl — Wholesale Anthurium</a></div>
+    <div style="break-inside:avoid;margin-bottom:4px"><a href="https://ecuageneraus.com/" target="_blank" style="color:#4ade80">Ecuagenera USA — Direct USA shop</a></div>
+    <div style="break-inside:avoid;margin-bottom:4px"><a href="https://www.terrafloraglobal.com/blogs/news/how-to-import-rare-aroids-from-thailand-without-an-import-permit" target="_blank" style="color:#4ade80">TerraFlora — Import without permit</a></div>
+    <div style="break-inside:avoid;margin-bottom:4px"><a href="https://www.zippia.com/plant-buyer-jobs/demographics/" target="_blank" style="color:#4ade80">Zippia — Plant Buyer Demographics 2025</a></div>
+    <div style="break-inside:avoid;margin-bottom:4px"><a href="https://www.makingsenseofcents.com/2025/05/where-to-sell-plants.html" target="_blank" style="color:#4ade80">10 Best Places to Sell Plants</a></div>
+    <div style="break-inside:avoid;margin-bottom:4px"><a href="https://palmstreet.app/" target="_blank" style="color:#4ade80">Palmstreet — Live Plant Auction</a></div>
+    <div style="break-inside:avoid;margin-bottom:4px"><a href="https://www.fraservalleyrosefarm.com/how-to-price-your-plants-for-sale-a-practical-guide-for-small-growers/" target="_blank" style="color:#4ade80">Plant Pricing Guide</a></div>
+    <div style="break-inside:avoid;margin-bottom:4px"><a href="https://plantersetcetera.com/blogs/plant-guides/12-most-profitable-houseplants-to-grow-a-plant-business" target="_blank" style="color:#4ade80">12 Most Profitable Houseplants</a></div>
+    <div style="break-inside:avoid;margin-bottom:4px"><a href="plant-business-plan.html" style="color:#4ade80">แผนธุรกิจต้นไม้ (Business Plan)</a></div>
+    <div style="break-inside:avoid;margin-bottom:4px"><a href="anthurium-research.html" style="color:#4ade80">Anthurium Market Research</a></div>
+    <div style="break-inside:avoid;margin-bottom:4px"><a href="supplier-report.html" style="color:#4ade80">Supplier Report (12 suppliers)</a></div>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  คู่มือเริ่มต้นธุรกิจต้นไม้ | Boom Oracle | April 2026<br>
+  <a href="plant-business-plan.html">Business Plan</a> | <a href="anthurium-research.html">Anthurium</a> | <a href="supplier-report.html">Suppliers</a> | <a href="index.html">Boom Tools</a>
+</div>
+
+</body>
+</html>
