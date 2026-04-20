@@ -97,6 +97,7 @@ body{font-family:'Noto Sans Thai',sans-serif;background:#0d1117;color:#c9d1d9}
   </select>
 
   <button class="btn" id="load-btn" onclick="loadProvince()">โหลดข้อมูลผังเมือง</button>
+  <button class="btn btn-secondary" id="dpt-toggle" onclick="toggleDptOverlay()" style="background:#21262d;color:#c9d1d9;margin-top:4px">เปิด DPT Overlay (กทม.+ทั่วประเทศ)</button>
   <button class="btn btn-secondary" onclick="openBmaGis()" style="background:#21262d;color:#c9d1d9;margin-top:4px">เปิด BMA GIS (กทม. ละเอียด)</button>
   <div class="loading" id="loading">กำลังโหลดข้อมูลจาก DPT...</div>
 
@@ -182,6 +183,55 @@ const EIA_TRIGGERS = [
 
 const map = L.map('map').setView([13.7563, 100.5018], 10);
 L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'ESRI'}).addTo(map);
+
+// DPT Zoning WMS overlay — covers ALL of Thailand including Bangkok
+const dptZoningOverlay = L.tileLayer('https://onedpt.dpt.go.th/arcgis/rest/services/PLLU_ALL/PLLU_ALL/MapServer/export?bbox={xmin},{ymin},{xmax},{ymax}&bboxSR=4326&imageSR=4326&size=512,512&format=png&transparent=true&f=image', {
+  maxZoom: 19,
+  opacity: 0.5,
+  attribution: 'DPT Zoning'
+});
+
+// Custom tile layer using DPT export
+const DPTZoningLayer = L.Layer.extend({
+  onAdd: function(map) {
+    this._map = map;
+    this._container = L.DomUtil.create('div','dpt-overlay');
+    this._container.style.position = 'absolute';
+    this._container.style.pointerEvents = 'none';
+    map.getPanes().overlayPane.appendChild(this._container);
+    map.on('moveend', this._update, this);
+    this._update();
+  },
+  onRemove: function(map) {
+    map.getPanes().overlayPane.removeChild(this._container);
+    map.off('moveend', this._update, this);
+  },
+  _update: function() {
+    const bounds = this._map.getBounds();
+    const size = this._map.getSize();
+    const url = `https://onedpt.dpt.go.th/arcgis/rest/services/PLLU_ALL/PLLU_ALL/MapServer/export?bbox=${bounds.getWest()},${bounds.getSouth()},${bounds.getEast()},${bounds.getNorth()}&bboxSR=4326&imageSR=4326&size=${size.x},${size.y}&format=png&transparent=true&f=image`;
+
+    const topLeft = this._map.latLngToLayerPoint(bounds.getNorthWest());
+    this._container.style.left = topLeft.x + 'px';
+    this._container.style.top = topLeft.y + 'px';
+    this._container.style.width = size.x + 'px';
+    this._container.style.height = size.y + 'px';
+    this._container.innerHTML = `<img src="${url}" style="width:100%;height:100%;opacity:0.55">`;
+  }
+});
+
+let dptOverlay = null;
+function toggleDptOverlay() {
+  if (dptOverlay) {
+    map.removeLayer(dptOverlay);
+    dptOverlay = null;
+    document.getElementById('dpt-toggle').textContent = 'เปิด DPT Overlay (กทม.+ทั่วประเทศ)';
+  } else {
+    dptOverlay = new DPTZoningLayer();
+    map.addLayer(dptOverlay);
+    document.getElementById('dpt-toggle').textContent = 'ปิด DPT Overlay';
+  }
+}
 
 let zoneLayer = null;
 const zoneCounts = {};
