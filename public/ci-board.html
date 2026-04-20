@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CI Board — Homes by Kanawut</title>
+<script src="auth.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Noto Sans Thai', -apple-system, sans-serif; background: #F9F6F3; color: #524337; }
+
+.header {
+  background: linear-gradient(135deg, #C3A082, #B19276);
+  padding: 40px 20px;
+  text-align: center;
+  color: white;
+}
+.header h1 { font-size: 2rem; font-weight: 700; }
+.header p { margin-top: 8px; opacity: 0.9; font-size: 0.95rem; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 30px 20px; }
+
+.section { margin-bottom: 40px; }
+.section h2 {
+  font-size: 1.3rem; font-weight: 700; color: #524337;
+  border-left: 4px solid #C3A082; padding-left: 12px; margin-bottom: 16px;
+}
+.section p.desc { color: #8B7B6B; font-size: 0.88rem; margin-bottom: 16px; }
+
+/* Color Palette */
+.palette { display: flex; flex-wrap: wrap; gap: 12px; }
+.color-card {
+  width: 160px; border-radius: 12px; overflow: hidden;
+  background: white; box-shadow: 0 2px 8px rgba(82,67,55,0.1);
+}
+.color-swatch { height: 80px; }
+.color-info { padding: 10px; }
+.color-name { font-weight: 600; font-size: 0.85rem; }
+.color-hex { color: #8B7B6B; font-size: 0.78rem; font-family: monospace; }
+.color-use { color: #A08B7A; font-size: 0.72rem; margin-top: 2px; }
+
+/* Typography */
+.type-sample {
+  background: white; border-radius: 12px; padding: 24px;
+  box-shadow: 0 2px 8px rgba(82,67,55,0.1); margin-bottom: 12px;
+}
+.type-label { font-size: 0.75rem; color: #A08B7A; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+
+/* Components */
+.comp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+.comp-card {
+  background: white; border-radius: 12px; padding: 20px;
+  box-shadow: 0 2px 8px rgba(82,67,55,0.1);
+}
+.comp-card h3 { font-size: 0.85rem; color: #A08B7A; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+
+/* Buttons */
+.btn-primary {
+  background: #C3A082; color: white; border: none; padding: 10px 24px;
+  border-radius: 7px; font-family: inherit; font-size: 0.9rem; font-weight: 500;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-primary:hover { background: #B19276; }
+.btn-outline {
+  background: transparent; color: #B19276; border: 1.5px solid #B19276;
+  padding: 10px 24px; border-radius: 7px; font-family: inherit; font-size: 0.9rem;
+  font-weight: 500; cursor: pointer; transition: all 0.2s;
+}
+.btn-outline:hover { background: #F9F6F3; }
+.btn-pill {
+  background: #F9F6F3; color: #524337; border: 1px solid #E8DDD3;
+  padding: 8px 20px; border-radius: 21px; font-family: inherit; font-size: 0.85rem;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-pill.active { background: #C3A082; color: white; border-color: #C3A082; }
+
+/* Nav Demo */
+.nav-demo {
+  background: white; border-radius: 12px; padding: 12px 20px;
+  display: flex; align-items: center; gap: 16px;
+  box-shadow: 0 2px 8px rgba(82,67,55,0.1);
+}
+.nav-logo { font-weight: 700; font-size: 1.1rem; color: #524337; }
+.nav-item { font-size: 0.85rem; color: #8B7B6B; padding: 6px 12px; border-radius: 7px; cursor: pointer; }
+.nav-item.active { background: #C3A082; color: white; }
+.nav-item:hover:not(.active) { background: #F9F6F3; }
+
+/* Cards */
+.prop-card {
+  background: white; border-radius: 12px; overflow: hidden;
+  box-shadow: 0 2px 8px rgba(82,67,55,0.1); max-width: 280px;
+}
+.prop-img { height: 160px; background: linear-gradient(135deg, #D4C4B0, #C3A082); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; }
+.prop-body { padding: 14px; }
+.prop-price { font-weight: 700; font-size: 1.1rem; color: #524337; }
+.prop-title { font-size: 0.85rem; color: #8B7B6B; margin-top: 4px; }
+.prop-specs { display: flex; gap: 12px; margin-top: 8px; font-size: 0.78rem; color: #A08B7A; }
+
+/* Search */
+.search-demo {
+  background: white; border-radius: 12px; padding: 16px;
+  box-shadow: 0 2px 8px rgba(82,67,55,0.1);
+  display: flex; gap: 8px; align-items: center;
+}
+.search-tabs { display: flex; gap: 4px; }
+.search-tab { padding: 8px 16px; border-radius: 21px 21px 0 0; font-size: 0.85rem; cursor: pointer; border: 1px solid #E8DDD3; border-bottom: none; }
+.search-tab.active { background: white; color: #B19276; font-weight: 600; }
+.search-input { flex: 1; padding: 10px 16px; border: 1px solid #E8DDD3; border-radius: 7px; font-family: inherit; font-size: 0.9rem; outline: none; }
+.search-input:focus { border-color: #C3A082; }
+.search-btn { background: #C3A082; color: white; border: none; padding: 10px 20px; border-radius: 0 7px 7px 0; font-family: inherit; font-weight: 600; cursor: pointer; }
+
+/* Footer Demo */
+.footer-demo {
+  background: #524337; color: #D4C4B0; border-radius: 12px; padding: 24px;
+}
+.footer-demo h4 { color: white; font-size: 0.9rem; margin-bottom: 8px; }
+.footer-demo p { font-size: 0.78rem; line-height: 1.8; }
+
+/* Comparison */
+.compare-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.compare-table th { background: #F9F6F3; padding: 10px 16px; text-align: left; font-weight: 600; color: #524337; border-bottom: 2px solid #E8DDD3; }
+.compare-table td { padding: 10px 16px; border-bottom: 1px solid #F0E8E0; }
+.compare-table .old { color: #EF4444; text-decoration: line-through; }
+.compare-table .new { color: #10B981; font-weight: 600; }
+
+.badge { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.72rem; font-weight: 600; }
+.badge-ref { background: #C3A082; color: white; }
+.badge-cur { background: #2563EB; color: white; }
+
+@media (max-width: 768px) {
+  .palette { flex-direction: column; }
+  .color-card { width: 100%; display: flex; }
+  .color-swatch { width: 80px; height: auto; }
+  .comp-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>CI Board — Homes by Kanawut</h1>
+  <p>Corporate Identity อ้างอิงจาก homes.in.th | สำหรับปรับ UI ให้ตรง</p>
+</div>
+
+<div class="container">
+
+<!-- Color Palette -->
+<div class="section">
+  <h2>Color Palette</h2>
+  <p class="desc">สีหลักจาก homes.in.th — warm brown tones แทน cold blue</p>
+  <div class="palette">
+    <div class="color-card">
+      <div class="color-swatch" style="background:#C3A082"></div>
+      <div class="color-info">
+        <div class="color-name">Primary</div>
+        <div class="color-hex">#C3A082 / rgb(195,160,130)</div>
+        <div class="color-use">Buttons, Active tabs, CTAs</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:#B19276"></div>
+      <div class="color-info">
+        <div class="color-name">Primary Dark</div>
+        <div class="color-hex">#B19276 / rgb(177,146,118)</div>
+        <div class="color-use">Hover states, Borders, Links</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:#F9F6F3"></div>
+      <div class="color-info">
+        <div class="color-name">Background</div>
+        <div class="color-hex">#F9F6F3 / rgb(249,246,243)</div>
+        <div class="color-use">Page background, Section bg</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:#524337"></div>
+      <div class="color-info">
+        <div class="color-name">Dark / Footer</div>
+        <div class="color-hex">#524337 / rgb(82,67,55)</div>
+        <div class="color-use">Footer, Headings, Body text</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:#8B7B6B"></div>
+      <div class="color-info">
+        <div class="color-name">Muted Text</div>
+        <div class="color-hex">#8B7B6B</div>
+        <div class="color-use">Secondary text, Descriptions</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:#E8DDD3"></div>
+      <div class="color-info">
+        <div class="color-name">Border</div>
+        <div class="color-hex">#E8DDD3</div>
+        <div class="color-use">Borders, Dividers, Input borders</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:#FFFFFF"></div>
+      <div class="color-info">
+        <div class="color-name">Surface</div>
+        <div class="color-hex">#FFFFFF</div>
+        <div class="color-use">Cards, Inputs, Nav</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:#D4C4B0"></div>
+      <div class="color-info">
+        <div class="color-name">Accent Light</div>
+        <div class="color-hex">#D4C4B0</div>
+        <div class="color-use">Hover bg, Category cards, Tags</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Typography -->
+<div class="section">
+  <h2>Typography</h2>
+  <p class="desc">Font: Noto Sans Thai — clean, readable, Thai-optimized</p>
+  <div class="type-sample">
+    <div class="type-label">Heading 1 — 700, 2rem</div>
+    <div style="font-size:2rem;font-weight:700;color:#524337">ค้นหาบ้านในฝัน เรามีครบ</div>
+  </div>
+  <div class="type-sample">
+    <div class="type-label">Heading 2 — 700, 1.3rem</div>
+    <div style="font-size:1.3rem;font-weight:700;color:#524337">ค้นหาจาก</div>
+  </div>
+  <div class="type-sample">
+    <div class="type-label">Body — 400, 0.9rem</div>
+    <div style="font-size:0.9rem;color:#8B7B6B">ค้นหาทำเลตรงโซนแบบค้นหาพร้อมฟิลเตอร์แบบละเอียด</div>
+  </div>
+  <div class="type-sample">
+    <div class="type-label">Link — 500, 0.9rem</div>
+    <div style="font-size:0.9rem;font-weight:500;color:#B19276">ดูแผนที่ค้นหา →</div>
+  </div>
+</div>
+
+<!-- Components -->
+<div class="section">
+  <h2>Components</h2>
+  <div class="comp-grid">
+
+    <!-- Nav -->
+    <div class="comp-card">
+      <h3>Navigation</h3>
+      <div class="nav-demo">
+        <div class="nav-logo">Homes</div>
+        <div class="nav-item active">หน้าแรก</div>
+        <div class="nav-item">เช่า</div>
+        <div class="nav-item">ซื้อ</div>
+        <div class="nav-item">สร้าง</div>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="comp-card">
+      <h3>Buttons</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+        <button class="btn-primary">ค้นหาข้อมูล</button>
+        <button class="btn-outline">เข้าสู่ระบบ</button>
+        <button class="btn-pill active">บ้านเดี่ยว</button>
+        <button class="btn-pill">คอนโด</button>
+      </div>
+    </div>
+
+    <!-- Search -->
+    <div class="comp-card" style="grid-column: span 2">
+      <h3>Search Bar</h3>
+      <div class="search-demo">
+        <div class="search-tabs">
+          <div class="search-tab active">ค้นหาซื้อ</div>
+          <div class="search-tab">ค้นหาเช่า</div>
+        </div>
+        <input class="search-input" placeholder="ค้นหาโครงการ ชื่อ หรือสถานที่ใกล้" />
+        <button class="search-btn">ค้นหาข้อมูล</button>
+      </div>
+    </div>
+
+    <!-- Property Card -->
+    <div class="comp-card">
+      <h3>Property Card</h3>
+      <div class="prop-card">
+        <div class="prop-img">🏠</div>
+        <div class="prop-body">
+          <div class="prop-price">฿8,500,000</div>
+          <div class="prop-title">บ้านเดี่ยว 3 ห้องนอน สุขุมวิท</div>
+          <div class="prop-specs">
+            <span>3 ห้องนอน</span>
+            <span>2 ห้องน้ำ</span>
+            <span>150 ตร.ม.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="comp-card">
+      <h3>Footer</h3>
+      <div class="footer-demo">
+        <h4>Homes</h4>
+        <p>หน้าแรก | เช่า | ซื้อ | สร้าง<br>บทความและข่าวสาร | ติดต่อเรา</p>
+        <p style="margin-top:12px;font-size:0.72rem;color:#A08B7A">© 2026 Homes by Kanawut</p>
+      </div>
+    </div>
+
+    <!-- Category Cards -->
+    <div class="comp-card" style="grid-column: span 2">
+      <h3>Category Cards</h3>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <div style="background:white;border:1px solid #E8DDD3;border-radius:12px;padding:20px 24px;text-align:center;min-width:100px">
+          <div style="font-size:1.5rem;margin-bottom:6px;color:#C3A082">📍</div>
+          <div style="font-size:0.85rem;font-weight:500;color:#524337">ทำเล</div>
+        </div>
+        <div style="background:white;border:1px solid #E8DDD3;border-radius:12px;padding:20px 24px;text-align:center;min-width:100px">
+          <div style="font-size:1.5rem;margin-bottom:6px;color:#C3A082">🗺️</div>
+          <div style="font-size:0.85rem;font-weight:500;color:#524337">แผนที่</div>
+        </div>
+        <div style="background:white;border:1px solid #E8DDD3;border-radius:12px;padding:20px 24px;text-align:center;min-width:100px">
+          <div style="font-size:1.5rem;margin-bottom:6px;color:#C3A082">🏷️</div>
+          <div style="font-size:0.85rem;font-weight:500;color:#524337">แอคเค้ก</div>
+        </div>
+        <div style="background:white;border:1px solid #E8DDD3;border-radius:12px;padding:20px 24px;text-align:center;min-width:100px">
+          <div style="font-size:1.5rem;margin-bottom:6px;color:#C3A082">🚇</div>
+          <div style="font-size:0.85rem;font-weight:500;color:#524337">ใกล้รถไฟฟ้า</div>
+        </div>
+        <div style="background:white;border:1px solid #E8DDD3;border-radius:12px;padding:20px 24px;text-align:center;min-width:100px">
+          <div style="font-size:1.5rem;margin-bottom:6px;color:#C3A082">🚌</div>
+          <div style="font-size:0.85rem;font-weight:500;color:#524337">ใกล้รถเมล์</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Before/After Comparison -->
+<div class="section">
+  <h2>เปรียบเทียบ: ก่อน vs หลัง</h2>
+  <p class="desc">สิ่งที่ต้องเปลี่ยนจาก blue theme → brown/beige theme</p>
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th><span class="badge badge-cur">ตอนนี้ (Blue)</span></th>
+        <th><span class="badge badge-ref">เป้าหมาย (Brown)</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Primary Color</td>
+        <td class="old">#2563EB (blue-600)</td>
+        <td class="new">#C3A082 (warm brown)</td>
+      </tr>
+      <tr>
+        <td>Primary Hover</td>
+        <td class="old">#1D4ED8 (blue-700)</td>
+        <td class="new">#B19276 (dark brown)</td>
+      </tr>
+      <tr>
+        <td>Page Background</td>
+        <td class="old">#FFFFFF (white)</td>
+        <td class="new">#F9F6F3 (warm beige)</td>
+      </tr>
+      <tr>
+        <td>Hero Section</td>
+        <td class="old">gradient blue-900 → indigo-900</td>
+        <td class="new">Dark photo overlay + white search</td>
+      </tr>
+      <tr>
+        <td>Text Color</td>
+        <td class="old">#111827 (gray-900)</td>
+        <td class="new">#524337 (warm dark brown)</td>
+      </tr>
+      <tr>
+        <td>Muted Text</td>
+        <td class="old">#6B7280 (gray-500)</td>
+        <td class="new">#8B7B6B (warm gray)</td>
+      </tr>
+      <tr>
+        <td>Border Color</td>
+        <td class="old">#E5E7EB (gray-200)</td>
+        <td class="new">#E8DDD3 (warm border)</td>
+      </tr>
+      <tr>
+        <td>Footer BG</td>
+        <td class="old">#111827 (dark gray)</td>
+        <td class="new">#524337 (dark brown)</td>
+      </tr>
+      <tr>
+        <td>Nav Active Tab</td>
+        <td class="old">blue-600 bg + white text</td>
+        <td class="new">#C3A082 bg + white text</td>
+      </tr>
+      <tr>
+        <td>Card Shadow</td>
+        <td class="old">rgba(0,0,0,0.1)</td>
+        <td class="new">rgba(82,67,55,0.1)</td>
+      </tr>
+      <tr>
+        <td>Font</td>
+        <td>Inter + Noto Sans Thai ✅</td>
+        <td>Noto Sans Thai (same)</td>
+      </tr>
+      <tr>
+        <td>Border Radius</td>
+        <td>rounded-xl (12px) ✅</td>
+        <td>7px buttons / 12px cards (similar)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div style="text-align:center;padding:30px;color:#A08B7A;font-size:0.78rem">
+  CI Board | Boom Oracle | 20 Apr 2026<br>
+  Reference: homes.in.th | Target: homes.kanawut.com
+</div>
+</div>
+
+</body>
+</html>
