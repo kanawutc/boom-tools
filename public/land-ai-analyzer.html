@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI วิเคราะห์ที่ดิน — Requirement + Demo</title>
+<script src="auth.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans Thai','Inter',sans-serif;background:#f8f9fa;color:#1a1a2e}
+.hero{background:linear-gradient(135deg,#1a1a2e,#2d3a8c,#1a1a2e);padding:50px 20px;text-align:center;color:white}
+.hero h1{font-size:2rem;font-weight:800}.hero p{margin-top:8px;opacity:0.85;font-size:0.95rem}
+.hero .badge{display:inline-block;background:rgba(255,255,255,0.15);padding:5px 16px;border-radius:20px;font-size:0.78rem;margin-top:14px}
+.container{max-width:1100px;margin:0 auto;padding:30px 20px}
+h2{font-size:1.4rem;font-weight:700;color:#1a1a2e;border-left:4px solid #4f46e5;padding-left:14px;margin:30px 0 14px}
+h3{font-size:1.05rem;font-weight:600;color:#4f46e5;margin:16px 0 8px}
+p{color:#4a4a6a;font-size:0.9rem;margin-bottom:10px}
+.card{background:white;border:1px solid #e5e7eb;border-radius:12px;padding:20px;margin:12px 0;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
+.card.highlight{border-color:#4f46e5;box-shadow:0 2px 16px rgba(79,70,229,0.1)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:0.82rem;margin:12px 0}
+th{background:#1a1a2e;color:white;padding:10px 12px;text-align:left;font-weight:600}
+th:first-child{border-radius:8px 0 0 0}th:last-child{border-radius:0 8px 0 0}
+td{padding:8px 12px;border-bottom:1px solid #f0f0f5;background:white}
+.tag{display:inline-block;padding:2px 8px;border-radius:6px;font-size:0.7rem;font-weight:600}
+.tag-must{background:#fef2f2;color:#dc2626}.tag-should{background:#fffbeb;color:#d97706}.tag-nice{background:#f0fdf4;color:#16a34a}
+.ref{font-size:0.78rem;color:#8888aa;margin-top:4px}
+.ref a{color:#4f46e5}
+
+/* DEMO APP STYLES */
+.demo-app{background:linear-gradient(135deg,#f0f4ff,#e8ecff);border:2px solid #4f46e5;border-radius:16px;padding:24px;margin:20px 0}
+.demo-app h3{color:#1a1a2e;font-size:1.2rem;margin:0 0 16px}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:0.85rem;font-weight:600;color:#1a1a2e;margin-bottom:4px}
+.form-group input,.form-group select{width:100%;padding:10px 14px;border:1px solid #d1d5db;border-radius:8px;font-family:inherit;font-size:0.9rem;background:white}
+.form-group input:focus,.form-group select:focus{border-color:#4f46e5;outline:none;box-shadow:0 0 0 3px rgba(79,70,229,0.1)}
+.btn-analyze{background:#4f46e5;color:white;border:none;padding:12px 24px;border-radius:8px;font-family:inherit;font-size:0.95rem;font-weight:600;cursor:pointer;width:100%;margin-top:8px}
+.btn-analyze:hover{background:#4338ca}
+.result-box{background:white;border:1px solid #d1d5db;border-radius:12px;padding:20px;margin-top:16px;display:none}
+.result-box.show{display:block}
+.result-item{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f5f5f5;font-size:0.88rem}
+.result-item .label{color:#6b7280}.result-item .value{font-weight:600;color:#1a1a2e}
+.result-item .value.green{color:#16a34a}.result-item .value.red{color:#dc2626}.result-item .value.blue{color:#4f46e5}
+.zone-badge{display:inline-block;padding:4px 12px;border-radius:8px;font-size:0.82rem;font-weight:600;margin:4px}
+.pnl-table{width:100%;font-size:0.82rem;margin-top:12px}
+.pnl-table td{padding:6px 10px;border-bottom:1px solid #f0f0f5}
+.pnl-table .total{font-weight:700;background:#f0f4ff}
+
+.footer{text-align:center;padding:30px;color:#8888aa;font-size:0.75rem;border-top:1px solid #e5e7eb}
+.footer a{color:#4f46e5;text-decoration:none}
+@media(max-width:768px){.grid2,.grid3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>AI วิเคราะห์ที่ดิน</h1>
+  <p>Requirement Document + Demo Program — อ้างอิงจากคอร์สพี่พีท (พุฒวดี พรสินธ์)</p>
+  <div class="badge">Requirement + Working Demo | April 2026</div>
+</div>
+
+<div class="container">
+
+<!-- ==================== REQUIREMENT ==================== -->
+<h2>PART 1: Requirement Document</h2>
+
+<div class="card highlight">
+  <h3>สรุปโปรแกรมที่ต้องการ</h3>
+  <p><strong>ชื่อ:</strong> AI วิเคราะห์ศักยภาพที่ดิน (Land Feasibility AI Analyzer)</p>
+  <p><strong>วัตถุประสงค์:</strong> วิเคราะห์ที่ดินที่มีลักษณะซับซ้อนได้ใน "ไม่กี่นาที" แทนที่จะใช้เวลา "หลายวันหรือสัปดาห์" ด้วยความแม่นยำ 80-90%</p>
+  <p><strong>อ้างอิง:</strong> คอร์สของ พุฒวดี พรสินธ์ (พี่พีท) — สอนวันที่ 30 พ.ค. 2568 ราคา ฿9,900-13,000</p>
+  <div class="ref"><a href="https://docs.google.com/forms/d/e/1FAIpQLSc3hZrOaFQ5ex2JM1JOcorBhuoh_k6FNJcI0DVoFf-6-hgxHg/viewform" target="_blank">อ้างอิง: Google Form คอร์สต้นฉบับ</a></div>
+</div>
+
+<!-- Features -->
+<h3>Features ที่ต้องมี (จากคอร์ส)</h3>
+<table>
+  <thead><tr><th>#</th><th>Feature</th><th>รายละเอียด</th><th>Priority</th></tr></thead>
+  <tbody>
+    <tr><td>F1</td><td><strong>ตรวจสอบสีผังเมือง</strong></td><td>ใส่พิกัด/ที่อยู่ → แสดงสีผังเมือง + ข้อกำหนดการใช้ที่ดิน (กทม. ร่างใหม่ 2568 + ทั่วประเทศ)</td><td><span class="tag tag-must">MUST</span></td></tr>
+    <tr><td>F2</td><td><strong>FAR / BCR / OSR Calculator</strong></td><td>คำนวณ Floor Area Ratio, Building Coverage Ratio, Open Space Ratio จากสีผังเมือง + ขนาดที่ดิน</td><td><span class="tag tag-must">MUST</span></td></tr>
+    <tr><td>F3</td><td><strong>กฎหมายควบคุมอาคาร</strong></td><td>แสดง setback, ความสูง, ระยะถอยร่น ตาม พ.ร.บ.ควบคุมอาคาร 2522 + กฎกระทรวง + ข้อบัญญัติท้องถิ่น</td><td><span class="tag tag-must">MUST</span></td></tr>
+    <tr><td>F4</td><td><strong>Highest and Best Use Analysis</strong></td><td>วิเคราะห์ว่าที่ดินนี้ควรพัฒนาเป็นอะไร (คอนโด/บ้านจัดสรร/อาคารพาณิชย์/โรงแรม ฯลฯ) ตามกฎหมาย + ตลาด</td><td><span class="tag tag-must">MUST</span></td></tr>
+    <tr><td>F5</td><td><strong>Feasibility P&L Calculator</strong></td><td>คำนวณกำไร-ขาดทุน: ต้นทุนที่ดิน + ก่อสร้าง + ดอกเบี้ย → รายได้จากขาย/เช่า → กำไรสุทธิ + IRR + ROI</td><td><span class="tag tag-must">MUST</span></td></tr>
+    <tr><td>F6</td><td><strong>AI Prompt Engine</strong></td><td>ใช้ AI (Gemini/Claude/GPT) วิเคราะห์ข้อมูลกฎหมายหลายร้อยหน้า → สรุปเป็นคำแนะนำ</td><td><span class="tag tag-must">MUST</span></td></tr>
+    <tr><td>F7</td><td><strong>แผนที่ + Overlay ผังเมือง</strong></td><td>แสดงแผนที่จริง + overlay สีผังเมืองจาก DPT GeoJSON (เหมือน gas station zone checker)</td><td><span class="tag tag-should">SHOULD</span></td></tr>
+    <tr><td>F8</td><td><strong>เปรียบเทียบ Scenario</strong></td><td>เปรียบเทียบ 2-3 scenario (เช่น สร้างคอนโด vs บ้านจัดสรร vs ขายที่เปล่า)</td><td><span class="tag tag-should">SHOULD</span></td></tr>
+    <tr><td>F9</td><td><strong>Export PDF Report</strong></td><td>สร้างรายงาน PDF สำเร็จรูปสำหรับส่งลูกค้า/นักลงทุน</td><td><span class="tag tag-nice">NICE</span></td></tr>
+    <tr><td>F10</td><td><strong>ฐานข้อมูลราคาตลาด</strong></td><td>ราคาประเมินกรมที่ดิน + ราคาตลาดจริงในพื้นที่ใกล้เคียง</td><td><span class="tag tag-nice">NICE</span></td></tr>
+  </tbody>
+</table>
+
+<!-- Data Sources -->
+<h3>แหล่งข้อมูลที่ต้องใช้</h3>
+<div class="grid2">
+  <div class="card">
+    <h3 style="margin-top:0">กฎหมายและผังเมือง</h3>
+    <ul style="padding-left:16px;font-size:0.85rem;color:#4a4a6a">
+      <li>ผังเมืองรวม กทม. (ฉบับ 2556 + ร่างใหม่ 2568)</li>
+      <li>ผังเมืองรวมทั่วประเทศ — <a href="https://onedpt.dpt.go.th/arcgis/rest/services/PLLU_ALL/PLLU_ALL/MapServer" style="color:#4f46e5">DPT ArcGIS</a></li>
+      <li>พ.ร.บ.ควบคุมอาคาร พ.ศ.2522 (แก้ไขถึงฉบับที่ 5)</li>
+      <li>กฎกระทรวง ฉบับที่ 33, 55 ฯลฯ</li>
+      <li>ข้อบัญญัติท้องถิ่น (กทม., เทศบาล)</li>
+      <li>พ.ร.บ.ผังเมือง พ.ศ.2562</li>
+      <li>ประกาศ EIA/EHIA</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">ข้อมูลตลาดและราคา</h3>
+    <ul style="padding-left:16px;font-size:0.85rem;color:#4a4a6a">
+      <li>ราคาประเมินกรมที่ดิน</li>
+      <li>ราคาตลาดจาก DDProperty, Tooktee, Baania</li>
+      <li>ต้นทุนก่อสร้างต่อ ตร.ม. (SCG Price List)</li>
+      <li>อัตราดอกเบี้ยสินเชื่อโครงการ</li>
+      <li>ค่าธรรมเนียมโอน + ภาษี</li>
+      <li>Absorption rate ของพื้นที่</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Tech Stack -->
+<h3>Tech Stack แนะนำ</h3>
+<table>
+  <thead><tr><th>Component</th><th>Technology</th><th>เหตุผล</th></tr></thead>
+  <tbody>
+    <tr><td>Frontend</td><td>Next.js + Tailwind</td><td>เหมือน homes.kanawut.com — reuse codebase ได้</td></tr>
+    <tr><td>Map</td><td>Leaflet + DPT ArcGIS GeoJSON</td><td>เหมือน gas station zone checker — data พร้อมแล้ว</td></tr>
+    <tr><td>AI Engine</td><td>Claude API (Opus/Sonnet)</td><td>วิเคราะห์กฎหมาย + Highest & Best Use</td></tr>
+    <tr><td>Calculator</td><td>Client-side JS</td><td>คำนวณ FAR/BCR/P&L ได้ทันทีไม่ต้อง server</td></tr>
+    <tr><td>Database</td><td>Neon PostgreSQL</td><td>เก็บข้อมูลกฎหมาย + ราคาตลาด + user saves</td></tr>
+    <tr><td>Deploy</td><td>Vercel (kanawut.com)</td><td>Infrastructure พร้อมแล้ว</td></tr>
+  </tbody>
+</table>
+
+<!-- ==================== DEMO APP ==================== -->
+<h2>PART 2: Working Demo</h2>
+<p>ลองใช้ได้เลย — ใส่ข้อมูลที่ดินแล้วกด "วิเคราะห์"</p>
+
+<div class="demo-app">
+  <h3>🏗️ AI วิเคราะห์ศักยภาพที่ดิน — Demo</h3>
+
+  <div class="grid2">
+    <div class="form-group">
+      <label>ขนาดที่ดิน (ตร.วา)</label>
+      <input type="number" id="land-size" value="400" min="1">
+    </div>
+    <div class="form-group">
+      <label>ราคาที่ดิน (บาท/ตร.วา)</label>
+      <input type="number" id="land-price" value="150000" min="1">
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="form-group">
+      <label>สีผังเมือง</label>
+      <select id="zone-color">
+        <option value="red">สีแดง — พาณิชยกรรม (พ.)</option>
+        <option value="orange" selected>สีส้ม — ที่อยู่อาศัยหนาแน่นปานกลาง (ย.3-ย.4)</option>
+        <option value="yellow">สีเหลือง — ที่อยู่อาศัยหนาแน่นน้อย (ย.1-ย.2)</option>
+        <option value="brown">สีน้ำตาล — ที่อยู่อาศัยหนาแน่นมาก (ย.5-ย.10)</option>
+        <option value="purple">สีม่วง — อุตสาหกรรม (อ.)</option>
+        <option value="green">สีเขียว — ชนบท/เกษตรกรรม (ก.)</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>ประเภทโครงการ</label>
+      <select id="project-type">
+        <option value="condo">คอนโดมิเนียม</option>
+        <option value="townhouse" selected>ทาวน์เฮ้าส์/บ้านแถว</option>
+        <option value="house">บ้านเดี่ยว/หมู่บ้านจัดสรร</option>
+        <option value="commercial">อาคารพาณิชย์/สำนักงาน</option>
+        <option value="hotel">โรงแรม/เซอร์วิสอพาร์ทเมนท์</option>
+        <option value="mixed">Mixed-Use</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="grid3">
+    <div class="form-group">
+      <label>หน้ากว้างที่ดิน (ม.)</label>
+      <input type="number" id="land-width" value="40" min="1">
+    </div>
+    <div class="form-group">
+      <label>ต้นทุนก่อสร้าง (บาท/ตร.ม.)</label>
+      <input type="number" id="const-cost" value="25000" min="1">
+    </div>
+    <div class="form-group">
+      <label>ราคาขายเฉลี่ย (บาท/ตร.ม.)</label>
+      <input type="number" id="sell-price" value="65000" min="1">
+    </div>
+  </div>
+
+  <button class="btn-analyze" onclick="analyze()">🔍 วิเคราะห์ศักยภาพที่ดิน</button>
+
+  <div class="result-box" id="result-box">
+    <!-- Results filled by JS -->
+  </div>
+</div>
+
+<!-- Reference -->
+<h2>PART 3: แหล่งข้อมูลอ้างอิง</h2>
+<div class="grid2">
+  <div class="card">
+    <h3 style="margin-top:0">คอร์สต้นฉบับ</h3>
+    <ul style="padding-left:16px;font-size:0.82rem">
+      <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSc3hZrOaFQ5ex2JM1JOcorBhuoh_k6FNJcI0DVoFf-6-hgxHg/viewform" target="_blank" style="color:#4f46e5">Google Form — คอร์สพี่พีท (พุฒวดี พรสินธ์)</a></li>
+      <li>ราคา: ฿9,900-13,000 | วันที่: 30 พ.ค. 2568</li>
+      <li>เนื้อหา: Phase 1 กฎหมาย + Phase 2 AI</li>
+      <li>ใช้ Google Gemini Pro (฿750/เดือน)</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">กฎหมายและข้อมูล</h3>
+    <ul style="padding-left:16px;font-size:0.82rem">
+      <li><a href="https://www.ddproperty.com/คู่มือซื้อขาย/e0b881e0b88ee0b8abe0b8a1e0b8b2e0b8a2e0b8aae0b8b5e0b89ce0b8b1e0b887e0b980e0b8a1e0b8b7e0b8ade0b887-e0b89be0b8a3e0b8b0e0b982e0b8a2e0b88a-4294" target="_blank" style="color:#4f46e5">DDProperty — ผังเมือง กทม. ฉบับใหม่ 2569</a></li>
+      <li><a href="https://www.feasyonline.com/content/detail/1207/" target="_blank" style="color:#4f46e5">Feasy — ตรวจสอบสีผังเมือง FAR OSR</a></li>
+      <li><a href="https://www.noblehome.com/th/blog/bangkok-city-zoning-2025-guide" target="_blank" style="color:#4f46e5">Noble — ถอดรหัสสีผังเมือง 2568</a></li>
+      <li><a href="https://onedpt.dpt.go.th/arcgis/rest/services/PLLU_ALL/PLLU_ALL/MapServer" target="_blank" style="color:#4f46e5">DPT ArcGIS — GeoJSON ผังเมืองทั่วประเทศ</a></li>
+      <li><a href="https://www.thailawforum.com/building-control-act/" target="_blank" style="color:#4f46e5">พ.ร.บ.ควบคุมอาคาร พ.ศ.2522</a></li>
+      <li><a href="https://asa.or.th/laws-and-regulations/cpa/" target="_blank" style="color:#4f46e5">สมาคมสถาปนิก — กฎหมายผังเมือง</a></li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">เครื่องมือ AI ที่เกี่ยวข้อง</h3>
+    <ul style="padding-left:16px;font-size:0.82rem">
+      <li><a href="https://www.testfit.io/" target="_blank" style="color:#4f46e5">TestFit — Real Estate Feasibility</a></li>
+      <li><a href="https://www.zenerate.ai/" target="_blank" style="color:#4f46e5">Zenerate — AI Land Development</a></li>
+      <li><a href="https://dealcheck.io/" target="_blank" style="color:#4f46e5">DealCheck — RE Analysis Software</a></li>
+      <li><a href="https://deepblocks.com/" target="_blank" style="color:#4f46e5">Deepblocks — AI Feasibility</a></li>
+      <li><a href="https://doorinsight.com/tools/ai-deal-analyzer" target="_blank" style="color:#4f46e5">Door Insight — AI Deal Analyzer</a></li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">ผังเมืองและข้อกำหนด</h3>
+    <ul style="padding-left:16px;font-size:0.82rem">
+      <li><a href="https://thaipropertymentor.com/archives/23256" target="_blank" style="color:#4f46e5">ผังเมือง กทม. 9 โซน 2568</a></li>
+      <li><a href="https://prop2morrow.com/833666/" target="_blank" style="color:#4f46e5">5 ประเด็นร่างผังเมือง กทม. ครั้งที่ 4</a></li>
+      <li><a href="https://www.sansiri.com/content/view/homeguide-thailand-city-plan-and-color-zoning/th" target="_blank" style="color:#4f46e5">แสนสิริ — สีผังเมือง 2569</a></li>
+      <li><a href="https://www.tooktee.com/blog/detail/1332/" target="_blank" style="color:#4f46e5">TookTee — ตรวจสอบสีผังเมือง</a></li>
+    </ul>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  AI วิเคราะห์ที่ดิน | Boom Oracle | April 2026<br>
+  อ้างอิงจากคอร์สพี่พีท (พุฒวดี พรสินธ์) + กฎหมายผังเมืองจริง<br>
+  <a href="index.html">Boom Tools</a>
+</div>
+
+<script>
+const ZONE_DATA = {
+  red:    { name: 'พาณิชยกรรม (พ.)', far: 10.0, bcr: 0.70, osr: 0.03, floors: 'ไม่จำกัด', setback: 6, allowed: ['คอนโด','อาคารพาณิชย์','โรงแรม','Mixed-Use','สำนักงาน'], color: '#DC2626' },
+  orange: { name: 'ที่อยู่อาศัยหนาแน่นปานกลาง (ย.3-ย.4)', far: 5.0, bcr: 0.60, osr: 0.05, floors: '23 ชั้น', setback: 3, allowed: ['คอนโด (≤23 ชั้น)','ทาวน์เฮ้าส์','บ้านเดี่ยว','อพาร์ทเมนท์'], color: '#F97316' },
+  yellow: { name: 'ที่อยู่อาศัยหนาแน่นน้อย (ย.1-ย.2)', far: 2.5, bcr: 0.50, osr: 0.10, floors: '5 ชั้น', setback: 2, allowed: ['บ้านเดี่ยว','ทาวน์เฮ้าส์ (≤3 ชั้น)','บ้านแฝด'], color: '#EAB308' },
+  brown:  { name: 'ที่อยู่อาศัยหนาแน่นมาก (ย.5-ย.10)', far: 8.0, bcr: 0.70, osr: 0.03, floors: 'ไม่จำกัด', setback: 6, allowed: ['คอนโด','อาคารสูง','Mixed-Use','อพาร์ทเมนท์'], color: '#92400E' },
+  purple: { name: 'อุตสาหกรรม (อ.)', far: 3.0, bcr: 0.60, osr: 0.10, floors: '4 ชั้น', setback: 10, allowed: ['โรงงาน','คลังสินค้า','อาคารพาณิชย์เบา'], color: '#7C3AED' },
+  green:  { name: 'ชนบท/เกษตรกรรม (ก.)', far: 1.0, bcr: 0.30, osr: 0.30, floors: '3 ชั้น', setback: 3, allowed: ['บ้านเดี่ยว (ขนาดเล็ก)','เกษตรกรรม'], color: '#16A34A' },
+};
+
+const PROJECT_NAMES = {
+  condo: 'คอนโดมิเนียม', townhouse: 'ทาวน์เฮ้าส์/บ้านแถว', house: 'บ้านเดี่ยว/หมู่บ้านจัดสรร',
+  commercial: 'อาคารพาณิชย์/สำนักงาน', hotel: 'โรงแรม/เซอร์วิส', mixed: 'Mixed-Use'
+};
+
+function fmt(n) { return n.toLocaleString('th-TH'); }
+function fmtM(n) { return (n/1000000).toFixed(2) + ' ล้าน'; }
+
+function analyze() {
+  const landSqw = parseFloat(document.getElementById('land-size').value) || 400;
+  const landPriceSqw = parseFloat(document.getElementById('land-price').value) || 150000;
+  const zoneKey = document.getElementById('zone-color').value;
+  const projectType = document.getElementById('project-type').value;
+  const landWidth = parseFloat(document.getElementById('land-width').value) || 40;
+  const constCost = parseFloat(document.getElementById('const-cost').value) || 25000;
+  const sellPrice = parseFloat(document.getElementById('sell-price').value) || 65000;
+
+  const zone = ZONE_DATA[zoneKey];
+  const landSqm = landSqw * 4; // 1 ตร.วา = 4 ตร.ม.
+  const landCost = landSqw * landPriceSqw;
+
+  // FAR/BCR calculations
+  const maxFloorArea = landSqm * zone.far;
+  const maxBuildArea = landSqm * zone.bcr;
+  const minOpenSpace = landSqm * zone.osr;
+  const setbackArea = (landWidth > 0) ? (zone.setback * 2 * landWidth * 0.5) : 0; // approximate
+  const usableArea = Math.max(maxBuildArea - setbackArea, maxBuildArea * 0.7);
+
+  // P&L
+  const totalConstCost = maxFloorArea * constCost;
+  const totalSellRevenue = maxFloorArea * sellPrice;
+  const interestCost = (landCost + totalConstCost) * 0.06 * 2; // 6% per year, 2 years
+  const marketingCost = totalSellRevenue * 0.03;
+  const mgmtCost = totalConstCost * 0.05;
+  const totalCost = landCost + totalConstCost + interestCost + marketingCost + mgmtCost;
+  const grossProfit = totalSellRevenue - totalCost;
+  const margin = (grossProfit / totalSellRevenue * 100);
+  const roi = (grossProfit / (landCost + totalConstCost) * 100);
+
+  // Highest and Best Use
+  let hbuAdvice = '';
+  if (zoneKey === 'red' || zoneKey === 'brown') {
+    if (landSqw >= 200) hbuAdvice = 'คอนโด/Mixed-Use — FAR สูง ใช้ที่ดินคุ้มค่าสุด';
+    else hbuAdvice = 'อาคารพาณิชย์/สำนักงาน — ที่ดินขนาดกลาง เหมาะพาณิชย์';
+  } else if (zoneKey === 'orange') {
+    if (landSqw >= 300) hbuAdvice = 'คอนโด Low-rise (≤23 ชั้น) หรือ ทาวน์เฮ้าส์หรู';
+    else hbuAdvice = 'ทาวน์เฮ้าส์/อพาร์ทเมนท์ — เหมาะกับขนาดที่ดิน';
+  } else if (zoneKey === 'yellow') {
+    hbuAdvice = 'บ้านเดี่ยว/บ้านแฝด/ทาวน์เฮ้าส์ low-rise — ข้อจำกัด 5 ชั้น';
+  } else if (zoneKey === 'green') {
+    hbuAdvice = 'ไม่เหมาะพัฒนาโครงการ — FAR ต่ำมาก ควรขายที่เปล่าหรือทำเกษตร';
+  } else {
+    hbuAdvice = 'พิจารณาตามข้อจำกัดของโซน — ปรึกษาสถาปนิก';
+  }
+
+  const box = document.getElementById('result-box');
+  box.classList.add('show');
+  box.innerHTML = `
+    <h3 style="color:#1a1a2e;margin:0 0 16px">📊 ผลวิเคราะห์</h3>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px">
+      <span class="zone-badge" style="background:${zone.color}20;color:${zone.color};border:1px solid ${zone.color}50">${zone.name}</span>
+      <span class="zone-badge" style="background:#f0f4ff;color:#4f46e5;border:1px solid #c7d2fe">${PROJECT_NAMES[projectType]}</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+      <div style="background:#f8f9fa;padding:12px;border-radius:8px">
+        <div style="font-size:0.75rem;color:#6b7280">พื้นที่ที่ดิน</div>
+        <div style="font-size:1.2rem;font-weight:700;color:#1a1a2e">${fmt(landSqw)} ตร.วา (${fmt(landSqm)} ตร.ม.)</div>
+      </div>
+      <div style="background:#f8f9fa;padding:12px;border-radius:8px">
+        <div style="font-size:0.75rem;color:#6b7280">มูลค่าที่ดิน</div>
+        <div style="font-size:1.2rem;font-weight:700;color:#dc2626">฿${fmtM(landCost)}</div>
+      </div>
+    </div>
+
+    <h4 style="font-size:0.9rem;color:#4f46e5;margin:16px 0 8px">📐 FAR / BCR / OSR</h4>
+    <div class="result-item"><span class="label">FAR (อัตราส่วนพื้นที่อาคาร)</span><span class="value blue">${zone.far}:1</span></div>
+    <div class="result-item"><span class="label">พื้นที่อาคารสูงสุด (GFA)</span><span class="value">${fmt(Math.round(maxFloorArea))} ตร.ม.</span></div>
+    <div class="result-item"><span class="label">BCR (อัตราส่วนพื้นที่ปกคลุม)</span><span class="value blue">${(zone.bcr*100).toFixed(0)}%</span></div>
+    <div class="result-item"><span class="label">พื้นที่สร้างอาคารสูงสุด</span><span class="value">${fmt(Math.round(maxBuildArea))} ตร.ม.</span></div>
+    <div class="result-item"><span class="label">OSR (พื้นที่เปิดโล่ง)</span><span class="value blue">${(zone.osr*100).toFixed(0)}%</span></div>
+    <div class="result-item"><span class="label">พื้นที่เปิดโล่งขั้นต่ำ</span><span class="value">${fmt(Math.round(minOpenSpace))} ตร.ม.</span></div>
+    <div class="result-item"><span class="label">ความสูงสูงสุด</span><span class="value">${zone.floors}</span></div>
+    <div class="result-item"><span class="label">ระยะถอยร่น (setback)</span><span class="value">${zone.setback} ม.</span></div>
+
+    <h4 style="font-size:0.9rem;color:#4f46e5;margin:16px 0 8px">📋 การใช้ประโยชน์ที่อนุญาต</h4>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">
+      ${zone.allowed.map(a => `<span style="background:#f0f4ff;color:#4f46e5;padding:3px 10px;border-radius:6px;font-size:0.78rem">${a}</span>`).join('')}
+    </div>
+
+    <h4 style="font-size:0.9rem;color:#16a34a;margin:16px 0 8px">🎯 Highest and Best Use</h4>
+    <div style="background:#f0fdf4;padding:12px;border-radius:8px;font-size:0.9rem;color:#166534;font-weight:500;margin-bottom:16px">${hbuAdvice}</div>
+
+    <h4 style="font-size:0.9rem;color:#dc2626;margin:16px 0 8px">💰 Feasibility P&L (${PROJECT_NAMES[projectType]})</h4>
+    <table class="pnl-table">
+      <tr><td>ต้นทุนที่ดิน</td><td style="text-align:right;color:#dc2626;font-weight:600">฿${fmtM(landCost)}</td></tr>
+      <tr><td>ต้นทุนก่อสร้าง (${fmt(Math.round(maxFloorArea))} ตร.ม. x ฿${fmt(constCost)})</td><td style="text-align:right;color:#dc2626;font-weight:600">฿${fmtM(totalConstCost)}</td></tr>
+      <tr><td>ดอกเบี้ย (6%/ปี x 2 ปี)</td><td style="text-align:right;color:#dc2626">฿${fmtM(interestCost)}</td></tr>
+      <tr><td>ค่าการตลาด (3% ของรายได้)</td><td style="text-align:right;color:#dc2626">฿${fmtM(marketingCost)}</td></tr>
+      <tr><td>ค่าบริหาร (5% ของก่อสร้าง)</td><td style="text-align:right;color:#dc2626">฿${fmtM(mgmtCost)}</td></tr>
+      <tr class="total"><td><strong>ต้นทุนรวม</strong></td><td style="text-align:right;color:#dc2626"><strong>฿${fmtM(totalCost)}</strong></td></tr>
+      <tr><td colspan="2" style="height:8px;border:none"></td></tr>
+      <tr><td>รายได้จากขาย (${fmt(Math.round(maxFloorArea))} ตร.ม. x ฿${fmt(sellPrice)})</td><td style="text-align:right;color:#16a34a;font-weight:600">฿${fmtM(totalSellRevenue)}</td></tr>
+      <tr class="total"><td><strong>กำไรสุทธิ</strong></td><td style="text-align:right;color:${grossProfit >= 0 ? '#16a34a' : '#dc2626'};font-weight:700;font-size:1.1rem"><strong>฿${fmtM(grossProfit)}</strong></td></tr>
+      <tr><td>Margin</td><td style="text-align:right;font-weight:600;color:${margin >= 15 ? '#16a34a' : '#dc2626'}">${margin.toFixed(1)}%</td></tr>
+      <tr><td>ROI</td><td style="text-align:right;font-weight:600;color:${roi >= 20 ? '#16a34a' : '#dc2626'}">${roi.toFixed(1)}%</td></tr>
+    </table>
+
+    <div style="background:${margin >= 15 ? '#f0fdf4' : '#fef2f2'};padding:14px;border-radius:8px;margin-top:16px;text-align:center">
+      <div style="font-size:1.2rem;font-weight:700;color:${margin >= 15 ? '#16a34a' : '#dc2626'}">
+        ${margin >= 25 ? '✅ โครงการน่าลงทุนมาก (Margin > 25%)' : margin >= 15 ? '✅ โครงการน่าลงทุน (Margin > 15%)' : margin >= 0 ? '⚠️ กำไรน้อย ต้องปรับแผน' : '❌ ขาดทุน — ไม่ควรทำ'}
+      </div>
+      <div style="font-size:0.82rem;color:#6b7280;margin-top:4px">
+        * ตัวเลขเป็นการประมาณ ต้องศึกษาเพิ่มเติมกับสถาปนิกและที่ปรึกษา
+      </div>
+    </div>
+  `;
+}
+</script>
+
+</body>
+</html>
