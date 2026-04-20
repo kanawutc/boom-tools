@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anthurium Market Research — USA 2025-2026</title>
+<script src="auth.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', -apple-system, sans-serif; background: #f8faf8; color: #1a2e1a; line-height: 1.6; }
+
+.header {
+  background: linear-gradient(135deg, #1a4a2e, #2d6b45, #1a4a2e);
+  padding: 50px 20px;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+}
+.header h1 { font-size: 2.2rem; font-weight: 700; position: relative; }
+.header p { margin-top: 8px; opacity: 0.9; font-size: 0.95rem; position: relative; }
+.header .badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 4px 14px; border-radius: 20px; font-size: 0.78rem; margin-top: 12px; position: relative; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
+
+.section { margin-bottom: 40px; }
+.section h2 {
+  font-size: 1.4rem; font-weight: 700; color: #1a4a2e;
+  border-left: 4px solid #2d6b45; padding-left: 14px; margin-bottom: 16px;
+}
+.section h3 { font-size: 1.1rem; font-weight: 600; color: #2d6b45; margin: 16px 0 8px; }
+.section p { color: #3d5a3d; font-size: 0.9rem; margin-bottom: 10px; }
+
+/* Executive Summary */
+.exec-summary {
+  background: white; border-radius: 16px; padding: 28px;
+  box-shadow: 0 2px 12px rgba(26,74,46,0.08);
+  border-left: 4px solid #2d6b45;
+  margin-bottom: 30px;
+}
+.exec-summary h2 { border: none; padding: 0; margin-bottom: 12px; }
+
+/* Market Stats */
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 20px 0; }
+.stat-card {
+  background: white; border-radius: 12px; padding: 20px; text-align: center;
+  box-shadow: 0 2px 8px rgba(26,74,46,0.06);
+}
+.stat-value { font-size: 1.8rem; font-weight: 700; color: #2d6b45; }
+.stat-label { font-size: 0.78rem; color: #6b8a6b; margin-top: 4px; }
+
+/* Plant Comparison Table */
+.comparison-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 0.85rem; overflow-x: auto; display: block; }
+.comparison-table thead { position: sticky; top: 0; }
+.comparison-table th {
+  background: #1a4a2e; color: white; padding: 12px 14px; text-align: left;
+  font-weight: 600; white-space: nowrap;
+}
+.comparison-table th:first-child { border-radius: 8px 0 0 0; }
+.comparison-table th:last-child { border-radius: 0 8px 0 0; }
+.comparison-table td { padding: 10px 14px; border-bottom: 1px solid #e8f0e8; background: white; }
+.comparison-table tr:hover td { background: #f0f7f0; }
+.comparison-table .plant-name { font-weight: 600; color: #1a4a2e; }
+.comparison-table .trend-up { color: #16a34a; font-weight: 600; }
+.comparison-table .trend-down { color: #dc2626; }
+.comparison-table .trend-stable { color: #ca8a04; }
+.comparison-table .trend-hot { color: #ea580c; font-weight: 700; }
+
+/* Tier Badges */
+.tier { display: inline-block; padding: 2px 10px; border-radius: 10px; font-size: 0.72rem; font-weight: 600; }
+.tier-s { background: #fef3c7; color: #92400e; }
+.tier-a { background: #dcfce7; color: #166534; }
+.tier-b { background: #dbeafe; color: #1e40af; }
+.tier-c { background: #f3f4f6; color: #4b5563; }
+
+/* Rarity */
+.rarity { display: inline-flex; gap: 2px; }
+.rarity-dot { width: 8px; height: 8px; border-radius: 50%; }
+.rarity-dot.filled { background: #2d6b45; }
+.rarity-dot.empty { background: #d4e8d4; }
+
+/* Category Cards */
+.cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
+.cat-card {
+  background: white; border-radius: 12px; padding: 20px;
+  box-shadow: 0 2px 8px rgba(26,74,46,0.06);
+  border-top: 3px solid #2d6b45;
+}
+.cat-card h3 { margin-top: 0; }
+.cat-card .price-range { font-size: 1.2rem; font-weight: 700; color: #2d6b45; }
+.cat-card ul { padding-left: 16px; font-size: 0.85rem; color: #3d5a3d; }
+.cat-card li { margin: 4px 0; }
+
+/* Trend Chart (CSS) */
+.trend-bar-chart { margin: 16px 0; }
+.trend-row { display: flex; align-items: center; margin: 6px 0; }
+.trend-label { width: 160px; font-size: 0.82rem; font-weight: 500; color: #1a4a2e; flex-shrink: 0; }
+.trend-bar-bg { flex: 1; height: 24px; background: #e8f0e8; border-radius: 6px; overflow: hidden; position: relative; }
+.trend-bar { height: 100%; border-radius: 6px; display: flex; align-items: center; padding-left: 8px; font-size: 0.72rem; font-weight: 600; color: white; transition: width 0.5s; }
+.trend-value { margin-left: 8px; font-size: 0.78rem; color: #6b8a6b; }
+
+/* References */
+.ref-list { columns: 2; column-gap: 20px; }
+.ref-item {
+  break-inside: avoid; background: white; border-radius: 8px; padding: 10px 14px;
+  margin-bottom: 8px; font-size: 0.8rem; box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.ref-item a { color: #2d6b45; text-decoration: none; font-weight: 500; }
+.ref-item a:hover { text-decoration: underline; }
+.ref-item .ref-type { font-size: 0.68rem; color: #6b8a6b; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* Recommendation */
+.reco-card {
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  border: 2px solid #86efac;
+  border-radius: 16px; padding: 24px; margin: 20px 0;
+}
+.reco-card h3 { color: #166534; }
+
+.footer { text-align: center; padding: 30px; color: #6b8a6b; font-size: 0.75rem; border-top: 1px solid #e8f0e8; }
+
+@media (max-width: 768px) {
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .cat-grid { grid-template-columns: 1fr; }
+  .ref-list { columns: 1; }
+  .header h1 { font-size: 1.6rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Anthurium Market Research</h1>
+  <p>USA Market Analysis — Rare & Trending Varieties 2025-2026</p>
+  <div class="badge">Comprehensive Research Report | April 2026</div>
+</div>
+
+<div class="container">
+
+<!-- Executive Summary -->
+<div class="exec-summary">
+  <h2>Executive Summary</h2>
+  <p>The global Anthurium market is valued at <strong>USD $332.96 million (2026)</strong> with projected growth to <strong>$506.58 million by 2035</strong> at a CAGR of 4.77%. The USA collector market is shifting from traditional flowering Anthuriums to <strong>velvet-leafed, dark-foliage varieties</strong>. Tissue culture (TC) is democratizing access to rare species, while original mother-plant cuttings command premium prices. Key upward trends include: dark velvet hybrids, variegated mutations, and designer crosses (Carlablackiae, Papillilaminum, Warocqueanum lines).</p>
+</div>
+
+<!-- Market Overview Stats -->
+<div class="section">
+  <h2>Market Overview</h2>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value">$333M</div>
+      <div class="stat-label">Global Market Size (2026)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">4.77%</div>
+      <div class="stat-label">CAGR (2026-2035)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">$507M</div>
+      <div class="stat-label">Projected Market (2035)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">25+</div>
+      <div class="stat-label">New Cultivars/Year</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">1,000+</div>
+      <div class="stat-label">Known Species</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">20-30%</div>
+      <div class="stat-label">Online Sales Share</div>
+    </div>
+  </div>
+</div>
+
+<!-- Trending Direction -->
+<div class="section">
+  <h2>Market Trend Direction (2025-2026)</h2>
+  <div class="trend-bar-chart">
+    <div class="trend-row">
+      <div class="trend-label">Velvet Hybrids</div>
+      <div class="trend-bar-bg"><div class="trend-bar" style="width:95%;background:#16a34a">STRONG UP</div></div>
+    </div>
+    <div class="trend-row">
+      <div class="trend-label">Variegated Mutations</div>
+      <div class="trend-bar-bg"><div class="trend-bar" style="width:90%;background:#22c55e">RISING FAST</div></div>
+    </div>
+    <div class="trend-row">
+      <div class="trend-label">Dark Foliage</div>
+      <div class="trend-bar-bg"><div class="trend-bar" style="width:88%;background:#22c55e">RISING</div></div>
+    </div>
+    <div class="trend-row">
+      <div class="trend-label">Clarinervium</div>
+      <div class="trend-bar-bg"><div class="trend-bar" style="width:75%;background:#65a30d">STABLE HIGH</div></div>
+    </div>
+    <div class="trend-row">
+      <div class="trend-label">Designer Crosses</div>
+      <div class="trend-bar-bg"><div class="trend-bar" style="width:85%;background:#16a34a">STRONG UP</div></div>
+    </div>
+    <div class="trend-row">
+      <div class="trend-label">Tissue Culture</div>
+      <div class="trend-bar-bg"><div class="trend-bar" style="width:82%;background:#22c55e">GROWING</div></div>
+    </div>
+    <div class="trend-row">
+      <div class="trend-label">Traditional Flowering</div>
+      <div class="trend-bar-bg"><div class="trend-bar" style="width:40%;background:#ca8a04">DECLINING</div></div>
+    </div>
+    <div class="trend-row">
+      <div class="trend-label">Warocqueanum (Queen)</div>
+      <div class="trend-bar-bg"><div class="trend-bar" style="width:35%;background:#dc2626">DOWN 92%</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Comprehensive Comparison Table -->
+<div class="section">
+  <h2>Variety Comparison — Price, Rarity & Trend</h2>
+  <div style="overflow-x:auto">
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Variety</th>
+        <th>Common Name</th>
+        <th>Tier</th>
+        <th>Price Range (USD)</th>
+        <th>Median</th>
+        <th>Rarity</th>
+        <th>Trend</th>
+        <th>Collector Demand</th>
+        <th>Best For</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="plant-name">A. Villenaorum</td>
+        <td>—</td>
+        <td><span class="tier tier-s">S-TIER</span></td>
+        <td>$20 - $300+</td>
+        <td>$65</td>
+        <td><span class="rarity"><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span></span></td>
+        <td class="trend-hot">HOTTEST 2026</td>
+        <td>Extremely High</td>
+        <td>Investment / Breeding</td>
+      </tr>
+      <tr>
+        <td class="plant-name">A. Carlablackiae</td>
+        <td>—</td>
+        <td><span class="tier tier-s">S-TIER</span></td>
+        <td>$100 - $553+</td>
+        <td>$200</td>
+        <td><span class="rarity"><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span></span></td>
+        <td class="trend-hot">RISING FAST</td>
+        <td>Extremely High</td>
+        <td>Breeding / Collection</td>
+      </tr>
+      <tr>
+        <td class="plant-name">A. Papillilaminum (Variegated)</td>
+        <td>—</td>
+        <td><span class="tier tier-s">S-TIER</span></td>
+        <td>$200 - $1,000+</td>
+        <td>$400</td>
+        <td><span class="rarity"><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span></span></td>
+        <td class="trend-hot">SKYROCKETING</td>
+        <td>Ultra High</td>
+        <td>Investment / Flex</td>
+      </tr>
+      <tr>
+        <td class="plant-name">A. King of Spades</td>
+        <td>King of Spades</td>
+        <td><span class="tier tier-s">S-TIER</span></td>
+        <td>$110 - $600+</td>
+        <td>$150</td>
+        <td><span class="rarity"><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot empty"></span></span></td>
+        <td class="trend-up">STRONG UP</td>
+        <td>Very High</td>
+        <td>Interior Design / Collection</td>
+      </tr>
+      <tr>
+        <td class="plant-name">A. Regale</td>
+        <td>—</td>
+        <td><span class="tier tier-a">A-TIER</span></td>
+        <td>$65 - $250+</td>
+        <td>$100</td>
+        <td><span class="rarity"><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot empty"></span></span></td>
+        <td class="trend-up">UP</td>
+        <td>High</td>
+        <td>Statement Plant</td>
+      </tr>
+      <tr>
+        <td class="plant-name">A. Veitchii</td>
+        <td>King Anthurium</td>
+        <td><span class="tier tier-a">A-TIER</span></td>
+        <td>$25 - $200+</td>
+        <td>$75</td>
+        <td><span class="rarity"><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot empty"></span></span></td>
+        <td class="trend-up">UP</td>
+        <td>High</td>
+        <td>Collection / Display</td>
+      </tr>
+      <tr>
+        <td class="plant-name">A. Pallidiflorum (Variegated)</td>
+        <td>—</td>
+        <td><span class="tier tier-a">A-TIER</span></td>
+        <td>$50 - $300+</td>
+        <td>$120</td>
+        <td><span class="rarity"><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span></span></td>
+        <td class="trend-hot">NEW TREND 2026</td>
+        <td>Very High</td>
+        <td>Collector / Investment</td>
+      </tr>
+      <tr>
+        <td class="plant-name">A. Silver Blush</td>
+        <td>Silver Blush</td>
+        <td><span class="tier tier-a">A-TIER</span></td>
+        <td>$30 - $150</td>
+        <td>$60</td>
+        <td><span class="rarity"><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot empty"></span><span class="rarity-dot empty"></span></span></td>
+        <td class="trend-up">TRENDING 2026</td>
+        <td>High</td>
+        <td>Entry Rare / Gift</td>
+      </tr>
+      <tr>
+        <td class="plant-name">A. Luxurians</td>
+        <td>—</td>
+        <td><span class="tier tier-a">A-TIER</span></td>
+        <td>$20 - $100</td>
+        <td>$45</td>
+        <td><span class="rarity"><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot empty"></span><span class="rarity-dot empty"></span></span></td>
+        <td class="trend-stable">STABLE</td>
+        <td>Moderate-High</td>
+        <td>Hybrid Breeding Stock</td>
+      </tr>
+      <tr>
+        <td class="plant-name">A. Warocqueanum</td>
+        <td>Queen Anthurium</td>
+        <td><span class="tier tier-b">B-TIER</span></td>
+        <td>$14 - $75</td>
+        <td>$34</td>
+        <td><span class="rarity"><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot empty"></span><span class="rarity-dot empty"></span></span></td>
+        <td class="trend-down">DOWN 92%</td>
+        <td>Declining</td>
+        <td>Entry Collector (TC flooded)</td>
+      </tr>
+      <tr>
+        <td class="plant-name">A. Crystallinum</td>
+        <td>Crystal Anthurium</td>
+        <td><span class="tier tier-b">B-TIER</span></td>
+        <td>$10 - $52</td>
+        <td>$30</td>
+        <td><span class="rarity"><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot empty"></span><span class="rarity-dot empty"></span><span class="rarity-dot empty"></span></span></td>
+        <td class="trend-stable">STABLE</td>
+        <td>Moderate</td>
+        <td>Beginner Collector</td>
+      </tr>
+      <tr>
+        <td class="plant-name">A. Clarinervium</td>
+        <td>Velvet Cardboard</td>
+        <td><span class="tier tier-b">B-TIER</span></td>
+        <td>$8 - $40</td>
+        <td>$20</td>
+        <td><span class="rarity"><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot empty"></span><span class="rarity-dot empty"></span><span class="rarity-dot empty"></span></span></td>
+        <td class="trend-stable">STABLE HIGH DEMAND</td>
+        <td>High (volume)</td>
+        <td>Beginner / Mass Market</td>
+      </tr>
+      <tr>
+        <td class="plant-name">A. Clarinervium (Dark Form)</td>
+        <td>Dark Clari</td>
+        <td><span class="tier tier-a">A-TIER</span></td>
+        <td>$40 - $150</td>
+        <td>$70</td>
+        <td><span class="rarity"><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot empty"></span></span></td>
+        <td class="trend-up">TRENDING 2026</td>
+        <td>High</td>
+        <td>Collector Upgrade</td>
+      </tr>
+      <tr>
+        <td class="plant-name">A. Forgettii</td>
+        <td>—</td>
+        <td><span class="tier tier-b">B-TIER</span></td>
+        <td>$15 - $60</td>
+        <td>$30</td>
+        <td><span class="rarity"><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot filled"></span><span class="rarity-dot empty"></span><span class="rarity-dot empty"></span></span></td>
+        <td class="trend-stable">STABLE</td>
+        <td>Moderate</td>
+        <td>Hybrid Breeding</td>
+      </tr>
+      <tr>
+        <td class="plant-name">A. Andraeanum</td>
+        <td>Flamingo Lily</td>
+        <td><span class="tier tier-c">C-TIER</span></td>
+        <td>$5 - $25</td>
+        <td>$12</td>
+        <td><span class="rarity"><span class="rarity-dot filled"></span><span class="rarity-dot empty"></span><span class="rarity-dot empty"></span><span class="rarity-dot empty"></span><span class="rarity-dot empty"></span></span></td>
+        <td class="trend-down">DECLINING</td>
+        <td>Low (commodity)</td>
+        <td>Mass Market / Gift</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- Category Deep Dive -->
+<div class="section">
+  <h2>Category Analysis — What's Hot & What's Not</h2>
+  <div class="cat-grid">
+
+    <div class="cat-card">
+      <h3>HOTTEST: Velvet Dark Hybrids</h3>
+      <div class="price-range">$200 - $1,050+</div>
+      <p style="font-size:0.85rem;color:#6b8a6b;margin:6px 0">Highest growth potential in 2026</p>
+      <ul>
+        <li><strong>Carlablackiae x Papillilaminum</strong> — dark velvet, silver veins, $553+ premium</li>
+        <li><strong>Papillilaminum Variegated</strong> — 4-5x price vs non-variegated</li>
+        <li><strong>King of Spades</strong> — near-black foliage, consistent $110-150</li>
+        <li>"Sculptural trees" aesthetic for interior design</li>
+        <li>Original mother-plant cuttings command huge premium over TC</li>
+      </ul>
+    </div>
+
+    <div class="cat-card">
+      <h3>RISING: Rare Species & Dark Forms</h3>
+      <div class="price-range">$40 - $300</div>
+      <p style="font-size:0.85rem;color:#6b8a6b;margin:6px 0">Strong collector interest, growing Instagram presence</p>
+      <ul>
+        <li><strong>Villenaorum</strong> — #1 most wanted 2026 (PLNTS.com)</li>
+        <li><strong>Clarinervium Dark Form</strong> — upgraded classic</li>
+        <li><strong>Pallidiflorum Variegated</strong> — new rarity discovery</li>
+        <li><strong>Silver Blush</strong> — metallic foliage, accessible price</li>
+        <li>Instagram-driven demand peak in March & August</li>
+      </ul>
+    </div>
+
+    <div class="cat-card">
+      <h3>STABLE: Established Collectors</h3>
+      <div class="price-range">$20 - $100</div>
+      <p style="font-size:0.85rem;color:#6b8a6b;margin:6px 0">Reliable demand, good entry points</p>
+      <ul>
+        <li><strong>Regale</strong> — large dramatic leaves, $65-250</li>
+        <li><strong>Veitchii (King)</strong> — classic collector piece</li>
+        <li><strong>Crystallinum</strong> — steady $30 median, gateway plant</li>
+        <li><strong>Luxurians</strong> — valued as breeding stock</li>
+        <li>TC making these more accessible annually</li>
+      </ul>
+    </div>
+
+    <div class="cat-card">
+      <h3>DECLINING: TC-Flooded & Commodity</h3>
+      <div class="price-range">$5 - $40</div>
+      <p style="font-size:0.85rem;color:#6b8a6b;margin:6px 0">Oversupply from tissue culture, price drops</p>
+      <ul>
+        <li><strong>Warocqueanum (Queen)</strong> — down 92% interest YoY, TC flooded market</li>
+        <li><strong>Andraeanum (Flamingo)</strong> — commodity, mass production</li>
+        <li><strong>Basic Clarinervium</strong> — now widely available at $8-20</li>
+        <li>Lesson: TC accessibility crashes exclusivity premium</li>
+        <li>Still good for volume sellers, not collector margins</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Recommendations -->
+<div class="section">
+  <h2>Investment Recommendations</h2>
+
+  <div class="reco-card">
+    <h3>Best Product Lines for New Business (Upward Trend)</h3>
+    <ol style="padding-left:18px;font-size:0.9rem">
+      <li><strong>Velvet Dark Hybrids (Carlablackiae x Pap crosses)</strong> — Highest margin, $200-1000+ per plant, limited supply, strong Instagram appeal</li>
+      <li><strong>Villenaorum & Silver Blush</strong> — 2026 trending, moderate price entry ($30-150), high demand</li>
+      <li><strong>Variegated Mutations</strong> — Any variegated Anthurium commands 4-5x premium, especially Papillilaminum, Pallidiflorum</li>
+      <li><strong>Dark Form Varieties</strong> — Clarinervium Dark, King of Spades — "moody aesthetic" trend in interior design</li>
+      <li><strong>Breeding Stock (Luxurians, Forgettii, Regale)</strong> — Lower margin per plant but enables creating exclusive hybrids</li>
+    </ol>
+  </div>
+
+  <div class="reco-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border-color:#fca5a5">
+    <h3 style="color:#991b1b">Avoid / Declining Lines</h3>
+    <ol style="padding-left:18px;font-size:0.9rem">
+      <li><strong>Warocqueanum (Queen)</strong> — TC flooded, 92% interest decline, median $34 and dropping</li>
+      <li><strong>Basic Andraeanum / Flowering types</strong> — commodity market, race to bottom on price</li>
+      <li><strong>Any species with major TC production</strong> — margins will compress within 12-18 months</li>
+    </ol>
+  </div>
+</div>
+
+<!-- Key Insights -->
+<div class="section">
+  <h2>Key Market Insights</h2>
+  <div class="cat-grid">
+    <div class="cat-card">
+      <h3>Tissue Culture Impact</h3>
+      <ul>
+        <li>TC is making rare plants accessible but crashes exclusivity premium</li>
+        <li>Variegated "mutants" from TC are creating new product lines</li>
+        <li>Original mother-plant cuttings hold much higher value than TC clones</li>
+        <li>Strategy: Focus on varieties NOT yet in mass TC production</li>
+      </ul>
+    </div>
+    <div class="cat-card">
+      <h3>Seasonal Demand Pattern</h3>
+      <ul>
+        <li>Peak: March-August (spring/summer)</li>
+        <li>Low: November-January (winter)</li>
+        <li>Instagram drives "trend spikes" unpredictably</li>
+        <li>Clarinervium search > Andraeanum year-round = foliage > flowers</li>
+      </ul>
+    </div>
+    <div class="cat-card">
+      <h3>Digital Sales Channel</h3>
+      <ul>
+        <li>Online orders grew from 10-15% to 20-30% of total sales (2023-2025)</li>
+        <li>Key platforms: Etsy, eBay, specialty shops (Aroid Market, Carnivero)</li>
+        <li>Same-day delivery coverage: 60-80% urban areas</li>
+        <li>Cold-chain compliance: 85-90%+ reducing post-harvest losses</li>
+      </ul>
+    </div>
+    <div class="cat-card">
+      <h3>Interior Design Crossover</h3>
+      <ul>
+        <li>Dark, moody Anthuriums function as "sculptural trees"</li>
+        <li>Designers paying premium for large, mature specimens ($600-1,050)</li>
+        <li>Compact cultivars (under 40cm) growing 30-40% of new introductions</li>
+        <li>Plants as status symbols driving luxury market segment</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- References -->
+<div class="section">
+  <h2>Sources & References</h2>
+  <p style="font-size:0.85rem;color:#6b8a6b;margin-bottom:12px">All data gathered from the following sources (April 2026):</p>
+  <div class="ref-list">
+
+    <div class="ref-item">
+      <div class="ref-type">Market Report</div>
+      <a href="https://www.industryresearch.co/market-reports/anthurium-market-309843" target="_blank">Anthurium Market Share & Trends [2035] — Industry Research</a>
+      <div style="color:#8a8a8a;font-size:0.72rem">Global market size $332.96M, CAGR 4.77%</div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-type">Trend Analysis</div>
+      <a href="https://plnts.com/en/blog/most-wanted-anthurium-varieties" target="_blank">Most Wanted Anthurium Varieties in 2026 — PLNTS.com</a>
+      <div style="color:#8a8a8a;font-size:0.72rem">Villenaorum, Silver Blush, King Veitchii trending</div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-type">Trend Analysis</div>
+      <a href="https://www.plantvault.com/blogs/plant-style-and-gifts/top-5-anthurium-varieties-2026" target="_blank">Top 5 Anthurium Varieties of 2026 — Plant Vault</a>
+      <div style="color:#8a8a8a;font-size:0.72rem">King of Spades, dark velvet varieties</div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-type">Trend Analysis</div>
+      <a href="https://soltech.com/blogs/blog/rare-trending-houseplants-of-2025-the-ultimate-collector-s-guide" target="_blank">Rare & Trending Houseplants 2025 — Soltech</a>
+      <div style="color:#8a8a8a;font-size:0.72rem">Collector guide, TC impact analysis</div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-type">Price Data</div>
+      <a href="https://www.plantslip.com/prices/anthurium-crystallinum" target="_blank">Anthurium Crystallinum Price & Trends — PlantSlip</a>
+      <div style="color:#8a8a8a;font-size:0.72rem">Median $30, price tracking data</div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-type">Price Data</div>
+      <a href="https://www.plantslip.com/prices/anthurium-warocqueanum" target="_blank">Anthurium Warocqueanum Price & Trends — PlantSlip</a>
+      <div style="color:#8a8a8a;font-size:0.72rem">Median $33.63, interest down 92%</div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-type">Price Data</div>
+      <a href="https://www.plantslip.com/research/most-expensive-houseplants-of-2024" target="_blank">Most Expensive Houseplants 2024 — PlantSlip</a>
+      <div style="color:#8a8a8a;font-size:0.72rem">King of Spades $110-150 median</div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-type">Luxury Market</div>
+      <a href="https://soltech.com/blogs/blog/the-ultimate-status-symbols-most-expensive-houseplants-in-2026" target="_blank">Most Expensive Houseplants 2026 — Soltech</a>
+      <div style="color:#8a8a8a;font-size:0.72rem">Velvet Anthuriums $600-1,050</div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-type">Marketplace</div>
+      <a href="https://aroidmarket.com/collections/rare-anthurium" target="_blank">Rare Anthurium Collection — Aroid Market</a>
+      <div style="color:#8a8a8a;font-size:0.72rem">Specialty rare aroid marketplace</div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-type">Marketplace</div>
+      <a href="https://growtropicals.com/collections/anthurium" target="_blank">Rare Anthurium Plants & Hybrids — GrowTropicals</a>
+      <div style="color:#8a8a8a;font-size:0.72rem">Hybrid pricing, Carlablackiae x Pap</div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-type">Breeder</div>
+      <a href="https://granthuriums.com/" target="_blank">Granthuriums — Rare Anthurium Breeder</a>
+      <div style="color:#8a8a8a;font-size:0.72rem">Velvet leaf hybrids specialist</div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-type">Marketplace</div>
+      <a href="https://www.monsterax.com/l/anthurium-carlablackiae-x-papillilaminum/632b4fb1-031a-4ef0-be9a-f131cf122683" target="_blank">Carlablackiae x Papillilaminum — MonsteraX</a>
+      <div style="color:#8a8a8a;font-size:0.72rem">Premium selection $553</div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-type">Hybrid Guide</div>
+      <a href="https://happiestplants.com/blogs/news/the-diverse-world-of-anthurium-carlablackiae-unveiling-its-rich-tapestry-of-hybrids" target="_blank">World of Anthurium Carlablackiae Hybrids — HappiestPlants</a>
+      <div style="color:#8a8a8a;font-size:0.72rem">Hybrid varieties deep dive</div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-type">Expert Guide</div>
+      <a href="https://www.exoticaesoterica.com/magazine/the-ultimate-guide-to-velvet-leaf-anthuriums" target="_blank">Velvet Leaf Anthuriums Guide — Exotica Esoterica</a>
+      <div style="color:#8a8a8a;font-size:0.72rem">Jay Vannini cultivation guide</div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-type">Wishlist Guide</div>
+      <a href="https://www.plantvault.com/blogs/blog/rare-anthurium-wishlist-guide" target="_blank">Rare Anthurium Wishlist Guide — Plant Vault</a>
+      <div style="color:#8a8a8a;font-size:0.72rem">Collector priority ranking</div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-type">Trend Analysis</div>
+      <a href="https://casa-botanica.com/en/blogs/blog-1/de-5-meest-gewilde-anthurium-hybrids-2025" target="_blank">5 Most Wanted Anthurium Hybrids 2025 — Casa Botanica</a>
+      <div style="color:#8a8a8a;font-size:0.72rem">European market hybrid trends</div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-type">Market Trend</div>
+      <a href="https://www.accio.com/business/trendy-anthurium" target="_blank">Trendy Anthurium Plants 2025 — Accio</a>
+      <div style="color:#8a8a8a;font-size:0.72rem">Business trends, seasonal demand</div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-type">Industry Overview</div>
+      <a href="https://smartgardenguide.com/anthurium-varieties/" target="_blank">42 Stunning Anthurium Varieties — Smart Garden Guide</a>
+      <div style="color:#8a8a8a;font-size:0.72rem">Comprehensive variety encyclopedia</div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-type">Marketplace</div>
+      <a href="https://www.rareplantfairy.com/collections/anthurium" target="_blank">Anthurium Collection — Rare Plant Fairy</a>
+      <div style="color:#8a8a8a;font-size:0.72rem">USA rare plant retailer pricing</div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-type">Market Analysis</div>
+      <a href="https://greenboog.com/rare-anthuriums-for-sale/" target="_blank">Rare Anthuriums for Sale — GreenBoog</a>
+      <div style="color:#8a8a8a;font-size:0.72rem">Why rare anthuriums command high prices</div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  Anthurium Market Research | Boom Oracle | April 2026<br>
+  Data sourced from 20 references across market reports, price trackers, and specialty retailers<br>
+  <a href="index.html" style="color:#2d6b45">Back to Boom Tools</a>
+</div>
+
+</body>
+</html>
