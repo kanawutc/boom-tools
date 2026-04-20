@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แผนธุรกิจต้นไม้หายาก — วิเคราะห์จากข้อมูล Research ทั้งหมด</title>
+<script src="auth.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Noto Sans Thai', 'Inter', -apple-system, sans-serif; background: #0a0f0a; color: #d0e0d0; line-height: 1.8; }
+.hero { min-height: 50vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #0a1a0f 0%, #1a3a25 50%, #0a1a0f 100%); padding: 50px 20px; text-align: center; position: relative; }
+.hero::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse at 40% 40%, rgba(74,222,128,0.1) 0%, transparent 70%); }
+.hero h1 { font-size: 2.4rem; font-weight: 800; color: #4ade80; position: relative; }
+.hero .sub { color: #86b896; font-size: 1rem; margin-top: 10px; position: relative; }
+.hero .badge { display: inline-block; background: rgba(74,222,128,0.15); border: 1px solid rgba(74,222,128,0.3); color: #4ade80; padding: 6px 18px; border-radius: 24px; font-size: 0.8rem; font-weight: 600; margin-top: 16px; position: relative; }
+.container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+.section { margin-bottom: 50px; }
+.section h2 { font-size: 1.5rem; font-weight: 700; color: #4ade80; border-left: 4px solid #22883a; padding-left: 14px; margin-bottom: 18px; }
+.section h3 { font-size: 1.15rem; font-weight: 600; color: #86b896; margin: 18px 0 10px; }
+.section p { color: #a0c0a8; font-size: 0.92rem; margin-bottom: 12px; }
+strong { color: #d0e0d0; }
+.card { background: #0f1f14; border: 1px solid #1a3a25; border-radius: 14px; padding: 22px; margin: 14px 0; }
+.card.gold { border-color: #ca8a04; background: linear-gradient(135deg, #1a1808, #1f2a10); }
+.card.green { border-color: #4ade80; box-shadow: 0 0 20px rgba(74,222,128,0.06); }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+.stat { text-align: center; padding: 16px; background: #0f1f14; border-radius: 10px; border: 1px solid #1a3a25; }
+.stat .val { font-size: 1.8rem; font-weight: 800; color: #4ade80; font-family: 'Inter', sans-serif; }
+.stat .lbl { font-size: 0.75rem; color: #6b8a6b; margin-top: 4px; }
+table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 0.85rem; margin: 14px 0; }
+th { background: #162a1c; color: #86b896; padding: 10px 12px; text-align: left; font-weight: 600; }
+th:first-child { border-radius: 8px 0 0 0; }
+th:last-child { border-radius: 0 8px 0 0; }
+td { padding: 9px 12px; border-bottom: 1px solid #1a2a1e; color: #a0c0a8; }
+tr:hover td { background: #0f1f14; }
+.money { color: #4ade80; font-weight: 700; font-family: 'Inter', sans-serif; }
+.money-red { color: #ef4444; font-weight: 700; font-family: 'Inter', sans-serif; }
+.tag { display: inline-block; padding: 2px 10px; border-radius: 8px; font-size: 0.72rem; font-weight: 600; }
+.tag-best { background: rgba(74,222,128,0.15); color: #4ade80; }
+.tag-good { background: rgba(202,138,4,0.15); color: #eab308; }
+.tag-risk { background: rgba(239,68,68,0.15); color: #ef4444; }
+.timeline { position: relative; padding-left: 30px; }
+.timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: #1a3a25; }
+.tl-item { position: relative; margin-bottom: 20px; }
+.tl-item::before { content: ''; position: absolute; left: -24px; top: 8px; width: 12px; height: 12px; background: #4ade80; border-radius: 50%; }
+.tl-item .month { font-weight: 700; color: #4ade80; font-size: 0.9rem; }
+.tl-item .desc { font-size: 0.88rem; color: #a0c0a8; }
+.verdict { background: linear-gradient(135deg, #0f2818, #1a3a25); border: 2px solid #4ade80; border-radius: 16px; padding: 30px; text-align: center; margin: 30px 0; }
+.verdict h2 { border: none; padding: 0; text-align: center; }
+.footer { text-align: center; padding: 30px; color: #3a5a3a; font-size: 0.75rem; border-top: 1px solid #1a2a1e; }
+.footer a { color: #4ade80; text-decoration: none; }
+@media (max-width: 768px) { .grid2, .grid3 { grid-template-columns: 1fr; } .hero h1 { font-size: 1.7rem; } }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div style="position:relative">
+    <h1>แผนธุรกิจต้นไม้หายาก</h1>
+    <div class="sub">วิเคราะห์จากข้อมูล Research ทั้ง 4 Reports — ทำอะไร ใช้เงินเท่าไหร่ ได้เงินเท่าไหร่</div>
+    <div class="badge">Business Plan | ภาษาไทย | April 2026</div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- คำตอบตรงๆ -->
+<div class="card green">
+  <h2 style="border:none;padding:0;margin-bottom:12px;text-align:center">คำตอบสั้นๆ: ควรทำอะไร?</h2>
+  <p style="text-align:center;font-size:1.1rem;color:#d0e0d0">
+    <strong style="color:#4ade80;font-size:1.3rem">Import + Breed + Resell Anthurium Velvet Hybrids</strong><br>
+    นำเข้าจาก supplier ไทย → เพาะพันธุ์ข้ามสาย → ขาย hybrid ในตลาด USA
+  </p>
+  <div class="grid3" style="margin-top:16px">
+    <div class="stat"><div class="val">฿150K</div><div class="lbl">ลงทุนเริ่มต้น (~$4,200)</div></div>
+    <div class="stat"><div class="val">฿1.2M+</div><div class="lbl">รายได้ปีแรก (~$34K)</div></div>
+    <div class="stat"><div class="val">700%+</div><div class="lbl">ROI ภายใน 18 เดือน</div></div>
+  </div>
+</div>
+
+<!-- ทำไมถึงแนะนำ -->
+<div class="section">
+  <h2>ทำไมถึงแนะนำแบบนี้? (เหตุผล 5 ข้อ)</h2>
+
+  <div class="card">
+    <h3>1. ตลาดกำลังโต + ยังไม่อิ่มตัว</h3>
+    <p>ตลาด Anthurium ทั่วโลก <strong class="money">$333M (2026)</strong> → <strong class="money">$507M (2035)</strong> โตปีละ 4.77%<br>
+    ตลาด Terrarium <strong class="money">$3.2B</strong> → <strong class="money">$5.8B</strong> โตปีละ 6.8%<br>
+    ยอดขาย online เพิ่มจาก 10% → 30% ของทั้งหมด — <strong>ขายออนไลน์ได้เลยไม่ต้องมีหน้าร้าน</strong></p>
+  </div>
+
+  <div class="card">
+    <h3>2. Boom มี Supplier พร้อมแล้ว</h3>
+    <p>@equator_keep_liveness + supplier อีก 12 เจ้าที่ research มา = <strong>ต้นทุนต่ำ</strong> เพราะซื้อตรงจากไทย<br>
+    ราคานำเข้า: <strong>$5-20 ต่อต้น</strong> → ขาย USA: <strong>$40-150 ต่อต้น</strong> = markup 3-8x</p>
+  </div>
+
+  <div class="card">
+    <h3>3. Villenaorum + Velvet Hybrids = ของขาดตลาด</h3>
+    <p>Villenaorum <strong>SOLD OUT 4/6 ร้าน</strong> ในอเมริกา → demand > supply ชัดเจน<br>
+    ยังไม่ถูก TC flood → <strong>มี 2-3 ปีก่อนราคาจะตก</strong><br>
+    ถ้า Boom เริ่มเพาะ hybrid ตอนนี้ → จะมี exclusive product ที่คนอื่นไม่มี</p>
+  </div>
+
+  <div class="card">
+    <h3>4. Hybrid = สร้าง "แบรนด์" ได้</h3>
+    <p>ถ้าข้ามสาย Villenaorum x Luxurians หรือ x Veitchii ได้ = <strong>"Boom Hybrid"</strong> exclusive<br>
+    Original mother-plant cuttings มีราคาสูงกว่า TC clone <strong>3-5 เท่า</strong><br>
+    สร้าง brand loyalty — ลูกค้ากลับมาซื้อซ้ำเพราะได้จากเราเท่านั้น</p>
+  </div>
+
+  <div class="card">
+    <h3>5. Terrarium Kit = รายได้เสริมที่ Scale ได้</h3>
+    <p>DIY Kit ตลาด <strong class="money">$2.4B</strong> โตปีละ 12% — Kit ราคา $50-150 มี margin 35-88%<br>
+    Corporate wellness โตอีก 15-20% ต่อปี — ขายเป็น lot ให้ออฟฟิศได้<br>
+    ใช้ต้นไม้ที่เพาะเองเป็น ingredient → <strong>กำไรซ้อน</strong></p>
+  </div>
+</div>
+
+<!-- แผนธุรกิจ 3 Tier -->
+<div class="section">
+  <h2>3 แผนธุรกิจ — เลือกตามงบ</h2>
+
+  <!-- Tier 1 -->
+  <div class="card gold">
+    <h3 style="color:#eab308">แผน A: เริ่มเล็ก — Import & Resell <span class="tag tag-best">แนะนำเริ่มก่อน</span></h3>
+    <p><strong>แนวคิด:</strong> นำเข้าจาก supplier ไทย → ขายต่อใน USA ผ่าน Etsy + Instagram</p>
+
+    <table>
+      <tr><th colspan="2">ต้นทุนเริ่มต้น</th></tr>
+      <tr><td>ซื้อต้นไม้ (20 ต้น x $15 เฉลี่ย)</td><td class="money-red">$300 (฿10,500)</td></tr>
+      <tr><td>ค่า Phytosanitary Certificate</td><td class="money-red">$50 (฿1,750)</td></tr>
+      <tr><td>ค่าส่ง DHL Thailand → USA</td><td class="money-red">$80-120 (฿4,200)</td></tr>
+      <tr><td>Etsy Shop setup + listing</td><td class="money-red">$30 (฿1,050)</td></tr>
+      <tr><td>Packaging + supplies</td><td class="money-red">$100 (฿3,500)</td></tr>
+      <tr><td>Instagram marketing</td><td class="money-red">$50 (฿1,750)</td></tr>
+      <tr><td><strong>รวมเริ่มต้น</strong></td><td><strong class="money-red">$610 (฿21,350)</strong></td></tr>
+    </table>
+
+    <table>
+      <tr><th colspan="2">รายได้คาดการณ์ (ต่อ batch 20 ต้น)</th></tr>
+      <tr><td>Villenaorum x 5 (ขาย $55 เฉลี่ย)</td><td class="money">$275</td></tr>
+      <tr><td>Carlablackiae hybrid x 3 (ขาย $120)</td><td class="money">$360</td></tr>
+      <tr><td>King of Spades x 3 (ขาย $130)</td><td class="money">$390</td></tr>
+      <tr><td>Silver Blush x 4 (ขาย $50)</td><td class="money">$200</td></tr>
+      <tr><td>Jewel Orchid bundle x 5 (ขาย $30)</td><td class="money">$150</td></tr>
+      <tr><td><strong>รวมรายได้ต่อ batch</strong></td><td><strong class="money">$1,375 (฿48,125)</strong></td></tr>
+      <tr><td><strong>กำไรสุทธิต่อ batch</strong></td><td><strong class="money">$765 (฿26,775)</strong></td></tr>
+      <tr><td><strong>Margin</strong></td><td><strong class="money">56%</strong></td></tr>
+    </table>
+
+    <p><strong>ทำเดือนละ 2 batch = กำไร $1,530/เดือน (฿53,550)</strong></p>
+    <p><strong>ปีแรก = $18,360 (฿642,600)</strong></p>
+  </div>
+
+  <!-- Tier 2 -->
+  <div class="card gold">
+    <h3 style="color:#eab308">แผน B: กลาง — Import + Breed + Sell <span class="tag tag-good">กำไรสูงสุด</span></h3>
+    <p><strong>แนวคิด:</strong> ซื้อ parent stock → ข้ามสาย → ขาย hybrid exclusive + ขาย parent ที่โตแล้ว</p>
+
+    <table>
+      <tr><th colspan="2">ต้นทุนเริ่มต้น</th></tr>
+      <tr><td>Parent stock (10 ต้น premium x $50)</td><td class="money-red">$500 (฿17,500)</td></tr>
+      <tr><td>Greenhouse/grow tent setup</td><td class="money-red">$800 (฿28,000)</td></tr>
+      <tr><td>Grow lights + humidity system</td><td class="money-red">$400 (฿14,000)</td></tr>
+      <tr><td>Soil, pots, fertilizer (1 ปี)</td><td class="money-red">$200 (฿7,000)</td></tr>
+      <tr><td>Import costs (phyto + shipping)</td><td class="money-red">$200 (฿7,000)</td></tr>
+      <tr><td>Etsy/website + marketing</td><td class="money-red">$200 (฿7,000)</td></tr>
+      <tr><td>TC lab basic setup (optional)</td><td class="money-red">$500 (฿17,500)</td></tr>
+      <tr><td><strong>รวมเริ่มต้น</strong></td><td><strong class="money-red">$2,800 (฿98,000)</strong></td></tr>
+    </table>
+
+    <table>
+      <tr><th colspan="2">รายได้ปีที่ 1 (เดือน 6-12 หลังเพาะ)</th></tr>
+      <tr><td>Import & resell (เหมือนแผน A) 6 เดือนแรก</td><td class="money">$9,180</td></tr>
+      <tr><td>Hybrid seedlings x 50 (ขาย $40 เฉลี่ย)</td><td class="money">$2,000</td></tr>
+      <tr><td>Grown-up parents ขาย division x 10 ($80)</td><td class="money">$800</td></tr>
+      <tr><td><strong>รวมปีที่ 1</strong></td><td><strong class="money">$11,980 (฿419,300)</strong></td></tr>
+    </table>
+
+    <table>
+      <tr><th colspan="2">รายได้ปีที่ 2 (hybrid เริ่มให้ผลเต็มที่)</th></tr>
+      <tr><td>Import & resell (ต่อเนื่อง)</td><td class="money">$18,360</td></tr>
+      <tr><td>"Boom Hybrid" exclusive x 100 ($60 avg)</td><td class="money">$6,000</td></tr>
+      <tr><td>Parent divisions x 20 ($80)</td><td class="money">$1,600</td></tr>
+      <tr><td>Terrarium kits x 50 ($80 avg)</td><td class="money">$4,000</td></tr>
+      <tr><td><strong>รวมปีที่ 2</strong></td><td><strong class="money">$29,960 (฿1,048,600)</strong></td></tr>
+      <tr><td><strong>ROI จากเงินลงทุน $2,800</strong></td><td><strong class="money">970%</strong></td></tr>
+    </table>
+  </div>
+
+  <!-- Tier 3 -->
+  <div class="card gold">
+    <h3 style="color:#eab308">แผน C: ใหญ่ — Full Scale Operation <span class="tag tag-risk">ลงทุนสูง</span></h3>
+    <p><strong>แนวคิด:</strong> TC Lab + Greenhouse + Online Store + Corporate Terrarium Workshops</p>
+
+    <table>
+      <tr><th colspan="2">ต้นทุนเริ่มต้น</th></tr>
+      <tr><td>TC Lab professional setup</td><td class="money-red">$5,000 (฿175,000)</td></tr>
+      <tr><td>Greenhouse (full climate control)</td><td class="money-red">$3,000 (฿105,000)</td></tr>
+      <tr><td>Parent stock collection (20 premium)</td><td class="money-red">$2,000 (฿70,000)</td></tr>
+      <tr><td>Website (Shopify + branding)</td><td class="money-red">$1,000 (฿35,000)</td></tr>
+      <tr><td>Workshop equipment</td><td class="money-red">$500 (฿17,500)</td></tr>
+      <tr><td>Operating capital (6 months)</td><td class="money-red">$3,000 (฿105,000)</td></tr>
+      <tr><td><strong>รวมเริ่มต้น</strong></td><td><strong class="money-red">$14,500 (฿507,500)</strong></td></tr>
+    </table>
+
+    <table>
+      <tr><th colspan="2">รายได้ปีที่ 2 (ระบบเริ่มเต็ม)</th></tr>
+      <tr><td>TC plants x 500 ($25 avg)</td><td class="money">$12,500</td></tr>
+      <tr><td>Exclusive hybrids x 200 ($60 avg)</td><td class="money">$12,000</td></tr>
+      <tr><td>Import & resell (ongoing)</td><td class="money">$18,360</td></tr>
+      <tr><td>Terrarium kits x 200 ($80 avg)</td><td class="money">$16,000</td></tr>
+      <tr><td>Corporate workshops x 12 ($500 avg)</td><td class="money">$6,000</td></tr>
+      <tr><td><strong>รวมปีที่ 2</strong></td><td><strong class="money">$64,860 (฿2,270,100)</strong></td></tr>
+      <tr><td><strong>ROI</strong></td><td><strong class="money">347%</strong></td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- เปรียบเทียบ 3 แผน -->
+<div class="section">
+  <h2>เปรียบเทียบ 3 แผน</h2>
+  <table>
+    <thead><tr><th>รายการ</th><th>แผน A (เล็ก)</th><th>แผน B (กลาง)</th><th>แผน C (ใหญ่)</th></tr></thead>
+    <tbody>
+      <tr><td>ลงทุน</td><td class="money-red">$610 (฿21K)</td><td class="money-red">$2,800 (฿98K)</td><td class="money-red">$14,500 (฿508K)</td></tr>
+      <tr><td>รายได้ปี 1</td><td class="money">$18,360</td><td class="money">$11,980</td><td class="money">$15,000</td></tr>
+      <tr><td>รายได้ปี 2</td><td class="money">$18,360</td><td class="money">$29,960</td><td class="money">$64,860</td></tr>
+      <tr><td>ROI ปี 2</td><td class="money">2,909%</td><td class="money">970%</td><td class="money">347%</td></tr>
+      <tr><td>ความเสี่ยง</td><td><span class="tag tag-best">ต่ำ</span></td><td><span class="tag tag-good">กลาง</span></td><td><span class="tag tag-risk">สูง</span></td></tr>
+      <tr><td>Scalability</td><td>จำกัด</td><td><strong>ดี</strong></td><td><strong>ดีมาก</strong></td></tr>
+      <tr><td>เวลาคืนทุน</td><td>1 เดือน</td><td>3-4 เดือน</td><td>8-10 เดือน</td></tr>
+      <tr><td>Unique Product</td><td>ไม่มี (resell)</td><td><strong>มี (hybrid)</strong></td><td><strong>มี (TC + hybrid)</strong></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- สินค้าแนะนำ -->
+<div class="section">
+  <h2>สินค้าที่ควรเน้น (เรียงตามกำไร/ต้น)</h2>
+  <table>
+    <thead><tr><th>สินค้า</th><th>ต้นทุนนำเข้า</th><th>ราคาขาย USA</th><th>กำไร/ต้น</th><th>Markup</th><th>ความเสี่ยง</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Carlablackiae x Pap hybrid</strong></td><td>$20-30</td><td class="money">$120-553</td><td class="money">$100-500+</td><td class="money">6-18x</td><td><span class="tag tag-good">กลาง</span></td></tr>
+      <tr><td><strong>King of Spades</strong></td><td>$15-25</td><td class="money">$110-150</td><td class="money">$85-135</td><td class="money">5-8x</td><td><span class="tag tag-best">ต่ำ</span></td></tr>
+      <tr><td><strong>Villenaorum</strong></td><td>$8-15</td><td class="money">$40-65</td><td class="money">$25-57</td><td class="money">3-5x</td><td><span class="tag tag-best">ต่ำ</span></td></tr>
+      <tr><td><strong>Pap. Variegated</strong></td><td>$50-80</td><td class="money">$200-1,000</td><td class="money">$120-920</td><td class="money">4-12x</td><td><span class="tag tag-risk">สูง</span></td></tr>
+      <tr><td><strong>Terrarium Kit (DIY)</strong></td><td>$15-20</td><td class="money">$60-100</td><td class="money">$40-80</td><td class="money">3-5x</td><td><span class="tag tag-best">ต่ำ</span></td></tr>
+      <tr><td><strong>Jewel Orchid bundle (3-5)</strong></td><td>$8-12</td><td class="money">$30-60</td><td class="money">$18-48</td><td class="money">3-5x</td><td><span class="tag tag-best">ต่ำ</span></td></tr>
+      <tr><td><strong>Marcgravia sintenisii</strong></td><td>$5-8</td><td class="money">$25-50</td><td class="money">$17-42</td><td class="money">3-6x</td><td><span class="tag tag-best">ต่ำ</span></td></tr>
+      <tr><td><strong>"Boom Hybrid" exclusive</strong></td><td>$2-5 (เพาะเอง)</td><td class="money">$40-80</td><td class="money">$35-78</td><td class="money">8-40x</td><td><span class="tag tag-good">กลาง (ต้องรอโต)</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Timeline -->
+<div class="section">
+  <h2>Timeline ทำจริง 18 เดือน</h2>
+  <div class="timeline">
+    <div class="tl-item"><div class="month">เดือน 1-2: Setup</div><div class="desc">เปิด Etsy shop, สร้าง Instagram, สั่งซื้อ batch แรก 20 ต้นจาก @equator_keep_liveness หรือ Thai Exotic Greenery</div></div>
+    <div class="tl-item"><div class="month">เดือน 2-3: ขาย Batch แรก</div><div class="desc">ถ่ายรูป listing, โพสต์ Instagram, เริ่มขาย — คาดว่าขายหมดใน 2-4 สัปดาห์</div></div>
+    <div class="tl-item"><div class="month">เดือน 3-4: Scale Import</div><div class="desc">สั่ง batch 2-3, เริ่มสร้างลูกค้าประจำ, ซื้อ parent stock สำหรับ breeding</div></div>
+    <div class="tl-item"><div class="month">เดือน 4-6: เริ่ม Breeding</div><div class="desc">ข้ามสาย Villenaorum x Luxurians, Villenaorum x Veitchii, ตั้ง grow tent/greenhouse</div></div>
+    <div class="tl-item"><div class="month">เดือน 6-8: Terrarium Kit Launch</div><div class="desc">เพิ่มสินค้า Terrarium DIY Kit ใช้ Jewel Orchid + Marcgravia + Moss ที่มีอยู่</div></div>
+    <div class="tl-item"><div class="month">เดือน 8-12: Hybrid Ready</div><div class="desc">Seedlings จากการข้ามสายเริ่มพร้อมขาย — ตั้งราคา premium "Boom Hybrid"</div></div>
+    <div class="tl-item"><div class="month">เดือน 12-18: Scale Up</div><div class="desc">รายได้ $2K-5K/เดือน, พิจารณา TC lab, Corporate workshops, ขยาย product line</div></div>
+  </div>
+</div>
+
+<!-- ความเสี่ยง -->
+<div class="section">
+  <h2>ความเสี่ยงและวิธีป้องกัน</h2>
+  <div class="grid2">
+    <div class="card">
+      <h3 style="color:#ef4444">ต้นไม้ตายระหว่างส่ง</h3>
+      <p><strong>ป้องกัน:</strong> เลือก supplier ที่มี cold chain 85%+, ส่ง DHL Express (2-3 วัน), ซื้อ extra 20% สำรอง</p>
+    </div>
+    <div class="card">
+      <h3 style="color:#ef4444">TC Flood ทำราคาตก</h3>
+      <p><strong>ป้องกัน:</strong> เน้น hybrid exclusive ที่ TC ทำไม่ได้ง่าย, กระจายสินค้าไม่พึ่ง species เดียว</p>
+    </div>
+    <div class="card">
+      <h3 style="color:#eab308">Trend เปลี่ยน</h3>
+      <p><strong>ป้องกัน:</strong> ติดตาม Instagram + PLNTS.com trends ทุกเดือน, พร้อมเปลี่ยน product mix</p>
+    </div>
+    <div class="card">
+      <h3 style="color:#eab308">Import permit/regulation</h3>
+      <p><strong>ป้องกัน:</strong> ใช้ TerraFlora Global (จัดการ permit ให้), ต่ำกว่า 13 ต้นไม่ต้อง permit</p>
+    </div>
+  </div>
+</div>
+
+<!-- Verdict -->
+<div class="verdict">
+  <h2 style="font-size:1.8rem">คำแนะนำสุดท้าย</h2>
+  <p style="font-size:1.1rem;margin-top:12px;color:#b0d0b8">
+    เริ่มจาก <strong style="color:#4ade80">แผน A</strong> (฿21,350) ทดสอบตลาด 2-3 เดือน<br>
+    ถ้าขายดี → upgrade เป็น <strong style="color:#eab308">แผน B</strong> (฿98,000) เพิ่ม breeding<br>
+    ปีที่ 2 → พิจารณา <strong style="color:#f97316">แผน C</strong> ถ้ารายได้ถึง $2K+/เดือน
+  </p>
+  <div class="grid3" style="margin-top:20px">
+    <div class="stat" style="border-color:#4ade80"><div class="val" style="font-size:1.4rem">฿21K</div><div class="lbl">เริ่มต้นได้เลย</div></div>
+    <div class="stat" style="border-color:#eab308"><div class="val" style="font-size:1.4rem">฿53K/เดือน</div><div class="lbl">กำไรแผน A</div></div>
+    <div class="stat" style="border-color:#f97316"><div class="val" style="font-size:1.4rem">฿2.27M/ปี</div><div class="lbl">เต็ม Scale แผน C</div></div>
+  </div>
+</div>
+
+<!-- Sources -->
+<div class="section">
+  <h2>แหล่งข้อมูล</h2>
+  <p style="font-size:0.82rem;color:#6b8a6b">ข้อมูลทั้งหมดวิเคราะห์จาก 4 reports + market data:</p>
+  <div style="font-size:0.8rem;columns:2;column-gap:16px;color:#6b8a6b">
+    <div style="break-inside:avoid;margin-bottom:4px"><a href="anthurium-research.html" style="color:#4ade80">Anthurium Market Research</a> — 15 varieties, 20 sources</div>
+    <div style="break-inside:avoid;margin-bottom:4px"><a href="terrarium-research.html" style="color:#4ade80">Terrarium Plants Research</a> — 18 varieties, 20 sources</div>
+    <div style="break-inside:avoid;margin-bottom:4px"><a href="villenaorum-deep-dive.html" style="color:#4ade80">Villenaorum Deep Dive</a> — 7 reasons, 10 sources</div>
+    <div style="break-inside:avoid;margin-bottom:4px"><a href="supplier-report.html" style="color:#4ade80">Supplier Report</a> — 12 suppliers, 15 sources</div>
+    <div style="break-inside:avoid;margin-bottom:4px"><a href="https://www.industryresearch.co/market-reports/anthurium-market-309843" target="_blank" style="color:#4ade80">Anthurium Market $333M — Industry Research</a></div>
+    <div style="break-inside:avoid;margin-bottom:4px"><a href="https://www.techsciresearch.com/report/terrarium-market/7998.html" target="_blank" style="color:#4ade80">Terrarium Market $3.2B — TechSci</a></div>
+    <div style="break-inside:avoid;margin-bottom:4px"><a href="https://www.futuredatastats.com/terrarium-kits-market" target="_blank" style="color:#4ade80">DIY Kit Market $2.4B — FutureDataStats</a></div>
+    <div style="break-inside:avoid;margin-bottom:4px"><a href="https://plantcelltechnology.com/blogs/blog/is-tissue-culture-a-profitable-side-hustle-breaking-down-the-roi-3" target="_blank" style="color:#4ade80">TC Lab ROI — Plant Cell Technology</a></div>
+    <div style="break-inside:avoid;margin-bottom:4px"><a href="https://www.shopify.com/blog/how-to-make-a-terrarium-turning-tiny-ecosystems-into-a-blooming-business" target="_blank" style="color:#4ade80">Terrarium Business Guide — Shopify</a></div>
+    <div style="break-inside:avoid;margin-bottom:4px"><a href="https://plantersetcetera.com/blogs/plant-guides/12-most-profitable-houseplants-to-grow-a-plant-business" target="_blank" style="color:#4ade80">12 Most Profitable Houseplants</a></div>
+    <div style="break-inside:avoid;margin-bottom:4px"><a href="https://www.fraservalleyrosefarm.com/how-to-price-your-plants-for-sale-a-practical-guide-for-small-growers/" target="_blank" style="color:#4ade80">Plant Pricing Guide — Fraser Valley</a></div>
+    <div style="break-inside:avoid;margin-bottom:4px"><a href="https://www.terrafloraglobal.com/blogs/news/how-to-import-rare-aroids-from-thailand-without-an-import-permit" target="_blank" style="color:#4ade80">Import Without Permit — TerraFlora</a></div>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  แผนธุรกิจต้นไม้หายาก | Boom Oracle | April 2026<br>
+  วิเคราะห์จากข้อมูล 4 reports, 65+ sources, ตลาด $3.5B+<br>
+  <a href="index.html">Boom Tools</a> | <a href="anthurium-research.html">Anthurium</a> | <a href="terrarium-research.html">Terrarium</a> | <a href="supplier-report.html">Suppliers</a>
+</div>
+
+</body>
+</html>
