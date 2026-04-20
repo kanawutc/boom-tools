@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Supplier Report — Rare Plant Exporters Similar to Equator Keep Liveness</title>
+<script src="auth.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', -apple-system, sans-serif; background: #f5f5f0; color: #2a2a25; line-height: 1.6; }
+.header { background: linear-gradient(135deg, #2a3a20, #3d5a30, #2a3a20); padding: 50px 20px; text-align: center; color: white; }
+.header h1 { font-size: 2rem; font-weight: 800; }
+.header p { margin-top: 8px; opacity: 0.9; font-size: 0.92rem; }
+.header .badge { display: inline-block; background: rgba(255,255,255,0.15); padding: 4px 14px; border-radius: 20px; font-size: 0.78rem; margin-top: 12px; }
+.container { max-width: 1100px; margin: 0 auto; padding: 30px 20px; }
+.section { margin-bottom: 40px; }
+.section h2 { font-size: 1.3rem; font-weight: 700; color: #2a3a20; border-left: 4px solid #5a8a40; padding-left: 14px; margin-bottom: 16px; }
+.section p { color: #4a5a40; font-size: 0.9rem; margin-bottom: 10px; }
+
+/* Reference Supplier */
+.ref-box { background: linear-gradient(135deg, #f0f5eb, #e8f0e0); border: 2px solid #8ab870; border-radius: 16px; padding: 24px; margin-bottom: 30px; }
+.ref-box h3 { color: #3d5a30; font-size: 1.1rem; margin-bottom: 8px; }
+
+/* Supplier Cards */
+.supplier-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
+.supplier-card { background: white; border-radius: 14px; overflow: hidden; box-shadow: 0 2px 10px rgba(42,58,32,0.08); border: 1px solid #e0e8d8; transition: all 0.2s; }
+.supplier-card:hover { box-shadow: 0 4px 20px rgba(42,58,32,0.12); transform: translateY(-2px); }
+.supplier-card .card-header { background: #3d5a30; color: white; padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; }
+.supplier-card .card-header h3 { font-size: 1rem; font-weight: 700; }
+.supplier-card .card-body { padding: 16px 18px; }
+.supplier-card .card-body p { font-size: 0.85rem; color: #5a6a50; }
+.supplier-card .specs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 12px 0; font-size: 0.82rem; }
+.supplier-card .spec-item { background: #f5f8f2; padding: 8px 10px; border-radius: 6px; }
+.supplier-card .spec-label { font-size: 0.7rem; color: #7a8a70; text-transform: uppercase; letter-spacing: 0.5px; }
+.supplier-card .spec-value { font-weight: 600; color: #2a3a20; margin-top: 2px; }
+.supplier-card .links { padding: 12px 18px; border-top: 1px solid #e8f0e0; display: flex; gap: 8px; flex-wrap: wrap; }
+.supplier-card .links a { font-size: 0.78rem; color: #5a8a40; text-decoration: none; padding: 4px 10px; background: #f0f5eb; border-radius: 6px; }
+.supplier-card .links a:hover { background: #e0ede0; }
+
+/* Country Badge */
+.country { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 0.7rem; font-weight: 600; }
+.country-th { background: #fef3c7; color: #92400e; }
+.country-ec { background: #dbeafe; color: #1e40af; }
+.country-id { background: #fce7f3; color: #9d174d; }
+.country-us { background: #dcfce7; color: #166534; }
+
+/* Quality Badge */
+.quality { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 0.7rem; font-weight: 600; }
+.q-premium { background: #fef3c7; color: #92400e; }
+.q-wholesale { background: #dbeafe; color: #1e40af; }
+.q-retail { background: #dcfce7; color: #166534; }
+
+/* Match Score */
+.match-score { display: flex; align-items: center; gap: 6px; margin: 8px 0; }
+.match-bar { height: 8px; border-radius: 4px; background: #e0e8d8; flex: 1; overflow: hidden; }
+.match-fill { height: 100%; border-radius: 4px; }
+
+/* Comparison Table */
+.comp-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 0.82rem; margin: 16px 0; }
+.comp-table th { background: #3d5a30; color: white; padding: 10px 12px; text-align: left; font-weight: 600; }
+.comp-table th:first-child { border-radius: 8px 0 0 0; }
+.comp-table th:last-child { border-radius: 0 8px 0 0; }
+.comp-table td { padding: 9px 12px; border-bottom: 1px solid #e8f0e0; background: white; }
+.comp-table tr:hover td { background: #f8faf5; }
+
+.footer { text-align: center; padding: 30px; color: #8a9a80; font-size: 0.75rem; border-top: 1px solid #e0e8d8; }
+.footer a { color: #5a8a40; text-decoration: none; }
+
+@media (max-width: 768px) { .supplier-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Supplier Report — Rare Plant Exporters</h1>
+  <p>Quality suppliers similar to Equator Keep Liveness (@equator_keep_liveness)</p>
+  <div class="badge">12 Suppliers Compared | Thailand, Ecuador, Indonesia, USA | April 2026</div>
+</div>
+
+<div class="container">
+
+<!-- Reference Supplier -->
+<div class="ref-box">
+  <h3>Reference Supplier: @equator_keep_liveness</h3>
+  <p><strong>Instagram:</strong> <a href="https://www.instagram.com/equator_keep_liveness" target="_blank" style="color:#5a8a40">@equator_keep_liveness</a></p>
+  <p><strong>Specialty:</strong> Rare tropical plants — Anthuriums, aroids, terrarium plants. Quality-focused Thai supplier with Instagram presence.</p>
+  <p><strong>What we're looking for:</strong> Suppliers with similar quality, rare plant variety, export capability, and reliable shipping to USA.</p>
+</div>
+
+<!-- Match Criteria -->
+<div class="section">
+  <h2>Match Criteria</h2>
+  <p>Each supplier is scored on 5 factors matching Equator Keep Liveness's profile:</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin:12px 0">
+    <div style="background:white;padding:10px;border-radius:8px;text-align:center;border:1px solid #e0e8d8"><strong>Rare Species</strong><div style="font-size:0.78rem;color:#7a8a70">Anthurium, aroids, terrarium</div></div>
+    <div style="background:white;padding:10px;border-radius:8px;text-align:center;border:1px solid #e0e8d8"><strong>Quality</strong><div style="font-size:0.78rem;color:#7a8a70">Healthy, well-rooted plants</div></div>
+    <div style="background:white;padding:10px;border-radius:8px;text-align:center;border:1px solid #e0e8d8"><strong>Export Capable</strong><div style="font-size:0.78rem;color:#7a8a70">Phytosanitary cert, cold chain</div></div>
+    <div style="background:white;padding:10px;border-radius:8px;text-align:center;border:1px solid #e0e8d8"><strong>Pricing</strong><div style="font-size:0.78rem;color:#7a8a70">Wholesale competitive</div></div>
+    <div style="background:white;padding:10px;border-radius:8px;text-align:center;border:1px solid #e0e8d8"><strong>Instagram/Online</strong><div style="font-size:0.78rem;color:#7a8a70">Active, photos of stock</div></div>
+  </div>
+</div>
+
+<!-- Top Recommended -->
+<div class="section">
+  <h2>Top Recommended Suppliers</h2>
+  <div class="supplier-grid">
+
+    <!-- 1 Thai Exotic Greenery -->
+    <div class="supplier-card">
+      <div class="card-header"><h3>Thai Exotic Greenery</h3><span class="country country-th">Thailand</span></div>
+      <div class="card-body">
+        <div class="match-score"><span style="font-size:0.75rem;font-weight:600;color:#5a8a40">Match: 95%</span><div class="match-bar"><div class="match-fill" style="width:95%;background:#5a8a40"></div></div></div>
+        <p>Exotic rare variegated aroids. Anthuriums, Alocasias, Monsteras. Ships worldwide with phytosanitary cert. YouTube featured nursery in Bangkok.</p>
+        <div class="specs">
+          <div class="spec-item"><div class="spec-label">Specialty</div><div class="spec-value">Variegated Aroids</div></div>
+          <div class="spec-item"><div class="spec-label">Anthurium</div><div class="spec-value">Pap, Luxurians, hybrids</div></div>
+          <div class="spec-item"><div class="spec-label">Shipping</div><div class="spec-value">Worldwide + Phyto</div></div>
+          <div class="spec-item"><div class="spec-label">Type</div><div class="spec-value"><span class="quality q-wholesale">Wholesale</span> <span class="quality q-retail">Retail</span></div></div>
+        </div>
+      </div>
+      <div class="links">
+        <a href="https://thaiexoticgreenery.com/" target="_blank">Website</a>
+        <a href="https://thaiexoticgreenery.com/collections/anthurium" target="_blank">Anthuriums</a>
+        <a href="https://www.youtube.com/watch?v=u5dB9K8-sSw" target="_blank">YouTube Tour</a>
+        <a href="mailto:sales.thaiexoticgreenery@gmail.com">Email</a>
+      </div>
+    </div>
+
+    <!-- 2 TerraFlora Global -->
+    <div class="supplier-card">
+      <div class="card-header"><h3>TerraFlora Global</h3><span class="country country-th">Thailand</span></div>
+      <div class="card-body">
+        <div class="match-score"><span style="font-size:0.75rem;font-weight:600;color:#5a8a40">Match: 92%</span><div class="match-bar"><div class="match-fill" style="width:92%;background:#5a8a40"></div></div></div>
+        <p>Wholesale specialist. Makes importing to USA simple — handles permits, phytosanitary, and cold chain. No import permit needed for buyers.</p>
+        <div class="specs">
+          <div class="spec-item"><div class="spec-label">Specialty</div><div class="spec-value">Wholesale Export</div></div>
+          <div class="spec-item"><div class="spec-label">Key Feature</div><div class="spec-value">No import permit needed</div></div>
+          <div class="spec-item"><div class="spec-label">Plants</div><div class="spec-value">Philodendron, Monstera, Anthurium, Hoya</div></div>
+          <div class="spec-item"><div class="spec-label">Type</div><div class="spec-value"><span class="quality q-wholesale">Wholesale Focus</span></div></div>
+        </div>
+      </div>
+      <div class="links">
+        <a href="https://www.terrafloraglobal.com/" target="_blank">Website</a>
+        <a href="https://www.terrafloraglobal.com/blogs/news/how-to-import-rare-aroids-from-thailand-without-an-import-permit" target="_blank">Import Guide</a>
+      </div>
+    </div>
+
+    <!-- 3 BK Interplants -->
+    <div class="supplier-card">
+      <div class="card-header"><h3>BK Interplants</h3><span class="country country-th">Thailand</span></div>
+      <div class="card-body">
+        <div class="match-score"><span style="font-size:0.75rem;font-weight:600;color:#5a8a40">Match: 90%</span><div class="match-bar"><div class="match-fill" style="width:90%;background:#5a8a40"></div></div></div>
+        <p>20+ years export experience. Premium Philodendron, Monstera, Hoya, Anthurium. YouTube-reviewed, highly rated by collectors.</p>
+        <div class="specs">
+          <div class="spec-item"><div class="spec-label">Experience</div><div class="spec-value">20+ Years Export</div></div>
+          <div class="spec-item"><div class="spec-label">Plants</div><div class="spec-value">Full rare aroid range</div></div>
+          <div class="spec-item"><div class="spec-label">Reviews</div><div class="spec-value">YouTube reviewed</div></div>
+          <div class="spec-item"><div class="spec-label">Type</div><div class="spec-value"><span class="quality q-wholesale">Wholesale</span> <span class="quality q-retail">Retail</span></div></div>
+        </div>
+      </div>
+      <div class="links">
+        <a href="https://www.bkinterplants.com" target="_blank">Website</a>
+        <a href="https://www.youtube.com/watch?v=nVG3UTUFADU" target="_blank">Unboxing Review</a>
+      </div>
+    </div>
+
+    <!-- 4 Greenroom Planter -->
+    <div class="supplier-card">
+      <div class="card-header"><h3>Greenroom Planter</h3><span class="country country-th">Thailand</span></div>
+      <div class="card-body">
+        <div class="match-score"><span style="font-size:0.75rem;font-weight:600;color:#5a8a40">Match: 88%</span><div class="match-bar"><div class="match-fill" style="width:88%;background:#5a8a40"></div></div></div>
+        <p>Nonthaburi, Thailand. Premium rare plants with EU-N Certificates. Customers praise: "great deals, arrived in a few days, included free plant."</p>
+        <div class="specs">
+          <div class="spec-item"><div class="spec-label">Location</div><div class="spec-value">Nonthaburi, Thailand</div></div>
+          <div class="spec-item"><div class="spec-label">Cert</div><div class="spec-value">EU-N + Phytosanitary</div></div>
+          <div class="spec-item"><div class="spec-label">Reviews</div><div class="spec-value">Positive (fast ship)</div></div>
+          <div class="spec-item"><div class="spec-label">Type</div><div class="spec-value"><span class="quality q-premium">Premium</span></div></div>
+        </div>
+      </div>
+      <div class="links"><a href="https://www.greenroomplanter.com/" target="_blank">Website</a></div>
+    </div>
+
+    <!-- 5 M.E. Greenery Export -->
+    <div class="supplier-card">
+      <div class="card-header"><h3>M.E. Greenery Export</h3><span class="country country-th">Thailand</span></div>
+      <div class="card-body">
+        <div class="match-score"><span style="font-size:0.75rem;font-weight:600;color:#8ab870">Match: 85%</span><div class="match-bar"><div class="match-fill" style="width:85%;background:#8ab870"></div></div></div>
+        <p>Export agency connecting buyers with Thai suppliers. Responsive service, includes Anthurium Warocqueanum TC and rare species.</p>
+        <div class="specs">
+          <div class="spec-item"><div class="spec-label">Role</div><div class="spec-value">Export Agency</div></div>
+          <div class="spec-item"><div class="spec-label">Feature</div><div class="spec-value">Connects buyer ↔ supplier</div></div>
+          <div class="spec-item"><div class="spec-label">Anthurium</div><div class="spec-value">Warocqueanum TC, others</div></div>
+          <div class="spec-item"><div class="spec-label">Type</div><div class="spec-value"><span class="quality q-wholesale">Wholesale</span></div></div>
+        </div>
+      </div>
+      <div class="links"><a href="https://me-greeneryexport.com/" target="_blank">Website</a></div>
+    </div>
+
+    <!-- 6 FloristaPearl Garden -->
+    <div class="supplier-card">
+      <div class="card-header"><h3>FloristaPearl Garden</h3><span class="country country-th">Thailand</span></div>
+      <div class="card-body">
+        <div class="match-score"><span style="font-size:0.75rem;font-weight:600;color:#8ab870">Match: 85%</span><div class="match-bar"><div class="match-fill" style="width:85%;background:#8ab870"></div></div></div>
+        <p>Registered company (2018). Official export license from Thailand DOA. Monstera, Philodendron, Anthurium, Alocasia, Aglaonema.</p>
+        <div class="specs">
+          <div class="spec-item"><div class="spec-label">Company</div><div class="spec-value">Raya Chom Royal Co.</div></div>
+          <div class="spec-item"><div class="spec-label">License</div><div class="spec-value">DOA Export License</div></div>
+          <div class="spec-item"><div class="spec-label">Since</div><div class="spec-value">2018</div></div>
+          <div class="spec-item"><div class="spec-label">Type</div><div class="spec-value"><span class="quality q-wholesale">Wholesale</span> <span class="quality q-retail">Retail</span></div></div>
+        </div>
+      </div>
+      <div class="links"><a href="https://floristapearlstore.com/" target="_blank">Website</a></div>
+    </div>
+
+    <!-- 7 Ecuagenera -->
+    <div class="supplier-card">
+      <div class="card-header"><h3>Ecuagenera</h3><span class="country country-ec">Ecuador</span></div>
+      <div class="card-body">
+        <div class="match-score"><span style="font-size:0.75rem;font-weight:600;color:#5a8a40">Match: 90%</span><div class="match-bar"><div class="match-fill" style="width:90%;background:#5a8a40"></div></div></div>
+        <p>10,000+ species cultivated at 3 locations. THE premium Anthurium source. Has USA subsidiary (ecuageneraus.com) for direct shipping.</p>
+        <div class="specs">
+          <div class="spec-item"><div class="spec-label">Species</div><div class="spec-value">10,000+ cultivated</div></div>
+          <div class="spec-item"><div class="spec-label">Anthurium</div><div class="spec-value">Villenaorum, Regale, Veitchii, Clarinervium</div></div>
+          <div class="spec-item"><div class="spec-label">USA</div><div class="spec-value">Direct subsidiary</div></div>
+          <div class="spec-item"><div class="spec-label">Type</div><div class="spec-value"><span class="quality q-premium">Premium</span> <span class="quality q-retail">Retail</span></div></div>
+        </div>
+      </div>
+      <div class="links">
+        <a href="https://ecuagenera.com/" target="_blank">Ecuador Site</a>
+        <a href="https://ecuageneraus.com/" target="_blank">USA Shop</a>
+        <a href="https://ecuageneraus.com/collections/aroids" target="_blank">Aroids</a>
+      </div>
+    </div>
+
+    <!-- 8 Aroid Market -->
+    <div class="supplier-card">
+      <div class="card-header"><h3>Aroid Market</h3><span class="country country-id">Indonesia</span></div>
+      <div class="card-body">
+        <div class="match-score"><span style="font-size:0.75rem;font-weight:600;color:#8ab870">Match: 87%</span><div class="match-bar"><div class="match-fill" style="width:87%;background:#8ab870"></div></div></div>
+        <p>Indonesian exporter. Passionate about top-quality rare plants. Free DHL on $600+. Retail and wholesale. Strong Instagram presence.</p>
+        <div class="specs">
+          <div class="spec-item"><div class="spec-label">Specialty</div><div class="spec-value">Rare Aroids</div></div>
+          <div class="spec-item"><div class="spec-label">Shipping</div><div class="spec-value">Free DHL $600+</div></div>
+          <div class="spec-item"><div class="spec-label">Anthurium</div><div class="spec-value">King of Spades, Silver Blush hybrids</div></div>
+          <div class="spec-item"><div class="spec-label">Type</div><div class="spec-value"><span class="quality q-wholesale">Wholesale</span> <span class="quality q-retail">Retail</span></div></div>
+        </div>
+      </div>
+      <div class="links">
+        <a href="https://aroidmarket.com/" target="_blank">Website</a>
+        <a href="https://aroidmarket.com/collections/rare-anthurium" target="_blank">Rare Anthuriums</a>
+      </div>
+    </div>
+
+    <!-- 9 Leal Plants -->
+    <div class="supplier-card">
+      <div class="card-header"><h3>Leal Plants Ecuador</h3><span class="country country-ec">Ecuador</span></div>
+      <div class="card-body">
+        <div class="match-score"><span style="font-size:0.75rem;font-weight:600;color:#8ab870">Match: 82%</span><div class="match-bar"><div class="match-fill" style="width:82%;background:#8ab870"></div></div></div>
+        <p>12 years experience producing and exporting unique aroids and tropical plants worldwide. Ecuador origin = premium Anthurium genetics.</p>
+        <div class="specs">
+          <div class="spec-item"><div class="spec-label">Experience</div><div class="spec-value">12 Years</div></div>
+          <div class="spec-item"><div class="spec-label">Specialty</div><div class="spec-value">Aroids & Tropicals</div></div>
+          <div class="spec-item"><div class="spec-label">Origin</div><div class="spec-value">Ecuador (native habitat)</div></div>
+          <div class="spec-item"><div class="spec-label">Type</div><div class="spec-value"><span class="quality q-wholesale">Wholesale</span></div></div>
+        </div>
+      </div>
+      <div class="links"><a href="https://www.lealplants.com/" target="_blank">Website</a></div>
+    </div>
+
+    <!-- 10 NewLife Tropicals -->
+    <div class="supplier-card">
+      <div class="card-header"><h3>NewLife Tropicals</h3><span class="country country-th">Thailand</span></div>
+      <div class="card-body">
+        <div class="match-score"><span style="font-size:0.75rem;font-weight:600;color:#8ab870">Match: 80%</span><div class="match-bar"><div class="match-fill" style="width:80%;background:#8ab870"></div></div></div>
+        <p>Bangkok nursery. New and uncommon ornamental tropical plants. Both retail and wholesale quantities.</p>
+        <div class="specs">
+          <div class="spec-item"><div class="spec-label">Location</div><div class="spec-value">Bangkok</div></div>
+          <div class="spec-item"><div class="spec-label">Focus</div><div class="spec-value">Uncommon tropicals</div></div>
+          <div class="spec-item"><div class="spec-label">Quantities</div><div class="spec-value">Retail + Wholesale</div></div>
+          <div class="spec-item"><div class="spec-label">Type</div><div class="spec-value"><span class="quality q-retail">Retail</span> <span class="quality q-wholesale">Wholesale</span></div></div>
+        </div>
+      </div>
+      <div class="links"><a href="https://www.newlifetropicals.com/" target="_blank">Website</a></div>
+    </div>
+
+    <!-- 11 Plantastic4 -->
+    <div class="supplier-card">
+      <div class="card-header"><h3>Plantastic 4</h3><span class="country country-th">Thailand</span></div>
+      <div class="card-body">
+        <div class="match-score"><span style="font-size:0.75rem;font-weight:600;color:#8ab870">Match: 78%</span><div class="match-bar"><div class="match-fill" style="width:78%;background:#8ab870"></div></div></div>
+        <p>Tropical plant nursery and exporter. Wholesale discount offers. Promotional deals available.</p>
+        <div class="specs">
+          <div class="spec-item"><div class="spec-label">Feature</div><div class="spec-value">Wholesale Discounts</div></div>
+          <div class="spec-item"><div class="spec-label">Plants</div><div class="spec-value">Tropical range</div></div>
+          <div class="spec-item"><div class="spec-label">Promos</div><div class="spec-value">Regular deals</div></div>
+          <div class="spec-item"><div class="spec-label">Type</div><div class="spec-value"><span class="quality q-wholesale">Wholesale</span></div></div>
+        </div>
+      </div>
+      <div class="links"><a href="https://www.plantastic4.com/" target="_blank">Website</a></div>
+    </div>
+
+    <!-- 12 Siam Green Culture -->
+    <div class="supplier-card">
+      <div class="card-header"><h3>Siam Green Culture</h3><span class="country country-th">Thailand</span></div>
+      <div class="card-body">
+        <div class="match-score"><span style="font-size:0.75rem;font-weight:600;color:#8ab870">Match: 83%</span><div class="match-bar"><div class="match-fill" style="width:83%;background:#8ab870"></div></div></div>
+        <p>Rare aroids + terrarium plants specialist. Anthurium clidemioides, Rhaphidophora, Schismatoglottis. Terrarium-friendly focus.</p>
+        <div class="specs">
+          <div class="spec-item"><div class="spec-label">Specialty</div><div class="spec-value">Terrarium Plants</div></div>
+          <div class="spec-item"><div class="spec-label">Rare Aroids</div><div class="spec-value">Anthurium, Rhaphidophora</div></div>
+          <div class="spec-item"><div class="spec-label">Unique</div><div class="spec-value">Terrarium-sized species</div></div>
+          <div class="spec-item"><div class="spec-label">Type</div><div class="spec-value"><span class="quality q-retail">Retail</span></div></div>
+        </div>
+      </div>
+      <div class="links"><a href="https://siamgreenculture.com/" target="_blank">Website</a></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Comparison Table -->
+<div class="section">
+  <h2>Quick Comparison</h2>
+  <div style="overflow-x:auto">
+  <table class="comp-table">
+    <thead><tr><th>Supplier</th><th>Country</th><th>Match</th><th>Wholesale</th><th>USA Ship</th><th>Phyto Cert</th><th>Anthurium</th><th>Terrarium</th><th>Best For</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Thai Exotic Greenery</strong></td><td>Thailand</td><td style="color:#5a8a40;font-weight:700">95%</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Strong</td><td>Some</td><td>Best overall match</td></tr>
+      <tr><td><strong>TerraFlora Global</strong></td><td>Thailand</td><td style="color:#5a8a40;font-weight:700">92%</td><td>Yes</td><td>Yes (easy)</td><td>Yes</td><td>Yes</td><td>Some</td><td>Easiest USA import</td></tr>
+      <tr><td><strong>Ecuagenera</strong></td><td>Ecuador</td><td style="color:#5a8a40;font-weight:700">90%</td><td>Some</td><td>Yes (USA sub)</td><td>Yes</td><td>Best</td><td>No</td><td>Premium Anthurium</td></tr>
+      <tr><td><strong>BK Interplants</strong></td><td>Thailand</td><td style="color:#5a8a40;font-weight:700">90%</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Some</td><td>20yr track record</td></tr>
+      <tr><td><strong>Greenroom Planter</strong></td><td>Thailand</td><td style="color:#8ab870">88%</td><td>Some</td><td>Yes</td><td>EU-N + Phyto</td><td>Yes</td><td>Some</td><td>Premium quality</td></tr>
+      <tr><td><strong>Aroid Market</strong></td><td>Indonesia</td><td style="color:#8ab870">87%</td><td>Yes</td><td>Free DHL $600+</td><td>Yes</td><td>Strong</td><td>No</td><td>KoS, Silver Blush</td></tr>
+      <tr><td><strong>FloristaPearl</strong></td><td>Thailand</td><td style="color:#8ab870">85%</td><td>Yes</td><td>Yes</td><td>DOA License</td><td>Yes</td><td>Some</td><td>Licensed company</td></tr>
+      <tr><td><strong>M.E. Greenery</strong></td><td>Thailand</td><td style="color:#8ab870">85%</td><td>Yes</td><td>Yes</td><td>Yes</td><td>TC plants</td><td>No</td><td>Export agency</td></tr>
+      <tr><td><strong>Siam Green Culture</strong></td><td>Thailand</td><td style="color:#8ab870">83%</td><td>No</td><td>Yes</td><td>Some</td><td>Terrarium sp.</td><td>Strong</td><td>Terrarium specialist</td></tr>
+      <tr><td><strong>Leal Plants</strong></td><td>Ecuador</td><td style="color:#8ab870">82%</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Strong</td><td>No</td><td>Ecuador genetics</td></tr>
+      <tr><td><strong>NewLife Tropicals</strong></td><td>Thailand</td><td style="color:#7a8a70">80%</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Some</td><td>Some</td><td>Uncommon species</td></tr>
+      <tr><td><strong>Plantastic 4</strong></td><td>Thailand</td><td style="color:#7a8a70">78%</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Some</td><td>No</td><td>Budget wholesale</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- Recommendation -->
+<div class="section">
+  <h2>Recommendation</h2>
+  <div style="background:linear-gradient(135deg,#f0f5eb,#e0ede0);border:2px solid #8ab870;border-radius:16px;padding:24px">
+    <h3 style="color:#2a3a20">Top 3 to Contact First</h3>
+    <ol style="padding-left:18px;font-size:0.92rem">
+      <li><strong>Thai Exotic Greenery</strong> (95% match) — Closest to Equator Keep style. Instagram active, wholesale + retail, broad aroid range. <a href="https://thaiexoticgreenery.com/" target="_blank" style="color:#5a8a40">Visit</a></li>
+      <li><strong>TerraFlora Global</strong> (92% match) — Best for USA import logistics. They handle permits for you. <a href="https://www.terrafloraglobal.com/" target="_blank" style="color:#5a8a40">Visit</a></li>
+      <li><strong>Ecuagenera</strong> (90% match) — Premium Anthurium genetics direct from Ecuador. USA subsidiary for easy ordering. <a href="https://ecuageneraus.com/" target="_blank" style="color:#5a8a40">Visit</a></li>
+    </ol>
+    <p style="margin-top:12px;font-size:0.85rem;color:#5a6a50"><strong>For terrarium plants specifically:</strong> Add <strong>Siam Green Culture</strong> — they specialize in terrarium-sized rare aroids that other suppliers don't carry.</p>
+  </div>
+</div>
+
+<!-- Sources -->
+<div class="section">
+  <h2>Sources</h2>
+  <div style="columns:2;column-gap:16px;font-size:0.8rem">
+    <div style="break-inside:avoid;margin-bottom:6px"><a href="https://thaiexoticgreenery.com/" target="_blank" style="color:#5a8a40">Thai Exotic Greenery — thaiexoticgreenery.com</a></div>
+    <div style="break-inside:avoid;margin-bottom:6px"><a href="https://www.terrafloraglobal.com/" target="_blank" style="color:#5a8a40">TerraFlora Global — terrafloraglobal.com</a></div>
+    <div style="break-inside:avoid;margin-bottom:6px"><a href="https://www.bkinterplants.com" target="_blank" style="color:#5a8a40">BK Interplants — bkinterplants.com</a></div>
+    <div style="break-inside:avoid;margin-bottom:6px"><a href="https://www.greenroomplanter.com/" target="_blank" style="color:#5a8a40">Greenroom Planter — greenroomplanter.com</a></div>
+    <div style="break-inside:avoid;margin-bottom:6px"><a href="https://me-greeneryexport.com/" target="_blank" style="color:#5a8a40">M.E. Greenery Export — me-greeneryexport.com</a></div>
+    <div style="break-inside:avoid;margin-bottom:6px"><a href="https://floristapearlstore.com/" target="_blank" style="color:#5a8a40">FloristaPearl Garden — floristapearlstore.com</a></div>
+    <div style="break-inside:avoid;margin-bottom:6px"><a href="https://ecuageneraus.com/" target="_blank" style="color:#5a8a40">Ecuagenera USA — ecuageneraus.com</a></div>
+    <div style="break-inside:avoid;margin-bottom:6px"><a href="https://aroidmarket.com/" target="_blank" style="color:#5a8a40">Aroid Market — aroidmarket.com</a></div>
+    <div style="break-inside:avoid;margin-bottom:6px"><a href="https://www.lealplants.com/" target="_blank" style="color:#5a8a40">Leal Plants Ecuador — lealplants.com</a></div>
+    <div style="break-inside:avoid;margin-bottom:6px"><a href="https://siamgreenculture.com/" target="_blank" style="color:#5a8a40">Siam Green Culture — siamgreenculture.com</a></div>
+    <div style="break-inside:avoid;margin-bottom:6px"><a href="https://www.newlifetropicals.com/" target="_blank" style="color:#5a8a40">NewLife Tropicals — newlifetropicals.com</a></div>
+    <div style="break-inside:avoid;margin-bottom:6px"><a href="https://www.plantastic4.com/" target="_blank" style="color:#5a8a40">Plantastic 4 — plantastic4.com</a></div>
+    <div style="break-inside:avoid;margin-bottom:6px"><a href="https://www.accio.com/supplier/thailand-plants-direct-supplier" target="_blank" style="color:#5a8a40">Thailand Plants Supplier Guide — Accio 2026</a></div>
+    <div style="break-inside:avoid;margin-bottom:6px"><a href="https://www.youtube.com/watch?v=u5dB9K8-sSw" target="_blank" style="color:#5a8a40">Thai Exotic Greenery Tour — YouTube</a></div>
+    <div style="break-inside:avoid;margin-bottom:6px"><a href="https://www.youtube.com/watch?v=nVG3UTUFADU" target="_blank" style="color:#5a8a40">BK Interplants Unboxing — YouTube</a></div>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  Supplier Report | Boom Oracle | April 2026<br>
+  Reference: @equator_keep_liveness | 12 suppliers compared | 15 sources<br>
+  <a href="anthurium-research.html">Anthurium Research</a> | <a href="terrarium-research.html">Terrarium Research</a> | <a href="index.html">Boom Tools</a>
+</div>
+
+</body>
+</html>
