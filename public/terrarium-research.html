@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terrarium Plants Market Research — USA 2025-2026</title>
+<script src="auth.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', -apple-system, sans-serif; background: #f5f8f5; color: #1a2e1a; line-height: 1.6; }
+.header { background: linear-gradient(135deg, #0f3d1f, #1a5c30, #0f3d1f); padding: 50px 20px; text-align: center; color: white; position: relative; overflow: hidden; }
+.header::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E"); }
+.header h1 { font-size: 2.2rem; font-weight: 700; position: relative; }
+.header p { margin-top: 8px; opacity: 0.9; font-size: 0.95rem; position: relative; }
+.header .badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 4px 14px; border-radius: 20px; font-size: 0.78rem; margin-top: 12px; position: relative; }
+.container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
+.section { margin-bottom: 40px; }
+.section h2 { font-size: 1.4rem; font-weight: 700; color: #0f3d1f; border-left: 4px solid #22883a; padding-left: 14px; margin-bottom: 16px; }
+.section h3 { font-size: 1.1rem; font-weight: 600; color: #22883a; margin: 16px 0 8px; }
+.section p { color: #3d5a3d; font-size: 0.9rem; margin-bottom: 10px; }
+.exec-summary { background: white; border-radius: 16px; padding: 28px; box-shadow: 0 2px 12px rgba(15,61,31,0.08); border-left: 4px solid #22883a; margin-bottom: 30px; }
+.exec-summary h2 { border: none; padding: 0; margin-bottom: 12px; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin: 20px 0; }
+.stat-card { background: white; border-radius: 12px; padding: 18px; text-align: center; box-shadow: 0 2px 8px rgba(15,61,31,0.06); }
+.stat-value { font-size: 1.6rem; font-weight: 700; color: #22883a; }
+.stat-label { font-size: 0.75rem; color: #6b8a6b; margin-top: 4px; }
+.comparison-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 0.82rem; overflow-x: auto; display: block; }
+.comparison-table th { background: #0f3d1f; color: white; padding: 10px 12px; text-align: left; font-weight: 600; white-space: nowrap; }
+.comparison-table th:first-child { border-radius: 8px 0 0 0; }
+.comparison-table th:last-child { border-radius: 0 8px 0 0; }
+.comparison-table td { padding: 9px 12px; border-bottom: 1px solid #e0ede0; background: white; }
+.comparison-table tr:hover td { background: #f0f7f0; }
+.comparison-table .plant-name { font-weight: 600; color: #0f3d1f; }
+.tier { display: inline-block; padding: 2px 10px; border-radius: 10px; font-size: 0.7rem; font-weight: 600; }
+.tier-s { background: #fef3c7; color: #92400e; }
+.tier-a { background: #dcfce7; color: #166534; }
+.tier-b { background: #dbeafe; color: #1e40af; }
+.tier-c { background: #f3f4f6; color: #4b5563; }
+.trend-up { color: #16a34a; font-weight: 600; }
+.trend-hot { color: #ea580c; font-weight: 700; }
+.trend-stable { color: #ca8a04; }
+.trend-down { color: #dc2626; }
+.cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+.cat-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(15,61,31,0.06); border-top: 3px solid #22883a; }
+.cat-card h3 { margin-top: 0; }
+.cat-card .price-range { font-size: 1.2rem; font-weight: 700; color: #22883a; }
+.cat-card ul { padding-left: 16px; font-size: 0.85rem; color: #3d5a3d; }
+.cat-card li { margin: 4px 0; }
+.trend-row { display: flex; align-items: center; margin: 6px 0; }
+.trend-label { width: 180px; font-size: 0.82rem; font-weight: 500; color: #0f3d1f; flex-shrink: 0; }
+.trend-bar-bg { flex: 1; height: 24px; background: #e0ede0; border-radius: 6px; overflow: hidden; }
+.trend-bar { height: 100%; border-radius: 6px; display: flex; align-items: center; padding-left: 8px; font-size: 0.7rem; font-weight: 600; color: white; }
+.plant-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.plant-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(15,61,31,0.06); }
+.plant-card .img-area { height: 180px; overflow: hidden; background: #e0ede0; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+.plant-card .img-area img { width: 100%; height: 100%; object-fit: cover; }
+.plant-card .body { padding: 14px; }
+.plant-card .name { font-weight: 700; color: #0f3d1f; font-size: 0.92rem; }
+.plant-card .price { color: #22883a; font-weight: 600; font-size: 1.05rem; margin: 4px 0; }
+.plant-card .desc { font-size: 0.78rem; color: #6b8a6b; }
+.plant-card .links { margin-top: 10px; font-size: 0.78rem; }
+.plant-card .links a { color: #22883a; display: block; margin: 2px 0; text-decoration: none; }
+.plant-card .links a:hover { text-decoration: underline; }
+.shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-top: 12px; }
+.shop-card { background: white; border-radius: 8px; padding: 14px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+.shop-card .shop-name { font-weight: 600; color: #0f3d1f; }
+.shop-card .shop-desc { font-size: 0.78rem; color: #6b8a6b; }
+.shop-card a { font-size: 0.78rem; color: #22883a; text-decoration: none; }
+.reco-card { background: linear-gradient(135deg, #f0fdf4, #dcfce7); border: 2px solid #86efac; border-radius: 16px; padding: 24px; margin: 20px 0; }
+.reco-card h3 { color: #166534; }
+.reco-card-warn { background: linear-gradient(135deg, #fef2f2, #fee2e2); border-color: #fca5a5; }
+.reco-card-warn h3 { color: #991b1b; }
+.ref-list { columns: 2; column-gap: 20px; }
+.ref-item { break-inside: avoid; background: white; border-radius: 8px; padding: 10px 14px; margin-bottom: 8px; font-size: 0.8rem; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+.ref-item a { color: #22883a; text-decoration: none; font-weight: 500; }
+.ref-item a:hover { text-decoration: underline; }
+.ref-item .ref-type { font-size: 0.68rem; color: #6b8a6b; text-transform: uppercase; letter-spacing: 0.5px; }
+.footer { text-align: center; padding: 30px; color: #6b8a6b; font-size: 0.75rem; border-top: 1px solid #e0ede0; }
+@media (max-width: 768px) { .stats-grid { grid-template-columns: 1fr 1fr; } .cat-grid, .plant-grid { grid-template-columns: 1fr; } .ref-list { columns: 1; } .header h1 { font-size: 1.6rem; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Terrarium Plants Market Research</h1>
+  <p>USA Market Analysis — Trending Species, DIY Kits & Bioactive Systems 2025-2026</p>
+  <div class="badge">Comprehensive Research Report | April 2026</div>
+</div>
+
+<div class="container">
+
+<!-- Executive Summary -->
+<div class="exec-summary">
+  <h2>Executive Summary</h2>
+  <p>The global terrarium market is valued at <strong>$3.2 billion (2025)</strong> projected to <strong>$5.8 billion by 2034</strong> (CAGR 6.8%). The DIY terrarium kit segment alone is <strong>$2.4 billion</strong> growing at <strong>12% CAGR</strong>. Bioactive vivariums are the fastest-growing sub-segment at 7.2% CAGR. Key trends: <strong>jewel orchids</strong> and <strong>Marcgravia</strong> are the hottest collector plants, <strong>moss terrariums</strong> dominate the mass market, and <strong>smart/automated terrariums</strong> with LED and humidity control are driving premium pricing. Corporate wellness demand forecast to grow 15-20% in 2026.</p>
+</div>
+
+<!-- Market Stats -->
+<div class="section">
+  <h2>Market Overview</h2>
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-value">$3.2B</div><div class="stat-label">Terrarium Market (2025)</div></div>
+    <div class="stat-card"><div class="stat-value">6.8%</div><div class="stat-label">CAGR (2026-2034)</div></div>
+    <div class="stat-card"><div class="stat-value">$5.8B</div><div class="stat-label">Projected (2034)</div></div>
+    <div class="stat-card"><div class="stat-value">$2.4B</div><div class="stat-label">DIY Kits Market</div></div>
+    <div class="stat-card"><div class="stat-value">12%</div><div class="stat-label">Kit CAGR</div></div>
+    <div class="stat-card"><div class="stat-value">$363M</div><div class="stat-label">Bioactive Vivarium</div></div>
+    <div class="stat-card"><div class="stat-value">15-20%</div><div class="stat-label">Corporate Wellness Growth</div></div>
+    <div class="stat-card"><div class="stat-value">9.2%</div><div class="stat-label">DIY Kit Sales Growth</div></div>
+  </div>
+</div>
+
+<!-- Trend Direction -->
+<div class="section">
+  <h2>Market Trend Direction (2025-2026)</h2>
+  <div>
+    <div class="trend-row"><div class="trend-label">Jewel Orchids (Macodes/Anoectochilus)</div><div class="trend-bar-bg"><div class="trend-bar" style="width:95%;background:#16a34a">HOTTEST</div></div></div>
+    <div class="trend-row"><div class="trend-label">Marcgravia (Shingling Vines)</div><div class="trend-bar-bg"><div class="trend-bar" style="width:92%;background:#16a34a">RISING FAST</div></div></div>
+    <div class="trend-row"><div class="trend-label">Bioactive Vivarium Kits</div><div class="trend-bar-bg"><div class="trend-bar" style="width:90%;background:#22c55e">STRONG UP</div></div></div>
+    <div class="trend-row"><div class="trend-label">Smart/LED Terrariums</div><div class="trend-bar-bg"><div class="trend-bar" style="width:88%;background:#22c55e">RISING</div></div></div>
+    <div class="trend-row"><div class="trend-label">Miniature Begonia</div><div class="trend-bar-bg"><div class="trend-bar" style="width:85%;background:#22c55e">RISING</div></div></div>
+    <div class="trend-row"><div class="trend-label">Selaginella / Spike Moss</div><div class="trend-bar-bg"><div class="trend-bar" style="width:80%;background:#65a30d">GROWING</div></div></div>
+    <div class="trend-row"><div class="trend-label">Moss Terrariums (DIY)</div><div class="trend-bar-bg"><div class="trend-bar" style="width:82%;background:#65a30d">MASS MARKET BOOM</div></div></div>
+    <div class="trend-row"><div class="trend-label">Paludarium (Water+Land)</div><div class="trend-bar-bg"><div class="trend-bar" style="width:78%;background:#65a30d">GROWING NICHE</div></div></div>
+    <div class="trend-row"><div class="trend-label">Fittonia / Nerve Plant</div><div class="trend-bar-bg"><div class="trend-bar" style="width:65%;background:#ca8a04">STABLE (commodity)</div></div></div>
+    <div class="trend-row"><div class="trend-label">Corporate Wellness</div><div class="trend-bar-bg"><div class="trend-bar" style="width:75%;background:#22c55e">+15-20% forecast</div></div></div>
+  </div>
+</div>
+
+<!-- Comparison Table -->
+<div class="section">
+  <h2>Plant Variety Comparison — Price, Rarity & Trend</h2>
+  <div style="overflow-x:auto">
+  <table class="comparison-table">
+    <thead><tr><th>Plant</th><th>Category</th><th>Tier</th><th>Price (USD)</th><th>Rarity</th><th>Trend</th><th>Demand</th><th>Best For</th></tr></thead>
+    <tbody>
+      <tr><td class="plant-name">Macodes petola</td><td>Jewel Orchid</td><td><span class="tier tier-s">S-TIER</span></td><td>$17 - $35</td><td>Medium-High</td><td class="trend-hot">HOTTEST</td><td>Very High</td><td>Collector / Gift</td></tr>
+      <tr><td class="plant-name">Anoectochilus formosanus</td><td>Jewel Orchid</td><td><span class="tier tier-s">S-TIER</span></td><td>$20 - $35</td><td>High</td><td class="trend-hot">RISING FAST</td><td>High</td><td>Collector</td></tr>
+      <tr><td class="plant-name">Anoectochilus chapaensis</td><td>Jewel Orchid</td><td><span class="tier tier-a">A-TIER</span></td><td>$25 - $35</td><td>High</td><td class="trend-up">UP</td><td>High</td><td>Premium Gift</td></tr>
+      <tr><td class="plant-name">Marcgravia sintenisii</td><td>Shingling Vine</td><td><span class="tier tier-s">S-TIER</span></td><td>$25 - $50</td><td>High</td><td class="trend-hot">HOTTEST</td><td>Very High</td><td>Display / Collector</td></tr>
+      <tr><td class="plant-name">Marcgravia sp. Zumba</td><td>Shingling Vine</td><td><span class="tier tier-s">S-TIER</span></td><td>$130+</td><td>Ultra Rare</td><td class="trend-hot">UNICORN</td><td>Extreme</td><td>Investment</td></tr>
+      <tr><td class="plant-name">Marcgravia umbellata</td><td>Shingling Vine</td><td><span class="tier tier-a">A-TIER</span></td><td>$18 - $30</td><td>Medium</td><td class="trend-up">UP</td><td>High</td><td>Terrarium Background</td></tr>
+      <tr><td class="plant-name">Marcgravia El Coca</td><td>Shingling Vine</td><td><span class="tier tier-a">A-TIER</span></td><td>$50</td><td>High</td><td class="trend-up">RISING</td><td>High</td><td>Collector</td></tr>
+      <tr><td class="plant-name">Begonia (miniature spp.)</td><td>Mini Begonia</td><td><span class="tier tier-a">A-TIER</span></td><td>$8 - $40</td><td>Medium</td><td class="trend-up">RISING</td><td>High</td><td>Color / Variety</td></tr>
+      <tr><td class="plant-name">Selaginella uncinata</td><td>Spike Moss</td><td><span class="tier tier-a">A-TIER</span></td><td>$6 - $15</td><td>Low-Med</td><td class="trend-up">GROWING</td><td>High</td><td>Ground Cover</td></tr>
+      <tr><td class="plant-name">Selaginella kraussiana</td><td>Spike Moss</td><td><span class="tier tier-b">B-TIER</span></td><td>$5 - $12</td><td>Low</td><td class="trend-stable">STABLE</td><td>High (volume)</td><td>Mass Market / Kits</td></tr>
+      <tr><td class="plant-name">Biophytum sensitivum</td><td>Sensitive Plant</td><td><span class="tier tier-a">A-TIER</span></td><td>$8 - $20</td><td>Medium</td><td class="trend-up">GROWING</td><td>Moderate-High</td><td>Novelty / Gift</td></tr>
+      <tr><td class="plant-name">Bucephalandra spp.</td><td>Aquatic/Paludarium</td><td><span class="tier tier-a">A-TIER</span></td><td>$10 - $50+</td><td>Medium-High</td><td class="trend-up">RISING</td><td>High</td><td>Paludarium / Aquascape</td></tr>
+      <tr><td class="plant-name">Peperomia prostrata</td><td>Trailing Plant</td><td><span class="tier tier-b">B-TIER</span></td><td>$10 - $17</td><td>Low</td><td class="trend-stable">STABLE</td><td>Moderate</td><td>Beginner / Hanging</td></tr>
+      <tr><td class="plant-name">Pilea glauca / depressa</td><td>Ground Cover</td><td><span class="tier tier-b">B-TIER</span></td><td>$5 - $12</td><td>Low</td><td class="trend-stable">STABLE</td><td>Moderate</td><td>Filler / Humidity Buffer</td></tr>
+      <tr><td class="plant-name">Leucobryum (Cushion Moss)</td><td>Moss</td><td><span class="tier tier-b">B-TIER</span></td><td>$8 - $20</td><td>Low</td><td class="trend-stable">STABLE HIGH</td><td>Very High</td><td>DIY Kits / Landscape</td></tr>
+      <tr><td class="plant-name">Java Moss</td><td>Moss</td><td><span class="tier tier-c">C-TIER</span></td><td>$5 - $10</td><td>Very Low</td><td class="trend-stable">COMMODITY</td><td>Very High</td><td>Paludarium / Budget</td></tr>
+      <tr><td class="plant-name">Fittonia (Nerve Plant)</td><td>Foliage</td><td><span class="tier tier-c">C-TIER</span></td><td>$3 - $8</td><td>Very Low</td><td class="trend-stable">COMMODITY</td><td>Very High</td><td>Mass Market / Kits</td></tr>
+      <tr><td class="plant-name">Ludisia discolor</td><td>Jewel Orchid</td><td><span class="tier tier-b">B-TIER</span></td><td>$10 - $20</td><td>Low-Med</td><td class="trend-stable">STABLE</td><td>Moderate</td><td>Beginner Jewel Orchid</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- Category Analysis -->
+<div class="section">
+  <h2>Category Analysis</h2>
+  <div class="cat-grid">
+    <div class="cat-card">
+      <h3>HOTTEST: Jewel Orchids</h3>
+      <div class="price-range">$17 - $100+ (bundles)</div>
+      <ul>
+        <li><strong>Macodes petola</strong> — "Lightning bolt" veining, $17-35</li>
+        <li><strong>Anoectochilus</strong> — Gold/silver veins on dark velvet</li>
+        <li>Grown for foliage, not flowers (like collector Anthuriums)</li>
+        <li>Bundle collections $60-$100 very popular</li>
+        <li>Instagram/TikTok driving massive awareness</li>
+      </ul>
+    </div>
+    <div class="cat-card">
+      <h3>RISING: Marcgravia (Shingling Vines)</h3>
+      <div class="price-range">$8 - $130+</div>
+      <ul>
+        <li><strong>sintenisii</strong> — Rainbow colors, #1 terrarium vine</li>
+        <li><strong>sp. Zumba</strong> — Ultra rare $130+, collector unicorn</li>
+        <li><strong>umbellata</strong> — Affordable entry, $18-30</li>
+        <li>Creates stunning vertical backgrounds in terrariums</li>
+        <li>17+ varieties available from specialty shops</li>
+      </ul>
+    </div>
+    <div class="cat-card">
+      <h3>GROWING: DIY Kits & Bioactive Systems</h3>
+      <div class="price-range">$30 - $270+ (complete kits)</div>
+      <ul>
+        <li>DIY kit sales grew 9.2% CAGR (2022-2025)</li>
+        <li>Bioactive vivarium market $363M → $672M by 2033</li>
+        <li>Smart terrariums with LED + humidity automation</li>
+        <li>Corporate wellness programs driving bulk orders</li>
+        <li>Paludariums (water+land) = growing niche</li>
+      </ul>
+    </div>
+    <div class="cat-card">
+      <h3>STABLE: Mass Market Staples</h3>
+      <div class="price-range">$3 - $15</div>
+      <ul>
+        <li><strong>Fittonia</strong> — $3-8, 4.6/5 stars, 2000+ reviews Amazon</li>
+        <li><strong>Selaginella kraussiana</strong> — Reliable ground cover</li>
+        <li><strong>Cushion Moss (Leucobryum)</strong> — DIY kit essential</li>
+        <li><strong>Java Moss</strong> — Aquatic/paludarium staple</li>
+        <li>Low margin per unit, high volume potential</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Recommendations -->
+<div class="section">
+  <h2>Investment Recommendations</h2>
+  <div class="reco-card">
+    <h3>Best Product Lines (Upward Trend)</h3>
+    <ol style="padding-left:18px;font-size:0.9rem">
+      <li><strong>Jewel Orchid Collections</strong> — Bundles of 3-5 species at $60-100. High margin, Instagram-friendly, repeat buyers</li>
+      <li><strong>Marcgravia Varieties</strong> — sintenisii, El Coca, Zumba. Collector market $25-130+ per cutting</li>
+      <li><strong>Premium DIY Terrarium Kits</strong> — $50-150 range, include rare plants + hardscape. 12% CAGR market</li>
+      <li><strong>Bioactive Vivarium Kits</strong> — Complete systems with microfauna. $100-300 range, 7.2% CAGR</li>
+      <li><strong>Smart Terrariums</strong> — LED + automated humidity. Premium pricing $100-500+</li>
+      <li><strong>Miniature Begonia Collection</strong> — Rising collector interest, good variety for Instagram content</li>
+    </ol>
+  </div>
+  <div class="reco-card reco-card-warn">
+    <h3>Lower Potential / Commodity</h3>
+    <ol style="padding-left:18px;font-size:0.9rem">
+      <li><strong>Basic Fittonia</strong> — $3-8, extreme competition, Petco/Amazon dominate</li>
+      <li><strong>Basic Java Moss</strong> — Commodity, very low margin</li>
+      <li><strong>Generic terrarium kits</strong> — Cheap Amazon kits flooding market, race to bottom</li>
+    </ol>
+  </div>
+</div>
+
+<!-- Plant Gallery & Where to Buy -->
+<div class="section">
+  <h2>Plant Gallery & Where to Buy</h2>
+  <div class="plant-grid">
+
+    <div class="plant-card">
+      <div class="img-area">&#127808;</div>
+      <div class="body">
+        <div class="name">Macodes petola (Jewel Orchid)</div>
+        <div class="price">$17 - $35</div>
+        <span class="tier tier-s">S-TIER</span> <span class="trend-hot" style="font-size:0.72rem">HOTTEST</span>
+        <div class="desc">"Lightning bolt" gold veins on dark leaves. #1 terrarium collector plant.</div>
+        <div class="links">
+          <strong>Where to Buy:</strong>
+          <a href="https://www.blackjungleterrariumsupply.com/Jewel-Orchids_c_19.html" target="_blank">Black Jungle — $24.99</a>
+          <a href="https://bloomify.store/collections/jewel-orchid" target="_blank">Bloomify — $16.99</a>
+          <a href="https://www.logees.com/collections/jewel-orchids" target="_blank">Logee's — $34.95</a>
+          <a href="https://laorchid.com/collections/jewel-orchids" target="_blank">Louisiana Orchid — from $16</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="plant-card">
+      <div class="img-area">&#129716;</div>
+      <div class="body">
+        <div class="name">Marcgravia sintenisii</div>
+        <div class="price">$25 - $50</div>
+        <span class="tier tier-s">S-TIER</span> <span class="trend-hot" style="font-size:0.72rem">HOTTEST VINE</span>
+        <div class="desc">Rainbow-colored shingling vine. Stunning terrarium backgrounds.</div>
+        <div class="links">
+          <strong>Where to Buy:</strong>
+          <a href="https://frogdaddy.net/collections/marcgravia/small-terrarium-plants" target="_blank">FrogDaddy — $24.99</a>
+          <a href="https://growtropicals.com/products/marcgravia-sintenisii" target="_blank">GrowTropicals</a>
+          <a href="https://www.etsy.com/listing/1059521917/marcgravia-sintenisii-cuttings-vivarium" target="_blank">Etsy — cuttings</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="plant-card">
+      <div class="img-area">&#127811;</div>
+      <div class="body">
+        <div class="name">Marcgravia sp. Zumba</div>
+        <div class="price">$130+</div>
+        <span class="tier tier-s">S-TIER</span> <span class="trend-hot" style="font-size:0.72rem">UNICORN</span>
+        <div class="desc">Ultra rare Marcgravia. Collector investment piece.</div>
+        <div class="links">
+          <strong>Where to Buy:</strong>
+          <a href="https://frogdaddy.net/collections/marcgravia/small-terrarium-plants" target="_blank">FrogDaddy — $129.99</a>
+          <a href="https://glassboxtropicals.com/" target="_blank">Glass Box Tropicals (when available)</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="plant-card">
+      <div class="img-area">&#127807;</div>
+      <div class="body">
+        <div class="name">Anoectochilus formosanus</div>
+        <div class="price">$20 - $35</div>
+        <span class="tier tier-s">S-TIER</span> <span class="trend-up" style="font-size:0.72rem">RISING</span>
+        <div class="desc">Gold-veined jewel orchid. Premium terrarium accent.</div>
+        <div class="links">
+          <strong>Where to Buy:</strong>
+          <a href="https://bloomify.store/collections/jewel-orchid" target="_blank">Bloomify — $19.99</a>
+          <a href="https://www.rareplantfairy.com/collections/jewel-orchid" target="_blank">Rare Plant Fairy</a>
+          <a href="https://www.ebay.com/b/Jewel-Orchid/19617/bn_7023331689" target="_blank">eBay — various sellers</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="plant-card">
+      <div class="img-area">&#127793;</div>
+      <div class="body">
+        <div class="name">Selaginella uncinata (Peacock Moss)</div>
+        <div class="price">$6 - $15</div>
+        <span class="tier tier-a">A-TIER</span> <span class="trend-up" style="font-size:0.72rem">GROWING</span>
+        <div class="desc">Blue-green iridescent sheen. Magical ground cover effect.</div>
+        <div class="links">
+          <strong>Where to Buy:</strong>
+          <a href="https://www.neherpetoculture.com/ferns" target="_blank">NEHERP</a>
+          <a href="https://stevesleaves.com/collections/terrarium-plants" target="_blank">Steve's Leaves</a>
+          <a href="https://www.etsy.com/market/terrarium_plants" target="_blank">Etsy — terrarium plants</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="plant-card">
+      <div class="img-area">&#129680;</div>
+      <div class="body">
+        <div class="name">Miniature Begonia spp.</div>
+        <div class="price">$8 - $40</div>
+        <span class="tier tier-a">A-TIER</span> <span class="trend-up" style="font-size:0.72rem">RISING</span>
+        <div class="desc">Tiger Kitten, maurandiae, etc. Color variety for terrariums.</div>
+        <div class="links">
+          <strong>Where to Buy:</strong>
+          <a href="https://frogdaddy.net/collections/begonia/small-terrarium-plants" target="_blank">FrogDaddy — mini Begonias</a>
+          <a href="https://stevesleaves.com/collections/terrarium-plants" target="_blank">Steve's Leaves</a>
+          <a href="https://glassboxtropicals.com/" target="_blank">Glass Box Tropicals</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="plant-card">
+      <div class="img-area">&#127796;</div>
+      <div class="body">
+        <div class="name">Leucobryum (Cushion/Pillow Moss)</div>
+        <div class="price">$8 - $20</div>
+        <span class="tier tier-b">B-TIER</span> <span class="trend-stable" style="font-size:0.72rem">STABLE HIGH</span>
+        <div class="desc">Compact green mounds. Essential for DIY kits and landscapes.</div>
+        <div class="links">
+          <strong>Where to Buy:</strong>
+          <a href="https://highlandmoss.com/plant-features/terrarium-friendly-plants/" target="_blank">Highland Moss</a>
+          <a href="https://mossamigos.com/blogs/moss-community/top-moss-terrarium-plants" target="_blank">Moss Amigos</a>
+          <a href="https://www.amazon.com/mini-ferns-terrariums/s?k=mini+ferns+for+terrariums" target="_blank">Amazon — terrarium supplies</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="plant-card">
+      <div class="img-area">&#127811;</div>
+      <div class="body">
+        <div class="name">Fittonia (Nerve Plant)</div>
+        <div class="price">$3 - $8</div>
+        <span class="tier tier-c">C-TIER</span> <span class="trend-stable" style="font-size:0.72rem">COMMODITY</span>
+        <div class="desc">Classic terrarium staple. Low price, high volume, mass market.</div>
+        <div class="links">
+          <strong>Where to Buy:</strong>
+          <a href="https://www.petco.com/shop/en/petcostore/product/fittonia-verschaffeltii-nerve-plant-terrarium-tube-plant" target="_blank">Petco</a>
+          <a href="https://www.amazon.com/mini-ferns-terrariums/s?k=mini+ferns+for+terrariums" target="_blank">Amazon</a>
+          <a href="https://www.violetbarn.com/ferns-and-mosses.html" target="_blank">Violet Barn</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Top Shops -->
+  <div style="margin-top:30px">
+    <h3>Top USA Shops for Terrarium Plants</h3>
+    <div class="shop-grid">
+      <div class="shop-card"><div class="shop-name">FrogDaddy</div><div class="shop-desc">Marcgravia & micro fern specialist. 17+ Marcgravia varieties.</div><a href="https://frogdaddy.net/collections/small-terrarium-plants" target="_blank">frogdaddy.net</a></div>
+      <div class="shop-card"><div class="shop-name">Glass Box Tropicals</div><div class="shop-desc">Largest online terrarium plant selection. Weekly restocks.</div><a href="https://glassboxtropicals.com/" target="_blank">glassboxtropicals.com</a></div>
+      <div class="shop-card"><div class="shop-name">Black Jungle Terrarium Supply</div><div class="shop-desc">Jewel orchids, rare exotics, carnivorous plants.</div><a href="https://www.blackjungleterrariumsupply.com/Plant-Categories_c_1.html" target="_blank">blackjungleterrariumsupply.com</a></div>
+      <div class="shop-card"><div class="shop-name">NEHERP</div><div class="shop-desc">Complete vivarium kits + plants. Bioactive specialist.</div><a href="https://www.neherpetoculture.com/" target="_blank">neherpetoculture.com</a></div>
+      <div class="shop-card"><div class="shop-name">Steve's Leaves</div><div class="shop-desc">Terrarium & high-humidity plant specialist.</div><a href="https://stevesleaves.com/collections/terrarium-plants" target="_blank">stevesleaves.com</a></div>
+      <div class="shop-card"><div class="shop-name">Bloomify</div><div class="shop-desc">Jewel orchid bundles. Good value collections.</div><a href="https://bloomify.store/collections/jewel-orchid" target="_blank">bloomify.store</a></div>
+      <div class="shop-card"><div class="shop-name">Logee's Plants</div><div class="shop-desc">Heritage nursery since 1892. Premium jewel orchids.</div><a href="https://www.logees.com/collections/jewel-orchids" target="_blank">logees.com</a></div>
+      <div class="shop-card"><div class="shop-name">GrowTropicals</div><div class="shop-desc">UK but ships globally. Wide Marcgravia selection.</div><a href="https://growtropicals.com/collections/terrarium-plants" target="_blank">growtropicals.com</a></div>
+      <div class="shop-card"><div class="shop-name">Etsy Marketplace</div><div class="shop-desc">Widest variety. Compare prices from 100s of sellers.</div><a href="https://www.etsy.com/market/terrarium_plants" target="_blank">etsy.com/market/terrarium_plants</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- References -->
+<div class="section">
+  <h2>Sources & References</h2>
+  <p style="font-size:0.85rem;color:#6b8a6b;margin-bottom:12px">All data gathered from the following sources (April 2026):</p>
+  <div class="ref-list">
+    <div class="ref-item"><div class="ref-type">Market Report</div><a href="https://www.techsciresearch.com/report/terrarium-market/7998.html" target="_blank">Terrarium Market Forecast — TechSci Research</a><div style="color:#8a8a8a;font-size:0.72rem">$3.2B → $5.8B, CAGR 6.8%</div></div>
+    <div class="ref-item"><div class="ref-type">Market Report</div><a href="https://www.futuredatastats.com/terrarium-kits-market" target="_blank">Terrarium Kits Market Size — FutureDataStats</a><div style="color:#8a8a8a;font-size:0.72rem">$2.4B, 12% CAGR</div></div>
+    <div class="ref-item"><div class="ref-type">Market Report</div><a href="https://dataintelo.com/report/bioactive-vivarium-starter-kit-market/amp" target="_blank">Bioactive Vivarium Market — DataIntelo</a><div style="color:#8a8a8a;font-size:0.72rem">$363M, 7.2% CAGR</div></div>
+    <div class="ref-item"><div class="ref-type">Industry Stats</div><a href="https://terrariumtribe.com/houseplant-statistics/" target="_blank">Houseplant Statistics 2026 — Terrarium Tribe</a><div style="color:#8a8a8a;font-size:0.72rem">Market size & industry trends</div></div>
+    <div class="ref-item"><div class="ref-type">Market Report</div><a href="https://www.futuredatastats.com/home-terrarium-kit-market" target="_blank">Home Terrarium Kit Market — FutureDataStats</a><div style="color:#8a8a8a;font-size:0.72rem">$625M → $1.8B, 13% CAGR</div></div>
+    <div class="ref-item"><div class="ref-type">Trend Analysis</div><a href="https://growtropicals.com/blogs/growingtropicals/trending-houseplants-for-2026" target="_blank">Trending Houseplants 2026 — GrowTropicals</a><div style="color:#8a8a8a;font-size:0.72rem">2026 plant trends</div></div>
+    <div class="ref-item"><div class="ref-type">Plant Guide</div><a href="https://growtropicals.com/blogs/growingtropicals/the-best-plants-for-a-terrarium" target="_blank">Best Terrarium Plants 2025 — GrowTropicals</a><div style="color:#8a8a8a;font-size:0.72rem">Species selection guide</div></div>
+    <div class="ref-item"><div class="ref-type">Plant Guide</div><a href="https://terrariumtribe.com/terrarium-plants-guide/" target="_blank">Terrarium Plants Guide — Terrarium Tribe</a><div style="color:#8a8a8a;font-size:0.72rem">Comprehensive species guide</div></div>
+    <div class="ref-item"><div class="ref-type">Moss Guide</div><a href="https://terrariumtribe.com/terrarium-moss/" target="_blank">Best Moss for Terrariums — Terrarium Tribe</a><div style="color:#8a8a8a;font-size:0.72rem">Moss types & expert picks</div></div>
+    <div class="ref-item"><div class="ref-type">Species Guide</div><a href="https://terrariumtribe.com/selaginella-varieties-spikemoss/" target="_blank">Selaginella 101: Spikemoss — Terrarium Tribe</a><div style="color:#8a8a8a;font-size:0.72rem">Varieties & terrarium use</div></div>
+    <div class="ref-item"><div class="ref-type">Marketplace</div><a href="https://frogdaddy.net/collections/small-terrarium-plants/small-terrarium-plants" target="_blank">Small Terrarium Plants — FrogDaddy</a><div style="color:#8a8a8a;font-size:0.72rem">Pricing: Marcgravia $8-130</div></div>
+    <div class="ref-item"><div class="ref-type">Marketplace</div><a href="https://glassboxtropicals.com/" target="_blank">Glass Box Tropicals</a><div style="color:#8a8a8a;font-size:0.72rem">Largest terrarium plant selection</div></div>
+    <div class="ref-item"><div class="ref-type">Marketplace</div><a href="https://www.blackjungleterrariumsupply.com/Jewel-Orchids_c_19.html" target="_blank">Jewel Orchids — Black Jungle</a><div style="color:#8a8a8a;font-size:0.72rem">Macodes $24.99, Anoectochilus $16.99</div></div>
+    <div class="ref-item"><div class="ref-type">Marketplace</div><a href="https://bloomify.store/collections/jewel-orchid" target="_blank">Jewel Orchids — Bloomify</a><div style="color:#8a8a8a;font-size:0.72rem">Macodes $16.99, bundles $89.95</div></div>
+    <div class="ref-item"><div class="ref-type">Marketplace</div><a href="https://www.logees.com/collections/jewel-orchids" target="_blank">Jewel Orchids — Logee's</a><div style="color:#8a8a8a;font-size:0.72rem">Premium $34.95</div></div>
+    <div class="ref-item"><div class="ref-type">Marketplace</div><a href="https://laorchid.com/collections/jewel-orchids" target="_blank">Jewel Orchids — Louisiana Orchid</a><div style="color:#8a8a8a;font-size:0.72rem">Collections $60-99</div></div>
+    <div class="ref-item"><div class="ref-type">Marketplace</div><a href="https://stevesleaves.com/collections/terrarium-plants" target="_blank">Terrarium Plants — Steve's Leaves</a><div style="color:#8a8a8a;font-size:0.72rem">High-humidity specialists</div></div>
+    <div class="ref-item"><div class="ref-type">Marketplace</div><a href="https://www.neherpetoculture.com/vivariumkits" target="_blank">Vivarium Kits — NEHERP</a><div style="color:#8a8a8a;font-size:0.72rem">Complete bioactive systems</div></div>
+    <div class="ref-item"><div class="ref-type">Care Guide</div><a href="https://ome.design/blogs/guides/terrarium-moss-expert-guide" target="_blank">Terrarium Moss Expert Guide — OME Design</a><div style="color:#8a8a8a;font-size:0.72rem">Moss selection & care</div></div>
+    <div class="ref-item"><div class="ref-type">Trend Report</div><a href="https://www.accio.com/business/live_trends_living_terrarium" target="_blank">Live Trends Living Terrarium 2025 — Accio</a><div style="color:#8a8a8a;font-size:0.72rem">Innovations & care tips</div></div>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  Terrarium Plants Market Research | Boom Oracle | April 2026<br>
+  Data from 20 references across market reports, price trackers, and specialty retailers<br>
+  <a href="index.html" style="color:#22883a">Back to Boom Tools</a> | <a href="anthurium-research.html" style="color:#22883a">Anthurium Research</a>
+</div>
+
+</body>
+</html>
