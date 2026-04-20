@@ -1,0 +1,431 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "meta": {
+    "title": "Thai Real-Estate Development — Legal Knowledge Base",
+    "title_th": "ฐานข้อมูลกฎหมายสำหรับผู้พัฒนาอสังหาริมทรัพย์ไทย",
+    "version": "1.0.0",
+    "compiled_at": "2026-04-20",
+    "compiler": "Spark Oracle (UX/Research)",
+    "target_audience": "Thai real-estate developers (Boom-Tools project managers)",
+    "language_policy": "Thai-first with English parentheticals",
+    "disclaimer_th": "ข้อมูลนี้รวบรวมจากแหล่งเปิดเผย ณ เม.ย. 2569 ใช้เพื่อเป็นแนวทางเท่านั้น ไม่ใช่คำแนะนำทางกฎหมาย ก่อนตัดสินใจลงทุนให้ปรึกษาทนายความและวิศวกรที่ได้รับใบอนุญาต",
+    "sources_policy": "Inline citations per field use 'source' key with official Thai government URLs preferred."
+  },
+
+  "laws": {
+    "town_planning_act_2562": {
+      "id": "town_planning_act_2562",
+      "name_th": "พระราชบัญญัติการผังเมือง พ.ศ. 2562",
+      "name_en": "Town Planning Act B.E. 2562 (2019)",
+      "status": "active",
+      "supersedes": "พระราชบัญญัติการผังเมือง พ.ศ. 2518",
+      "official_dates": {
+        "royal_assent": "2019-05-24",
+        "gazette_published": "2019-05-29",
+        "effective_from": "2019-11-25",
+        "gazette_citation": "เล่ม 136 ตอนที่ 71 ก หน้า 27",
+        "gazette_url": "https://www.ratchakitcha.soc.go.th/DATA/PDF/2562/A/071/T_0027.PDF"
+      },
+      "structure": { "total_sections": 111 },
+      "purpose_th": "ปรับปรุงระบบผังเมืองของประเทศไทยให้สอดคล้องกับยุทธศาสตร์ชาติ การพัฒนาเศรษฐกิจ-สังคม และสิ่งแวดล้อม โดยยกเลิก พ.ร.บ.ผังเมือง 2518 และกำหนดระบบผังแบบลำดับชั้น เน้นการมีส่วนร่วมของประชาชน การเปิดเผยข้อมูลทางอิเล็กทรอนิกส์ และให้ทบทวนผังทุก 5 ปี",
+      "authorities": [
+        { "name_th": "กรมโยธาธิการและผังเมือง", "name_en": "Department of Public Works & Town and Country Planning (DPT)", "role": "จัดทำผังระดับประเทศ/ภาค, ยกร่างกฎกระทรวง", "url": "https://www.dpt.go.th" },
+        { "name_th": "คณะกรรมการผังเมือง", "name_en": "National Town Planning Policy Committee", "role": "กำกับนโยบายระดับชาติและภาค" },
+        { "name_th": "คณะกรรมการผังเมืองจังหวัด", "name_en": "Provincial Town Planning Committee", "role": "พิจารณาผังจังหวัด/ผังเมืองรวม" },
+        { "name_th": "องค์กรปกครองส่วนท้องถิ่น (อปท.)", "name_en": "Local Administrative Organizations", "role": "จัดทำและบังคับใช้ผังในเขตของตน (เทศบาล, อบต., กทม., เมืองพัทยา)" },
+        { "name_th": "กระทรวงมหาดไทย", "name_en": "Ministry of Interior", "role": "ออกกฎกระทรวงประกาศใช้ผัง" }
+      ],
+      "plan_hierarchy": [
+        { "level": 1, "name_th": "ผังนโยบายระดับประเทศ", "name_en": "National Policy Plan", "desc_th": "กรอบนโยบายการใช้พื้นที่ของประเทศ จัดทำโดย DPT" },
+        { "level": 2, "name_th": "ผังนโยบายระดับภาค", "name_en": "Regional Policy Plan", "desc_th": "ต้องสอดคล้องกับผังประเทศ ครอบคลุมกลุ่มจังหวัด" },
+        { "level": 3, "name_th": "ผังนโยบายระดับจังหวัด", "name_en": "Provincial Policy Plan", "desc_th": "ต้องสอดคล้องกับผังภาค" },
+        { "level": 4, "name_th": "ผังเมืองรวม", "name_en": "Comprehensive Plan", "desc_th": "แผนผัง/นโยบาย/มาตรการควบคุมการใช้ประโยชน์ที่ดิน คมนาคม สาธารณูปโภค — เครื่องมือหลักของผู้พัฒนาอสังหาฯ" },
+        { "level": 5, "name_th": "ผังเมืองเฉพาะ", "name_en": "Specific Plan", "desc_th": "แผนดำเนินการเฉพาะแห่ง เพื่อสร้างเมืองใหม่ พัฒนา อนุรักษ์ หรือฟื้นฟูเมือง — มีรายละเอียดเชิงลึกกว่าผังรวม" }
+      ],
+      "zoning_color_codes": [
+        { "code": "ย.1-ย.4", "color_th": "เหลือง", "color_en": "Yellow", "category_th": "ที่อยู่อาศัยหนาแน่นน้อย", "category_en": "Low-density residential", "allowed": "บ้านเดี่ยว ทาวน์เฮาส์", "forbidden": "โรงงานจำพวก 3" },
+        { "code": "ย.5-ย.7", "color_th": "ส้ม", "color_en": "Orange", "category_th": "ที่อยู่อาศัยหนาแน่นปานกลาง", "category_en": "Medium-density residential", "allowed": "คอนโดขนาดกลาง อาคารพาณิชย์ย่อย" },
+        { "code": "ย.8-ย.10", "color_th": "น้ำตาล", "color_en": "Brown", "category_th": "ที่อยู่อาศัยหนาแน่นมาก", "category_en": "High-density residential", "allowed": "คอนโดสูง ศูนย์กลางเมืองชั้นใน" },
+        { "code": "พ.1-พ.5", "color_th": "แดง", "color_en": "Red", "category_th": "พาณิชยกรรม", "category_en": "Commercial", "allowed": "ห้างสรรพสินค้า สำนักงาน โรงแรม พาณิชย์ระดับชุมชน-ภูมิภาค" },
+        { "code": "อ.1-อ.2", "color_th": "ม่วง", "color_en": "Purple", "category_th": "อุตสาหกรรม", "category_en": "Industrial", "allowed": "โรงงานและสวนอุตสาหกรรม" },
+        { "code": "อ.3", "color_th": "ม่วงอ่อน/เม็ดมะปราง", "color_en": "Light Purple", "category_th": "คลังสินค้า/อุตสาหกรรมเฉพาะกิจ", "category_en": "Warehousing / Specific Industry" },
+        { "code": "ก.1-ก.3", "color_th": "ขาวมีกรอบและเส้นทแยงเขียว", "color_en": "White w/ green diagonal", "category_th": "อนุรักษ์ชนบทและเกษตรกรรม", "category_en": "Conservation — Rural & Agriculture" },
+        { "code": "ก.4", "color_th": "เขียว", "color_en": "Green", "category_th": "ชนบทและเกษตรกรรม", "category_en": "Rural & Agriculture promotion" },
+        { "code": "ล.", "color_th": "เขียวอ่อน", "color_en": "Light Green", "category_th": "ที่โล่งนันทนาการ", "category_en": "Open space / Recreation" },
+        { "code": "ศ.1-ศ.2", "color_th": "น้ำตาลอ่อน", "color_en": "Light Brown", "category_th": "อนุรักษ์ศิลปวัฒนธรรม/สถาบัน", "category_en": "Cultural Heritage / Institutional" },
+        { "code": "ศน.", "color_th": "เทาอ่อน", "color_en": "Light Grey", "category_th": "สถาบันศาสนา", "category_en": "Religious Institution" },
+        { "code": "ส.", "color_th": "น้ำเงิน", "color_en": "Blue", "category_th": "สถาบันราชการ สาธารณูปโภค สาธารณูปการ", "category_en": "Government / Public Utilities" },
+        { "code": "-", "color_th": "ฟ้า", "color_en": "Sky Blue", "category_th": "แหล่งน้ำ/พื้นที่อนุรักษ์ริมน้ำ", "category_en": "Water body" }
+      ],
+      "density_metrics": {
+        "FAR": {
+          "name_th": "อัตราส่วนพื้นที่อาคารรวมต่อพื้นที่ดิน",
+          "name_en": "Floor Area Ratio",
+          "formula": "พื้นที่อาคารสูงสุด = FAR × พื้นที่ดิน (ตร.ม.)"
+        },
+        "OSR": {
+          "name_th": "อัตราส่วนพื้นที่ว่าง",
+          "name_en": "Open Space Ratio (BCR)",
+          "formula": "สัดส่วนพื้นที่เปิดโล่งไร้หลังคาต่อพื้นที่อาคารรวม"
+        },
+        "typical_values_bangkok_2556": [
+          { "zone": "ย.1", "FAR": 1.5, "OSR_pct": 30 },
+          { "zone": "ย.3", "FAR": 2.5, "OSR_pct": 12.5 },
+          { "zone": "ย.7", "FAR": 5.0, "OSR_pct": 6 },
+          { "zone": "ย.8", "FAR": 6.0, "OSR_pct": 5 },
+          { "zone": "ย.10", "FAR": 8.0, "OSR_pct": 3 },
+          { "zone": "พ.3-พ.5", "FAR_range": "7-10", "OSR_pct_range": "3-4.5" },
+          { "zone": "อ.1-อ.2", "FAR_range": "2-3" },
+          { "zone": "ก.", "FAR": 0.5, "OSR_pct": 40, "note": "เกษตรกรรม" }
+        ],
+        "note": "ค่าจริงกำหนดในกฎกระทรวงผังเมืองรวมของแต่ละท้องที่"
+      },
+      "key_restrictions_for_developers": [
+        "Density caps (FAR, OSR, จำนวนชั้น/ความสูงสูงสุด) กำหนดตามสีผัง — ห้ามเกิน",
+        "ระยะร่น (setback) ใช้ร่วมกับ พ.ร.บ.ควบคุมอาคาร + กฎกระทรวง 33, 55, 64",
+        "แต่ละสีกำหนดประเภทกิจการที่อนุญาต/ห้าม/มีเงื่อนไข — ตรวจก่อนซื้อ",
+        "อาคารสูง/ขนาดใหญ่ต้องติดถนนตามความกว้างขั้นต่ำ (ปกติ ≥ 10 ม. หรือ 18 ม.)",
+        "Overlays พิเศษ: EEC, ผังเฉพาะ, เขตควบคุมสิ่งแวดล้อม — อาจเข้มกว่าผังรวม"
+      ],
+      "penalties": {
+        "verified": false,
+        "note_th": "บทลงโทษอยู่ในมาตรา ~105-111 ครอบคลุมการฝ่าฝืนข้อกำหนดผังเมืองรวม/เฉพาะ การก่อสร้างผิดผัง และการขัดขวางเจ้าพนักงาน โทษรวมจำคุกและปรับ กรรมการนิติบุคคลอาจต้องร่วมรับโทษ",
+        "unverified_marker": "[UNVERIFIED] ตัวเลขปรับและโทษจำคุกที่แน่นอน — ตรวจที่ราชกิจจานุเบกษา มาตรา 105-111"
+      },
+      "practical_notes": [
+        "ตรวจสีผังเมืองก่อนเสมอ ใช้ระบบ Landuseplan ของ DPT (https://landuseplan.dpt.go.th)",
+        "คำนวณ FAR × OSR กับขนาดที่ดินเพื่อประเมินพื้นที่ขายจริงก่อน feasibility",
+        "ตรวจสอบความกว้างถนนหน้าที่ดิน ถนน < 10 ม. สร้างคอนโด/อาคารสูงไม่ได้แม้ผังจะเอื้อ",
+        "เช็ควันหมดอายุของผังเมืองรวมในพื้นที่ — บางจังหวัดผังปรับปรุงอยู่ สีอาจเปลี่ยน",
+        "ตรวจ overlays พิเศษ: EEC, ผังเฉพาะ, เขตการบินพลเรือน, เขตทหาร, โบราณสถาน",
+        "หารือ อปท. ก่อนยื่นขออนุญาตก่อสร้างเพื่อยืนยันการตีความเฉพาะแปลง"
+      ],
+      "sources": [
+        "https://www.ratchakitcha.soc.go.th/DATA/PDF/2562/A/071/T_0027.PDF",
+        "https://www.dpt.go.th",
+        "https://office.dpt.go.th/csp/",
+        "https://asa.or.th/laws/news20191217/",
+        "https://faolex.fao.org/docs/pdf/tha207765.pdf",
+        "https://www.yotathai.com/yotanews/town-planning-act62",
+        "https://www.scb.co.th/th/personal-banking/stories/home-car/city-planning-color-zones",
+        "https://www.parkfac.com/the-meaning-of-the-13-city-planning-colors/"
+      ]
+    },
+
+    "building_control_act_2522": {
+      "id": "building_control_act_2522",
+      "name_th": "พระราชบัญญัติควบคุมอาคาร พ.ศ. 2522",
+      "name_en": "Building Control Act B.E. 2522 (1979)",
+      "status": "active (with amendments)",
+      "official_dates": {
+        "enacted": "1979-05-08",
+        "gazette_published": "1979-05-14",
+        "effective_from": "1979-05-15"
+      },
+      "amendments": [
+        { "no": 2, "year_th": 2535, "year_ce": 1992, "note": "ขยายขอบเขตการบังคับใช้ทั่วประเทศ และเพิ่มอำนาจเจ้าพนักงาน" },
+        { "no": 3, "year_th": 2543, "year_ce": 2000, "note": "เพิ่มมาตรฐานความปลอดภัย รับผิดชอบเจ้าของ/ผู้ออกแบบ หลังเหตุเพลิงไหม้อาคารสาธารณะ" },
+        { "no": 4, "year_th": 2550, "year_ce": 2007, "note": "ปฏิรูปขั้นตอน + ผู้ตรวจสอบอาคาร (Building Inspector)" },
+        { "no": 5, "year_th": 2558, "year_ce": 2015, "note": "ปรับปรุงโครงสร้างใบอนุญาต/ค่าธรรมเนียม (ฉบับล่าสุด)" }
+      ],
+      "purpose_th": "ควบคุมการก่อสร้าง ดัดแปลง รื้อถอน เคลื่อนย้าย ใช้ หรือเปลี่ยนการใช้อาคาร เพื่อประโยชน์ด้านความมั่นคงแข็งแรง ความปลอดภัย การป้องกันอัคคีภัย สาธารณสุข สิ่งแวดล้อม ผังเมือง สถาปัตยกรรม และการจราจร",
+      "authorities": [
+        { "name_th": "กรมโยธาธิการและผังเมือง", "name_en": "DPT", "role": "นโยบายกลาง มาตรฐานทางเทคนิค ยกร่างกฎกระทรวง" },
+        { "name_th": "เจ้าพนักงานท้องถิ่น", "name_en": "Local Authority Official", "role": "ออกใบอนุญาต ตรวจสอบ สั่งหยุดก่อสร้าง/รื้อถอน (ม. 40-43) — นายก อบต./เทศบาล, ผู้ว่าฯ กทม., นายกเมืองพัทยา" },
+        { "name_th": "คณะกรรมการควบคุมอาคาร", "name_en": "Building Control Committee", "role": "ที่ปรึกษาระดับชาติ + พิจารณาอุทธรณ์คำสั่งท้องถิ่น" }
+      ],
+      "building_classifications": [
+        { "type_th": "อาคารควบคุมการใช้", "type_en": "Controlled-use buildings", "criteria": "ต้องมี อ.6 ก่อนใช้ (ม.32 + กฎกระทรวง 55) — โรงภาพยนตร์ โรงแรม โรงเรียน โรงพยาบาล ห้างฯ อาคารสูง" },
+        { "type_th": "อาคารสูง", "type_en": "High-rise", "criteria": "สูง ≥ 23 เมตร วัดจากพื้นดินถึงดาดฟ้าชั้นบนสุด (กฎกระทรวง ฉ.33/2535)" },
+        { "type_th": "อาคารขนาดใหญ่", "type_en": "Large building", "criteria": "พื้นที่รวมหรือชั้นเดียว > 2,000 ตร.ม. หรือ สูง ≥ 15 ม. + พื้นที่ > 1,000 ตร.ม. (กฎกระทรวง 55)" },
+        { "type_th": "อาคารขนาดใหญ่พิเศษ", "type_en": "Extra-large building", "criteria": "พื้นที่รวม ≥ 10,000 ตร.ม. (กฎกระทรวง ฉ.33)" },
+        { "type_th": "อาคารสาธารณะ", "type_en": "Public building", "criteria": "ใช้ชุมนุม/พาณิชย์ — โรงภาพยนตร์ โรงแรม โรงพยาบาล ห้างฯ ตลาด สนามบิน ศาสนสถาน" },
+        { "type_th": "อาคารพิเศษ", "type_en": "Special building", "criteria": "ต้องการความปลอดภัยพิเศษ — สนามกีฬา พิพิธภัณฑ์ อาคาร > 15 ม. หลังคาช่วงกว้าง > 10 ม." }
+      ],
+      "key_ministerial_regulations": [
+        { "no": 33, "year": 2535, "scope": "นิยามอาคารสูง/ขนาดใหญ่พิเศษ, FAR ≤ 10:1, open space ≥ 30% ของที่ดิน, ลิฟต์ดับเพลิง, บันไดหนีไฟ, แหล่งน้ำ, ลานจอดเฮลิคอปเตอร์ (≥ 60 ม.) — แก้ไขโดย ฉ.50/2540, ฉ.64/2555, ฉ.69/2564" },
+        { "no": 39, "year": 2537, "scope": "ระบบป้องกันอัคคีภัย ห้องน้ำ แสงสว่าง การระบายอากาศ ไฟฟ้าฉุกเฉิน — สำหรับตึกแถว อาคารสาธารณะ โรงงาน สำนักงาน ห้างฯ (หมายเหตุ: ไม่ใช่ accessibility; disability access อยู่ที่ กฎกระทรวง 2548 ว่าด้วยสิ่งอำนวยความสะดวกสำหรับผู้พิการ แก้ไข 2564)" },
+        { "no": 44, "year": 2538, "scope": "ระบบระบายน้ำ บำบัดน้ำเสีย และกำจัดขยะ — จัดประเภทอาคาร ก/ข/ค/ง/จ ตามขนาด" },
+        { "no": 55, "year": 2543, "scope": "รหัสทางเทคนิคหลัก: รูปแบบอาคาร วัสดุ ความกว้างบันได ที่จอดรถ พื้นที่ว่าง ระยะร่น (ข้อ 41, 50) ระยะห่างช่องเปิดจากแนวเขต — กฎกระทรวงที่อ้างอิงมากที่สุด" },
+        { "no": 63, "year": 2551, "scope": "ปรับปรุงหลังเพลิงไหม้ Santika 2551 — smoke detector บังคับ ทางออกฉุกเฉิน ประตูทนไฟ สำหรับอาคารชุมนุม" }
+      ],
+      "parking_requirements": {
+        "bangkok": "ข้อบัญญัติ กทม. 2544 — ทั่วไป 1 ช่อง/120 ตร.ม. GFA คอนโด (>1,000 ตร.ม.); ห้างฯ 1:60",
+        "outside_bangkok": "ใช้กฎกระทรวงท้องถิ่น"
+      },
+      "setback_rules": {
+        "from_public_road_lt_6m": "≥ 3 ม. จากกึ่งกลางถนน",
+        "buildings_over_2_storeys_or_8m": {
+          "road_lt_10m": "≥ 6 ม. จากกึ่งกลางถนน",
+          "road_10_to_20m": "≥ 1/10 ของความกว้างถนน จากขอบถนน",
+          "road_gt_20m": "≥ 2 ม. จากขอบถนน"
+        },
+        "boundary_setback": {
+          "openings_le_9m": "≥ 2 ม. จากแนวเขต",
+          "openings_9_to_23m": "≥ 3 ม. จากแนวเขต",
+          "blank_wall_fire_rated": "≥ 0.5 ม. ได้ หากไม่มีช่องเปิด"
+        }
+      },
+      "permits": [
+        { "form": "อ.1", "name_th": "ใบอนุญาตก่อสร้าง ดัดแปลง หรือรื้อถอนอาคาร", "basis": "มาตรา 21 — ใบอนุญาตหลัก (รวมรื้อถอน)" },
+        { "form": "อ.4", "name_th": "ใบอนุญาตเคลื่อนย้ายอาคาร", "note": "แบบฟอร์ม 2564 สงวนสำหรับ relocation เท่านั้น" },
+        { "form": "อ.5", "name_th": "ใบอนุญาตเปลี่ยนการใช้อาคาร", "note": "change-of-use (ไม่ใช่ demolition — การรื้อถอนอยู่ในฟอร์ม อ.1)" },
+        { "form": "อ.6", "name_th": "ใบรับรองการก่อสร้างฯ (occupancy certificate)", "basis": "มาตรา 32 — บังคับก่อนใช้อาคารควบคุม" },
+        { "form": "มาตรา 39 ทวิ", "name_th": "หนังสือแจ้งเจ้าพนักงานแทนการขอใบอนุญาต", "note": "เจ้าของแจ้งพร้อมแบบลงนาม/ประทับตราจากสถาปนิก/วิศวกรมีใบอนุญาต สามารถเริ่มก่อสร้างได้ทันที แต่ยังคงรับผิดชอบถ้าไม่ถูกต้อง" }
+      ],
+      "penalties": {
+        "section_65": "ก่อสร้างโดยไม่ได้รับอนุญาต/ผิดแบบ — จำคุก ≤ 3 เดือน หรือปรับ ≤ 60,000 บาท หรือทั้งสอง + ปรับรายวัน ≤ 10,000 บาท/วัน จนกว่าจะแก้ไข",
+        "section_65_bis": "ใช้อาคารควบคุมโดยไม่มี อ.6 — จำคุก ≤ 6 เดือน หรือปรับ ≤ 100,000 บาท หรือทั้งสอง + ปรับรายวัน",
+        "section_70": "อาคารเพื่อพาณิชยกรรม/อุตสาหกรรม/การศึกษา/สาธารณสุข/ชุมนุม — โทษเป็นสองเท่า",
+        "orders": "เจ้าพนักงานท้องถิ่นมีอำนาจสั่งหยุดก่อสร้าง รื้อถอนโดยเจ้าของเป็นผู้ออกค่าใช้จ่าย และห้ามใช้บางส่วนของอาคาร (ม.40-43)"
+      },
+      "practical_notes": [
+        "ยื่น อ.1 (หรือหนังสือแจ้ง ม.39 ทวิ) ก่อนทำงานดิน/ตอกเสาเข็มทุกครั้ง — ใบอนุญาตมีอายุ 1 ปี ต่ออายุได้",
+        "Stack setback carefully — ข้อ 50 (road) + ข้อ 55/56 (boundary) สะสมกัน; ที่ดินหัวมุมเสียพื้นที่มาก",
+        "ทางหนีไฟ, smoke detector, ไฟฉุกเฉิน, บันไดหนีไฟสองทาง บังคับสำหรับอาคารควบคุม/สาธารณะทุกหลัง — retrofit แพง ให้ออกแบบไว้ตั้งแต่แรก",
+        "อาคารสูง (≥23ม.) ต้องมีลิฟต์ดับเพลิง บันไดอัดอากาศ ปั๊มดับเพลิง ระบบสำรอง (ฉ.33 + ฉ.63)",
+        "ตรวจสีผังเมือง (FAR/OSR) ก่อนซื้อที่ดินเสมอ — ผังเมืองเข้มกว่าควบคุมอาคาร ผังเมืองชนะ",
+        "ต้องมี อ.6 ก่อนปล่อยเช่า/โอนห้องชุด — ขายคอนโดโดยไม่มี อ.6 = ติดคุก + จดทะเบียนนิติบุคคลอาคารชุดไม่ได้"
+      ],
+      "interaction_with_other_laws": {
+        "town_planning_act": "ผังเมืองรวมกำหนด FAR/OSR/permitted uses — ชนะควบคุมอาคารหากเข้มกว่า",
+        "bma_ordinance_2544": "กทม. อาจกำหนดเข้มกว่าได้ ภายใต้ ม.9-10 แต่ห้ามหลวมกว่า",
+        "parallel_laws": [
+          "พ.ร.บ.อาคารชุด — อ.6 = เงื่อนไขก่อนโอนกรรมสิทธิ์",
+          "พ.ร.บ.จัดสรรที่ดิน",
+          "EIA (คอนโด ≥ 80 ยูนิต หรือ ≥ 4,000 ตร.ม.)",
+          "เขตความสูงการบินพลเรือน",
+          "กฎหมายสิ่งแวดล้อมศิลปกรรม"
+        ]
+      },
+      "sources": [
+        "https://download.asa.or.th/03media/04law/cba/cba22-upd60.pdf",
+        "http://www.law.moi.go.th/105.pdf",
+        "https://asa.or.th/laws-and-regulations/cba/",
+        "https://www.dpt.go.th",
+        "https://info.dpt.go.th/app-service/wan/lawdpt/menu2.asp",
+        "https://webportal.bangkok.go.th/bco",
+        "https://asa.or.th/wp-content/uploads/2020/03/กฎกระทรวงฉบับที่-55.pdf",
+        "https://download.asa.or.th/03media/04law/cba/mr/mr35-33-upd69.pdf",
+        "https://download.asa.or.th/03media/04law/cba/mr/mr37-39-upd63.pdf",
+        "https://download.asa.or.th/03media/04law/cba/mr/mr38-44-upd71.pdf",
+        "https://download.asa.or.th/03media/04law/cba/mr/mr51-63.pdf",
+        "https://www.pricesanond.com/knowledge/environmental-and-construction/amendments-to-the-building-control-act.php",
+        "https://www.yotathai.com/yotanews/39-thwi"
+      ]
+    },
+
+    "bma_ordinance_2544": {
+      "id": "bma_ordinance_2544",
+      "name_th": "ข้อบัญญัติกรุงเทพมหานคร เรื่อง ควบคุมอาคาร พ.ศ. 2544",
+      "name_en": "BMA Building Control Ordinance B.E. 2544 (2001)",
+      "status": "active (with amendments)",
+      "legal_basis": "ออกภายใต้มาตรา 9 และ 10 ของ พ.ร.บ.ควบคุมอาคาร พ.ศ. 2522 (แก้ไขเพิ่มเติมฉบับที่ 2 พ.ศ. 2535)",
+      "replaces": "ข้อบัญญัติ กทม. เรื่องการควบคุมการก่อสร้างอาคาร พ.ศ. 2522 + ข้อบัญญัติว่าด้วยอาคารจอดรถฉบับเดิม",
+      "scope": "ทุกเขต 50 เขตของกรุงเทพมหานคร",
+      "relationship_th": "stack บนกฎกระทรวง 55 — ในกรุงเทพฯ ถ้า BMA เข้มกว่า BMA ชนะ; ถ้าเงียบให้ย้อนขึ้นไปที่ กฎกระทรวง 55",
+      "setback_boundary": {
+        "building_le_9m": "กำแพง/ช่องเปิด ≥ 2 ม. จากแนวเขต; กำแพงทึบ ≥ 0.5 ม. (≤ 0.5 ม. ต้องเจ้าของที่ดินข้างลงนามยินยอม — ม.56)",
+        "building_9_to_23m": "ช่องเปิด ≥ 3 ม. จากแนวเขต; กำแพงทึบ ≥ 3 ม.",
+        "building_gt_23m_highrise": "≥ 6 ม. จากแนวเขต"
+      },
+      "setback_road_centerline": {
+        "road_lt_6m": "≥ 1 ม.",
+        "tall_large_building": "≥ 6 ม. (สอดคล้องกับ กฎกระทรวง 55 ในเขต กทม.)"
+      },
+      "distance_between_buildings_same_plot": {
+        "one_wall_with_openings": "≥ 4 ม.",
+        "both_solid": "≥ 2 ม.",
+        "tall_buildings": "≥ 6 ม.",
+        "note": "[UNVERIFIED] ต้องตรวจข้อ 55-57 ของข้อบัญญัติฉบับเต็ม"
+      },
+      "height_vs_road_width": {
+        "formula_th": "ความสูงอาคารสูง ≤ 2 × (ความกว้างเขตทาง + ระยะร่น)",
+        "example": "ถนนกว้าง 10 ม. → อาคารสูงสุด ~20 ม. (ยกเว้นติดถนนที่กว้างกว่า)"
+      },
+      "open_space_pct": {
+        "residential_min": 30,
+        "commercial_mixed_min": 10,
+        "basis": "ข้อ 9 ข้อบัญญัติ 2544 + กฎกระทรวง 55"
+      },
+      "FAR_FAR_typical": {
+        "source": "ผังเมืองรวม กทม. (ไม่ใช่ข้อบัญญัติเอง)",
+        "central_red_brown": "5-10",
+        "typical_residential": "2.5-5",
+        "FAR_bonus_pct_max": 20,
+        "bonus_criteria": ["affordable housing", "public open space", "TOD proximity", "green building", "water retention"]
+      },
+      "parking": {
+        "condo_bma": "≥ 1 ช่อง / 120 ตร.ม. ของพื้นที่ขายได้",
+        "dimensions": {
+          "90_degree_stall": "≥ 2.40 × 5.00 ม.",
+          "parallel": "≥ 2.40 × 6.00 ม.",
+          "ramp_slope_straight": "≤ 1:6",
+          "ramp_slope_curved": "≤ 1:8"
+        }
+      },
+      "fire_lane": {
+        "for_highrise_xlarge": "ทางเข้า-ออกรถดับเพลิงรอบอาคารหรือที่ว่าง ≥ 6.00 ม. กว้าง"
+      },
+      "bangkok_comprehensive_plan": {
+        "current": "ผังเมืองรวมกรุงเทพมหานคร พ.ศ. 2556 (ฉบับปรับปรุงครั้งที่ 3)",
+        "4th_revision": {
+          "status": "เลื่อนบังคับใช้เป็น 2568-2569 หลังมีคดีในศาลปกครอง",
+          "public_hearings": "23 ธ.ค. 2566 – 30 ส.ค. 2567",
+          "portal": "https://plan4bangkok.com/"
+        }
+      },
+      "other_relevant_ordinances": [
+        "ข้อบัญญัติ กทม. ฉบับแก้ไข (ฉ.2-...)",
+        "ข้อบัญญัติว่าด้วยอาคารจอดรถยนต์ (รวมเข้ากับฉบับ 2544)",
+        "ข้อบัญญัติเรื่องกำหนดบริเวณห้ามก่อสร้าง — ห้ามก่อสร้างภายใน 15 ม. จาก 37 ถนนสายหลัก และใกล้เขตพระราชฐาน/โบราณสถาน"
+      ],
+      "permit_process": {
+        "standard_buildings": "ยื่น แบบ ข.1 ที่สำนักงานเขตท้องที่",
+        "highrise_xlarge": "ยื่น สำนักการโยธา กทม. — ศาลาว่าการ กทม. 2 ดินแดง (EIA ต้องผ่านก่อน)"
+      },
+      "penalties": "ภายใต้ พ.ร.บ.2522 — จำคุก ≤ 3 เดือน และ/หรือปรับ ≤ 60,000 บาท + รายวัน ≤ 10,000 บาท; สามารถสั่งรื้อถอนได้ (ม.42-45)",
+      "practical_traps": [
+        "Sukhumvit sois — ซอยใน <10 ม. กระตุ้น 2× height rule → อาคารสูงสุด ~20-23 ม. (7-8 ชั้น)",
+        "Old Town / Rattanakosin — มีข้อบัญญัติห้ามก่อสร้างจำกัดความสูง 16/20/23 ม. ใกล้พระราชวัง วัด โบราณสถาน",
+        "Chao Phraya riverbanks — ระยะร่นจากริมฝั่งแม่น้ำ (commonly cited ≥ 3 ม., มากกว่าสำหรับอาคาร >23 ม.) [UNVERIFIED ตัวเลขที่แน่นอน]",
+        "East Bangkok flood zones (Min Buri, Lat Krabang, Nong Chok) — green zones (ก.1-ก.3) จำกัด FAR อย่างแรงเพื่อรักษาฟลัดเวย์",
+        "ระยะร่นจากคลองสาธารณะ — ≥ 3 ม. (อาคาร ≤ 9 ม.), ≥ 6 ม. (≥ 9 ม.) และคลองอาจมีผลต่อการคำนวณ 'ถนน' เมื่อคลองเป็นทางเข้า"
+      ],
+      "unverified_items": [
+        "ข้อกำหนดระยะระหว่างอาคาร ข้อ 55-57 ตัวเต็ม",
+        "ข้อบัญญัติ green/stormwater แยกต่างหาก (อาจยังไม่มี — รวมอยู่ในผังเมืองรวม + FAR bonus)",
+        "ตาราง OSR ต่อ zone ของผังเมืองรวม",
+        "ระยะร่นริมแม่น้ำเจ้าพระยาที่แน่นอน"
+      ],
+      "sources": [
+        "https://www.bangkok.go.th",
+        "https://webportal.bangkok.go.th/cpud",
+        "https://plan4bangkok.com/",
+        "https://www.dpt.go.th",
+        "https://www.ratchakitcha.soc.go.th",
+        "https://download.asa.or.th/03media/04law/cba/bb/bb44-03.pdf",
+        "https://dl.parliament.go.th/handle/lirt/284721",
+        "https://relifeproperties.com/bangkok-condominium-height-limits/",
+        "https://www.tcc.or.th/200269_bkk-plan-sue_news/",
+        "https://www.tilleke.com/insights/essential-building-safety-standards-and-legal-obligations-in-thailand/"
+      ]
+    },
+
+    "eia_ehia": {
+      "id": "eia_ehia",
+      "name_th": "การประเมินผลกระทบสิ่งแวดล้อม (EIA) และสิ่งแวดล้อม-สุขภาพ (EHIA)",
+      "name_en": "Environmental Impact Assessment (EIA) & Environmental & Health Impact Assessment (EHIA)",
+      "legal_basis": [
+        { "law_th": "พ.ร.บ.ส่งเสริมและรักษาคุณภาพสิ่งแวดล้อมแห่งชาติ พ.ศ. 2535", "law_en": "National Environmental Quality Promotion Act B.E. 2535 (1992)", "sections": "46-51 (assessment reports)" },
+        { "law_th": "พ.ร.บ.ส่งเสริมและรักษาคุณภาพสิ่งแวดล้อมแห่งชาติ (ฉบับที่ 2) พ.ศ. 2561", "law_en": "Amendment No. 2 (2018)", "gazette": "19 เม.ย. 2561, บังคับใช้ 18 ก.ค. 2561", "note": "จัดโครงสร้าง EIA/EHIA ใหม่ + monitoring + บทลงโทษเพิ่ม" },
+        { "law_th": "รัฐธรรมนูญ 2550 มาตรา 67 วรรค 2", "note": "ต้นกำเนิด EHIA — โครงการที่กระทบรุนแรงต้องศึกษาสุขภาพ + public hearing" },
+        { "law_th": "รัฐธรรมนูญ 2560 มาตรา 58", "note": "ฐานปัจจุบัน — สิทธิได้รับข้อมูลสิ่งแวดล้อม + consult + study ก่อนดำเนินโครงการ" }
+      ],
+      "authorities": [
+        { "name_th": "สำนักงานนโยบายและแผนทรัพยากรธรรมชาติและสิ่งแวดล้อม (สผ.)", "name_en": "ONEP", "role": "ศูนย์กลางรับรายงาน, ตรวจความสมบูรณ์ 15 วัน, ดูแล Smart EIA Plus", "url": "https://www.onep.go.th" },
+        { "name_th": "คณะกรรมการผู้ชำนาญการ (คชก.)", "name_en": "Expert Review Committee (ERC)", "role": "พิจารณาอนุมัติ/ส่งกลับ EIA — มี คชก. ประจำจังหวัด 12 จังหวัดตั้งแต่ 2562 เพื่อเร่งการพิจารณาคอนโด/บ้านจัดสรร" },
+        { "name_th": "คณะกรรมการสิ่งแวดล้อมแห่งชาติ", "name_en": "National Environment Board", "role": "ระดับนโยบาย + ทบทวน EHIA + โครงการ ครม." },
+        { "name_th": "กระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม (ทส.)", "name_en": "MoNRE", "role": "ออกประกาศกระทรวงกำหนดโครงการที่ต้องทำ EIA/EHIA" }
+      ],
+      "real_estate_triggers_eia": [
+        { "project_th": "อาคารอยู่อาศัยรวม/คอนโดมิเนียม", "threshold": "≥ 80 ยูนิต หรือ พื้นที่ใช้สอย ≥ 4,000 ตร.ม." },
+        { "project_th": "โรงแรม/รีสอร์ต/สถานที่พักตากอากาศ", "threshold": "≥ 80 ห้อง หรือ พื้นที่ใช้สอย ≥ 4,000 ตร.ม." },
+        { "project_th": "อาคารสูง/อาคารขนาดใหญ่พิเศษ", "threshold": "สูง ≥ 23 ม. หรือ พื้นที่ ≥ 10,000 ตร.ม." },
+        { "project_th": "การจัดสรรที่ดิน", "threshold": "≥ 500 แปลง หรือ พื้นที่ > 100 ไร่" },
+        { "project_th": "โรงพยาบาล/สถานพยาบาล", "threshold": "≥ 30 เตียง" },
+        { "project_th": "ห้างสรรพสินค้า/ศูนย์การค้า", "threshold": "≥ 10,000 ตร.ม. พื้นที่อาคาร [UNVERIFIED — ตรวจประกาศ 2566]" },
+        { "project_th": "สนามกอล์ฟ", "threshold": "ทุกขนาดที่กำหนดในประกาศ (typically ≥ 18 หลุม) [UNVERIFIED]" },
+        { "project_th": "ท่าเทียบเรือ / reclamation / gated megaproject", "threshold": "ตามขนาด/น้ำหนักบรรทุก" }
+      ],
+      "source_list": "ประกาศกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม พ.ศ. 2566 (ราชกิจจานุเบกษา 5 ม.ค. 2567) — รวม 35 ประเภท EIA + 12 EHIA",
+      "ehia_real_estate_note_th": "โครงการอสังหาฯ ทั่วไป (คอนโด โรงแรม บ้านจัดสรร โรงพยาบาล ห้าง) อยู่ใน EIA ไม่ใช่ EHIA; EHIA ใช้เฉพาะ megaproject ที่มีลักษณะอันตรายรุนแรง 12 ประเภท (เช่น โรงไฟฟ้าขนาดใหญ่ ปิโตรเคมี เหมือง เตาเผาขยะอันตราย ท่าเรือ/สนามบินขนาดใหญ่ เขื่อนใหญ่ โรงถลุง/สารเคมี)",
+      "process_flow": [
+        { "step": 1, "name": "Screening", "desc_th": "ผู้พัฒนาตรวจเทียบโครงการกับประกาศ" },
+        { "step": 2, "name": "Consultant", "desc_th": "จ้างบริษัทที่ปรึกษาที่ได้รับใบอนุญาตจาก สผ." },
+        { "step": 3, "name": "Scoping + ToR (ค.1)", "desc_th": "EHIA เท่านั้นที่บังคับทำ public scoping" },
+        { "step": 4, "name": "Field study + draft", "desc_th": "สำรวจฐานข้อมูล สร้างแบบจำลอง ออกแบบมาตรการลดผลกระทบ — EHIA เพิ่ม ค.2" },
+        { "step": 5, "name": "Public hearing", "desc_th": "EIA ขั้นต่ำ 1 ครั้ง; EHIA ขั้นต่ำ 2 ครั้ง (ในทางปฏิบัติ 3 รวม ค.3)" },
+        { "step": 6, "name": "Submit to ONEP", "desc_th": "15 วัน ตรวจความสมบูรณ์" },
+        { "step": 7, "name": "ERC (คชก.) review", "desc_th": "45 วัน/รอบ — อนุมัติ, ขอแก้ไข, หรือปฏิเสธ; revision 30-180 วัน" },
+        { "step": 8, "name": "Permit linkage", "desc_th": "ส่งหนังสืออนุมัติไปให้เจ้าพนักงานออกใบอนุญาตก่อสร้าง" }
+      ],
+      "typical_duration_months": {
+        "bangkok_condo_standard": "6-12",
+        "complex_or_ehia": "12-18+"
+      },
+      "permit_linkage_th": "สำหรับคอนโดกรุงเทพฯ ≥ 80 ยูนิต / ≥ 4,000 ตร.ม. — EIA approval เป็นเงื่อนไข precondition สำหรับใบอนุญาต อ.1 ตาม พ.ร.บ.ควบคุมอาคาร 2522 (กทม./เขตจะไม่ออก อ.1 หากยังไม่มีหนังสือ คชก.)",
+      "pre_sales_note_th": "ผู้พัฒนาสามารถรับจองและเงินดาวน์ได้ก่อน EIA อนุมัติ แต่ไม่สามารถเริ่มก่อสร้างหรือโอนกรรมสิทธิ์ — เป็นประเด็นคุ้มครองผู้บริโภคสำคัญ",
+      "non_compliance_consequences": [
+        "คำสั่งหยุดก่อสร้าง/คำสั่งศาลปกครอง",
+        "ค่าปรับสูงสุด 1,000,000 บาท และ/หรือจำคุก ≤ 2 ปี (ฉบับปรับปรุง 2561) สำหรับไม่ส่ง monitoring report",
+        "civil liability ตาม พ.ร.บ. 2535 ม.96-97 (strict liability ด้านมลพิษ)",
+        "เพิกถอนใบอนุญาตก่อสร้าง/EIA approval ทางศาลปกครอง — ยื่นได้ภายใน 90 วันหลังรู้คำสั่ง",
+        "ความเสียหายต่อชื่อเสียง/ตลาด (Smart EIA Plus เปิดสาธารณะ)"
+      ],
+      "practical_notes": [
+        "เริ่ม EIA scoping ตั้งแต่ due-diligence ที่ดิน ก่อนโอนกรรมสิทธิ์ — ผูกพันซื้อที่ดินก่อนรู้ผล EIA = failure mode คลาสสิก",
+        "งบประมาณ: EIA คอนโดกลางๆ กทม. 1.5-4 ล้านบาท; EHIA megaproject 5-15+ ล้านบาท [UNVERIFIED — ขึ้นกับ scope]",
+        "Typical delays: traffic/wastewater modelling ไม่ครบ, community opposition ในวัน hearing, คชก. ขอ wind tunnel / shadow study — แก้โดย engage stakeholder early + setback เผื่อไว้",
+        "Post-approval: Monitor Report ราย 6 เดือน ต่อ ONEP ระหว่างก่อสร้างและ 1-3 ปีหลังสร้างเสร็จ — ไม่ส่ง = ปรับ + เสี่ยงเพิกถอน",
+        "Appeal risk: เพื่อนบ้าน/NGO ยื่นศาลปกครองได้ภายใน 90 วัน — เคสสำคัญ: Map Ta Phut 2552, Ashton Asoke 2564 (ศาลเพิกถอนย้อนหลัง); ผู้ซื้อควรตรวจสถานะ EIA ที่ eia.onep.go.th ก่อนซื้อ"
+      ],
+      "recent_updates": [
+        "2561 (2018): Amendment ฉบับที่ 2 — ONEP role + monitoring + บทลงโทษ",
+        "2562 (2019): ประกาศกระทรวง ตั้ง คชก. ระดับจังหวัด 12 จังหวัด (7 เขตสิ่งแวดล้อม + กรุงเทพฯ, นนทบุรี, ปทุมฯ, สมุทรปราการ, เชียงใหม่)",
+        "2566 (2023): ประกาศกระทรวงรวม project list — 35 EIA + 12 EHIA (Gazette 5 ม.ค. 2567)",
+        "2565-2568 (2022-2025): Smart EIA Plus ทยอยแทนที่ระบบกระดาษ — e-submission + public search + monitoring upload + mobile app",
+        "2563-2565 COVID: ขยายเวลา monitoring report เป็นรายกรณี [UNVERIFIED ยังคงใช้หรือไม่]"
+      ],
+      "unverified_items": [
+        "เกณฑ์ขนาดห้างฯ/สนามกอล์ฟปัจจุบันในประกาศ 2566",
+        "ค่าที่ปรึกษา EIA/EHIA ช่วง THB (ข้อมูลตลาด ไม่ได้เผยแพร่ทางการ)",
+        "สถานะ COVID monitoring extension ณ ปัจจุบัน"
+      ],
+      "sources": [
+        "https://www.onep.go.th/",
+        "https://eia.onep.go.th/",
+        "https://eiathailand.onep.go.th/",
+        "https://law.onep.go.th/ประกาศ-ท-ส/",
+        "https://www.mnre.go.th/",
+        "https://ratchakitcha.soc.go.th/",
+        "https://asa.or.th/laws/news20240109/",
+        "https://asa.or.th/laws/news20180425/",
+        "https://enlawfoundation.org/newweb/?cat=357",
+        "https://www.thelivingos.com/eia-registration-for-condos-households/",
+        "https://citypluscapital.com/environmental-impact-assessment-law/",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC10654230/"
+      ]
+    }
+  },
+
+  "quick_developer_checklist": {
+    "before_land_purchase": [
+      "เช็คสีผังเมือง (DPT Landuseplan) → FAR/OSR/permitted uses/height cap",
+      "เช็ค overlays: EEC, ผังเฉพาะ, เขตการบิน, เขตทหาร, โบราณสถาน, floodway",
+      "วัดความกว้างถนน + ระยะร่นที่ใช้ได้ (กฎกระทรวง 55 + ข้อบัญญัติ กทม. 2544)",
+      "ประเมิน EIA trigger (คอนโด ≥ 80 ยูนิต / ≥ 4,000 ตร.ม.; บ้านจัดสรร ≥ 500 แปลง / > 100 ไร่)",
+      "ตรวจสถานะ EIA แปลงข้างเคียงที่ eia.onep.go.th (risk appeal)"
+    ],
+    "before_construction": [
+      "EIA approval → เงื่อนไขก่อน อ.1",
+      "ยื่น อ.1 หรือหนังสือ ม.39 ทวิ + แบบที่สถาปนิก/วิศวกรลงนาม",
+      "สำหรับอาคารสูง/ขนาดใหญ่พิเศษใน กทม. ยื่นที่สำนักการโยธา (ไม่ใช่สำนักงานเขต)",
+      "ตรวจสอบ Fire escape, smoke detector, ไฟฉุกเฉิน, บันไดสองทาง — ออกแบบไว้แต่แรก",
+      "Parking & ระยะร่น + 2× road width height rule"
+    ],
+    "before_occupancy_transfer": [
+      "ได้ อ.6 (occupancy certificate) ก่อนใช้/ปล่อยเช่า/โอน",
+      "ส่ง monitoring report ตามตาราง ONEP",
+      "จดทะเบียนนิติบุคคลอาคารชุด (ถ้าเป็นคอนโด) — ต้องมี อ.6 ก่อน"
+    ]
+  },
+
+  "cross_reference_matrix": {
+    "FAR_OSR": "กำหนดโดยผังเมืองรวม (พ.ร.บ.การผังเมือง 2562) — เข้มกว่าเสมอ",
+    "setback": "กฎกระทรวง 55 + ข้อบัญญัติ กทม. 2544 — local stricter wins",
+    "fire_safety": "กฎกระทรวง 33 (high-rise) + 39 (general) + 63 (assembly, post-Santika)",
+    "eia_linkage": "EIA approval → precondition for อ.1 under พ.ร.บ.ควบคุมอาคาร 2522",
+    "permit_flow": "TownPlanning check → EIA (if triggered) → อ.1 / ม.39ทวิ → construction → อ.6 → occupancy"
+  }
+}
