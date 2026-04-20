@@ -98,7 +98,10 @@ body{font-family:'Noto Sans Thai',sans-serif;background:#0d1117;color:#c9d1d9}
 
   <div style="margin-bottom:8px">
     <input type="text" id="search-input" placeholder="ค้นหาสถานที่ / ที่อยู่..." style="width:100%;padding:10px;border-radius:8px;border:1px solid #30363d;background:#0d1117;color:#c9d1d9;font-family:inherit;font-size:0.9rem" onkeydown="if(event.key==='Enter')searchLocation()">
-    <button class="btn btn-secondary" onclick="searchLocation()" style="background:#21262d;color:#c9d1d9;margin-top:4px;font-size:0.82rem">ค้นหาตำแหน่ง</button>
+    <div style="display:flex;gap:4px;margin-top:4px">
+      <button class="btn btn-secondary" onclick="searchLocation()" style="background:#21262d;color:#c9d1d9;font-size:0.82rem;flex:1">ค้นหาตำแหน่ง</button>
+      <button class="btn btn-secondary" onclick="useMyLocation()" style="background:#21262d;color:#c9d1d9;font-size:0.82rem;flex:1">ตำแหน่งปัจจุบัน</button>
+    </div>
   </div>
 
   <button class="btn" id="load-btn" onclick="loadProvince()">โหลดข้อมูลผังเมือง</button>
@@ -372,6 +375,23 @@ function highlightZone(code) {
 
 function openBmaGis() {
   window.open('https://cityplangis.bangkok.go.th/cpdPortal/', '_blank');
+}
+
+function useMyLocation() {
+  if (!navigator.geolocation) { alert('Browser ไม่รองรับ GPS'); return; }
+  navigator.geolocation.getCurrentPosition(pos => {
+    const lat = pos.coords.latitude, lng = pos.coords.longitude;
+    map.setView([lat, lng], 16);
+    L.marker([lat, lng]).addTo(map)
+      .bindPopup(`<b>ตำแหน่งปัจจุบัน</b><br>${lat.toFixed(5)}, ${lng.toFixed(5)}<br><small>คลิกบนแผนที่เพื่อดูโซน</small>`).openPopup();
+    // Auto query DPT
+    const url = `https://onedpt.dpt.go.th/arcgis/rest/services/PLLU_ALL/PLLU_ALL/MapServer/0/query?geometry=${lng},${lat}&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=PL_USE,Pllu_DESC,PL_FAR_MAX,PL_BCR_MAX,CHANGWAT_N&returnGeometry=false&f=json`;
+    fetch(url).then(r=>r.json()).then(data => {
+      if (data.features && data.features.length > 0) {
+        showZoneInfo(data.features[0].attributes.PL_USE, data.features[0].attributes);
+      }
+    }).catch(()=>{});
+  }, () => alert('ไม่สามารถระบุตำแหน่งได้'));
 }
 
 function searchLocation() {
