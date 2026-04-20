@@ -96,6 +96,11 @@ body{font-family:'Noto Sans Thai',sans-serif;background:#0d1117;color:#c9d1d9}
     <option value="จ.สตูล">สตูล</option>
   </select>
 
+  <div style="margin-bottom:8px">
+    <input type="text" id="search-input" placeholder="ค้นหาสถานที่ / ที่อยู่..." style="width:100%;padding:10px;border-radius:8px;border:1px solid #30363d;background:#0d1117;color:#c9d1d9;font-family:inherit;font-size:0.9rem" onkeydown="if(event.key==='Enter')searchLocation()">
+    <button class="btn btn-secondary" onclick="searchLocation()" style="background:#21262d;color:#c9d1d9;margin-top:4px;font-size:0.82rem">ค้นหาตำแหน่ง</button>
+  </div>
+
   <button class="btn" id="load-btn" onclick="loadProvince()">โหลดข้อมูลผังเมือง</button>
   <button class="btn btn-secondary" id="dpt-toggle" onclick="toggleDptOverlay()" style="background:#21262d;color:#c9d1d9;margin-top:4px">เปิด DPT Overlay (กทม.+ทั่วประเทศ)</button>
   <button class="btn btn-secondary" onclick="openBmaGis()" style="background:#21262d;color:#c9d1d9;margin-top:4px">เปิด BMA GIS (กทม. ละเอียด)</button>
@@ -368,6 +373,42 @@ function highlightZone(code) {
 function openBmaGis() {
   window.open('https://cityplangis.bangkok.go.th/cpdPortal/', '_blank');
 }
+
+function searchLocation() {
+  const query = document.getElementById('search-input').value.trim();
+  if (!query) return;
+  fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query + ' Thailand')}&limit=1`)
+    .then(r => r.json())
+    .then(results => {
+      if (results.length > 0) {
+        const r = results[0];
+        map.setView([parseFloat(r.lat), parseFloat(r.lon)], 15);
+        L.marker([parseFloat(r.lat), parseFloat(r.lon)]).addTo(map)
+          .bindPopup(`<b>${r.display_name}</b><br><small>คลิกบนแผนที่เพื่อดูข้อมูลโซน</small>`).openPopup();
+      } else {
+        alert('ไม่พบสถานที่ ลองค้นหาใหม่');
+      }
+    }).catch(() => alert('ค้นหาล้มเหลว'));
+}
+
+// Click anywhere on map to query DPT for that point
+map.on('click', function(e) {
+  const lat = e.latlng.lat, lng = e.latlng.lng;
+  const url = `https://onedpt.dpt.go.th/arcgis/rest/services/PLLU_ALL/PLLU_ALL/MapServer/0/query?geometry=${lng},${lat}&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=PL_USE,Pllu_DESC,PL_FAR_MAX,PL_BCR_MAX,CHANGWAT_N&returnGeometry=false&f=json`;
+  fetch(url).then(r => r.json()).then(data => {
+    if (data.features && data.features.length > 0) {
+      const attrs = data.features[0].attributes;
+      showZoneInfo(attrs.PL_USE, attrs);
+      L.popup().setLatLng(e.latlng).setContent(
+        `<b>${getZoneRule(attrs.PL_USE).name}</b><br>${attrs.Pllu_DESC || ''}<br><small>${attrs.CHANGWAT_N || ''}</small>`
+      ).openOn(map);
+    } else {
+      L.popup().setLatLng(e.latlng).setContent(
+        `<b>นอกเขตผังเมืองรวม</b><br><small>${lat.toFixed(5)}, ${lng.toFixed(5)}</small><br>ต้องเช็คกับ อบต./เทศบาล`
+      ).openOn(map);
+    }
+  }).catch(() => {});
+});
 
 // Show BMA notice when Bangkok is selected
 document.getElementById('province-select').addEventListener('change', function() {
