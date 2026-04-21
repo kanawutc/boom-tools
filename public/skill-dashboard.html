@@ -169,10 +169,15 @@ function filterSkills() {
   const catColors = {core:'cat-core',nav:'cat-nav',comm:'cat-comm',research:'cat-research',util:'cat-util',local:'cat-local'};
   const catLabels = {core:'Core',nav:'Navigation',comm:'Communication',research:'Research',util:'Utility',local:'Custom'};
 
-  grid.innerHTML = filtered.map(s => `
-    <div class="card" data-cat="${s.cat}">
+  grid.innerHTML = filtered.map(s => {
+  const detailSkills = ['rrr','awaken','recap','forward','trace','learn','dig','time-travel','ux-ui','team-agents','dream'];
+  const hasDetail = detailSkills.includes(s.name.replace('/',''));
+  const clickAttr = hasDetail ? `onclick="window.location='skill-${s.name.replace('/','')}.html'"` : '';
+  const linkBadge = hasDetail ? '<span style="float:right;font-size:0.68rem;color:#a78bfa;margin-top:2px">📄 Detail →</span>' : '';
+  return `
+    <div class="card" data-cat="${s.cat}" ${clickAttr} style="${hasDetail ? "cursor:pointer" : ""}">
       <div class="header">
-        <div class="name">${s.name}</div>
+        <div class="name">${s.name}${linkBadge}</div>
         <span class="cat ${catColors[s.cat]}">${catLabels[s.cat]}</span>
       </div>
       <div class="desc">${s.desc}</div>
@@ -180,7 +185,7 @@ function filterSkills() {
       <div class="output"><strong>Output:</strong> ${s.output}</div>
       <div class="output" style="margin-top:4px"><strong>Use Case:</strong> ${s.useCase}</div>
     </div>
-  `).join('');
+  `}).join('');
 }
 
 filterSkills();
