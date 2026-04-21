@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ไตรลักษณ์ — อนิจจัง ทุกขัง อนัตตา | Visual Guide</title>
+<script src="auth.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=Noto+Serif+Thai:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans Thai',sans-serif;background:#0a0a14;color:#d4d0c8;line-height:1.9}
+
+/* Hero */
+.hero{min-height:70vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 20px;background:radial-gradient(ellipse at 50% 50%,#1a1428 0%,#0a0a14 70%);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:50%;left:50%;width:400px;height:400px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,200,100,0.06) 0%,transparent 70%);animation:pulse 4s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.5}50%{transform:translate(-50%,-50%) scale(1.3);opacity:1}}
+.hero h1{font-family:'Noto Serif Thai',serif;font-size:3.5rem;font-weight:700;color:#ffd700;position:relative;text-shadow:0 0 40px rgba(255,215,0,0.3)}
+.hero .pali{font-family:'Noto Serif Thai',serif;font-size:1.2rem;color:#c8a850;margin-top:8px;position:relative;font-style:italic}
+.hero .meaning{color:#8a8070;font-size:0.95rem;margin-top:16px;position:relative;max-width:600px}
+
+.container{max-width:900px;margin:0 auto;padding:40px 20px}
+
+/* Three Pillars */
+.three-pillars{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin:40px 0;position:relative}
+.three-pillars::before{content:'';position:absolute;top:0;left:33.33%;right:33.33%;height:100%;border-left:1px solid #2a2a3a;border-right:1px solid #2a2a3a}
+
+.pillar{padding:30px 20px;text-align:center;position:relative}
+.pillar .icon{font-size:4rem;margin-bottom:12px;display:block}
+.pillar h2{font-family:'Noto Serif Thai',serif;font-size:1.6rem;font-weight:700;margin-bottom:4px}
+.pillar .pali-name{font-size:0.85rem;font-style:italic;margin-bottom:12px}
+.pillar p{font-size:0.88rem;line-height:1.8}
+
+.pillar:nth-child(1) h2{color:#60a5fa}
+.pillar:nth-child(1) .pali-name{color:#3b82f6}
+.pillar:nth-child(2) h2{color:#f97316}
+.pillar:nth-child(2) .pali-name{color:#ea580c}
+.pillar:nth-child(3) h2{color:#a78bfa}
+.pillar:nth-child(3) .pali-name{color:#8b5cf6}
+
+/* Section */
+.section{margin:50px 0;padding:30px;background:#0f0f1a;border-radius:16px;border:1px solid #1a1a2a}
+.section h2{font-family:'Noto Serif Thai',serif;font-size:1.5rem;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid #2a2a3a}
+.section h3{font-size:1.1rem;font-weight:600;margin:16px 0 8px}
+.section p{font-size:0.9rem;color:#a0a090;margin-bottom:10px}
+
+/* Color themes */
+.anicca{border-left:4px solid #60a5fa}
+.anicca h2,.anicca h3{color:#60a5fa}
+.dukkha{border-left:4px solid #f97316}
+.dukkha h2,.dukkha h3{color:#f97316}
+.anatta{border-left:4px solid #a78bfa}
+.anatta h2,.anatta h3{color:#a78bfa}
+
+/* Cycle Diagram */
+.cycle{display:flex;align-items:center;justify-content:center;gap:16px;margin:20px 0;flex-wrap:wrap}
+.cycle-step{background:#1a1a2a;border-radius:12px;padding:14px 18px;text-align:center;min-width:100px;position:relative}
+.cycle-step .label{font-size:0.82rem;font-weight:600}
+.cycle-arrow{font-size:1.5rem;color:#4a4a5a}
+
+/* Analogy Cards */
+.analogy-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.analogy{background:#141420;border:1px solid #2a2a3a;border-radius:10px;padding:16px;font-size:0.85rem}
+.analogy .emoji{font-size:2rem;margin-bottom:6px;display:block}
+.analogy .title{font-weight:600;color:#d4d0c8;margin-bottom:4px}
+.analogy .desc{color:#8a8a80}
+
+/* Quote */
+.quote{font-family:'Noto Serif Thai',serif;font-size:1.1rem;text-align:center;color:#c8a850;padding:24px;margin:20px 0;border-top:1px solid #2a2a3a;border-bottom:1px solid #2a2a3a;font-style:italic}
+.quote .attr{font-style:normal;font-size:0.78rem;color:#6a6a60;margin-top:8px;font-family:'Noto Sans Thai',sans-serif}
+
+/* Connection Diagram */
+.connection{display:flex;align-items:center;justify-content:center;gap:8px;margin:20px 0;flex-wrap:wrap}
+.conn-box{padding:12px 20px;border-radius:10px;text-align:center;font-size:0.85rem;font-weight:600}
+.conn-arrow{font-size:1.2rem;color:#4a4a5a}
+
+/* Application */
+.app-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:16px 0}
+.app-card{background:#141420;border:1px solid #2a2a3a;border-radius:10px;padding:16px;text-align:center}
+.app-card .icon{font-size:2rem;margin-bottom:6px}
+.app-card h4{font-size:0.9rem;font-weight:600;color:#d4d0c8;margin-bottom:4px}
+.app-card p{font-size:0.78rem;color:#8a8a80}
+
+.footer{text-align:center;padding:30px;color:#4a4a50;font-size:0.72rem;border-top:1px solid #1a1a2a}
+.footer a{color:#c8a850;text-decoration:none}
+
+@media(max-width:768px){
+  .three-pillars{grid-template-columns:1fr}.three-pillars::before{display:none}
+  .analogy-grid,.app-grid{grid-template-columns:1fr}
+  .hero h1{font-size:2.2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <div>
+    <h1>ไตรลักษณ์</h1>
+    <div class="pali">Tilakkhaṇa — The Three Marks of Existence</div>
+    <div class="meaning">ลักษณะสามประการที่เป็นธรรมชาติของสรรพสิ่ง — ไม่มีสิ่งใดในโลกหลุดพ้นจากกฎนี้ได้</div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- Three Pillars Visual -->
+<div class="three-pillars">
+  <div class="pillar">
+    <span class="icon">🌊</span>
+    <h2>อนิจจัง</h2>
+    <div class="pali-name">Anicca — Impermanence</div>
+    <p>ความไม่เที่ยง<br>ทุกสิ่งเกิดขึ้น ตั้งอยู่ ดับไป<br>ไม่มีอะไรคงอยู่ถาวร</p>
+  </div>
+  <div class="pillar">
+    <span class="icon">🔥</span>
+    <h2>ทุกขัง</h2>
+    <div class="pali-name">Dukkha — Suffering / Unsatisfactoriness</div>
+    <p>ความเป็นทุกข์<br>ทุกสิ่งถูกบีบคั้นด้วยการเปลี่ยนแปลง<br>ไม่อาจทำให้พอใจได้ถาวร</p>
+  </div>
+  <div class="pillar">
+    <span class="icon">💨</span>
+    <h2>อนัตตา</h2>
+    <div class="pali-name">Anattā — Non-self</div>
+    <p>ความไม่ใช่ตัวตน<br>ไม่มีสิ่งใดเป็น "ตัวเรา" อย่างแท้จริง<br>ทุกอย่างเกิดจากเหตุปัจจัย</p>
+  </div>
+</div>
+
+<!-- Anicca Section -->
+<div class="section anicca">
+  <h2>🌊 อนิจจัง — Anicca (Impermanence)</h2>
+  <p><strong>ความหมาย:</strong> สรรพสิ่งทั้งปวงไม่เที่ยง เกิดขึ้น ตั้งอยู่ แล้วดับไป ไม่มีสิ่งใดคงอยู่ในสภาพเดิมได้ตลอดไป ทั้งสิ่งที่มีชีวิตและไม่มีชีวิต</p>
+
+  <h3>วงจรของอนิจจัง</h3>
+  <div class="cycle">
+    <div class="cycle-step" style="border:1px solid #60a5fa"><div class="label" style="color:#60a5fa">เกิดขึ้น</div><div style="font-size:0.75rem;color:#6a6a6a">อุปาทะ</div></div>
+    <div class="cycle-arrow">→</div>
+    <div class="cycle-step" style="border:1px solid #eab308"><div class="label" style="color:#eab308">ตั้งอยู่</div><div style="font-size:0.75rem;color:#6a6a6a">ฐิติ</div></div>
+    <div class="cycle-arrow">→</div>
+    <div class="cycle-step" style="border:1px solid #ef4444"><div class="label" style="color:#ef4444">ดับไป</div><div style="font-size:0.75rem;color:#6a6a6a">ภังคะ</div></div>
+    <div class="cycle-arrow">→</div>
+    <div class="cycle-step" style="border:1px dashed #4a4a5a"><div class="label" style="color:#6a6a6a">เกิดใหม่...</div></div>
+  </div>
+
+  <h3>ตัวอย่างในชีวิตจริง</h3>
+  <div class="analogy-grid">
+    <div class="analogy"><span class="emoji">🌸</span><div class="title">ดอกไม้</div><div class="desc">บานแล้วร่วง — ความสวยไม่คงอยู่</div></div>
+    <div class="analogy"><span class="emoji">👶</span><div class="title">ร่างกาย</div><div class="desc">เด็ก → หนุ่มสาว → แก่ — เปลี่ยนแปลงทุกวินาที</div></div>
+    <div class="analogy"><span class="emoji">💰</span><div class="title">ทรัพย์สิน</div><div class="desc">รวยแล้วจนได้ จนแล้วรวยได้ — ไม่แน่นอน</div></div>
+    <div class="analogy"><span class="emoji">🏢</span><div class="title">อาณาจักร</div><div class="desc">อยุธยา 417 ปี แล้วก็ล่มสลาย — ไม่มีอะไรถาวร</div></div>
+  </div>
+
+  <div class="quote">
+    "สิ่งใดสิ่งหนึ่งมีความเกิดขึ้นเป็นธรรมดา สิ่งนั้นทั้งหมดมีความดับไปเป็นธรรมดา"
+    <div class="attr">— พระพุทธเจ้า (ธัมมจักกัปปวัตตนสูตร)</div>
+  </div>
+</div>
+
+<!-- Dukkha Section -->
+<div class="section dukkha">
+  <h2>🔥 ทุกขัง — Dukkha (Suffering / Unsatisfactoriness)</h2>
+  <p><strong>ความหมาย:</strong> สรรพสิ่งเป็นทุกข์ ถูกบีบคั้นด้วยการเกิดขึ้นและสลายตัว ทำให้ไม่สามารถคงอยู่ในสภาพที่น่าพอใจได้ตลอดไป — ทุกขังไม่ได้หมายความว่า "เจ็บปวดเสมอ" แต่หมายถึง "ไม่อาจทำให้สมบูรณ์พร้อมได้"</p>
+
+  <h3>3 ระดับของทุกข์</h3>
+  <div class="cycle">
+    <div class="cycle-step" style="border:1px solid #ef4444;flex:1"><div class="label" style="color:#ef4444">ทุกข์-ทุกข์</div><div style="font-size:0.75rem;color:#8a8a80">ความเจ็บปวดโดยตรง<br>(เจ็บป่วย พลัดพราก)</div></div>
+    <div class="cycle-step" style="border:1px solid #f97316;flex:1"><div class="label" style="color:#f97316">วิปริณามทุกข์</div><div style="font-size:0.75rem;color:#8a8a80">ทุกข์จากการเปลี่ยนแปลง<br>(สุขที่หายไป ความสูญเสีย)</div></div>
+    <div class="cycle-step" style="border:1px solid #eab308;flex:1"><div class="label" style="color:#eab308">สังขารทุกข์</div><div style="font-size:0.75rem;color:#8a8a80">ทุกข์ตามสภาพ<br>(ทุกสิ่งถูกปรุงแต่ง ไม่สมบูรณ์)</div></div>
+  </div>
+
+  <div class="analogy-grid">
+    <div class="analogy"><span class="emoji">🎢</span><div class="title">ความสุขชั่วคราว</div><div class="desc">ได้ของใหม่ → ดีใจ → เฉยๆ → อยากได้อีก — วนเวียน</div></div>
+    <div class="analogy"><span class="emoji">⚖️</span><div class="title">ความไม่พอใจ</div><div class="desc">ร่างกายหิว → กินอิ่ม → หิวอีก — ไม่เคยพอจริงๆ</div></div>
+  </div>
+
+  <div class="quote">
+    "ทุกข์ไม่ได้หมายความว่าชีวิตมีแต่ความเศร้า — แต่หมายความว่าทุกสิ่งในโลกไม่สามารถให้ความพอใจที่ถาวรได้"
+    <div class="attr">— พระอาจารย์ชา สุภัทโท</div>
+  </div>
+</div>
+
+<!-- Anatta Section -->
+<div class="section anatta">
+  <h2>💨 อนัตตา — Anattā (Non-self)</h2>
+  <p><strong>ความหมาย:</strong> ไม่มีสิ่งใดมี "ตัวตน" ที่แท้จริงเป็นของตัวเอง ทุกอย่างเกิดจากเหตุปัจจัยประกอบกัน ไม่มีอะไรเป็น "ของเรา" อย่างแท้จริง — ร่างกาย จิตใจ ความคิด อารมณ์ ล้วนไม่ใช่ตัวตน</p>
+
+  <h3>ขันธ์ 5 — องค์ประกอบที่เรียกว่า "ตัวเรา"</h3>
+  <div class="cycle">
+    <div class="cycle-step" style="border:1px solid #a78bfa"><div class="label" style="color:#a78bfa">รูป</div><div style="font-size:0.72rem;color:#8a8a80">ร่างกาย</div></div>
+    <div class="cycle-step" style="border:1px solid #a78bfa"><div class="label" style="color:#a78bfa">เวทนา</div><div style="font-size:0.72rem;color:#8a8a80">ความรู้สึก</div></div>
+    <div class="cycle-step" style="border:1px solid #a78bfa"><div class="label" style="color:#a78bfa">สัญญา</div><div style="font-size:0.72rem;color:#8a8a80">ความจำได้</div></div>
+    <div class="cycle-step" style="border:1px solid #a78bfa"><div class="label" style="color:#a78bfa">สังขาร</div><div style="font-size:0.72rem;color:#8a8a80">ความคิดปรุงแต่ง</div></div>
+    <div class="cycle-step" style="border:1px solid #a78bfa"><div class="label" style="color:#a78bfa">วิญญาณ</div><div style="font-size:0.72rem;color:#8a8a80">การรับรู้</div></div>
+  </div>
+  <p style="text-align:center;color:#8a8a80;font-size:0.82rem;margin-top:8px">ทั้ง 5 ขันธ์ล้วนไม่เที่ยง เป็นทุกข์ และไม่ใช่ตัวตน — ไม่มีขันธ์ใดเป็น "เรา" ที่แท้จริง</p>
+
+  <div class="analogy-grid">
+    <div class="analogy"><span class="emoji">🚗</span><div class="title">รถยนต์</div><div class="desc">"รถ" ไม่มีตัวตน — มีแค่เครื่องยนต์ ล้อ ตัวถัง ประกอบกัน แยกออกก็ไม่ใช่ "รถ" อีกต่อไป</div></div>
+    <div class="analogy"><span class="emoji">🌊</span><div class="title">คลื่น</div><div class="desc">"คลื่น" ไม่ใช่สิ่งที่มีตัวตน — เป็นแค่รูปแบบที่น้ำแสดงออกชั่วคราว</div></div>
+  </div>
+
+  <div class="quote">
+    "รูปไม่ใช่ตน เวทนาไม่ใช่ตน สัญญาไม่ใช่ตน สังขารไม่ใช่ตน วิญญาณไม่ใช่ตน"
+    <div class="attr">— พระพุทธเจ้า (อนัตตลักขณสูตร — พระสูตรที่ 2 ที่ทรงแสดง)</div>
+  </div>
+</div>
+
+<!-- Connection -->
+<div class="section" style="border-left:4px solid #c8a850">
+  <h2 style="color:#c8a850">ความเชื่อมโยงของไตรลักษณ์</h2>
+  <p>ไตรลักษณ์ทั้ง 3 ไม่ได้แยกจากกัน — เป็นมุมมองที่ต่างกันของความจริงเดียวกัน:</p>
+
+  <div class="connection">
+    <div class="conn-box" style="background:#1a2040;color:#60a5fa">อนิจจัง<br><span style="font-size:0.72rem">เพราะไม่เที่ยง</span></div>
+    <div class="conn-arrow">→</div>
+    <div class="conn-box" style="background:#2a1a10;color:#f97316">ทุกขัง<br><span style="font-size:0.72rem">จึงเป็นทุกข์</span></div>
+    <div class="conn-arrow">→</div>
+    <div class="conn-box" style="background:#1a1430;color:#a78bfa">อนัตตา<br><span style="font-size:0.72rem">จึงไม่ใช่ตัวตน</span></div>
+  </div>
+
+  <p style="text-align:center;color:#a09080;font-size:0.88rem;margin-top:12px">
+    <strong>เพราะ</strong>สิ่งทั้งปวง<span style="color:#60a5fa">ไม่เที่ยง</span> →
+    <strong>จึง</strong><span style="color:#f97316">เป็นทุกข์</span> (ไม่สามารถพึ่งพาได้) →
+    <strong>จึง</strong><span style="color:#a78bfa">ไม่ใช่ตัวตน</span> (ไม่อยู่ในอำนาจของเรา)
+  </p>
+</div>
+
+<!-- Practical Application -->
+<div class="section" style="border-left:4px solid #22c55e">
+  <h2 style="color:#22c55e">การนำไปใช้ในชีวิตจริง</h2>
+  <div class="app-grid">
+    <div class="app-card">
+      <div class="icon">🧘</div>
+      <h4>ปล่อยวาง</h4>
+      <p>เมื่อเข้าใจว่าทุกสิ่งไม่เที่ยง ก็ไม่ยึดมั่นถือมั่น — ทุกข์ลดลง</p>
+    </div>
+    <div class="app-card">
+      <div class="icon">💪</div>
+      <h4>รับมือการเปลี่ยนแปลง</h4>
+      <p>เมื่อรู้ว่าความทุกข์เป็นธรรมดา ก็ไม่ตกใจเมื่อเจอปัญหา</p>
+    </div>
+    <div class="app-card">
+      <div class="icon">🌱</div>
+      <h4>เติบโต</h4>
+      <p>เมื่อรู้ว่าไม่มีตัวตนตายตัว ก็พัฒนาตัวเองได้ไม่จำกัด</p>
+    </div>
+    <div class="app-card">
+      <div class="icon">❤️</div>
+      <h4>เมตตา</h4>
+      <p>เมื่อรู้ว่าทุกคนเป็นทุกข์เหมือนกัน ก็เกิดความเห็นอกเห็นใจ</p>
+    </div>
+    <div class="app-card">
+      <div class="icon">🎯</div>
+      <h4>อยู่กับปัจจุบัน</h4>
+      <p>เมื่อรู้ว่าอดีตและอนาคตไม่มีจริง ก็โฟกัสกับตอนนี้</p>
+    </div>
+    <div class="app-card">
+      <div class="icon">🔮</div>
+      <h4>ปัญญา</h4>
+      <p>เมื่อเห็นไตรลักษณ์ตามจริง ก็เข้าใกล้นิพพาน — ความหลุดพ้น</p>
+    </div>
+  </div>
+</div>
+
+<!-- Final Quote -->
+<div style="text-align:center;padding:40px 20px">
+  <div style="font-family:'Noto Serif Thai',serif;font-size:1.8rem;color:#c8a850;line-height:1.5">
+    "สพฺเพ สงฺขารา อนิจฺจาติ"<br>
+    "สพฺเพ สงฺขารา ทุกฺขาติ"<br>
+    "สพฺเพ ธมฺมา อนตฺตาติ"
+  </div>
+  <div style="color:#6a6a60;font-size:0.85rem;margin-top:12px">
+    สังขารทั้งปวงไม่เที่ยง | สังขารทั้งปวงเป็นทุกข์ | ธรรมทั้งปวงเป็นอนัตตา
+  </div>
+  <div style="color:#4a4a50;font-size:0.78rem;margin-top:4px">— ธรรมนิยาม (Dhammaniyāma)</div>
+</div>
+
+<!-- Sources -->
+<div style="padding:20px;font-size:0.78rem;color:#4a4a50">
+  <strong>แหล่งอ้างอิง:</strong>
+  <a href="https://th.wikipedia.org/wiki/ไตรลักษณ์" target="_blank" style="color:#c8a850;margin:0 4px">Wikipedia</a> |
+  <a href="https://rb-thailand.org/three-characteristics/" target="_blank" style="color:#c8a850;margin:0 4px">RB-Thailand</a> |
+  <a href="https://thaihealthlife.com/ไตรลักษณ์/" target="_blank" style="color:#c8a850;margin:0 4px">ThaiHealthLife</a> |
+  <a href="https://www.nirvanattain.com/" target="_blank" style="color:#c8a850;margin:0 4px">NirvanaAttain</a> |
+  <a href="https://www.sophonja.com/triluksana.html" target="_blank" style="color:#c8a850;margin:0 4px">Sophonja</a>
+</div>
+
+</div>
+
+<div class="footer">
+  ไตรลักษณ์ Visual Guide | Boom Oracle | April 2026<br>
+  <a href="index.html">Boom Tools</a>
+</div>
+</body>
+</html>
