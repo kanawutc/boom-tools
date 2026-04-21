@@ -1,0 +1,2325 @@
+<!DOCTYPE html>
+<html lang="th">
+<head><script src="auth.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>License Application Guide — PEXX Model | Boom Oracle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-0: #0a0608;
+    --bg-1: #120a0d;
+    --bg-2: #1a0f13;
+    --bg-3: #241419;
+    --bg-4: #2e1a20;
+    --fire-1: #ff3d00;
+    --fire-2: #ff6b1a;
+    --fire-3: #ffa540;
+    --fire-4: #ffd166;
+    --ember: #ff2d55;
+    --gold: #ffb340;
+    --ink-0: #ffffff;
+    --ink-1: #f4e8d8;
+    --ink-2: #c8b8a8;
+    --ink-3: #8a7868;
+    --ink-4: #5a4d42;
+    --ok: #4ade80;
+    --warn: #fbbf24;
+    --danger: #f87171;
+    --au: #00843d;
+    --us: #0a3161;
+    --line: rgba(255, 165, 64, 0.12);
+    --line-hot: rgba(255, 61, 0, 0.35);
+    --glass: rgba(255, 255, 255, 0.03);
+    --glass-hot: rgba(255, 107, 26, 0.06);
+    --shadow-fire: 0 30px 80px -20px rgba(255, 61, 0, 0.25);
+    --shadow-deep: 0 40px 100px -30px rgba(0, 0, 0, 0.8);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', 'Noto Sans Thai', -apple-system, sans-serif;
+    background: var(--bg-0);
+    color: var(--ink-1);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 0%, rgba(255, 61, 0, 0.12), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(255, 45, 85, 0.08), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 165, 64, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 165, 64, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+    mask-image: radial-gradient(circle at center, black, transparent 80%);
+  }
+  .wrap { position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; padding: 0 28px; }
+
+  /* Hero */
+  header.hero { padding: 70px 0 50px; }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--fire-3);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    padding: 8px 14px;
+    border: 1px solid var(--line-hot);
+    border-radius: 999px;
+    background: var(--glass-hot);
+  }
+  .brand .flame { animation: flicker 2.4s ease-in-out infinite; }
+  @keyframes flicker {
+    0%, 100% { transform: scale(1) rotate(-2deg); opacity: 1; }
+    50% { transform: scale(1.08) rotate(2deg); opacity: 0.85; }
+  }
+  h1 {
+    font-size: clamp(42px, 7vw, 84px);
+    font-weight: 900;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--ink-0) 0%, var(--fire-3) 40%, var(--fire-1) 70%, var(--ember) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  h1 .accent {
+    display: block;
+    font-size: 0.3em;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    background: none;
+    -webkit-text-fill-color: var(--ink-3);
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    font-size: 19px;
+    color: var(--ink-2);
+    max-width: 780px;
+    margin-bottom: 36px;
+  }
+
+  /* Quick compare */
+  .quick-compare {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 40px;
+  }
+  .qc {
+    padding: 24px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: linear-gradient(180deg, var(--glass-hot), transparent);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .qc:hover { transform: translateY(-4px); border-color: var(--line-hot); }
+  .qc .flag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: var(--bg-3);
+    display: inline-block;
+    margin-bottom: 14px;
+    color: var(--fire-3);
+  }
+  .qc h3 { font-size: 18px; font-weight: 700; color: var(--ink-0); margin-bottom: 4px; }
+  .qc .sub { font-size: 13px; color: var(--ink-3); margin-bottom: 18px; }
+  .qc .row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .qc .row:last-child { border-bottom: none; }
+  .qc .row .l { color: var(--ink-3); }
+  .qc .row .r { color: var(--fire-3); font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+
+  /* Sections */
+  section.block {
+    padding: 60px 0;
+    border-top: 1px solid var(--line);
+  }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--fire-2);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--fire-2);
+  }
+  h2 {
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 14px;
+    color: var(--ink-0);
+    line-height: 1.1;
+  }
+  h2 .hl { color: var(--fire-3); }
+  h2 .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55em;
+    color: var(--fire-2);
+    margin-right: 12px;
+    opacity: 0.6;
+  }
+  .section-intro {
+    font-size: 17px;
+    color: var(--ink-2);
+    max-width: 720px;
+    margin-bottom: 36px;
+  }
+
+  /* License detail block */
+  .license-box {
+    padding: 40px;
+    border-radius: 22px;
+    border: 1px solid var(--line-hot);
+    background: linear-gradient(160deg, var(--bg-2), var(--bg-1));
+    box-shadow: var(--shadow-deep);
+    margin-top: 28px;
+  }
+  .license-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 28px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .license-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    font-size: 28px;
+    flex-shrink: 0;
+    background: linear-gradient(145deg, var(--fire-1), var(--ember));
+    box-shadow: 0 10px 30px -10px var(--fire-1);
+  }
+  .license-header .t {
+    flex: 1;
+  }
+  .license-header h3 {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--ink-0);
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+  .license-header .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .license-header .pill {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: var(--bg-3);
+    color: var(--ink-2);
+    border: 1px solid var(--line);
+  }
+  .license-header .pill.hot {
+    background: var(--glass-hot);
+    color: var(--fire-3);
+    border-color: var(--line-hot);
+  }
+
+  /* Fee cards */
+  .fee-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .fee {
+    padding: 18px;
+    border-radius: 12px;
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+  }
+  .fee .k {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-3);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .fee .v {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--fire-3);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .fee .v.free { color: var(--ok); }
+  .fee .v.warn { color: var(--warn); }
+  .fee .v.danger { color: var(--danger); }
+  .fee .sub {
+    font-size: 12px;
+    color: var(--ink-3);
+    margin-top: 4px;
+  }
+
+  /* Steps */
+  .steps-list {
+    counter-reset: step;
+    margin-top: 20px;
+  }
+  .slist-item {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 20px;
+    padding: 22px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .slist-item:last-child { border-bottom: none; }
+  .slist-num {
+    counter-increment: step;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    background: var(--bg-3);
+    border: 1px solid var(--line-hot);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--fire-3);
+  }
+  .slist-num::before { content: counter(step, decimal-leading-zero); }
+  .slist-body h4 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink-0);
+    margin-bottom: 6px;
+  }
+  .slist-body p {
+    font-size: 14.5px;
+    color: var(--ink-2);
+    line-height: 1.65;
+  }
+  .slist-body .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .slist-body .tag {
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 3px 8px;
+    border-radius: 5px;
+    background: rgba(255, 165, 64, 0.08);
+    color: var(--fire-4);
+    border: 1px solid rgba(255, 165, 64, 0.2);
+  }
+  .slist-body .tag.ok {
+    background: rgba(74, 222, 128, 0.08);
+    color: var(--ok);
+    border-color: rgba(74, 222, 128, 0.2);
+  }
+  .slist-body .tag.warn {
+    background: rgba(251, 191, 36, 0.08);
+    color: var(--warn);
+    border-color: rgba(251, 191, 36, 0.2);
+  }
+
+  /* Requirements */
+  .req-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  .req-card {
+    padding: 20px;
+    border-radius: 12px;
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+  }
+  .req-card h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--fire-3);
+    margin-bottom: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .req-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .req-card li {
+    font-size: 14px;
+    color: var(--ink-2);
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .req-card li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--fire-2);
+  }
+  .req-card li b { color: var(--ink-0); font-weight: 600; }
+
+  /* Timeline chart */
+  .timeline {
+    margin-top: 28px;
+    padding: 32px;
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    background: var(--bg-1);
+  }
+  .tl-row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 18px;
+  }
+  .tl-row:last-child { margin-bottom: 0; }
+  .tl-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-1);
+  }
+  .tl-label .sub {
+    display: block;
+    font-size: 11px;
+    color: var(--ink-3);
+    margin-top: 2px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .tl-bar {
+    position: relative;
+    height: 36px;
+    background: var(--bg-3);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .tl-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--fire-1), var(--fire-3));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--bg-0);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Enhanced Timeline */
+  .tl-v2 {
+    margin-top: 28px;
+    padding: 36px;
+    border-radius: 20px;
+    border: 1px solid var(--line-hot);
+    background: linear-gradient(160deg, var(--bg-2), var(--bg-1));
+    box-shadow: var(--shadow-deep);
+  }
+  .tl-header {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 24px;
+    align-items: end;
+    padding-bottom: 14px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid var(--line);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .tl-scale {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    font-size: 10px;
+    position: relative;
+  }
+  .tl-scale span {
+    text-align: center;
+    color: var(--ink-4);
+    border-left: 1px dashed rgba(255, 165, 64, 0.08);
+    padding-left: 4px;
+  }
+  .tl-scale span:first-child { border-left: none; }
+  .tl-block {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 24px;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px dashed rgba(255, 165, 64, 0.08);
+  }
+  .tl-block:last-child { border-bottom: none; }
+  .tl-block-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink-1);
+  }
+  .tl-block-label .sub {
+    display: block;
+    font-size: 11px;
+    color: var(--ink-3);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 400;
+    margin-top: 2px;
+  }
+  .tl-chart {
+    position: relative;
+    height: 34px;
+    background: var(--bg-3);
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+  }
+  .tl-seg {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--bg-0);
+    border-right: 1px solid rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .tl-seg:last-child { border-right: none; }
+  .tl-seg.prep { background: linear-gradient(135deg, #6b46c1, #9333ea); color: #fff; }
+  .tl-seg.docs { background: linear-gradient(135deg, #0ea5e9, #06b6d4); color: #fff; }
+  .tl-seg.submit { background: linear-gradient(135deg, var(--fire-2), var(--fire-3)); }
+  .tl-seg.review { background: linear-gradient(135deg, var(--fire-1), var(--ember)); color: #fff; }
+  .tl-seg.ops { background: linear-gradient(135deg, #16a34a, #4ade80); color: #0a0608; }
+  .tl-seg.state { background: repeating-linear-gradient(45deg, #991b1b, #991b1b 6px, #7f1d1d 6px, #7f1d1d 12px); color: #fff; }
+
+  .tl-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+  .tl-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--ink-2);
+  }
+  .tl-legend-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+  }
+  .tl-legend-dot.prep { background: linear-gradient(135deg, #6b46c1, #9333ea); }
+  .tl-legend-dot.docs { background: linear-gradient(135deg, #0ea5e9, #06b6d4); }
+  .tl-legend-dot.submit { background: linear-gradient(135deg, var(--fire-2), var(--fire-3)); }
+  .tl-legend-dot.review { background: linear-gradient(135deg, var(--fire-1), var(--ember)); }
+  .tl-legend-dot.ops { background: linear-gradient(135deg, #16a34a, #4ade80); }
+  .tl-legend-dot.state { background: repeating-linear-gradient(45deg, #991b1b, #991b1b 4px, #7f1d1d 4px, #7f1d1d 8px); }
+
+  /* Phase detail cards */
+  .phase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .phase-card {
+    padding: 22px;
+    border-radius: 14px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--fire-2);
+    position: relative;
+  }
+  .phase-card .phase-num {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 24px;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--fire-2);
+    opacity: 0.4;
+  }
+  .phase-card h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink-0);
+    margin-bottom: 6px;
+  }
+  .phase-card .duration {
+    font-size: 12px;
+    color: var(--fire-3);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .phase-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .phase-card li {
+    font-size: 13px;
+    color: var(--ink-2);
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.55;
+  }
+  .phase-card li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--fire-2);
+  }
+
+  /* Scenario cards */
+  .scenario-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+    margin-top: 32px;
+  }
+  .scenario {
+    padding: 26px;
+    border-radius: 16px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+  .scenario.best { border-left: 3px solid var(--ok); }
+  .scenario.real { border-left: 3px solid var(--warn); }
+  .scenario.worst { border-left: 3px solid var(--danger); }
+  .scenario .badge {
+    display: inline-block;
+    padding: 3px 9px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-radius: 5px;
+    margin-bottom: 12px;
+  }
+  .scenario.best .badge { background: rgba(74, 222, 128, 0.12); color: var(--ok); }
+  .scenario.real .badge { background: rgba(251, 191, 36, 0.12); color: var(--warn); }
+  .scenario.worst .badge { background: rgba(248, 113, 113, 0.12); color: var(--danger); }
+  .scenario h4 {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--ink-0);
+    margin-bottom: 4px;
+  }
+  .scenario .big-time {
+    font-size: 34px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 14px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .scenario.best .big-time { color: var(--ok); }
+  .scenario.real .big-time { color: var(--warn); }
+  .scenario.worst .big-time { color: var(--danger); }
+  .scenario p {
+    font-size: 13.5px;
+    color: var(--ink-2);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .scenario .checklist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .scenario .checklist li {
+    font-size: 12.5px;
+    color: var(--ink-2);
+    padding-left: 18px;
+    position: relative;
+  }
+  .scenario .checklist li::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .scenario.best .checklist li::before { content: '✓'; color: var(--ok); }
+  .scenario.real .checklist li::before { content: '~'; color: var(--warn); }
+  .scenario.worst .checklist li::before { content: '✗'; color: var(--danger); }
+
+  /* Bottleneck box */
+  .bottleneck {
+    margin-top: 24px;
+    padding: 24px;
+    border-radius: 14px;
+    background: linear-gradient(145deg, rgba(248, 113, 113, 0.06), transparent);
+    border: 1px solid rgba(248, 113, 113, 0.2);
+  }
+  .bottleneck h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--danger);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+  }
+  .bottleneck-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  .bl-item {
+    padding: 14px;
+    border-radius: 10px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+  }
+  .bl-item .delay {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--danger);
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: 0.08em;
+  }
+  .bl-item .cause {
+    font-size: 13.5px;
+    color: var(--ink-1);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .bl-item .fix {
+    font-size: 12px;
+    color: var(--ink-3);
+    line-height: 1.5;
+  }
+
+  /* Parallel execution */
+  .parallel-box {
+    margin-top: 28px;
+    padding: 30px;
+    border-radius: 18px;
+    background: linear-gradient(145deg, var(--bg-2), var(--bg-1));
+    border: 1px solid var(--line-hot);
+  }
+  .parallel-box h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--fire-3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 18px;
+  }
+  .parallel-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 18px;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .parallel-row:last-child { border-bottom: none; }
+  .parallel-row .week {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--fire-3);
+    letter-spacing: 0.05em;
+  }
+  .parallel-row .tasks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .parallel-row .task {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+    color: var(--ink-1);
+  }
+  .parallel-row .task.au { border-color: rgba(0, 132, 61, 0.4); color: #4ade80; }
+  .parallel-row .task.us { border-color: rgba(10, 49, 97, 0.4); color: #60a5fa; }
+  .parallel-row .task.infra { border-color: var(--line-hot); color: var(--fire-3); }
+
+  /* Total cost summary */
+  .total-cost {
+    margin-top: 36px;
+    padding: 40px;
+    border-radius: 22px;
+    border: 1px solid var(--line-hot);
+    background: linear-gradient(145deg, rgba(255, 61, 0, 0.08), rgba(255, 107, 26, 0.02));
+    position: relative;
+    overflow: hidden;
+  }
+  .total-cost::before {
+    content: '$';
+    position: absolute;
+    top: -40px;
+    right: -20px;
+    font-size: 280px;
+    font-weight: 900;
+    color: rgba(255, 107, 26, 0.04);
+    line-height: 1;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .total-cost h3 {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--ink-0);
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .cost-breakdown {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .cb-item {
+    padding: 20px;
+    border-radius: 12px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+  }
+  .cb-item .tier {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 8px;
+  }
+  .cb-item .amount {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--fire-3);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .cb-item .desc {
+    font-size: 13px;
+    color: var(--ink-2);
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+  .cb-item.minimum .amount { color: var(--ok); }
+  .cb-item.realistic .amount { color: var(--fire-3); }
+  .cb-item.fullscale .amount { color: var(--danger); }
+
+  /* Warning box */
+  .warn-box {
+    padding: 24px;
+    border-radius: 14px;
+    background: rgba(248, 113, 113, 0.06);
+    border: 1px solid rgba(248, 113, 113, 0.3);
+    border-left: 3px solid var(--danger);
+    margin-top: 24px;
+  }
+  .warn-box .title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--danger);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .warn-box p {
+    font-size: 14.5px;
+    color: var(--ink-1);
+    line-height: 1.65;
+  }
+
+  .tip-box {
+    padding: 24px;
+    border-radius: 14px;
+    background: rgba(74, 222, 128, 0.06);
+    border: 1px solid rgba(74, 222, 128, 0.3);
+    border-left: 3px solid var(--ok);
+    margin-top: 24px;
+  }
+  .tip-box .title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ok);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tip-box p {
+    font-size: 14.5px;
+    color: var(--ink-1);
+    line-height: 1.65;
+  }
+
+  /* Sequence */
+  .sequence {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .seq-card {
+    padding: 24px;
+    border-radius: 14px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    position: relative;
+  }
+  .seq-card .phase {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--fire-2);
+    letter-spacing: 0.15em;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  .seq-card h4 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink-0);
+    margin-bottom: 8px;
+  }
+  .seq-card .time {
+    font-size: 13px;
+    color: var(--fire-3);
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 14px;
+  }
+  .seq-card .desc {
+    font-size: 14px;
+    color: var(--ink-2);
+    line-height: 1.5;
+  }
+
+  /* Sources */
+  .sources {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .source {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--bg-1);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .source:hover { border-color: var(--line-hot); transform: translateY(-2px); }
+  .source .i { width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; background: var(--glass-hot); font-size: 14px; }
+  .source .t { font-size: 13px; font-weight: 600; color: var(--ink-1); }
+  .source .u { font-size: 11px; color: var(--ink-3); font-family: 'JetBrains Mono', monospace; }
+
+  footer {
+    padding: 50px 0 36px;
+    text-align: center;
+    border-top: 1px solid var(--line);
+    margin-top: 40px;
+  }
+  footer .flame { font-size: 36px; display: block; margin-bottom: 14px; animation: flicker 2.4s ease-in-out infinite; }
+  footer p { color: var(--ink-3); font-size: 13px; margin-bottom: 4px; }
+  footer .sig { font-family: 'JetBrains Mono', monospace; color: var(--fire-3); font-size: 12px; letter-spacing: 0.1em; }
+
+  @media (max-width: 840px) {
+    .quick-compare { grid-template-columns: 1fr; }
+    .req-grid { grid-template-columns: 1fr; }
+    .tl-row { grid-template-columns: 1fr; gap: 8px; }
+    .tl-label { font-size: 13px; }
+    .license-header { flex-direction: column; align-items: flex-start; gap: 14px; }
+    .license-box { padding: 24px; }
+    .slist-item { grid-template-columns: 44px 1fr; gap: 14px; }
+    .total-cost::before { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="brand"><span class="flame">🔥</span> BOOM ORACLE · LICENSE RESEARCH</div>
+  <div style="margin-bottom:24px; display:flex; gap:10px; flex-wrap:wrap;">
+    <a href="/" style="padding:8px 16px; background:var(--bg-2); border:1px solid var(--line); border-radius:8px; color:var(--ink-2); text-decoration:none; font-size:13px; font-weight:600;">📊 Market Research</a>
+    <a href="/licenses.html" style="padding:8px 16px; background:var(--glass-hot); border:1px solid var(--line-hot); border-radius:8px; color:var(--fire-3); text-decoration:none; font-size:13px; font-weight:600;">📋 License Guide</a>
+    <a href="/competitors.html" style="padding:8px 16px; background:var(--bg-2); border:1px solid var(--line); border-radius:8px; color:var(--ink-2); text-decoration:none; font-size:13px; font-weight:600;">🎯 Competitors →</a>
+  </div>
+  <h1>
+    <span class="accent">How to Build a PEXX · License Guide 2026</span>
+    3 Licenses<span style="color:var(--fire-1);">.</span>
+    <span style="color:var(--fire-3);">Full Cost.</span>
+    <span style="color:var(--ember);">Real Steps.</span>
+  </h1>
+  <p class="subtitle">
+    คู่มือขอ license 3 ใบ ที่ PEXX ใช้สร้างธุรกิจ stablecoin banking —
+    <strong style="color:var(--fire-3)">AUSTRAC DCE</strong> +
+    <strong style="color:var(--fire-3)">AUSTRAC Remittance</strong> +
+    <strong style="color:var(--fire-3)">FinCEN MSB</strong> —
+    พร้อมขั้นตอน ค่าใช้จ่ายจริง ระยะเวลา และกับดักที่ต้องระวัง
+  </p>
+
+  <div class="quick-compare">
+    <div class="qc">
+      <span class="flag">AUSTRAC · AU 🇦🇺</span>
+      <h3>Digital Currency Exchange</h3>
+      <div class="sub">สำหรับบริการแลกเปลี่ยน crypto ↔ fiat</div>
+      <div class="row"><span class="l">Gov Fee</span><span class="r" style="color:var(--ok);">FREE</span></div>
+      <div class="row"><span class="l">Compliance</span><span class="r">A$50K–200K</span></div>
+      <div class="row"><span class="l">Processing</span><span class="r">~90 วัน</span></div>
+      <div class="row"><span class="l">Renewal</span><span class="r">ทุก 3 ปี</span></div>
+    </div>
+    <div class="qc">
+      <span class="flag">AUSTRAC · AU 🇦🇺</span>
+      <h3>Independent Remittance</h3>
+      <div class="sub">สำหรับบริการโอนเงินข้ามประเทศ</div>
+      <div class="row"><span class="l">Gov Fee</span><span class="r" style="color:var(--ok);">FREE</span></div>
+      <div class="row"><span class="l">Compliance</span><span class="r">A$30K–100K</span></div>
+      <div class="row"><span class="l">Processing</span><span class="r">≤ 90 วัน</span></div>
+      <div class="row"><span class="l">Renewal</span><span class="r">ทุก 3 ปี</span></div>
+    </div>
+    <div class="qc">
+      <span class="flag">FinCEN · US 🇺🇸</span>
+      <h3>Money Services Business</h3>
+      <div class="sub">Federal registration สำหรับ US market</div>
+      <div class="row"><span class="l">Gov Fee</span><span class="r" style="color:var(--ok);">FREE</span></div>
+      <div class="row"><span class="l">Compliance</span><span class="r">US$20K–80K</span></div>
+      <div class="row"><span class="l">Processing</span><span class="r">~30 นาที*</span></div>
+      <div class="row"><span class="l">Renewal</span><span class="r">ทุก 2 ปี</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 AUSTRAC DCE -->
+<section class="block" id="dce">
+  <div class="eyebrow">01 · AUSTRAC DCE Provider Registration</div>
+  <h2><span class="num">01</span>Digital Currency Exchange<span class="hl"> (Australia)</span></h2>
+  <p class="section-intro">
+    DCE registration คือด่านแรกและถูกที่สุดในโลกสำหรับธุรกิจ crypto
+    — ค่าจดทะเบียน <strong style="color:var(--ok)">ฟรี</strong>
+    แต่ค่าใช้จ่ายจริงอยู่ที่การสร้าง <strong>AML/CTF program</strong> และเอกสาร compliance
+  </p>
+
+  <div class="license-box">
+    <div class="license-header">
+      <div class="license-icon">🪙</div>
+      <div class="t">
+        <h3>AUSTRAC DCE Provider</h3>
+        <div style="font-size:14px; color:var(--ink-2);">Digital Currency Exchange Provider · Registration required to operate legally</div>
+        <div class="meta">
+          <span class="pill hot">🇦🇺 Australia</span>
+          <span class="pill">Free Application</span>
+          <span class="pill">3-Year Renewal</span>
+          <span class="pill">90 Days Processing</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fee-grid">
+      <div class="fee"><div class="k">Registration Fee</div><div class="v free">$0</div><div class="sub">ไม่มีค่าธรรมเนียมรัฐ</div></div>
+      <div class="fee"><div class="k">Legal/Compliance</div><div class="v">A$50-200K</div><div class="sub">AML/CTF program + lawyer</div></div>
+      <div class="fee"><div class="k">Industry Levy</div><div class="v free">$0*</div><div class="sub">ยกเว้นถ้ารายได้ &lt; A$100M</div></div>
+      <div class="fee"><div class="k">Renewal (3y)</div><div class="v free">$0</div><div class="sub">เฉพาะ compliance update</div></div>
+    </div>
+
+    <h4 style="font-size:15px; color:var(--fire-3); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px;">ขั้นตอนการขอ</h4>
+    <div class="steps-list">
+      <div class="slist-item">
+        <div class="slist-num"></div>
+        <div class="slist-body">
+          <h4>ตั้งบริษัทใน Australia</h4>
+          <p>จดทะเบียน <b>Pty Ltd</b> ผ่าน ASIC — ต้องมี ABN (Australian Business Number) + TFN + อย่างน้อย 1 director ที่อยู่ใน AU</p>
+          <div class="tag-row"><span class="tag">ASIC Registration: A$538</span><span class="tag">Agent fee: A$200-500</span></div>
+        </div>
+      </div>
+      <div class="slist-item">
+        <div class="slist-num"></div>
+        <div class="slist-body">
+          <h4>เตรียม AML/CTF Program</h4>
+          <p>สร้าง <b>AML/CTF Program (Part A + Part B)</b> เอกสาร 50-100 หน้า ครอบคลุม customer due diligence, transaction monitoring, reporting obligations, risk assessment</p>
+          <div class="tag-row"><span class="tag">Law firm: A$15-40K</span><span class="tag warn">ระยะเวลา: 4-8 สัปดาห์</span></div>
+        </div>
+      </div>
+      <div class="slist-item">
+        <div class="slist-num"></div>
+        <div class="slist-body">
+          <h4>แต่งตั้ง AML/CTF Compliance Officer</h4>
+          <p>ต้องมี <b>MLRO (Money Laundering Reporting Officer)</b> ที่อยู่ใน AU — responsibility รายงาน suspicious transactions และตรวจสอบภายใน</p>
+          <div class="tag-row"><span class="tag">Salary: A$80-150K/year</span><span class="tag">Part-time option ได้</span></div>
+        </div>
+      </div>
+      <div class="slist-item">
+        <div class="slist-num"></div>
+        <div class="slist-body">
+          <h4>Enrol on AUSTRAC Online</h4>
+          <p>สร้างบัญชีที่ <b>online.austrac.gov.au</b> — ต้องใช้ ABN, director details, UBO (ultimate beneficial owners) ที่ถือ &gt;25%</p>
+          <div class="tag-row"><span class="tag ok">Free</span><span class="tag">ระยะเวลา: 1-2 วัน</span></div>
+        </div>
+      </div>
+      <div class="slist-item">
+        <div class="slist-num"></div>
+        <div class="slist-body">
+          <h4>ยื่น DCE Application</h4>
+          <p>กรอกแบบฟอร์ม <b>DCE Registration Application</b> — ต้องให้ข้อมูลธุรกิจ, products, ownership structure, background check (fit-and-proper) สำหรับ directors/UBOs</p>
+          <div class="tag-row"><span class="tag warn">AUSTRAC review: 30-90 วัน</span><span class="tag">อาจถูกถามเพิ่ม</span></div>
+        </div>
+      </div>
+      <div class="slist-item">
+        <div class="slist-num"></div>
+        <div class="slist-body">
+          <h4>รอการอนุมัติ + เริ่มดำเนินการ</h4>
+          <p>หลังอนุมัติ ได้ <b>DCE Registration Number</b> (เช่น DCE100851583-001) — ต้องรายงานตัว TTR (Threshold Transaction Reports) ทุกธุรกรรม ≥A$10,000 และ SMR (Suspicious Matter Reports)</p>
+          <div class="tag-row"><span class="tag">Ongoing obligations</span><span class="tag warn">Annual compliance report</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="req-grid">
+      <div class="req-card">
+        <h4>✓ สิ่งที่ต้องมี</h4>
+        <ul>
+          <li><b>Pty Ltd company</b> จดทะเบียนใน AU</li>
+          <li><b>ABN + TFN + GST</b> registration</li>
+          <li><b>Director อย่างน้อย 1 คน</b> อยู่ใน AU</li>
+          <li><b>AML/CTF Compliance Officer</b></li>
+          <li><b>Physical address</b> ใน Australia</li>
+          <li><b>AML/CTF Program</b> ที่สมบูรณ์</li>
+          <li><b>ประวัติสะอาด</b> ไม่มี criminal record</li>
+        </ul>
+      </div>
+      <div class="req-card">
+        <h4>⚠ การเปลี่ยนแปลง 2026</h4>
+        <ul>
+          <li>ตั้งแต่ <b>31 มี.ค. 2026</b> VASP expansion</li>
+          <li>ครอบคลุม <b>crypto-to-crypto exchange</b></li>
+          <li>ครอบคลุม <b>digital asset custody</b></li>
+          <li>ครอบคลุม <b>stablecoin issuance</b></li>
+          <li>ถ้ามี turnover &gt; A$10M ต้องขอ <b>AFSL</b> จาก ASIC เพิ่ม</li>
+          <li>กำหนดส่ง AFSL ภายใน <b>30 มิ.ย. 2026</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <div class="title">💡 Boom's Tip</div>
+      <p>
+        DCE registration แบบถูกที่สุด: <b>outsource AML/CTF program</b> ให้ compliance firm ที่มี template พร้อม (เช่น AML House, Arctic Intelligence) จะลดค่าใช้จ่ายเหลือ <b style="color:var(--ok)">A$20-40K</b> แทนที่จะ A$100K+ ถ้าใช้ big law firm
+      </p>
+    </div>
+
+    <!-- ============= EXPANDED: Use Cases ============= -->
+    <h4 style="font-size:18px; font-weight:800; color:var(--ink-0); margin:40px 0 8px 0; letter-spacing:-0.02em;">🎯 ใช้ DCE License ทำอะไรได้บ้าง</h4>
+    <p style="font-size:14px; color:var(--ink-3); margin-bottom:20px;">Services ที่กฎหมาย AUSTRAC ครอบคลุมหลังได้ registration</p>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:14px;">
+      <div style="padding:20px; background:var(--bg-1); border:1px solid var(--line); border-left:3px solid var(--fire-3); border-radius:12px;">
+        <div style="font-size:22px; margin-bottom:10px;">💱</div>
+        <div style="font-size:14.5px; font-weight:700; color:var(--ink-0); margin-bottom:6px;">Crypto ↔ Fiat Exchange</div>
+        <div style="font-size:13px; color:var(--ink-2); line-height:1.55;">รับแลกเปลี่ยน BTC, ETH, USDT, USDC กับ AUD หรือ fiat อื่น ๆ — core business ของ DCE</div>
+      </div>
+      <div style="padding:20px; background:var(--bg-1); border:1px solid var(--line); border-left:3px solid var(--fire-3); border-radius:12px;">
+        <div style="font-size:22px; margin-bottom:10px;">🏦</div>
+        <div style="font-size:14.5px; font-weight:700; color:var(--ink-0); margin-bottom:6px;">OTC Desk Service</div>
+        <div style="font-size:13px; color:var(--ink-2); line-height:1.55;">Over-the-counter trading สำหรับ whales / institutions — order สูงกว่า A$50K ต่อครั้ง</div>
+      </div>
+      <div style="padding:20px; background:var(--bg-1); border:1px solid var(--line); border-left:3px solid var(--fire-3); border-radius:12px;">
+        <div style="font-size:22px; margin-bottom:10px;">🔐</div>
+        <div style="font-size:14.5px; font-weight:700; color:var(--ink-0); margin-bottom:6px;">Custody Wallets (หลัง มี.ค. 2026)</div>
+        <div style="font-size:13px; color:var(--ink-2); line-height:1.55;">เก็บ crypto ให้ลูกค้า (hot/cold wallet) — ต้องรอ VASP expansion มีผล</div>
+      </div>
+      <div style="padding:20px; background:var(--bg-1); border:1px solid var(--line); border-left:3px solid var(--fire-3); border-radius:12px;">
+        <div style="font-size:22px; margin-bottom:10px;">🔄</div>
+        <div style="font-size:14.5px; font-weight:700; color:var(--ink-0); margin-bottom:6px;">Crypto ↔ Crypto Trading</div>
+        <div style="font-size:13px; color:var(--ink-2); line-height:1.55;">BTC → ETH, USDT → USDC (หลัง 31 มี.ค. 2026 ตาม VASP expansion)</div>
+      </div>
+      <div style="padding:20px; background:var(--bg-1); border:1px solid var(--line); border-left:3px solid var(--fire-3); border-radius:12px;">
+        <div style="font-size:22px; margin-bottom:10px;">🪙</div>
+        <div style="font-size:14.5px; font-weight:700; color:var(--ink-0); margin-bottom:6px;">Stablecoin Issuance</div>
+        <div style="font-size:13px; color:var(--ink-2); line-height:1.55;">ออก stablecoin ของตัวเอง (เช่น AUDC) — ต้องใบ DCE + custody + regulatory extras</div>
+      </div>
+      <div style="padding:20px; background:var(--bg-1); border:1px solid var(--line); border-left:3px solid var(--fire-3); border-radius:12px;">
+        <div style="font-size:22px; margin-bottom:10px;">📱</div>
+        <div style="font-size:14.5px; font-weight:700; color:var(--ink-0); margin-bottom:6px;">Crypto Wallet App</div>
+        <div style="font-size:13px; color:var(--ink-2); line-height:1.55;">App รับฝาก/ถอน crypto ของลูกค้า แบบ PEXX — ต้องรวมกับ BaaS partner</div>
+      </div>
+      <div style="padding:20px; background:var(--bg-1); border:1px solid var(--line); border-left:3px solid var(--fire-3); border-radius:12px;">
+        <div style="font-size:22px; margin-bottom:10px;">🎨</div>
+        <div style="font-size:14.5px; font-weight:700; color:var(--ink-0); margin-bottom:6px;">NFT Marketplace</div>
+        <div style="font-size:13px; color:var(--ink-2); line-height:1.55;">ถ้า platform รับชำระเงินด้วย crypto → ต้องมี DCE (ขึ้นอยู่กับ structure)</div>
+      </div>
+      <div style="padding:20px; background:var(--bg-1); border:1px solid var(--line); border-left:3px solid var(--fire-3); border-radius:12px;">
+        <div style="font-size:22px; margin-bottom:10px;">💳</div>
+        <div style="font-size:14.5px; font-weight:700; color:var(--ink-0); margin-bottom:6px;">Crypto Debit Card</div>
+        <div style="font-size:13px; color:var(--ink-2); line-height:1.55;">รูดบัตรด้วย crypto — ต้อง DCE + partnership กับ Visa/MC issuer</div>
+      </div>
+    </div>
+
+    <!-- ============= EXPANDED: Official Contacts ============= -->
+    <h4 style="font-size:18px; font-weight:800; color:var(--ink-0); margin:40px 0 8px 0; letter-spacing:-0.02em;">📞 ติดต่อใคร — Official Regulators</h4>
+    <p style="font-size:14px; color:var(--ink-3); margin-bottom:20px;">หน่วยงานหลักที่ต้องติดต่อทั้ง 2 — AUSTRAC (AML regulator) + ASIC (company registrar)</p>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;" class="req-grid">
+      <div style="padding:26px; background:linear-gradient(145deg, var(--bg-2), var(--bg-1)); border:1px solid var(--line-hot); border-radius:16px; box-shadow:var(--shadow-fire);">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
+          <div style="width:48px; height:48px; border-radius:10px; background:linear-gradient(145deg, #003087, #00843d); display:grid; place-items:center; font-size:22px;">🇦🇺</div>
+          <div>
+            <div style="font-size:17px; font-weight:800; color:var(--ink-0);">AUSTRAC</div>
+            <div style="font-size:12px; color:var(--ink-3); font-family:'JetBrains Mono', monospace;">Australian Transaction Reports & Analysis Centre</div>
+          </div>
+        </div>
+        <div style="font-size:13px; color:var(--ink-2); line-height:1.75; margin-bottom:14px;">AML regulator ของ AU — รับยื่นและตรวจสอบ DCE / Remittance registrations</div>
+
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="padding:10px 14px; background:var(--bg-3); border-radius:8px; font-size:13px;">
+            <div style="font-family:'JetBrains Mono', monospace; font-size:10px; color:var(--fire-3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px;">📧 Email</div>
+            <div style="color:var(--ink-1);">contact@austrac.gov.au</div>
+          </div>
+          <div style="padding:10px 14px; background:var(--bg-3); border-radius:8px; font-size:13px;">
+            <div style="font-family:'JetBrains Mono', monospace; font-size:10px; color:var(--fire-3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px;">☎️ Phone (in AU)</div>
+            <div style="color:var(--ink-1); font-family:'JetBrains Mono', monospace;">1300 021 037</div>
+          </div>
+          <div style="padding:10px 14px; background:var(--bg-3); border-radius:8px; font-size:13px;">
+            <div style="font-family:'JetBrains Mono', monospace; font-size:10px; color:var(--fire-3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px;">🏢 Sydney Office (main)</div>
+            <div style="color:var(--ink-1);">Level 23, 323 Castlereagh Street<br>Haymarket NSW 2000</div>
+          </div>
+          <div style="padding:10px 14px; background:var(--bg-3); border-radius:8px; font-size:13px;">
+            <div style="font-family:'JetBrains Mono', monospace; font-size:10px; color:var(--fire-3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px;">🏛️ Canberra</div>
+            <div style="color:var(--ink-1);">4 National Circuit, Barton ACT 2600</div>
+          </div>
+          <div style="padding:10px 14px; background:var(--bg-3); border-radius:8px; font-size:13px;">
+            <div style="font-family:'JetBrains Mono', monospace; font-size:10px; color:var(--fire-3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px;">🏢 Melbourne</div>
+            <div style="color:var(--ink-1);">Level 27, Tower 2, 727 Collins Street<br>Docklands VIC 3008</div>
+          </div>
+          <div style="padding:10px 14px; background:var(--bg-3); border-radius:8px; font-size:13px;">
+            <div style="font-family:'JetBrains Mono', monospace; font-size:10px; color:var(--fire-3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px;">🌐 Online Portal</div>
+            <div style="color:var(--ink-1);"><a href="https://online.austrac.gov.au" target="_blank" style="color:var(--fire-3); text-decoration:none;">online.austrac.gov.au</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:26px; background:linear-gradient(145deg, var(--bg-2), var(--bg-1)); border:1px solid var(--line-hot); border-radius:16px; box-shadow:var(--shadow-fire);">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
+          <div style="width:48px; height:48px; border-radius:10px; background:linear-gradient(145deg, #002868, #be2625); display:grid; place-items:center; font-size:22px;">🏛️</div>
+          <div>
+            <div style="font-size:17px; font-weight:800; color:var(--ink-0);">ASIC</div>
+            <div style="font-size:12px; color:var(--ink-3); font-family:'JetBrains Mono', monospace;">Australian Securities & Investments Commission</div>
+          </div>
+        </div>
+        <div style="font-size:13px; color:var(--ink-2); line-height:1.75; margin-bottom:14px;">Company registrar ของ AU — จด Pty Ltd + ออก ACN/ABN + issue AFSL</div>
+
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="padding:10px 14px; background:var(--bg-3); border-radius:8px; font-size:13px;">
+            <div style="font-family:'JetBrains Mono', monospace; font-size:10px; color:var(--fire-3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px;">☎️ Phone</div>
+            <div style="color:var(--ink-1); font-family:'JetBrains Mono', monospace;">1300 300 630</div>
+          </div>
+          <div style="padding:10px 14px; background:var(--bg-3); border-radius:8px; font-size:13px;">
+            <div style="font-family:'JetBrains Mono', monospace; font-size:10px; color:var(--fire-3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px;">🌐 Company Registration</div>
+            <div style="color:var(--ink-1);"><a href="https://asic.gov.au" target="_blank" style="color:var(--fire-3); text-decoration:none;">asic.gov.au</a></div>
+          </div>
+          <div style="padding:10px 14px; background:var(--bg-3); border-radius:8px; font-size:13px;">
+            <div style="font-family:'JetBrains Mono', monospace; font-size:10px; color:var(--fire-3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px;">🔢 ABN Registration</div>
+            <div style="color:var(--ink-1);"><a href="https://abr.gov.au" target="_blank" style="color:var(--fire-3); text-decoration:none;">abr.gov.au</a> (Free)</div>
+          </div>
+          <div style="padding:10px 14px; background:var(--bg-3); border-radius:8px; font-size:13px;">
+            <div style="font-family:'JetBrains Mono', monospace; font-size:10px; color:var(--fire-3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px;">💰 Tax / TFN (ATO)</div>
+            <div style="color:var(--ink-1);"><a href="https://ato.gov.au" target="_blank" style="color:var(--fire-3); text-decoration:none;">ato.gov.au</a></div>
+          </div>
+          <div style="padding:10px 14px; background:var(--bg-3); border-radius:8px; font-size:13px; margin-top:6px; background:rgba(251, 191, 36, 0.08); border:1px solid rgba(251, 191, 36, 0.25);">
+            <div style="font-family:'JetBrains Mono', monospace; font-size:10px; color:var(--warn); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px;">⚠️ Fee Reference</div>
+            <div style="color:var(--ink-1); font-size:12px;">Pty Ltd registration: <b style="color:var(--fire-3);">A$538</b> (2025) + annual review fee A$310</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============= EXPANDED: Service Providers Directory ============= -->
+    <h4 style="font-size:18px; font-weight:800; color:var(--ink-0); margin:40px 0 8px 0; letter-spacing:-0.02em;">🏢 Service Providers — บริษัทที่รับจ้างทำ</h4>
+    <p style="font-size:14px; color:var(--ink-3); margin-bottom:20px;">รายชื่อบริษัทที่ให้บริการจริง แบ่งตามประเภทงาน (AML/CTF program, MLRO outsource, company setup)</p>
+
+    <!-- Category 1: AML/CTF Program Writers -->
+    <div style="margin-bottom:28px;">
+      <div style="font-size:13px; font-weight:700; color:var(--fire-3); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+        <span style="width:6px; height:16px; background:var(--fire-2); border-radius:2px;"></span>
+        A. AML/CTF Program Writers · Consultants
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:12px;">
+        <a href="https://amlhouse.com.au" target="_blank" style="text-decoration:none; padding:18px; background:var(--bg-1); border:1px solid var(--line); border-radius:12px; display:block; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--line-hot)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='var(--line)'; this.style.transform='translateY(0)';">
+          <div style="font-size:15px; font-weight:700; color:var(--ink-0); margin-bottom:4px;">AML House 🇦🇺</div>
+          <div style="font-size:11px; color:var(--fire-3); font-family:'JetBrains Mono', monospace; margin-bottom:8px;">amlhouse.com.au</div>
+          <div style="font-size:12.5px; color:var(--ink-2); line-height:1.5;">Template-based AML/CTF programs · ราคาประหยัด · เหมาะกับ startups</div>
+          <div style="margin-top:10px; font-size:11px; color:var(--ok);">💰 A$15-30K · 4-6 weeks</div>
+        </a>
+        <a href="https://arctic-intelligence.com" target="_blank" style="text-decoration:none; padding:18px; background:var(--bg-1); border:1px solid var(--line); border-radius:12px; display:block;" onmouseover="this.style.borderColor='var(--line-hot)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='var(--line)'; this.style.transform='translateY(0)';">
+          <div style="font-size:15px; font-weight:700; color:var(--ink-0); margin-bottom:4px;">Arctic Intelligence 🇦🇺</div>
+          <div style="font-size:11px; color:var(--fire-3); font-family:'JetBrains Mono', monospace; margin-bottom:8px;">arctic-intelligence.com</div>
+          <div style="font-size:12.5px; color:var(--ink-2); line-height:1.5;">Enterprise AML risk assessment platform + consulting · ใช้โดย major banks</div>
+          <div style="margin-top:10px; font-size:11px; color:var(--fire-3);">💰 A$30-80K · Premium tier</div>
+        </a>
+        <a href="https://amlctf.com.au" target="_blank" style="text-decoration:none; padding:18px; background:var(--bg-1); border:1px solid var(--line); border-radius:12px; display:block;" onmouseover="this.style.borderColor='var(--line-hot)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='var(--line)'; this.style.transform='translateY(0)';">
+          <div style="font-size:15px; font-weight:700; color:var(--ink-0); margin-bottom:4px;">AMLCTF.com.au 🇦🇺</div>
+          <div style="font-size:11px; color:var(--fire-3); font-family:'JetBrains Mono', monospace; margin-bottom:8px;">amlctf.com.au</div>
+          <div style="font-size:12.5px; color:var(--ink-2); line-height:1.5;">Digital-first AML/CTF consultants · affordable pricing · online delivery</div>
+          <div style="margin-top:10px; font-size:11px; color:var(--ok);">💰 A$10-25K · เร็ว</div>
+        </a>
+        <a href="https://amlsquare.com" target="_blank" style="text-decoration:none; padding:18px; background:var(--bg-1); border:1px solid var(--line); border-radius:12px; display:block;" onmouseover="this.style.borderColor='var(--line-hot)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='var(--line)'; this.style.transform='translateY(0)';">
+          <div style="font-size:15px; font-weight:700; color:var(--ink-0); margin-bottom:4px;">AML Square 🇦🇺</div>
+          <div style="font-size:11px; color:var(--fire-3); font-family:'JetBrains Mono', monospace; margin-bottom:8px;">amlsquare.com</div>
+          <div style="font-size:12.5px; color:var(--ink-2); line-height:1.5;">Tranche 2 specialist · เน้น legal, real estate, accounting + audit service</div>
+          <div style="margin-top:10px; font-size:11px; color:var(--fire-3);">💰 A$20-50K · Sector-specific</div>
+        </a>
+        <a href="https://ngm.com.au" target="_blank" style="text-decoration:none; padding:18px; background:var(--bg-1); border:1px solid var(--line); border-radius:12px; display:block;" onmouseover="this.style.borderColor='var(--line-hot)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='var(--line)'; this.style.transform='translateY(0)';">
+          <div style="font-size:15px; font-weight:700; color:var(--ink-0); margin-bottom:4px;">NGM Lawyers 🇦🇺</div>
+          <div style="font-size:11px; color:var(--fire-3); font-family:'JetBrains Mono', monospace; margin-bottom:8px;">ngm.com.au</div>
+          <div style="font-size:12.5px; color:var(--ink-2); line-height:1.5;">Specialist crypto / DCE law firm · มี track record กับ AUSTRAC applications</div>
+          <div style="margin-top:10px; font-size:11px; color:var(--fire-3);">💰 A$25-60K · Full legal support</div>
+        </a>
+        <a href="https://proclipseconsulting.com" target="_blank" style="text-decoration:none; padding:18px; background:var(--bg-1); border:1px solid var(--line); border-radius:12px; display:block;" onmouseover="this.style.borderColor='var(--line-hot)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='var(--line)'; this.style.transform='translateY(0)';">
+          <div style="font-size:15px; font-weight:700; color:var(--ink-0); margin-bottom:4px;">Proclipse Consulting 🇦🇺</div>
+          <div style="font-size:11px; color:var(--fire-3); font-family:'JetBrains Mono', monospace; margin-bottom:8px;">proclipseconsulting.com</div>
+          <div style="font-size:12.5px; color:var(--ink-2); line-height:1.5;">End-to-end AUSTRAC compliance · AML/CTF program design + ongoing support</div>
+          <div style="margin-top:10px; font-size:11px; color:var(--fire-3);">💰 A$20-45K · Custom</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Category 2: MLRO / Compliance Officer Outsourcing -->
+    <div style="margin-bottom:28px;">
+      <div style="font-size:13px; font-weight:700; color:var(--fire-3); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+        <span style="width:6px; height:16px; background:var(--fire-2); border-radius:2px;"></span>
+        B. Outsourced MLRO / Compliance Officer
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:12px;">
+        <a href="https://complyfactor.com" target="_blank" style="text-decoration:none; padding:18px; background:var(--bg-1); border:1px solid var(--line); border-radius:12px; display:block;" onmouseover="this.style.borderColor='var(--line-hot)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='var(--line)'; this.style.transform='translateY(0)';">
+          <div style="font-size:15px; font-weight:700; color:var(--ink-0); margin-bottom:4px;">ComplyFactor 🌏</div>
+          <div style="font-size:11px; color:var(--fire-3); font-family:'JetBrains Mono', monospace; margin-bottom:8px;">complyfactor.com</div>
+          <div style="font-size:12.5px; color:var(--ink-2); line-height:1.5;">Outsourced MLRO + Compliance Officer · regulator-approved professionals · global coverage</div>
+          <div style="margin-top:10px; font-size:11px; color:var(--ok);">💰 US$3-8K/mo · Fractional</div>
+        </a>
+        <a href="https://ocorian.com" target="_blank" style="text-decoration:none; padding:18px; background:var(--bg-1); border:1px solid var(--line); border-radius:12px; display:block;" onmouseover="this.style.borderColor='var(--line-hot)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='var(--line)'; this.style.transform='translateY(0)';">
+          <div style="font-size:15px; font-weight:700; color:var(--ink-0); margin-bottom:4px;">Ocorian 🌏</div>
+          <div style="font-size:11px; color:var(--fire-3); font-family:'JetBrains Mono', monospace; margin-bottom:8px;">ocorian.com</div>
+          <div style="font-size:12.5px; color:var(--ink-2); line-height:1.5;">Enterprise AML outsourcing · customer onboarding + transaction monitoring + reporting</div>
+          <div style="margin-top:10px; font-size:11px; color:var(--fire-3);">💰 Premium · Enterprise clients</div>
+        </a>
+        <a href="https://maples.com" target="_blank" style="text-decoration:none; padding:18px; background:var(--bg-1); border:1px solid var(--line); border-radius:12px; display:block;" onmouseover="this.style.borderColor='var(--line-hot)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='var(--line)'; this.style.transform='translateY(0)';">
+          <div style="font-size:15px; font-weight:700; color:var(--ink-0); margin-bottom:4px;">Maples Group 🌏</div>
+          <div style="font-size:11px; color:var(--fire-3); font-family:'JetBrains Mono', monospace; margin-bottom:8px;">maples.com</div>
+          <div style="font-size:12.5px; color:var(--ink-2); line-height:1.5;">MLRO / Deputy MLRO / AMLCO · named professionals · qualified for licensing apps</div>
+          <div style="margin-top:10px; font-size:11px; color:var(--fire-3);">💰 US$5-15K/mo</div>
+        </a>
+        <a href="https://amlincubator.com" target="_blank" style="text-decoration:none; padding:18px; background:var(--bg-1); border:1px solid var(--line); border-radius:12px; display:block;" onmouseover="this.style.borderColor='var(--line-hot)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='var(--line)'; this.style.transform='translateY(0)';">
+          <div style="font-size:15px; font-weight:700; color:var(--ink-0); margin-bottom:4px;">AML Incubator 🇨🇦</div>
+          <div style="font-size:11px; color:var(--fire-3); font-family:'JetBrains Mono', monospace; margin-bottom:8px;">amlincubator.com</div>
+          <div style="font-size:12.5px; color:var(--ink-2); line-height:1.5;">Crypto-focused · fractional CCO/MLRO · เชี่ยวชาญ crypto exchanges</div>
+          <div style="margin-top:10px; font-size:11px; color:var(--ok);">💰 US$2-6K/mo · Startups</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Category 3: Company Registration / Corporate Services -->
+    <div style="margin-bottom:28px;">
+      <div style="font-size:13px; font-weight:700; color:var(--fire-3); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+        <span style="width:6px; height:16px; background:var(--fire-2); border-radius:2px;"></span>
+        C. Pty Ltd Registration · Corporate Services
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:12px;">
+        <a href="https://australia.acclime.com" target="_blank" style="text-decoration:none; padding:18px; background:var(--bg-1); border:1px solid var(--line); border-radius:12px; display:block;" onmouseover="this.style.borderColor='var(--line-hot)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='var(--line)'; this.style.transform='translateY(0)';">
+          <div style="font-size:15px; font-weight:700; color:var(--ink-0); margin-bottom:4px;">Acclime Australia 🇦🇺</div>
+          <div style="font-size:11px; color:var(--fire-3); font-family:'JetBrains Mono', monospace; margin-bottom:8px;">australia.acclime.com</div>
+          <div style="font-size:12.5px; color:var(--ink-2); line-height:1.5;">Full-service: Pty Ltd setup + nominee director + registered office + tax + accounting</div>
+          <div style="margin-top:10px; font-size:11px; color:var(--fire-3);">💰 A$3-8K setup + A$300-800/mo</div>
+        </a>
+        <a href="https://ecompanies.com.au" target="_blank" style="text-decoration:none; padding:18px; background:var(--bg-1); border:1px solid var(--line); border-radius:12px; display:block;" onmouseover="this.style.borderColor='var(--line-hot)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='var(--line)'; this.style.transform='translateY(0)';">
+          <div style="font-size:15px; font-weight:700; color:var(--ink-0); margin-bottom:4px;">eCompanies 🇦🇺</div>
+          <div style="font-size:11px; color:var(--fire-3); font-family:'JetBrains Mono', monospace; margin-bottom:8px;">ecompanies.com.au</div>
+          <div style="font-size:12.5px; color:var(--ink-2); line-height:1.5;">Online Pty Ltd registration · fast setup ภายใน 10 นาที · budget-friendly</div>
+          <div style="margin-top:10px; font-size:11px; color:var(--ok);">💰 A$576 (incl. ASIC fee)</div>
+        </a>
+        <a href="https://patricia.com.au" target="_blank" style="text-decoration:none; padding:18px; background:var(--bg-1); border:1px solid var(--line); border-radius:12px; display:block;" onmouseover="this.style.borderColor='var(--line-hot)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='var(--line)'; this.style.transform='translateY(0)';">
+          <div style="font-size:15px; font-weight:700; color:var(--ink-0); margin-bottom:4px;">Patricia.com.au 🇦🇺</div>
+          <div style="font-size:11px; color:var(--fire-3); font-family:'JetBrains Mono', monospace; margin-bottom:8px;">patricia.com.au</div>
+          <div style="font-size:12.5px; color:var(--ink-2); line-height:1.5;">เชี่ยวชาญการ register ให้ foreigners / non-residents · guide ภาษาอังกฤษชัด</div>
+          <div style="margin-top:10px; font-size:11px; color:var(--ok);">💰 A$600-1,500</div>
+        </a>
+        <a href="https://taxopia.com.au" target="_blank" style="text-decoration:none; padding:18px; background:var(--bg-1); border:1px solid var(--line); border-radius:12px; display:block;" onmouseover="this.style.borderColor='var(--line-hot)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='var(--line)'; this.style.transform='translateY(0)';">
+          <div style="font-size:15px; font-weight:700; color:var(--ink-0); margin-bottom:4px;">Taxopia 🇦🇺</div>
+          <div style="font-size:11px; color:var(--fire-3); font-family:'JetBrains Mono', monospace; margin-bottom:8px;">taxopia.com.au</div>
+          <div style="font-size:12.5px; color:var(--ink-2); line-height:1.5;">Tax + company setup · นิยมสำหรับ non-resident · มี nominee director service</div>
+          <div style="margin-top:10px; font-size:11px; color:var(--fire-3);">💰 A$1-3K setup</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Category 4: Top-Tier Law Firms -->
+    <div style="margin-bottom:28px;">
+      <div style="font-size:13px; font-weight:700; color:var(--fire-3); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+        <span style="width:6px; height:16px; background:var(--fire-2); border-radius:2px;"></span>
+        D. Top-Tier Crypto Law Firms (ถ้ามีงบ + ต้องการ high-stakes deal)
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:12px;">
+        <div style="padding:18px; background:var(--bg-1); border:1px solid var(--line); border-radius:12px;">
+          <div style="font-size:15px; font-weight:700; color:var(--ink-0); margin-bottom:4px;">K&amp;L Gates 🇦🇺</div>
+          <div style="font-size:11px; color:var(--fire-3); font-family:'JetBrains Mono', monospace; margin-bottom:8px;">klgates.com</div>
+          <div style="font-size:12.5px; color:var(--ink-2); line-height:1.5;">Global law firm · dedicated digital assets team · AUSTRAC + ASIC experts</div>
+          <div style="margin-top:10px; font-size:11px; color:var(--danger);">💰 A$100-300K · Premium</div>
+        </div>
+        <div style="padding:18px; background:var(--bg-1); border:1px solid var(--line); border-radius:12px;">
+          <div style="font-size:15px; font-weight:700; color:var(--ink-0); margin-bottom:4px;">Gilbert + Tobin 🇦🇺</div>
+          <div style="font-size:11px; color:var(--fire-3); font-family:'JetBrains Mono', monospace; margin-bottom:8px;">gtlaw.com.au</div>
+          <div style="font-size:12.5px; color:var(--ink-2); line-height:1.5;">Top-3 AU firm · fintech + crypto specialists · advises major exchanges</div>
+          <div style="margin-top:10px; font-size:11px; color:var(--danger);">💰 A$150-400K</div>
+        </div>
+        <div style="padding:18px; background:var(--bg-1); border:1px solid var(--line); border-radius:12px;">
+          <div style="font-size:15px; font-weight:700; color:var(--ink-0); margin-bottom:4px;">Piper Alderman 🇦🇺</div>
+          <div style="font-size:11px; color:var(--fire-3); font-family:'JetBrains Mono', monospace; margin-bottom:8px;">piperalderman.com.au</div>
+          <div style="font-size:12.5px; color:var(--ink-2); line-height:1.5;">Mid-tier · blockchain practice · suited for growth-stage crypto companies</div>
+          <div style="margin-top:10px; font-size:11px; color:var(--fire-3);">💰 A$60-150K</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category 5: AML Software -->
+    <div style="margin-bottom:28px;">
+      <div style="font-size:13px; font-weight:700; color:var(--fire-3); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+        <span style="width:6px; height:16px; background:var(--fire-2); border-radius:2px;"></span>
+        E. AML/KYC Software (ต้องมีหลังได้ license)
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px;">
+        <div style="padding:16px; background:var(--bg-1); border:1px solid var(--line); border-radius:10px;">
+          <div style="font-size:14px; font-weight:700; color:var(--ink-0);">ComplyAdvantage</div>
+          <div style="font-size:11px; color:var(--ink-3);">complyadvantage.com</div>
+          <div style="font-size:12px; color:var(--ink-2); margin-top:6px;">PEP/sanctions screening · AI transaction monitoring</div>
+          <div style="font-size:11px; color:var(--fire-3); margin-top:6px;">US$20-80K/year</div>
+        </div>
+        <div style="padding:16px; background:var(--bg-1); border:1px solid var(--line); border-radius:10px;">
+          <div style="font-size:14px; font-weight:700; color:var(--ink-0);">Chainalysis</div>
+          <div style="font-size:11px; color:var(--ink-3);">chainalysis.com</div>
+          <div style="font-size:12px; color:var(--ink-2); margin-top:6px;">Blockchain analytics · required for crypto AML</div>
+          <div style="font-size:11px; color:var(--fire-3); margin-top:6px;">US$30-100K/year</div>
+        </div>
+        <div style="padding:16px; background:var(--bg-1); border:1px solid var(--line); border-radius:10px;">
+          <div style="font-size:14px; font-weight:700; color:var(--ink-0);">Sumsub</div>
+          <div style="font-size:11px; color:var(--ink-3);">sumsub.com</div>
+          <div style="font-size:12px; color:var(--ink-2); margin-top:6px;">KYC · document verification · biometric</div>
+          <div style="font-size:11px; color:var(--fire-3); margin-top:6px;">$1.35-5/verification</div>
+        </div>
+        <div style="padding:16px; background:var(--bg-1); border:1px solid var(--line); border-radius:10px;">
+          <div style="font-size:14px; font-weight:700; color:var(--ink-0);">TRM Labs</div>
+          <div style="font-size:11px; color:var(--ink-3);">trmlabs.com</div>
+          <div style="font-size:12px; color:var(--ink-2); margin-top:6px;">Crypto compliance · wallet screening</div>
+          <div style="font-size:11px; color:var(--fire-3); margin-top:6px;">US$25-80K/year</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recommended Stack -->
+    <div style="margin-top:28px; padding:30px; border-radius:18px; background:linear-gradient(145deg, rgba(255, 107, 26, 0.08), rgba(255, 165, 64, 0.02)); border:1px solid var(--line-hot);">
+      <h4 style="font-size:17px; font-weight:800; color:var(--fire-3); margin-bottom:14px; text-transform:uppercase; letter-spacing:0.1em;">🎯 Boom's Recommended Stack — Budget ต่ำสุด</h4>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:14px;">
+        <div style="padding:14px; background:var(--bg-2); border-radius:10px;">
+          <div style="font-size:11px; color:var(--ink-3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px;">Company Setup</div>
+          <div style="font-size:14px; font-weight:700; color:var(--ink-0);">eCompanies + nominee director</div>
+          <div style="font-size:12px; color:var(--ok); margin-top:6px; font-family:'JetBrains Mono', monospace;">~A$2,500</div>
+        </div>
+        <div style="padding:14px; background:var(--bg-2); border-radius:10px;">
+          <div style="font-size:11px; color:var(--ink-3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px;">AML/CTF Program</div>
+          <div style="font-size:14px; font-weight:700; color:var(--ink-0);">AML House (template-based)</div>
+          <div style="font-size:12px; color:var(--ok); margin-top:6px; font-family:'JetBrains Mono', monospace;">~A$20,000</div>
+        </div>
+        <div style="padding:14px; background:var(--bg-2); border-radius:10px;">
+          <div style="font-size:11px; color:var(--ink-3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px;">MLRO (Part-time)</div>
+          <div style="font-size:14px; font-weight:700; color:var(--ink-0);">AML Incubator (fractional)</div>
+          <div style="font-size:12px; color:var(--ok); margin-top:6px; font-family:'JetBrains Mono', monospace;">~US$30K/yr</div>
+        </div>
+        <div style="padding:14px; background:var(--bg-2); border-radius:10px;">
+          <div style="font-size:11px; color:var(--ink-3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px;">AML Software</div>
+          <div style="font-size:14px; font-weight:700; color:var(--ink-0);">Sumsub + ComplyAdvantage</div>
+          <div style="font-size:12px; color:var(--ok); margin-top:6px; font-family:'JetBrains Mono', monospace;">~US$25K/yr</div>
+        </div>
+      </div>
+      <div style="margin-top:20px; padding:14px 18px; background:var(--bg-3); border-radius:10px; border:1px solid var(--line);">
+        <div style="font-size:12px; color:var(--ink-3); letter-spacing:0.08em; text-transform:uppercase;">รวม Setup (Year 1)</div>
+        <div style="font-size:28px; font-weight:900; color:var(--fire-3); letter-spacing:-0.02em; font-family:'JetBrains Mono', monospace; margin-top:4px;">~A$85,000 (~US$55K)</div>
+      </div>
+    </div>
+
+    <!-- Step-by-step Contact Playbook -->
+    <h4 style="font-size:18px; font-weight:800; color:var(--ink-0); margin:40px 0 8px 0; letter-spacing:-0.02em;">📋 Contact Playbook — ติดต่อลำดับยังไง</h4>
+    <p style="font-size:14px; color:var(--ink-3); margin-bottom:20px;">ลำดับการโทร/อีเมลในแต่ละ week เพื่อให้งานขยับเร็วที่สุด</p>
+
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <div style="display:grid; grid-template-columns:80px 1fr; gap:16px; padding:18px; background:var(--bg-1); border:1px solid var(--line); border-left:3px solid var(--fire-2); border-radius:10px;">
+        <div style="font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--fire-3); font-size:13px;">Week 1</div>
+        <div>
+          <div style="font-size:14px; font-weight:700; color:var(--ink-0); margin-bottom:4px;">📧 ติดต่อ compliance consultant</div>
+          <div style="font-size:13px; color:var(--ink-2); line-height:1.55;">Email AML House, AML Incubator, และ Proclipse พร้อมกัน — ขอ quote + สอบถาม timeline. เลือก 1 ที่ตอบเร็วและราคา reasonable</div>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:80px 1fr; gap:16px; padding:18px; background:var(--bg-1); border:1px solid var(--line); border-left:3px solid var(--fire-2); border-radius:10px;">
+        <div style="font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--fire-3); font-size:13px;">Week 1</div>
+        <div>
+          <div style="font-size:14px; font-weight:700; color:var(--ink-0); margin-bottom:4px;">🌐 จด Pty Ltd ผ่าน eCompanies / Patricia</div>
+          <div style="font-size:13px; color:var(--ink-2); line-height:1.55;">ใช้เวลา 10-30 นาที online — ต้องมี resident director ก่อน (จ้าง nominee ได้ผ่าน Acclime)</div>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:80px 1fr; gap:16px; padding:18px; background:var(--bg-1); border:1px solid var(--line); border-left:3px solid var(--fire-2); border-radius:10px;">
+        <div style="font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--fire-3); font-size:13px;">Week 2</div>
+        <div>
+          <div style="font-size:14px; font-weight:700; color:var(--ink-0); margin-bottom:4px;">🏛️ ขอ ABN + TFN + GST</div>
+          <div style="font-size:13px; color:var(--ink-2); line-height:1.55;">ฟรีที่ <b style="color:var(--fire-3)">abr.gov.au</b> (ABN) + <b style="color:var(--fire-3)">ato.gov.au</b> (TFN/GST) — ใช้เวลา 10-20 วันอนุมัติ</div>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:80px 1fr; gap:16px; padding:18px; background:var(--bg-1); border:1px solid var(--line); border-left:3px solid var(--fire-2); border-radius:10px;">
+        <div style="font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--fire-3); font-size:13px;">Week 3</div>
+        <div>
+          <div style="font-size:14px; font-weight:700; color:var(--ink-0); margin-bottom:4px;">☎️ โทร AUSTRAC สอบถาม</div>
+          <div style="font-size:13px; color:var(--ink-2); line-height:1.55;">โทร <b style="color:var(--fire-3)">1300 021 037</b> หรืออีเมล <b style="color:var(--fire-3)">contact@austrac.gov.au</b> — สอบถาม specific questions ที่ compliance consultant แนะนำให้ถาม</div>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:80px 1fr; gap:16px; padding:18px; background:var(--bg-1); border:1px solid var(--line); border-left:3px solid var(--fire-2); border-radius:10px;">
+        <div style="font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--fire-3); font-size:13px;">Week 3-4</div>
+        <div>
+          <div style="font-size:14px; font-weight:700; color:var(--ink-0); margin-bottom:4px;">👔 เซ็น MLRO outsource</div>
+          <div style="font-size:13px; color:var(--ink-2); line-height:1.55;">ContactMaples Group หรือ ComplyFactor — ขอ CV ของ MLRO candidate + ต่อรอง monthly retainer</div>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:80px 1fr; gap:16px; padding:18px; background:var(--bg-1); border:1px solid var(--line); border-left:3px solid var(--fire-2); border-radius:10px;">
+        <div style="font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--fire-3); font-size:13px;">Week 5-10</div>
+        <div>
+          <div style="font-size:14px; font-weight:700; color:var(--ink-0); margin-bottom:4px;">📄 เขียน AML/CTF Program</div>
+          <div style="font-size:13px; color:var(--ink-2); line-height:1.55;">Consultant จะทยอยส่ง draft — review + feedback + finalize. พร้อมกันตั้ง Sumsub + ComplyAdvantage accounts</div>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:80px 1fr; gap:16px; padding:18px; background:var(--bg-1); border:1px solid var(--line); border-left:3px solid var(--fire-2); border-radius:10px;">
+        <div style="font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--fire-3); font-size:13px;">Week 11</div>
+        <div>
+          <div style="font-size:14px; font-weight:700; color:var(--ink-0); margin-bottom:4px;">📨 ยื่น DCE Application</div>
+          <div style="font-size:13px; color:var(--ink-2); line-height:1.55;">Login <b style="color:var(--fire-3)">online.austrac.gov.au</b> → upload AML/CTF program + director details + UBO info → submit</div>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:80px 1fr; gap:16px; padding:18px; background:var(--bg-1); border:1px solid var(--line); border-left:3px solid var(--fire-2); border-radius:10px;">
+        <div style="font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--fire-3); font-size:13px;">Week 12-24</div>
+        <div>
+          <div style="font-size:14px; font-weight:700; color:var(--ink-0); margin-bottom:4px;">⏳ AUSTRAC Review + RFI</div>
+          <div style="font-size:13px; color:var(--ink-2); line-height:1.55;">AUSTRAC อาจ email ขอข้อมูลเพิ่ม (RFI) — ตอบภายใน 14 วัน. ถ้าไม่ RFI = อนุมัติใน ~90 วัน</div>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:80px 1fr; gap:16px; padding:18px; background:var(--bg-1); border:1px solid var(--line); border-left:3px solid var(--ok); border-radius:10px;">
+        <div style="font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--ok); font-size:13px;">Week 25+</div>
+        <div>
+          <div style="font-size:14px; font-weight:700; color:var(--ink-0); margin-bottom:4px;">✅ ได้ DCE Number — เริ่มให้บริการ</div>
+          <div style="font-size:13px; color:var(--ink-2); line-height:1.55;">ได้เลข เช่น DCE100XXXXXX-001 → เริ่ม onboard ลูกค้าได้ · ต้อง report TTR/SMR ทุกเดือน</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 AUSTRAC Remittance -->
+<section class="block" id="remittance">
+  <div class="eyebrow">02 · AUSTRAC Independent Remittance Dealer</div>
+  <h2><span class="num">02</span>Remittance Dealer<span class="hl"> (Australia)</span></h2>
+  <p class="section-intro">
+    ถ้า DCE ครอบคลุมแค่ crypto ↔ fiat การจะ <b>โอนเงินข้ามประเทศ</b> ต้องมี Remittance license
+    เพิ่ม — PEXX จดไว้เพื่อให้บริการ cross-border transfer ไป 17+ ประเทศ
+  </p>
+
+  <div class="license-box">
+    <div class="license-header">
+      <div class="license-icon">💸</div>
+      <div class="t">
+        <h3>Independent Remittance Dealer</h3>
+        <div style="font-size:14px; color:var(--ink-2);">ใช้ platform ของตัวเองโอนเงินข้ามประเทศ</div>
+        <div class="meta">
+          <span class="pill hot">🇦🇺 Australia</span>
+          <span class="pill">Free Application</span>
+          <span class="pill">3-Year Renewal</span>
+          <span class="pill">≤90 Days</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fee-grid">
+      <div class="fee"><div class="k">Registration Fee</div><div class="v free">$0</div><div class="sub">รัฐไม่เก็บ</div></div>
+      <div class="fee"><div class="k">Compliance Cost</div><div class="v">A$30-100K</div><div class="sub">AML/CTF + systems</div></div>
+      <div class="fee"><div class="k">ถ้ามี DCE อยู่แล้ว</div><div class="v free">+A$5-15K</div><div class="sub">ใช้ AML program ร่วมได้</div></div>
+      <div class="fee"><div class="k">Renewal</div><div class="v free">$0</div><div class="sub">ทุก 3 ปี</div></div>
+    </div>
+
+    <h4 style="font-size:15px; color:var(--fire-3); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px;">ประเภท Remittance Provider</h4>
+    <div class="req-grid" style="margin-bottom:28px;">
+      <div class="req-card">
+        <h4>🏢 Independent Dealer</h4>
+        <ul>
+          <li>ใช้ <b>platform / systems ของตัวเอง</b></li>
+          <li>ต้อง register <b>ตัวเอง</b> กับ AUSTRAC</li>
+          <li>ต้องทำ <b>AML/CTF program</b> เต็มรูปแบบ</li>
+          <li>PEXX เลือกประเภทนี้</li>
+        </ul>
+      </div>
+      <div class="req-card">
+        <h4>🔗 Network Affiliate</h4>
+        <ul>
+          <li>ใช้ platform ของ <b>network provider</b> (เช่น Western Union)</li>
+          <li>Network provider register แทน</li>
+          <li>ลดภาระ compliance แต่จ่าย commission</li>
+          <li>เริ่มต้นเร็วกว่า แต่ margin น้อยกว่า</li>
+        </ul>
+      </div>
+    </div>
+
+    <h4 style="font-size:15px; color:var(--fire-3); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px;">ขั้นตอนการขอ</h4>
+    <div class="steps-list">
+      <div class="slist-item">
+        <div class="slist-num"></div>
+        <div class="slist-body">
+          <h4>Enrol on AUSTRAC (ถ้ายังไม่เคย)</h4>
+          <p>ถ้าจดทะเบียน DCE ไปแล้ว บริษัทมี AUSTRAC account อยู่ — สามารถยื่น remittance ในระบบเดียวกันได้</p>
+          <div class="tag-row"><span class="tag ok">Free</span><span class="tag">1-2 วัน</span></div>
+        </div>
+      </div>
+      <div class="slist-item">
+        <div class="slist-num"></div>
+        <div class="slist-body">
+          <h4>Update AML/CTF Program</h4>
+          <p>ถ้ามี program จาก DCE อยู่แล้ว ต้องเพิ่มส่วน <b>remittance-specific risk assessment</b> + corridor analysis (ประเทศปลายทางที่จะโอน) + <b>correspondent banking</b> requirements</p>
+          <div class="tag-row"><span class="tag">Extension: A$10-30K</span><span class="tag warn">2-4 สัปดาห์</span></div>
+        </div>
+      </div>
+      <div class="slist-item">
+        <div class="slist-num"></div>
+        <div class="slist-body">
+          <h4>ยื่น Remittance Application</h4>
+          <p>กรอกฟอร์ม <b>Remittance Registration</b> — ระบุ corridors ที่จะให้บริการ, partner banks ปลายทาง, transaction volume คาดการณ์</p>
+          <div class="tag-row"><span class="tag warn">AUSTRAC review: ≤90 days</span></div>
+        </div>
+      </div>
+      <div class="slist-item">
+        <div class="slist-num"></div>
+        <div class="slist-body">
+          <h4>หา Banking Partners</h4>
+          <p>ต้องมี <b>correspondent banks</b> ในประเทศปลายทาง — ทำ <b>due diligence agreements</b> และ <b>transaction monitoring</b> ร่วมกัน</p>
+          <div class="tag-row"><span class="tag">Partner fee: varies</span><span class="tag warn">6-12 เดือน</span></div>
+        </div>
+      </div>
+      <div class="slist-item">
+        <div class="slist-num"></div>
+        <div class="slist-body">
+          <h4>รับ IND Registration Number</h4>
+          <p>ได้เลข เช่น <b>IND100851583-001</b> — เริ่มให้บริการได้ พร้อมรายงาน IFTI (International Funds Transfer Instructions) ทุกธุรกรรม</p>
+          <div class="tag-row"><span class="tag">Ongoing reports</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <div class="title">💡 Boom's Tip</div>
+      <p>
+        ขอ <b>DCE + Remittance พร้อมกัน</b> — AUSTRAC ประมวลผลในระบบเดียว ใช้ AML/CTF program ร่วมกันได้ ประหยัดเงินและเวลา ~40% เมื่อเทียบกับการยื่นแยก
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 FinCEN MSB -->
+<section class="block" id="msb">
+  <div class="eyebrow">03 · FinCEN MSB Registration</div>
+  <h2><span class="num">03</span>Money Services Business<span class="hl"> (United States)</span></h2>
+  <p class="section-intro">
+    FinCEN MSB คือ <b>federal registration</b> ที่ให้สิทธิทำธุรกิจ MSB ใน US แต่ <strong style="color:var(--danger)">ไม่พอเพียง</strong>
+    — ถ้าจะทำธุรกิจเต็มรูปแบบต้องเพิ่ม <b>state MTL</b> (Money Transmitter License) ทุกรัฐที่ให้บริการ
+  </p>
+
+  <div class="license-box">
+    <div class="license-header">
+      <div class="license-icon">🏦</div>
+      <div class="t">
+        <h3>FinCEN MSB Registration</h3>
+        <div style="font-size:14px; color:var(--ink-2);">FinCEN Form 107 — Federal-level registration</div>
+        <div class="meta">
+          <span class="pill hot">🇺🇸 USA Federal</span>
+          <span class="pill">Free Filing</span>
+          <span class="pill">2-Year Renewal</span>
+          <span class="pill">Same Day</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fee-grid">
+      <div class="fee"><div class="k">FinCEN Fee</div><div class="v free">$0</div><div class="sub">Form 107 ฟรี</div></div>
+      <div class="fee"><div class="k">Legal Setup</div><div class="v">$20-80K</div><div class="sub">BSA/AML program</div></div>
+      <div class="fee"><div class="k">Penalty (ถ้าไม่ register)</div><div class="v danger">$564/day</div><div class="sub">สูงสุด $28,222/day</div></div>
+      <div class="fee"><div class="k">State MTL (50 รัฐ)</div><div class="v danger">$5-50M+</div><div class="sub">แยกจาก federal</div></div>
+    </div>
+
+    <h4 style="font-size:15px; color:var(--fire-3); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px;">ขั้นตอนการขอ (Federal MSB)</h4>
+    <div class="steps-list">
+      <div class="slist-item">
+        <div class="slist-num"></div>
+        <div class="slist-body">
+          <h4>ตั้งนิติบุคคลใน US (หรือใช้ foreign entity)</h4>
+          <p>สามารถเป็น <b>Delaware LLC / C-Corp</b> หรือ <b>foreign entity</b> ก็ได้ — ต้องมี US agent หรือ US business presence อย่างใดอย่างหนึ่ง. PEXX ใช้ AU entity ตรง ๆ</p>
+          <div class="tag-row"><span class="tag">Delaware LLC: $500-2,000</span><span class="tag">Registered agent: $150/yr</span></div>
+        </div>
+      </div>
+      <div class="slist-item">
+        <div class="slist-num"></div>
+        <div class="slist-body">
+          <h4>ขอ EIN (Employer Identification Number)</h4>
+          <p>ขอจาก IRS ฟรี ใช้เวลา <b>4 สัปดาห์</b> สำหรับ foreign entity (หรือ online ถ้ามี SSN ของ director)</p>
+          <div class="tag-row"><span class="tag ok">Free</span><span class="tag warn">Foreign: 4 weeks</span></div>
+        </div>
+      </div>
+      <div class="slist-item">
+        <div class="slist-num"></div>
+        <div class="slist-body">
+          <h4>พัฒนา BSA/AML Compliance Program</h4>
+          <p>FinCEN ต้องการ <b>Bank Secrecy Act compliance program</b> ประกอบด้วย 5 pillars: (1) internal controls (2) compliance officer (3) training (4) independent testing (5) CDD/KYC procedures</p>
+          <div class="tag-row"><span class="tag">Law firm: $20-60K</span><span class="tag">Compliance officer: $80-200K/yr</span></div>
+        </div>
+      </div>
+      <div class="slist-item">
+        <div class="slist-num"></div>
+        <div class="slist-body">
+          <h4>ลงทะเบียน BSA E-Filing System</h4>
+          <p>สร้างบัญชีที่ <b>bsaefiling.fincen.treas.gov</b> — ใช้ director info, company details</p>
+          <div class="tag-row"><span class="tag ok">Free</span><span class="tag">30 นาที</span></div>
+        </div>
+      </div>
+      <div class="slist-item">
+        <div class="slist-num"></div>
+        <div class="slist-body">
+          <h4>ยื่น FinCEN Form 107</h4>
+          <p><b>E-file Form 107</b> — Registration of Money Services Business. ต้องระบุ MSB activities, owners, agents, locations. ต้องยื่น <b>ภายใน 180 วัน</b> หลังเริ่มดำเนินกิจการ</p>
+          <div class="tag-row"><span class="tag ok">Free filing</span><span class="tag">~30 นาที</span></div>
+        </div>
+      </div>
+      <div class="slist-item">
+        <div class="slist-num"></div>
+        <div class="slist-body">
+          <h4>ได้ MSB Registration Number</h4>
+          <p>ทันที — เลข registration เช่น <b>31000288010318</b> (PEXX). เริ่มให้บริการได้ที่ federal level</p>
+          <div class="tag-row"><span class="tag">Instant approval</span></div>
+        </div>
+      </div>
+      <div class="slist-item">
+        <div class="slist-num"></div>
+        <div class="slist-body">
+          <h4>เก็บ Agent List (ถ้ามี)</h4>
+          <p>ถ้าใช้ <b>agents</b> ต้อง update agent list ทุกปี ภายใน 1 ม.ค. ของทุกปี</p>
+          <div class="tag-row"><span class="tag warn">Annual</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="warn-box">
+      <div class="title">⚠️ ข้อควรระวัง — Federal ≠ เปิดบริการได้เลย</div>
+      <p>
+        <b>FinCEN MSB คือ federal registration เท่านั้น</b> — ยังต้องขอ <b>Money Transmitter License (MTL)</b>
+        ทุกรัฐที่จะให้บริการแยกต่างหาก! รัฐเดียวที่ไม่ต้องคือ <b>Montana</b>
+        <br><br>
+        <b>Cost breakdown per state:</b>
+      </p>
+      <div style="margin-top:14px; display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:10px;">
+        <div style="padding:12px; background:var(--bg-3); border-radius:8px; border:1px solid var(--line);">
+          <div style="font-size:11px; color:var(--ink-3); text-transform:uppercase;">Application Fee</div>
+          <div style="font-size:18px; color:var(--fire-3); font-weight:700; font-family:'JetBrains Mono', monospace;">$500 - $10,000</div>
+        </div>
+        <div style="padding:12px; background:var(--bg-3); border-radius:8px; border:1px solid var(--line);">
+          <div style="font-size:11px; color:var(--ink-3); text-transform:uppercase;">Surety Bond</div>
+          <div style="font-size:18px; color:var(--fire-3); font-weight:700; font-family:'JetBrains Mono', monospace;">$25K - $500K+</div>
+        </div>
+        <div style="padding:12px; background:var(--bg-3); border-radius:8px; border:1px solid var(--line);">
+          <div style="font-size:11px; color:var(--ink-3); text-transform:uppercase;">Min. Net Worth</div>
+          <div style="font-size:18px; color:var(--fire-3); font-weight:700; font-family:'JetBrains Mono', monospace;">$25K - $1M</div>
+        </div>
+        <div style="padding:12px; background:var(--bg-3); border-radius:8px; border:1px solid var(--line);">
+          <div style="font-size:11px; color:var(--ink-3); text-transform:uppercase;">Total Per State</div>
+          <div style="font-size:18px; color:var(--danger); font-weight:700; font-family:'JetBrains Mono', monospace;">$30K - $525K</div>
+        </div>
+        <div style="padding:12px; background:var(--bg-3); border-radius:8px; border:1px solid var(--line);">
+          <div style="font-size:11px; color:var(--ink-3); text-transform:uppercase;">Processing Time</div>
+          <div style="font-size:18px; color:var(--fire-3); font-weight:700; font-family:'JetBrains Mono', monospace;">6-18 เดือน</div>
+        </div>
+        <div style="padding:12px; background:var(--bg-3); border-radius:8px; border:1px solid var(--line);">
+          <div style="font-size:11px; color:var(--ink-3); text-transform:uppercase;">Annual Renewal</div>
+          <div style="font-size:18px; color:var(--fire-3); font-weight:700; font-family:'JetBrains Mono', monospace;">$250 - $1,000</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <div class="title">💡 Boom's Tip — State MTL Shortcut</div>
+      <p>
+        แทนที่จะขอ MTL ทุกรัฐเอง (&gt;$5M + 2 ปี) — ใช้ <b>BaaS partner ที่ mี MTL ครบแล้ว</b> เช่น
+        <b style="color:var(--fire-3)">Cross River, Bridge, Column</b> — PEXX ใช้วิธีนี้ เริ่มให้บริการได้เลย
+        แลกกับ revenue share + minimum deposit
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 04 Timeline comparison -->
+<section class="block" id="timeline">
+  <div class="eyebrow">04 · Timeline Deep Dive</div>
+  <h2>เปรียบเทียบ <span class="hl">ระยะเวลา</span> ทั้ง 3 ใบ — แบบละเอียด</h2>
+  <p class="section-intro">
+    Timeline จริงแบ่งเป็น <b>5 phases</b> — Prep → Docs → Submit → Review → Ops
+    <br>ตัวเลขที่ regulator บอก (เช่น "90 วัน") คือแค่ <b style="color:var(--fire-3)">phase 4 (Review)</b>
+    ไม่รวมการเตรียมเอกสารและตั้งบริษัท
+  </p>
+
+  <!-- Gantt chart -->
+  <div class="tl-v2">
+    <div class="tl-header">
+      <div>License · ระยะเวลา</div>
+      <div class="tl-scale">
+        <span>M0</span><span>M1</span><span>M2</span><span>M3</span><span>M4</span><span>M5</span>
+        <span>M6</span><span>M9</span><span>M12</span><span>M15</span><span>M18</span><span>M24</span>
+      </div>
+    </div>
+
+    <div class="tl-block">
+      <div class="tl-block-label">FinCEN MSB<span class="sub">🇺🇸 Federal only</span></div>
+      <div class="tl-chart">
+        <div class="tl-seg prep" style="width:15%;">PREP</div>
+        <div class="tl-seg docs" style="width:30%;">BSA/AML</div>
+        <div class="tl-seg submit" style="width:4%;">📨</div>
+        <div class="tl-seg review" style="width:2%;">R</div>
+        <div class="tl-seg ops" style="width:49%;">LIVE ✓</div>
+      </div>
+    </div>
+
+    <div class="tl-block">
+      <div class="tl-block-label">AUSTRAC DCE<span class="sub">🇦🇺 Crypto exchange</span></div>
+      <div class="tl-chart">
+        <div class="tl-seg prep" style="width:15%;">PREP</div>
+        <div class="tl-seg docs" style="width:30%;">AML/CTF</div>
+        <div class="tl-seg submit" style="width:3%;">📨</div>
+        <div class="tl-seg review" style="width:25%;">REVIEW 30-90d</div>
+        <div class="tl-seg ops" style="width:27%;">LIVE ✓</div>
+      </div>
+    </div>
+
+    <div class="tl-block">
+      <div class="tl-block-label">AUSTRAC Remit<span class="sub">🇦🇺 Cross-border</span></div>
+      <div class="tl-chart">
+        <div class="tl-seg prep" style="width:10%;">PREP</div>
+        <div class="tl-seg docs" style="width:25%;">Risk Asmt</div>
+        <div class="tl-seg submit" style="width:3%;">📨</div>
+        <div class="tl-seg review" style="width:25%;">REVIEW ≤90d</div>
+        <div class="tl-seg ops" style="width:37%;">LIVE ✓</div>
+      </div>
+    </div>
+
+    <div class="tl-block">
+      <div class="tl-block-label">State MTL — 1 รัฐ<span class="sub">🇺🇸 per state (avg)</span></div>
+      <div class="tl-chart">
+        <div class="tl-seg prep" style="width:8%;">P</div>
+        <div class="tl-seg docs" style="width:20%;">Docs+Bond</div>
+        <div class="tl-seg submit" style="width:2%;">📨</div>
+        <div class="tl-seg state" style="width:60%;">STATE REVIEW 6-12mo</div>
+        <div class="tl-seg ops" style="width:10%;">LIVE</div>
+      </div>
+    </div>
+
+    <div class="tl-block">
+      <div class="tl-block-label">State MTL — 49 รัฐ<span class="sub">🇺🇸 Full US coverage</span></div>
+      <div class="tl-chart">
+        <div class="tl-seg prep" style="width:4%;">P</div>
+        <div class="tl-seg docs" style="width:8%;">Docs</div>
+        <div class="tl-seg state" style="width:85%;">ROLLING STATE APPROVALS 18-24mo</div>
+        <div class="tl-seg ops" style="width:3%;">✓</div>
+      </div>
+    </div>
+
+    <div class="tl-legend">
+      <div class="tl-legend-item"><div class="tl-legend-dot prep"></div>Prep · ตั้งบริษัท, HR</div>
+      <div class="tl-legend-item"><div class="tl-legend-dot docs"></div>Docs · AML/CTF Program</div>
+      <div class="tl-legend-item"><div class="tl-legend-dot submit"></div>Submit · ยื่น</div>
+      <div class="tl-legend-item"><div class="tl-legend-dot review"></div>Review · รอ regulator</div>
+      <div class="tl-legend-item"><div class="tl-legend-dot state"></div>State review · แต่ละรัฐ</div>
+      <div class="tl-legend-item"><div class="tl-legend-dot ops"></div>Operational · ให้บริการได้</div>
+    </div>
+  </div>
+
+  <!-- 5-Phase breakdown -->
+  <h3 style="font-size:22px; font-weight:800; color:var(--ink-0); margin-top:50px; margin-bottom:12px; letter-spacing:-0.02em;">
+    📋 5 Phases คืออะไร — แยกละเอียด
+  </h3>
+  <p style="font-size:15px; color:var(--ink-2); margin-bottom:20px;">
+    แต่ละ license ผ่าน phases เดียวกัน แต่ <b>duration ต่าง</b> ตาม regulator
+  </p>
+
+  <div class="phase-grid">
+    <div class="phase-card">
+      <span class="phase-num">01</span>
+      <h4>Preparation</h4>
+      <div class="duration">1–4 สัปดาห์</div>
+      <ul>
+        <li>ตั้งบริษัท (Pty Ltd / LLC)</li>
+        <li>ขอ ABN/EIN, เปิดบัญชีธนาคาร</li>
+        <li>หาสำนักงาน/virtual office</li>
+        <li>แต่งตั้ง directors/UBO</li>
+        <li>จ้าง compliance officer</li>
+      </ul>
+    </div>
+    <div class="phase-card">
+      <span class="phase-num">02</span>
+      <h4>Documentation</h4>
+      <div class="duration">4–12 สัปดาห์</div>
+      <ul>
+        <li>เขียน <b>AML/CTF Program</b> (50-100 หน้า)</li>
+        <li>Risk assessment (customer + country)</li>
+        <li>KYC/CDD procedures</li>
+        <li>Training materials</li>
+        <li>Internal audit plan</li>
+      </ul>
+    </div>
+    <div class="phase-card">
+      <span class="phase-num">03</span>
+      <h4>Submission</h4>
+      <div class="duration">1–7 วัน</div>
+      <ul>
+        <li>สร้างบัญชี online portal</li>
+        <li>Upload เอกสารทั้งหมด</li>
+        <li>Background checks directors</li>
+        <li>จ่ายค่าธรรมเนียม (ถ้ามี)</li>
+        <li>ได้ reference number</li>
+      </ul>
+    </div>
+    <div class="phase-card">
+      <span class="phase-num">04</span>
+      <h4>Regulator Review</h4>
+      <div class="duration">2 วัน – 18 เดือน</div>
+      <ul>
+        <li>FinCEN: ~1-2 สัปดาห์</li>
+        <li>AUSTRAC: 30-90 วัน</li>
+        <li>State MTL: 6-18 เดือน</li>
+        <li>RFI rounds (อาจ 2-3 รอบ)</li>
+        <li>Site visits (บางรัฐใน US)</li>
+      </ul>
+    </div>
+    <div class="phase-card">
+      <span class="phase-num">05</span>
+      <h4>Operational Launch</h4>
+      <div class="duration">ทันที–4 สัปดาห์</div>
+      <ul>
+        <li>ได้ registration number</li>
+        <li>Integrate กับ BaaS partner</li>
+        <li>ทดสอบ reporting pipelines</li>
+        <li>Training พนักงาน</li>
+        <li>Soft launch กับ beta users</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 3 Scenarios -->
+  <h3 style="font-size:22px; font-weight:800; color:var(--ink-0); margin-top:50px; margin-bottom:12px; letter-spacing:-0.02em;">
+    🎯 Timeline จริง — 3 Scenarios
+  </h3>
+  <p style="font-size:15px; color:var(--ink-2); margin-bottom:20px;">
+    ขึ้นอยู่กับว่าจะ <b>execute เก่งแค่ไหน</b> และเจอ bottleneck กี่ตัว
+  </p>
+
+  <div class="scenario-grid">
+    <div class="scenario best">
+      <span class="badge">🚀 Best Case</span>
+      <h4>Fast Track Launch</h4>
+      <div class="big-time">~4 เดือน</div>
+      <p>ทำ 3 licenses พร้อมกัน + ใช้ BaaS partner + <b>ไม่ขอ state MTL เอง</b></p>
+      <ul class="checklist">
+        <li>ใช้ compliance firm template (AML House)</li>
+        <li>จ้าง AU director + compliance officer ล่วงหน้า</li>
+        <li>ยื่น DCE + Remit พร้อมกัน (combined AML/CTF)</li>
+        <li>AUSTRAC ไม่มี RFI (ทุก doc perfect)</li>
+        <li>Skip state MTL — พึ่ง Cross River coverage</li>
+      </ul>
+    </div>
+    <div class="scenario real">
+      <span class="badge">⚡ Realistic</span>
+      <h4>Typical Launch (เหมือน PEXX)</h4>
+      <div class="big-time">6–9 เดือน</div>
+      <p>Expected timeline ของ startup ปกติ — มี RFI บ้าง, delay บ้าง</p>
+      <ul class="checklist">
+        <li>AU company setup ใช้เวลา 3-4 สัปดาห์</li>
+        <li>AML/CTF docs เขียน 6-10 สัปดาห์</li>
+        <li>AUSTRAC RFI 1-2 รอบ (+30 วัน)</li>
+        <li>EIN foreign entity รอ 4 สัปดาห์</li>
+        <li>BaaS partner onboarding 2-3 เดือน</li>
+      </ul>
+    </div>
+    <div class="scenario worst">
+      <span class="badge">⚠️ Full Scale</span>
+      <h4>Complete US + AU Coverage</h4>
+      <div class="big-time">24–30 เดือน</div>
+      <p>ทำทุกอย่างเอง รวม <b>49 state MTLs</b> + NY BitLicense</p>
+      <ul class="checklist">
+        <li>AU + Federal US: 6-9 เดือน</li>
+        <li>State MTL rollout: 18-24 เดือน</li>
+        <li>NY BitLicense เฉพาะตัว: 12-24 เดือน</li>
+        <li>Surety bonds arrangement ($5M+)</li>
+        <li>Minimum net worth buildup</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Parallel execution -->
+  <div class="parallel-box">
+    <h4>⚡ Parallel Execution Strategy — ประหยัดเวลา 40%</h4>
+    <div class="parallel-row">
+      <div class="week">Week 1–2</div>
+      <div class="tasks">
+        <span class="task us">Delaware LLC setup</span>
+        <span class="task au">AU Pty Ltd setup</span>
+        <span class="task infra">Hire compliance consultant</span>
+      </div>
+    </div>
+    <div class="parallel-row">
+      <div class="week">Week 3–4</div>
+      <div class="tasks">
+        <span class="task us">Apply EIN</span>
+        <span class="task us">BSA/AML draft</span>
+        <span class="task au">AML/CTF draft</span>
+        <span class="task infra">BaaS partner discussions</span>
+      </div>
+    </div>
+    <div class="parallel-row">
+      <div class="week">Week 5–8</div>
+      <div class="tasks">
+        <span class="task us">FinCEN Form 107 ✓</span>
+        <span class="task au">Finalize AML/CTF</span>
+        <span class="task infra">Card issuer contract</span>
+      </div>
+    </div>
+    <div class="parallel-row">
+      <div class="week">Week 9–12</div>
+      <div class="tasks">
+        <span class="task au">Submit DCE + Remit</span>
+        <span class="task infra">BaaS integration start</span>
+        <span class="task infra">Product development</span>
+      </div>
+    </div>
+    <div class="parallel-row">
+      <div class="week">Week 13–20</div>
+      <div class="tasks">
+        <span class="task au">AUSTRAC review (wait)</span>
+        <span class="task infra">Beta testing</span>
+        <span class="task infra">Respond to RFI</span>
+      </div>
+    </div>
+    <div class="parallel-row">
+      <div class="week">Week 21–24</div>
+      <div class="tasks">
+        <span class="task au">AUSTRAC approved ✓</span>
+        <span class="task infra">Production launch 🚀</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottlenecks -->
+  <div class="bottleneck">
+    <h4>🚧 Common Bottlenecks — สิ่งที่ทำให้ timeline ยืด</h4>
+    <div class="bottleneck-grid">
+      <div class="bl-item">
+        <div class="delay">+4 สัปดาห์</div>
+        <div class="cause">EIN สำหรับ foreign entity</div>
+        <div class="fix">แก้: ใช้ director ที่มี SSN สมัคร online แทน (ได้ทันที)</div>
+      </div>
+      <div class="bl-item">
+        <div class="delay">+30–90 วัน</div>
+        <div class="cause">AUSTRAC RFI (Request for Information)</div>
+        <div class="fix">แก้: ทำ AML/CTF program ละเอียดตั้งแต่แรก ใช้ firm ที่มี track record</div>
+      </div>
+      <div class="bl-item">
+        <div class="delay">+2–3 เดือน</div>
+        <div class="cause">BaaS partner due diligence</div>
+        <div class="fix">แก้: เริ่มคุยกับ 3 partners พร้อมกัน (Cross River, Bridge, Column)</div>
+      </div>
+      <div class="bl-item">
+        <div class="delay">+6 เดือน</div>
+        <div class="cause">State MTL RFI + additional exam</div>
+        <div class="fix">แก้: hire specialized MTL law firm (เช่น Harbor Compliance)</div>
+      </div>
+      <div class="bl-item">
+        <div class="delay">+1–3 เดือน</div>
+        <div class="cause">Background checks directors (UBO screening)</div>
+        <div class="fix">แก้: เตรียม police clearance + credit report ล่วงหน้า</div>
+      </div>
+      <div class="bl-item">
+        <div class="delay">+8–12 สัปดาห์</div>
+        <div class="cause">Surety bond sourcing (state MTL)</div>
+        <div class="fix">แก้: ทำงานกับ specialty broker ที่คุ้น MSB business</div>
+      </div>
+      <div class="bl-item">
+        <div class="delay">+4–8 สัปดาห์</div>
+        <div class="cause">Bank account opening (AU + US)</div>
+        <div class="fix">แก้: เริ่มสมัครพร้อม company registration, ใช้ neobank เป็น backup</div>
+      </div>
+      <div class="bl-item">
+        <div class="delay">+12+ เดือน</div>
+        <div class="cause">Regulatory policy changes (VASP 2026)</div>
+        <div class="fix">แก้: ยื่นเร็ว ใช้ grandfathering rules, monitor AUSTRAC announcements</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <div class="title">💡 Boom's Key Insight — Timeline Reality</div>
+    <p>
+      ตัวเลขจาก regulator (FinCEN "instant", AUSTRAC "90 วัน") คือ <b>Phase 4 review เท่านั้น</b>
+      — <b style="color:var(--danger)">ไม่ใช่ end-to-end timeline</b>.
+      <br><br>
+      จริง ๆ แล้วก่อนยื่นต้องใช้เวลา <b>4-12 สัปดาห์</b> เขียน AML/CTF program และตั้งบริษัท —
+      หลังได้อนุมัติต้องใช้เวลาอีก <b>4-8 สัปดาห์</b> integrate กับ BaaS, card issuer, และเปิดบริการจริง
+      <br><br>
+      <b style="color:var(--fire-3)">Realistic timeline ของ startup ที่ execute ดี = 6-9 เดือน</b>
+      ถึงจะ launch ได้แบบ PEXX — ไม่ใช่ "ไม่กี่สัปดาห์" ตามที่ blog หลายเจ้าเขียน
+    </p>
+  </div>
+</section>
+
+<!-- 05 Total cost -->
+<section class="block" id="cost">
+  <div class="eyebrow">05 · Total Cost Analysis</div>
+  <h2>รวมค่าใช้จ่าย <span class="hl">ทั้งหมด</span> แบบ 3 ระดับ</h2>
+
+  <div class="total-cost">
+    <h3>💰 Total Setup Cost Estimates (USD)</h3>
+    <div class="cost-breakdown">
+      <div class="cb-item minimum">
+        <div class="tier">Tier 1 · Minimum Viable</div>
+        <div class="amount">$50-80K</div>
+        <div class="desc">
+          AUSTRAC DCE + Remittance + FinCEN MSB<br>
+          + BaaS partner (Cross River)<br>
+          <b>ไม่มี state MTL</b> — ใช้ partner coverage
+        </div>
+      </div>
+      <div class="cb-item realistic">
+        <div class="tier">Tier 2 · Realistic Launch</div>
+        <div class="amount">$250-500K</div>
+        <div class="desc">
+          Tier 1 + state MTL 5-10 รัฐใหญ่<br>
+          (CA, NY, TX, FL, IL, WA)<br>
+          + card issuing partner + dev costs
+        </div>
+      </div>
+      <div class="cb-item fullscale">
+        <div class="tier">Tier 3 · Full Scale</div>
+        <div class="amount">$5-20M+</div>
+        <div class="desc">
+          All 49 state MTLs + NY BitLicense<br>
+          + EU EMI + SG MAS + UK FCA<br>
+          <b>เทียบเท่า Revolut / Wise</b>
+        </div>
+      </div>
+    </div>
+
+    <h4 style="font-size:15px; color:var(--fire-3); text-transform:uppercase; letter-spacing:0.1em; margin:28px 0 14px 0;">ค่าใช้จ่ายต่อเนื่อง (Annual)</h4>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:12px;">
+      <div class="fee"><div class="k">Compliance Officer</div><div class="v">$80-200K</div><div class="sub">Full-time MLRO</div></div>
+      <div class="fee"><div class="k">AML Software</div><div class="v">$20-100K</div><div class="sub">ComplyAdvantage, Chainalysis</div></div>
+      <div class="fee"><div class="k">Legal & Audit</div><div class="v">$30-80K</div><div class="sub">Annual independent review</div></div>
+      <div class="fee"><div class="k">State Renewals</div><div class="v">$5-50K</div><div class="sub">แล้วแต่จำนวนรัฐ</div></div>
+      <div class="fee"><div class="k">Insurance (E&amp;O)</div><div class="v">$10-50K</div><div class="sub">Errors &amp; omissions</div></div>
+      <div class="fee"><div class="k">Banking Partner</div><div class="v">varies</div><div class="sub">% of transactions</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 Recommended sequence -->
+<section class="block" id="sequence">
+  <div class="eyebrow">06 · Recommended Sequence</div>
+  <h2>ลำดับที่ <span class="hl">Boom แนะนำ</span> — ทำอะไรก่อน</h2>
+  <p class="section-intro">
+    ลำดับนี้ optimize เพื่อ <b>เริ่มให้บริการเร็วที่สุด</b> ด้วยเงินน้อยที่สุด
+  </p>
+
+  <div class="sequence">
+    <div class="seq-card">
+      <div class="phase">Phase 1 · Week 1-2</div>
+      <h4>🚀 Quick Start</h4>
+      <div class="time">14 days · ~$3K</div>
+      <div class="desc">
+        ตั้งบริษัทที่ Delaware (LLC) + ยื่น <b>FinCEN MSB Form 107</b> ทันที
+        — ได้ federal registration เลย เริ่มเจรจา BaaS partner ได้
+      </div>
+    </div>
+    <div class="seq-card">
+      <div class="phase">Phase 2 · Month 1-3</div>
+      <h4>🇦🇺 AU License Combo</h4>
+      <div class="time">~90 days · ~$50K</div>
+      <div class="desc">
+        ตั้ง Pty Ltd ที่ AU + ยื่น <b>DCE + Remittance พร้อมกัน</b>
+        ใช้ AML/CTF program ร่วมกัน ประหยัด 40%
+      </div>
+    </div>
+    <div class="seq-card">
+      <div class="phase">Phase 3 · Month 3-6</div>
+      <h4>🏦 BaaS Integration</h4>
+      <div class="time">~90 days · $100K+</div>
+      <div class="desc">
+        Sign สัญญา <b>Cross River / Bridge / Column</b>
+        + integrate card issuer (Marqeta/Galileo)
+        + launch MVP product
+      </div>
+    </div>
+    <div class="seq-card">
+      <div class="phase">Phase 4 · Month 6-12</div>
+      <h4>📈 Scale</h4>
+      <div class="time">After Product-Market Fit</div>
+      <div class="desc">
+        ถ้า PMF ชัด → เริ่มขอ <b>state MTL</b> ทีละรัฐ
+        ตามลำดับ volume (CA, NY, TX first)
+        <br>ถ้าไม่ → stay federal + BaaS partner ต่อไป
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 Sources -->
+<section class="block" id="sources">
+  <div class="eyebrow">07 · Sources</div>
+  <h2>แหล่งอ้างอิง</h2>
+  <p class="section-intro">ข้อมูลรวบรวมจาก official regulators และ industry experts เมื่อ 2026-04-17</p>
+
+  <div class="sources">
+    <a class="source" href="https://www.austrac.gov.au/business/your-industry/digital-currency-cryptocurrency/digital-currency-exchange-providers" target="_blank">
+      <div class="i">🇦🇺</div>
+      <div><div class="t">AUSTRAC DCE Providers</div><div class="u">austrac.gov.au</div></div>
+    </a>
+    <a class="source" href="https://www.austrac.gov.au/business/your-industry/remittance-service-providers" target="_blank">
+      <div class="i">🇦🇺</div>
+      <div><div class="t">AUSTRAC Remittance</div><div class="u">austrac.gov.au</div></div>
+    </a>
+    <a class="source" href="https://www.austrac.gov.au/business/new-to-austrac/enrol-or-register" target="_blank">
+      <div class="i">📝</div>
+      <div><div class="t">AUSTRAC Enrol or Register</div><div class="u">austrac.gov.au/enrol</div></div>
+    </a>
+    <a class="source" href="https://www.austrac.gov.au/business/core-guidance/industry-contribution-levy" target="_blank">
+      <div class="i">💰</div>
+      <div><div class="t">AUSTRAC Industry Levy</div><div class="u">austrac.gov.au</div></div>
+    </a>
+    <a class="source" href="https://www.fincen.gov/money-services-business-msb-registration" target="_blank">
+      <div class="i">🇺🇸</div>
+      <div><div class="t">FinCEN MSB Registration</div><div class="u">fincen.gov</div></div>
+    </a>
+    <a class="source" href="https://www.fincen.gov/fact-sheet-msb-registration-rule" target="_blank">
+      <div class="i">📄</div>
+      <div><div class="t">FinCEN MSB Fact Sheet</div><div class="u">fincen.gov</div></div>
+    </a>
+    <a class="source" href="https://www.irs.gov/businesses/small-businesses-self-employed/money-services-business-msb-information-center" target="_blank">
+      <div class="i">🏛️</div>
+      <div><div class="t">IRS MSB Information Center</div><div class="u">irs.gov</div></div>
+    </a>
+    <a class="source" href="https://www.harborcompliance.com/money-transmitter-business-license" target="_blank">
+      <div class="i">🗽</div>
+      <div><div class="t">Harbor Compliance · MTL Guide</div><div class="u">harborcompliance.com</div></div>
+    </a>
+    <a class="source" href="https://www.wolterskluwer.com/en/expert-insights/money-transmitter-business-license-requirements" target="_blank">
+      <div class="i">📚</div>
+      <div><div class="t">Wolters Kluwer · MTL Requirements</div><div class="u">wolterskluwer.com</div></div>
+    </a>
+    <a class="source" href="https://terms.law/Trading-Legal/guides/msb-registration.html" target="_blank">
+      <div class="i">⚖️</div>
+      <div><div class="t">MSB Registration Step-by-Step</div><div class="u">terms.law</div></div>
+    </a>
+    <a class="source" href="https://gofaizen-sherle.com/crypto-license/australia" target="_blank">
+      <div class="i">🔐</div>
+      <div><div class="t">Gofaizen · Australia Crypto License</div><div class="u">gofaizen-sherle.com</div></div>
+    </a>
+    <a class="source" href="https://www.zitadelleag.com/news/how-to-register-as-a-digital-currency-exchange-(dce)-provider-with-austrac" target="_blank">
+      <div class="i">🪙</div>
+      <div><div class="t">Zitadelle · AUSTRAC DCE Guide</div><div class="u">zitadelleag.com</div></div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <span class="flame">🔥</span>
+  <p>Generated by <b style="color:var(--fire-3);">Boom Oracle</b> — fire-forged license intelligence</p>
+  <p>Research date · 2026-04-17 · ข้อมูลอาจเปลี่ยนแปลง ตรวจสอบกับ regulator ก่อนดำเนินการจริง</p>
+  <p class="sig">ORACLE · NOTHING IS DELETED · FIRE REFINES</p>
+</footer>
+
+</div>
+
+</body>
+</html>

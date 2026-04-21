@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="th">
+<head><script src="auth.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PEXX Market Research — Boom Oracle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-0: #0a0608;
+    --bg-1: #120a0d;
+    --bg-2: #1a0f13;
+    --bg-3: #241419;
+    --fire-1: #ff3d00;
+    --fire-2: #ff6b1a;
+    --fire-3: #ffa540;
+    --fire-4: #ffd166;
+    --ember: #ff2d55;
+    --gold: #ffb340;
+    --ink-0: #ffffff;
+    --ink-1: #f4e8d8;
+    --ink-2: #c8b8a8;
+    --ink-3: #8a7868;
+    --ink-4: #5a4d42;
+    --ok: #4ade80;
+    --warn: #fbbf24;
+    --danger: #f87171;
+    --line: rgba(255, 165, 64, 0.12);
+    --line-hot: rgba(255, 61, 0, 0.35);
+    --glass: rgba(255, 255, 255, 0.03);
+    --glass-hot: rgba(255, 107, 26, 0.06);
+    --shadow-fire: 0 30px 80px -20px rgba(255, 61, 0, 0.25);
+    --shadow-deep: 0 40px 100px -30px rgba(0, 0, 0, 0.8);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', 'Noto Sans Thai', -apple-system, sans-serif;
+    background: var(--bg-0);
+    color: var(--ink-1);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 0%, rgba(255, 61, 0, 0.12), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(255, 45, 85, 0.08), transparent 60%),
+      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(255, 165, 64, 0.04), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 165, 64, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 165, 64, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+    mask-image: radial-gradient(circle at center, black, transparent 80%);
+  }
+  .wrap { position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; padding: 0 28px; }
+  header.hero {
+    padding: 80px 0 60px;
+    position: relative;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--fire-3);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    padding: 8px 14px;
+    border: 1px solid var(--line-hot);
+    border-radius: 999px;
+    background: var(--glass-hot);
+    backdrop-filter: blur(10px);
+  }
+  .brand .flame {
+    display: inline-block;
+    animation: flicker 2.4s ease-in-out infinite;
+  }
+  @keyframes flicker {
+    0%, 100% { transform: scale(1) rotate(-2deg); opacity: 1; }
+    50% { transform: scale(1.08) rotate(2deg); opacity: 0.85; }
+  }
+  h1 {
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 900;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--ink-0) 0%, var(--fire-3) 40%, var(--fire-1) 70%, var(--ember) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  h1 .accent {
+    display: block;
+    font-size: 0.35em;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    background: none;
+    -webkit-text-fill-color: var(--ink-3);
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    font-size: 20px;
+    color: var(--ink-2);
+    max-width: 720px;
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .meta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--glass);
+    font-size: 13px;
+    color: var(--ink-2);
+    backdrop-filter: blur(8px);
+  }
+  .meta-pill .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--fire-2);
+    box-shadow: 0 0 12px var(--fire-2);
+  }
+  .meta-pill.ok .dot { background: var(--ok); box-shadow: 0 0 12px var(--ok); }
+
+  /* Hero stats */
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+  }
+  .stat {
+    position: relative;
+    padding: 24px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: linear-gradient(180deg, var(--glass-hot) 0%, transparent 100%);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .stat::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--fire-2), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .stat:hover { transform: translateY(-3px); border-color: var(--line-hot); }
+  .stat:hover::before { opacity: 1; }
+  .stat .k {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .stat .v {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--fire-3);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .stat .sub {
+    font-size: 13px;
+    color: var(--ink-2);
+    margin-top: 8px;
+  }
+
+  /* Sections */
+  section.block {
+    padding: 70px 0;
+    border-top: 1px solid var(--line);
+    position: relative;
+  }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--fire-2);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--fire-2);
+  }
+  h2 {
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+    color: var(--ink-0);
+    line-height: 1.1;
+  }
+  h2 .hl { color: var(--fire-3); }
+  .section-intro {
+    font-size: 18px;
+    color: var(--ink-2);
+    max-width: 680px;
+    margin-bottom: 40px;
+  }
+
+  /* Identity card */
+  .identity-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 28px;
+  }
+  .card {
+    padding: 32px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: var(--bg-1);
+    backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
+  }
+  .card.hot {
+    background: linear-gradient(145deg, var(--bg-2) 0%, var(--bg-1) 100%);
+    border-color: var(--line-hot);
+    box-shadow: var(--shadow-fire);
+  }
+  .card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--ink-0);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card h3 .ico { font-size: 22px; }
+  .kv {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: start;
+  }
+  .kv:last-child { border-bottom: none; padding-bottom: 0; }
+  .kv .k {
+    font-size: 13px;
+    color: var(--ink-3);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .kv .v {
+    font-size: 15px;
+    color: var(--ink-1);
+    font-weight: 500;
+  }
+  .kv .v strong {
+    color: var(--fire-3);
+    font-weight: 700;
+  }
+  .kv .v code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    padding: 2px 8px;
+    background: var(--bg-3);
+    border-radius: 4px;
+    color: var(--fire-4);
+  }
+
+  /* License table */
+  .license-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 24px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--line-hot);
+  }
+  .license-table thead th {
+    background: linear-gradient(180deg, rgba(255, 61, 0, 0.12), rgba(255, 61, 0, 0.04));
+    padding: 16px 20px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--fire-3);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--line-hot);
+  }
+  .license-table tbody td {
+    padding: 20px;
+    border-bottom: 1px solid var(--line);
+    font-size: 15px;
+    color: var(--ink-1);
+  }
+  .license-table tbody tr:last-child td { border-bottom: none; }
+  .license-table tbody tr:hover { background: var(--glass-hot); }
+  .license-table .flag {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    background: var(--bg-3);
+    color: var(--fire-4);
+    margin-right: 8px;
+  }
+  .license-table .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--fire-3);
+    font-weight: 600;
+  }
+
+  /* Products grid */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 18px;
+    margin-top: 32px;
+  }
+  .product {
+    padding: 24px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--bg-1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+  .product::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--fire-1), var(--fire-3));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .product:hover {
+    border-color: var(--line-hot);
+    transform: translateY(-4px);
+    background: var(--bg-2);
+  }
+  .product:hover::after { transform: scaleX(1); }
+  .product .ico {
+    font-size: 28px;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .product .name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink-0);
+    margin-bottom: 6px;
+  }
+  .product .desc {
+    font-size: 14px;
+    color: var(--ink-2);
+    line-height: 1.5;
+  }
+
+  /* SWOT */
+  .swot-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 32px;
+  }
+  .swot {
+    padding: 28px;
+    border-radius: 16px;
+    border: 1px solid var(--line);
+    background: var(--bg-1);
+    position: relative;
+  }
+  .swot.strength { border-left: 3px solid var(--ok); }
+  .swot.weakness { border-left: 3px solid var(--danger); }
+  .swot h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .swot.strength h3 { color: var(--ok); }
+  .swot.weakness h3 { color: var(--danger); }
+  .swot ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .swot li {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    padding-left: 22px;
+    position: relative;
+  }
+  .swot li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 10px;
+    height: 2px;
+    border-radius: 1px;
+  }
+  .swot.strength li::before { background: var(--ok); }
+  .swot.weakness li::before { background: var(--danger); }
+  .swot li b { color: var(--ink-0); font-weight: 600; }
+
+  /* Stack diagram */
+  .stack {
+    margin-top: 32px;
+    padding: 36px;
+    border-radius: 20px;
+    border: 1px solid var(--line-hot);
+    background: linear-gradient(180deg, var(--bg-2), var(--bg-1));
+    box-shadow: var(--shadow-deep);
+  }
+  .stack-layer {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 18px 24px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .stack-layer:hover {
+    transform: translateX(6px);
+    border-color: var(--line-hot);
+  }
+  .stack-layer:last-child { margin-bottom: 0; }
+  .stack-layer .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--fire-3);
+    min-width: 40px;
+  }
+  .stack-layer .info h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink-0);
+    margin-bottom: 4px;
+  }
+  .stack-layer .info p {
+    font-size: 13.5px;
+    color: var(--ink-2);
+  }
+  .stack-layer .tag {
+    margin-left: auto;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: var(--glass-hot);
+    color: var(--fire-4);
+    border: 1px solid var(--line-hot);
+    white-space: nowrap;
+  }
+
+  /* Blueprint */
+  .blueprint {
+    margin-top: 32px;
+    counter-reset: step;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 28px;
+    padding: 28px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .step:last-child { border-bottom: none; }
+  .step .n {
+    counter-increment: step;
+    position: relative;
+  }
+  .step .n::before {
+    content: counter(step, decimal-leading-zero);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 42px;
+    font-weight: 800;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--fire-2);
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+  .step .content h4 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ink-0);
+    margin-bottom: 8px;
+  }
+  .step .content p {
+    font-size: 15px;
+    color: var(--ink-2);
+    margin-bottom: 10px;
+  }
+  .step .content .cost {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--gold);
+    background: rgba(255, 179, 64, 0.08);
+    border: 1px solid rgba(255, 179, 64, 0.2);
+    border-radius: 6px;
+  }
+
+  /* Sources */
+  .sources {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+    margin-top: 24px;
+  }
+  .source {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--bg-1);
+    text-decoration: none;
+    color: var(--ink-1);
+    transition: all 0.2s;
+  }
+  .source:hover {
+    border-color: var(--line-hot);
+    transform: translateY(-2px);
+    background: var(--bg-2);
+  }
+  .source .i {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: grid; place-items: center;
+    background: var(--glass-hot);
+    font-size: 16px;
+  }
+  .source .t {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-1);
+  }
+  .source .u {
+    font-size: 12px;
+    color: var(--ink-3);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  footer {
+    padding: 60px 0 40px;
+    text-align: center;
+    border-top: 1px solid var(--line);
+    margin-top: 40px;
+  }
+  footer .flame {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 16px;
+    animation: flicker 2.4s ease-in-out infinite;
+  }
+  footer p {
+    color: var(--ink-3);
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+  footer .sig {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--fire-3);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+  }
+
+  @media (max-width: 840px) {
+    .identity-grid { grid-template-columns: 1fr; }
+    .swot-grid { grid-template-columns: 1fr; }
+    .kv { grid-template-columns: 1fr; gap: 4px; }
+    .step { grid-template-columns: 60px 1fr; gap: 16px; }
+    .step .n::before { font-size: 32px; }
+    .license-table { font-size: 13px; }
+    .license-table thead th, .license-table tbody td { padding: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="brand"><span class="flame">🔥</span> BOOM ORACLE · MARKET RESEARCH</div>
+  <div style="margin-bottom:24px; display:flex; gap:10px; flex-wrap:wrap;">
+    <a href="/" style="padding:8px 16px; background:var(--glass-hot); border:1px solid var(--line-hot); border-radius:8px; color:var(--fire-3); text-decoration:none; font-size:13px; font-weight:600;">📊 Market Research</a>
+    <a href="/licenses.html" style="padding:8px 16px; background:var(--bg-2); border:1px solid var(--line); border-radius:8px; color:var(--ink-2); text-decoration:none; font-size:13px; font-weight:600;">📋 License Guide</a>
+    <a href="/competitors.html" style="padding:8px 16px; background:var(--bg-2); border:1px solid var(--line); border-radius:8px; color:var(--ink-2); text-decoration:none; font-size:13px; font-weight:600;">🎯 Competitors →</a>
+  </div>
+  <h1>
+    <span class="accent">Stablecoin Banking · Market Study</span>
+    PEXX<span style="color:var(--fire-1);">.</span>com
+  </h1>
+  <p class="subtitle">
+    การศึกษาเชิงลึกเกี่ยวกับ <strong style="color:var(--fire-3)">PEXX Technology Pty Ltd</strong> —
+    "the world's first stablecoin bank" ที่ใช้โครงสร้าง license แบบ triple-jurisdiction
+    เชื่อม stablecoin เข้ากับระบบการเงินดั้งเดิม
+  </p>
+
+  <div class="meta-row">
+    <span class="meta-pill ok"><span class="dot"></span> Active · Operating 2024 – Present</span>
+    <span class="meta-pill"><span class="dot"></span> Headquartered · Hong Kong</span>
+    <span class="meta-pill"><span class="dot"></span> Legal Entity · Australia</span>
+    <span class="meta-pill"><span class="dot"></span> Last Updated · 2026-04-17</span>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat"><div class="k">Founded</div><div class="v">2024</div><div class="sub">~2 ปีแรก — scaling phase</div></div>
+    <div class="stat"><div class="k">Active Users</div><div class="v">50K+</div><div class="sub">ยังเล็กเทียบคู่แข่งระดับโลก</div></div>
+    <div class="stat"><div class="k">Licenses</div><div class="v">3</div><div class="sub">AUSTRAC × 2 · FinCEN × 1</div></div>
+    <div class="stat"><div class="k">Yield</div><div class="v">4% APY</div><div class="sub">บัญชี USD ถือ stablecoin ได้ดอกเบี้ย</div></div>
+    <div class="stat"><div class="k">Reach</div><div class="v">17+</div><div class="sub">ประเทศที่โอนเงินได้</div></div>
+  </div>
+</header>
+
+<!-- IDENTITY -->
+<section class="block" id="identity">
+  <div class="eyebrow">01 · Identity</div>
+  <h2>ตัวตนของ <span class="hl">PEXX</span> — ใครคือคนอยู่เบื้องหลัง</h2>
+  <p class="section-intro">
+    PEXX วาง positioning ตัวเองเป็น "stablecoin bank" ตัวแรกของโลก
+    แต่ในเชิง legal ไม่ใช่ธนาคารจริง — เป็น <strong>DCE + Remittance dealer</strong>
+    ที่ใช้ partner bank รองรับ USD account
+  </p>
+
+  <div class="identity-grid">
+    <div class="card hot">
+      <h3><span class="ico">🏢</span> Corporate Profile</h3>
+      <div class="kv"><div class="k">Brand Name</div><div class="v"><strong>PEXX</strong> — "Borderless stablecoin banking"</div></div>
+      <div class="kv"><div class="k">Legal Entity</div><div class="v"><strong>PEXX Technology Pty Ltd</strong></div></div>
+      <div class="kv"><div class="k">Registered In</div><div class="v">Australia 🇦🇺 (Pty Ltd)</div></div>
+      <div class="kv"><div class="k">Operational HQ</div><div class="v">Hong Kong 🇭🇰 (ตาม Crunchbase / Pitchbook)</div></div>
+      <div class="kv"><div class="k">Founded</div><div class="v">2024</div></div>
+      <div class="kv"><div class="k">Founder / CEO</div><div class="v"><strong>Marcus Lim</strong></div></div>
+      <div class="kv"><div class="k">Industry</div><div class="v">Financial Software · Fintech · Stablecoin Banking</div></div>
+      <div class="kv"><div class="k">Company Size</div><div class="v">Private · Early-stage startup</div></div>
+      <div class="kv"><div class="k">User Base</div><div class="v">50,000+ users</div></div>
+    </div>
+
+    <div class="card">
+      <h3><span class="ico">🎯</span> Mission &amp; Vision</h3>
+      <p style="font-size:15px; line-height:1.7; color:var(--ink-1); margin-bottom:20px; font-style:italic; padding-left:16px; border-left:2px solid var(--fire-2);">
+        "To democratise global finance by using stablecoins as practical, trusted money
+        — so anyone, anywhere can access USD, spend globally,
+        and stay in control of their financial future."
+      </p>
+      <p style="font-size:14px; color:var(--ink-2); line-height:1.7;">
+        ปรัชญาคือทำให้ <b style="color:var(--fire-3)">stablecoin เป็นเงินที่ใช้จริงได้</b> ไม่ใช่แค่ asset เก็งกำไร —
+        โดยเชื่อม USDC / USDT เข้ากับ Visa / Mastercard และระบบ SWIFT / ACH
+      </p>
+      <div style="margin-top:24px; padding:16px; background:var(--bg-3); border-radius:10px; border:1px solid var(--line);">
+        <div style="font-size:11px; text-transform:uppercase; color:var(--ink-3); letter-spacing:0.1em; margin-bottom:6px;">Transparency Note</div>
+        <div style="font-size:13px; color:var(--ink-2);">
+          Founder team นอกจาก Marcus Lim <b style="color:var(--danger)">ไม่ได้เปิดเผยบนเว็บ</b> —
+          ยังเป็นจุดที่ทำให้ brand trust ต่ำ (Trustpilot มีแค่ 4 รีวิว)
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LICENSES -->
+<section class="block" id="licenses">
+  <div class="eyebrow">02 · Licenses &amp; Regulatory</div>
+  <h2>ใบอนุญาต — <span class="hl">จุดแข็งที่สุด</span> ของ PEXX</h2>
+  <p class="section-intro">
+    PEXX มี license ใน <strong>2 เขตอำนาจ</strong> หลักที่ครอบคลุม crypto + remittance
+    โดยอาศัย partner bank แทนการถือ banking license เอง — ลดต้นทุน setup ได้มหาศาล
+  </p>
+
+  <table class="license-table">
+    <thead>
+      <tr>
+        <th>Regulator</th>
+        <th>Jurisdiction</th>
+        <th>License Type</th>
+        <th>Registration No.</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="flag">AUSTRAC</span></td>
+        <td>🇦🇺 Australia</td>
+        <td>Digital Currency Exchange (DCE) Provider</td>
+        <td class="num">DCE100851583-001</td>
+      </tr>
+      <tr>
+        <td><span class="flag">AUSTRAC</span></td>
+        <td>🇦🇺 Australia</td>
+        <td>Independent Remittance Dealer</td>
+        <td class="num">IND100851583-001</td>
+      </tr>
+      <tr>
+        <td><span class="flag">FinCEN</span></td>
+        <td>🇺🇸 United States</td>
+        <td>Money Services Business (MSB)</td>
+        <td class="num">31000288010318</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:32px; display:grid; grid-template-columns: 1fr 1fr; gap:20px;" class="identity-grid">
+    <div class="card">
+      <h3><span class="ico">🏦</span> Banking Partners</h3>
+      <div class="kv">
+        <div class="k">USD Account</div>
+        <div class="v"><strong>Cross River Bank</strong> (USA) — เจ้าเดียวกับ Coinbase, Wise, Stripe</div>
+      </div>
+      <div class="kv">
+        <div class="k">Payment Rails</div>
+        <div class="v">SWIFT · Fedwire · ACH · RTP®</div>
+      </div>
+      <div class="kv">
+        <div class="k">Card Network</div>
+        <div class="v">Visa &amp; Mastercard (debit card issuing)</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="ico">⚠️</span> License Gaps</h3>
+      <p style="font-size:14px; color:var(--ink-2); line-height:1.7; margin-bottom:14px;">
+        Jurisdictions ที่ <b style="color:var(--danger)">ยังไม่มี license</b> — จุดที่ขยายไม่ได้:
+      </p>
+      <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+        <li style="font-size:14px; color:var(--ink-2); padding-left:20px; position:relative;">
+          <span style="position:absolute; left:0; color:var(--danger);">✗</span>
+          <b>EU EMI</b> — ไม่มี e-money license ในยุโรป
+        </li>
+        <li style="font-size:14px; color:var(--ink-2); padding-left:20px; position:relative;">
+          <span style="position:absolute; left:0; color:var(--danger);">✗</span>
+          <b>MAS (Singapore)</b> — ไม่มี Payment Services Act license
+        </li>
+        <li style="font-size:14px; color:var(--ink-2); padding-left:20px; position:relative;">
+          <span style="position:absolute; left:0; color:var(--danger);">✗</span>
+          <b>US State MTLs</b> — state-by-state money transmitter license ยังไม่ครบ
+        </li>
+        <li style="font-size:14px; color:var(--ink-2); padding-left:20px; position:relative;">
+          <span style="position:absolute; left:0; color:var(--danger);">✗</span>
+          <b>FCA (UK)</b> — ไม่มี FCA registration
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS SETUP -->
+<section class="block" id="business">
+  <div class="eyebrow">03 · Business Setup</div>
+  <h2>โมเดลธุรกิจ &amp; <span class="hl">Product Suite</span></h2>
+  <p class="section-intro">
+    PEXX รวม 6 กลุ่มบริการในแอปเดียว — ยิง target ไปที่ <strong>crypto-native users</strong>
+    ที่อยากใช้ stablecoin เหมือน fiat จริงในชีวิตประจำวัน
+  </p>
+
+  <div class="products-grid">
+    <div class="product">
+      <span class="ico">🏦</span>
+      <div class="name">USD Virtual Account</div>
+      <div class="desc">เปิดบัญชี USD มี routing &amp; account number จริง รับเงินจาก ACH/SWIFT/Fedwire ได้เหมือนบัญชี US</div>
+    </div>
+    <div class="product">
+      <span class="ico">💳</span>
+      <div class="name">Visa/Mastercard Card</div>
+      <div class="desc">Virtual + Physical debit card รูดจ่ายด้วย balance stablecoin ได้ทั่วโลก</div>
+    </div>
+    <div class="product">
+      <span class="ico">🌐</span>
+      <div class="name">Global Remittance</div>
+      <div class="desc">โอนเงินข้ามประเทศไป 17+ ประเทศ จาก USDT/USDC → fiat ในไม่กี่นาที</div>
+    </div>
+    <div class="product">
+      <span class="ico">💎</span>
+      <div class="name">Stablecoin Wallet</div>
+      <div class="desc">ถือ USDT และ USDC ข้าม multiple blockchains พร้อมจ่ายเงินได้ทันที</div>
+    </div>
+    <div class="product">
+      <span class="ico">📈</span>
+      <div class="name">Yield Account</div>
+      <div class="desc">ได้ดอกเบี้ย <strong style="color:var(--fire-3)">สูงสุด 4% APY</strong> จาก USD balance ที่ไม่ได้ใช้</div>
+    </div>
+    <div class="product">
+      <span class="ico">🔳</span>
+      <div class="name">QR Merchant Pay</div>
+      <div class="desc">สแกน QR จ่ายเงิน local merchants ด้วย stablecoin</div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section class="block" id="stack">
+  <div class="eyebrow">04 · Tech &amp; Regulatory Stack</div>
+  <h2>โครงสร้างที่ซ่อนอยู่ใต้แบรนด์ "Bank"</h2>
+  <p class="section-intro">
+    PEXX ไม่ได้เป็นธนาคารจริง — แต่วาง stack 5 ชั้นที่ทำให้ user <strong>รู้สึกเหมือนใช้ธนาคาร</strong>
+  </p>
+
+  <div class="stack">
+    <div class="stack-layer">
+      <div class="num">05</div>
+      <div class="info"><h4>Frontend · PEXX App</h4><p>iOS / Android / Web — user interface สำหรับผู้ใช้ปลายทาง</p></div>
+      <span class="tag">Owned</span>
+    </div>
+    <div class="stack-layer">
+      <div class="num">04</div>
+      <div class="info"><h4>Card Issuing</h4><p>Visa / Mastercard debit card — issued via partner processor</p></div>
+      <span class="tag">Partner</span>
+    </div>
+    <div class="stack-layer">
+      <div class="num">03</div>
+      <div class="info"><h4>Banking-as-a-Service</h4><p>Cross River Bank — USD account, ACH, Fedwire, RTP rails</p></div>
+      <span class="tag">Partner</span>
+    </div>
+    <div class="stack-layer">
+      <div class="num">02</div>
+      <div class="info"><h4>Stablecoin Layer</h4><p>USDT (Tether) + USDC (Circle) — multi-chain custody</p></div>
+      <span class="tag">Integrated</span>
+    </div>
+    <div class="stack-layer">
+      <div class="num">01</div>
+      <div class="info"><h4>Regulatory Shell</h4><p>PEXX Technology Pty Ltd (AU) + AUSTRAC + FinCEN MSB</p></div>
+      <span class="tag">Core</span>
+    </div>
+  </div>
+</section>
+
+<!-- SWOT -->
+<section class="block" id="swot">
+  <div class="eyebrow">05 · SWOT Analysis</div>
+  <h2>ข้อดี &amp; <span class="hl">ข้อจำกัด</span> ของโมเดลนี้</h2>
+
+  <div class="swot-grid">
+    <div class="swot strength">
+      <h3>✓ Strengths</h3>
+      <ul>
+        <li><b>Triple-jurisdiction license</b> — ครอบคลุม AU + US ทำให้ reach ได้ทั้ง APAC และอเมริกาเหนือ</li>
+        <li><b>ไม่ต้องถือ banking license เอง</b> — ใช้ Cross River BaaS ประหยัดเงิน $10M+ และเวลา 3-5 ปี</li>
+        <li><b>Product suite ครบ</b> — account + card + remittance + yield ใน app เดียว</li>
+        <li><b>Multi-chain</b> — support USDT และ USDC ข้าม chains เลือกค่า gas ถูกที่สุดได้</li>
+        <li><b>Competitive yield</b> — 4% APY สูงกว่า US savings account ปกติ</li>
+      </ul>
+    </div>
+    <div class="swot weakness">
+      <h3>✗ Weaknesses</h3>
+      <ul>
+        <li><b>Brand trust ยังบาง</b> — Trustpilot มีแค่ 4 รีวิว, Founder team ไม่โชว์</li>
+        <li><b>License gaps</b> — ขาด EU (EMI), SG (MAS), UK (FCA), state MTLs</li>
+        <li><b>Dependency risk</b> — ถ้า Cross River มีปัญหา USD account ทั้งหมดกระทบทันที</li>
+        <li><b>Small user base</b> — 50K users เทียบ Wise (13M), Revolut (45M) ยังเล็กมาก</li>
+        <li><b>Customer support ปัญหา</b> — รีวิวบ่นเรื่อง card declines และ payment issues</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- BLUEPRINT -->
+<section class="block" id="blueprint">
+  <div class="eyebrow">06 · Blueprint — ถ้าจะ Copy Model นี้</div>
+  <h2>ทำ <span class="hl">PEXX-clone</span> ต้องเตรียมอะไรบ้าง</h2>
+  <p class="section-intro">
+    สรุปเป็น 4 step หลัก สำหรับคนอยากสร้าง stablecoin bank แบบเดียวกัน —
+    เรียงลำดับจากถูกไปแพง
+  </p>
+
+  <div class="blueprint">
+    <div class="step">
+      <div class="n"></div>
+      <div class="content">
+        <h4>AUSTRAC Registration (Australia)</h4>
+        <p>จดทะเบียน Pty Ltd + DCE + Remittance dealer กับ AUSTRAC — เป็น regulatory base ที่ถูกที่สุด
+        สำหรับ crypto business ในโลก ไม่ต้อง capital requirement สูง แต่ต้องมี AML/CTF program</p>
+        <span class="cost">ต้นทุน: ~AUD 5,000 - 10,000 + compliance officer</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="n"></div>
+      <div class="content">
+        <h4>FinCEN MSB (USA Federal)</h4>
+        <p>จดทะเบียน Money Services Business ที่ federal level — ฟรี แต่ต้อง AML program
+        และ BSA compliance. <b>Note:</b> federal MSB ไม่ครอบคลุม state — ถ้าจะทำธุรกิจเต็มสูบต้องเพิ่ม
+        state MTL ทุกรัฐที่จะให้บริการ (แพงมาก $2M+ ต่อรัฐรวม)</p>
+        <span class="cost">ต้นทุน: Federal $0 · State MTLs $50M+ ถ้าครบ 50 รัฐ</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="n"></div>
+      <div class="content">
+        <h4>Banking-as-a-Service Partner</h4>
+        <p>หา partner bank ที่ให้ USD account + routing numbers + ACH/Fedwire.
+        ทางเลือกหลัก: <b>Cross River</b> (PEXX ใช้), <b>Mercury</b>, <b>Bridge</b>, <b>Column</b>.
+        ส่วนใหญ่ต้องมี revenue-share หรือ minimum balance</p>
+        <span class="cost">ต้นทุน: Minimum deposits $100K - $1M + ค่า API per transaction</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="n"></div>
+      <div class="content">
+        <h4>Card Issuing Platform</h4>
+        <p>ออกการ์ด Visa / Mastercard ผ่าน issuer-processor — ตัวเลือกยอดนิยม: <b>Marqeta</b>,
+        <b>Galileo</b>, <b>Highnote</b>, หรือ <b>Stripe Issuing</b>. ต้องการ sponsor bank
+        (ส่วนใหญ่ partner BaaS เดียวกัน)</p>
+        <span class="cost">ต้นทุน: Setup $50K - $200K + per-card fees</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card hot" style="margin-top:40px;">
+    <h3><span class="ico">💡</span> Insight สำคัญจาก Boom</h3>
+    <p style="font-size:15.5px; color:var(--ink-1); line-height:1.75;">
+      PEXX เลือกเส้นทาง <b style="color:var(--fire-3)">"Minimum Viable Regulation"</b> — ใช้ AUSTRAC
+      ที่ถูกสุดเป็น base แล้วต่อ FinCEN เพื่อเข้าตลาด US ที่ใหญ่ที่สุด จากนั้นใช้ BaaS partner
+      แทนการทำ banking license เอง
+      <br><br>
+      ถ้าจะเริ่มต้นแบบประหยัด <b style="color:var(--fire-3)">เริ่มที่ AUSTRAC + Cross River</b>
+      จะสามารถให้บริการ crypto-to-fiat ได้เลย โดยไม่ต้องลงทุนเกิน USD 500K
+      — นี่คือเหตุผลที่ startups หลายเจ้าเลือก model นี้ในปี 2024-2026
+    </p>
+  </div>
+</section>
+
+<!-- SOURCES -->
+<section class="block" id="sources">
+  <div class="eyebrow">07 · Sources</div>
+  <h2>แหล่งอ้างอิง</h2>
+  <p class="section-intro">
+    ข้อมูลทั้งหมดรวบรวมจากเว็บไซต์ PEXX, Crunchbase, Pitchbook, LinkedIn,
+    และ Trustpilot reviews เมื่อวันที่ 2026-04-17
+  </p>
+
+  <div class="sources">
+    <a class="source" href="https://pexx.com/" target="_blank" rel="noopener">
+      <div class="i">🏠</div>
+      <div><div class="t">PEXX Main Site</div><div class="u">pexx.com</div></div>
+    </a>
+    <a class="source" href="https://pexx.com/about-us" target="_blank" rel="noopener">
+      <div class="i">ℹ️</div>
+      <div><div class="t">About PEXX</div><div class="u">pexx.com/about-us</div></div>
+    </a>
+    <a class="source" href="https://pexx.com/business" target="_blank" rel="noopener">
+      <div class="i">💼</div>
+      <div><div class="t">PEXX Business</div><div class="u">pexx.com/business</div></div>
+    </a>
+    <a class="source" href="https://pitchbook.com/profiles/company/591003-37" target="_blank" rel="noopener">
+      <div class="i">📊</div>
+      <div><div class="t">Pitchbook Profile</div><div class="u">pitchbook.com</div></div>
+    </a>
+    <a class="source" href="https://www.crunchbase.com/organization/pexx-8880" target="_blank" rel="noopener">
+      <div class="i">🔍</div>
+      <div><div class="t">Crunchbase Profile</div><div class="u">crunchbase.com</div></div>
+    </a>
+    <a class="source" href="https://www.linkedin.com/company/pexxofficial" target="_blank" rel="noopener">
+      <div class="i">💼</div>
+      <div><div class="t">LinkedIn Company Page</div><div class="u">linkedin.com/company/pexxofficial</div></div>
+    </a>
+    <a class="source" href="https://www.trustpilot.com/review/pexx.com" target="_blank" rel="noopener">
+      <div class="i">⭐</div>
+      <div><div class="t">Trustpilot Reviews</div><div class="u">trustpilot.com</div></div>
+    </a>
+    <a class="source" href="https://www.cbinsights.com/company/pexx" target="_blank" rel="noopener">
+      <div class="i">📈</div>
+      <div><div class="t">CB Insights</div><div class="u">cbinsights.com</div></div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <span class="flame">🔥</span>
+  <p>Generated by <b style="color:var(--fire-3);">Boom Oracle</b> — fire-forged market intelligence</p>
+  <p>Research date · 2026-04-17 · Thailand</p>
+  <p class="sig">ORACLE · NOTHING IS DELETED · FIRE REFINES</p>
+</footer>
+
+</div>
+
+</body>
+</html>

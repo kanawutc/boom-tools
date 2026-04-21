@@ -1,0 +1,3559 @@
+<!DOCTYPE html>
+<html lang="th">
+<head><script src="auth.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Competitors Landscape — PEXX vs The World | Boom Oracle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-0: #0a0608;
+    --bg-1: #120a0d;
+    --bg-2: #1a0f13;
+    --bg-3: #241419;
+    --bg-4: #2e1a20;
+    --fire-1: #ff3d00;
+    --fire-2: #ff6b1a;
+    --fire-3: #ffa540;
+    --fire-4: #ffd166;
+    --ember: #ff2d55;
+    --gold: #ffb340;
+    --ink-0: #ffffff;
+    --ink-1: #f4e8d8;
+    --ink-2: #c8b8a8;
+    --ink-3: #8a7868;
+    --ink-4: #5a4d42;
+    --ok: #4ade80;
+    --warn: #fbbf24;
+    --danger: #f87171;
+    --line: rgba(255, 165, 64, 0.12);
+    --line-hot: rgba(255, 61, 0, 0.35);
+    --glass: rgba(255, 255, 255, 0.03);
+    --glass-hot: rgba(255, 107, 26, 0.06);
+    --shadow-fire: 0 30px 80px -20px rgba(255, 61, 0, 0.25);
+    --shadow-deep: 0 40px 100px -30px rgba(0, 0, 0, 0.8);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', 'Noto Sans Thai', -apple-system, sans-serif;
+    background: var(--bg-0);
+    color: var(--ink-1);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 0%, rgba(255, 61, 0, 0.12), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(255, 45, 85, 0.08), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 165, 64, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 165, 64, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+    mask-image: radial-gradient(circle at center, black, transparent 80%);
+  }
+  .wrap { position: relative; z-index: 1; max-width: 1320px; margin: 0 auto; padding: 0 28px; }
+
+  header.hero { padding: 70px 0 50px; }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--fire-3);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    padding: 8px 14px;
+    border: 1px solid var(--line-hot);
+    border-radius: 999px;
+    background: var(--glass-hot);
+  }
+  .brand .flame { animation: flicker 2.4s ease-in-out infinite; }
+  @keyframes flicker {
+    0%, 100% { transform: scale(1) rotate(-2deg); opacity: 1; }
+    50% { transform: scale(1.08) rotate(2deg); opacity: 0.85; }
+  }
+  .nav {
+    margin-bottom: 24px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .nav a {
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .nav a.active {
+    background: var(--glass-hot);
+    border: 1px solid var(--line-hot);
+    color: var(--fire-3);
+  }
+  .nav a:not(.active) {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    color: var(--ink-2);
+  }
+  .nav a:not(.active):hover {
+    border-color: var(--line-hot);
+    color: var(--fire-3);
+  }
+
+  h1 {
+    font-size: clamp(44px, 7vw, 88px);
+    font-weight: 900;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--ink-0) 0%, var(--fire-3) 40%, var(--fire-1) 70%, var(--ember) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  h1 .accent {
+    display: block;
+    font-size: 0.3em;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    background: none;
+    -webkit-text-fill-color: var(--ink-3);
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    font-size: 19px;
+    color: var(--ink-2);
+    max-width: 780px;
+    margin-bottom: 36px;
+  }
+
+  /* Market grid */
+  .market-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+    margin-top: 36px;
+  }
+  .logo-card {
+    padding: 22px 18px;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    background: var(--bg-1);
+    text-align: center;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+  }
+  .logo-card:hover { transform: translateY(-3px); border-color: var(--line-hot); background: var(--bg-2); }
+  .logo-card.pexx {
+    background: linear-gradient(145deg, rgba(255, 61, 0, 0.15), rgba(255, 107, 26, 0.05));
+    border-color: var(--fire-2);
+    box-shadow: var(--shadow-fire);
+  }
+  .logo-card.pexx::before {
+    content: 'YOUR FOCUS';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    padding: 2px 6px;
+    background: var(--fire-1);
+    color: var(--bg-0);
+    border-radius: 3px;
+  }
+  .logo-card .logo-brand {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--ink-0);
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .logo-card .logo-tag {
+    font-size: 11px;
+    color: var(--ink-3);
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+  .logo-card .logo-desc {
+    font-size: 12px;
+    color: var(--ink-2);
+    line-height: 1.5;
+  }
+  .logo-card .logo-flag {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 14px;
+  }
+
+  /* Sections */
+  section.block {
+    padding: 60px 0;
+    border-top: 1px solid var(--line);
+  }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--fire-2);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--fire-2); }
+  h2 {
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 14px;
+    color: var(--ink-0);
+    line-height: 1.1;
+  }
+  h2 .hl { color: var(--fire-3); }
+  h2 .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55em;
+    color: var(--fire-2);
+    margin-right: 12px;
+    opacity: 0.6;
+  }
+  .section-intro {
+    font-size: 17px;
+    color: var(--ink-2);
+    max-width: 720px;
+    margin-bottom: 32px;
+  }
+
+  /* MoonPay deep dive */
+  .moonpay-card {
+    padding: 40px;
+    border-radius: 22px;
+    background: linear-gradient(145deg, #1a0f2e 0%, #0f0820 50%, var(--bg-1) 100%);
+    border: 1px solid rgba(139, 92, 246, 0.35);
+    box-shadow: 0 30px 80px -20px rgba(139, 92, 246, 0.25);
+    position: relative;
+    overflow: hidden;
+    margin-top: 28px;
+  }
+  .moonpay-card::before {
+    content: '🌙';
+    position: absolute;
+    top: -30px;
+    right: -10px;
+    font-size: 180px;
+    opacity: 0.08;
+  }
+  .moonpay-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 28px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(139, 92, 246, 0.25);
+    position: relative;
+  }
+  .moonpay-logo {
+    width: 72px; height: 72px;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #8b5cf6, #6366f1);
+    display: grid; place-items: center;
+    font-size: 38px;
+    box-shadow: 0 10px 30px -10px #8b5cf6;
+  }
+  .moonpay-header h3 {
+    font-size: 30px;
+    font-weight: 900;
+    color: var(--ink-0);
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+  .moonpay-header .tagline {
+    font-size: 14px;
+    color: rgba(196, 181, 253, 1);
+    font-weight: 500;
+  }
+  .moonpay-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    margin-bottom: 28px;
+    position: relative;
+  }
+  .mp-stat {
+    padding: 18px;
+    border-radius: 12px;
+    background: rgba(139, 92, 246, 0.08);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+  }
+  .mp-stat .k {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(196, 181, 253, 0.7);
+    margin-bottom: 6px;
+  }
+  .mp-stat .v {
+    font-size: 26px;
+    font-weight: 900;
+    color: #c4b5fd;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .mp-stat .sub {
+    font-size: 12px;
+    color: var(--ink-3);
+    margin-top: 4px;
+  }
+  .moonpay-section-title {
+    font-size: 15px;
+    color: #c4b5fd;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 20px 0 12px 0;
+    font-weight: 700;
+    position: relative;
+  }
+  .mp-license-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 10px;
+  }
+  .mp-license {
+    padding: 14px 16px;
+    background: rgba(139, 92, 246, 0.06);
+    border-radius: 10px;
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    font-size: 13.5px;
+    color: var(--ink-1);
+  }
+  .mp-license .flag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #c4b5fd;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+    letter-spacing: 0.08em;
+  }
+
+  /* Comparison table */
+  .compare-wrap {
+    margin-top: 32px;
+    border-radius: 16px;
+    border: 1px solid var(--line-hot);
+    overflow: hidden;
+    background: var(--bg-1);
+    overflow-x: auto;
+  }
+  .compare {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 900px;
+  }
+  .compare thead th {
+    padding: 18px 14px;
+    text-align: left;
+    background: linear-gradient(180deg, rgba(255, 61, 0, 0.12), rgba(255, 61, 0, 0.04));
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--fire-3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--line-hot);
+    vertical-align: bottom;
+  }
+  .compare thead th.brand-col {
+    font-size: 15px;
+    color: var(--ink-0);
+    letter-spacing: -0.01em;
+    text-transform: none;
+  }
+  .compare thead th.brand-col.pexx-col {
+    background: linear-gradient(180deg, rgba(255, 61, 0, 0.25), rgba(255, 61, 0, 0.1));
+    color: var(--fire-4);
+  }
+  .compare thead th .sub {
+    display: block;
+    font-size: 10px;
+    color: var(--ink-3);
+    font-weight: 500;
+    margin-top: 4px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .compare tbody td {
+    padding: 14px;
+    border-bottom: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-1);
+    vertical-align: top;
+  }
+  .compare tbody td.row-label {
+    font-weight: 700;
+    color: var(--fire-3);
+    white-space: nowrap;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+  }
+  .compare tbody td.pexx-col {
+    background: rgba(255, 61, 0, 0.04);
+    border-left: 1px solid var(--line-hot);
+    border-right: 1px solid var(--line-hot);
+  }
+  .compare tbody tr:last-child td.pexx-col {
+    border-bottom: 1px solid var(--line-hot);
+  }
+  .compare tbody tr:hover td:not(.pexx-col) { background: var(--glass-hot); }
+  .compare .yes { color: var(--ok); font-weight: 600; }
+  .compare .no { color: var(--danger); }
+  .compare .mid { color: var(--warn); }
+
+  /* Matrix tables — brands as rows */
+  .matrix-intro {
+    margin-top: 24px;
+    padding: 20px 24px;
+    border-radius: 14px;
+    background: linear-gradient(145deg, var(--glass-hot), transparent);
+    border: 1px solid var(--line-hot);
+    font-size: 14px;
+    color: var(--ink-1);
+    line-height: 1.7;
+  }
+  .matrix-group {
+    margin-top: 36px;
+    padding: 28px;
+    border-radius: 18px;
+    background: linear-gradient(160deg, var(--bg-2), var(--bg-1));
+    border: 1px solid var(--line);
+  }
+  .matrix-group-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .matrix-group-header .ico {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    display: grid; place-items: center;
+    font-size: 20px;
+    background: var(--glass-hot);
+    border: 1px solid var(--line-hot);
+  }
+  .matrix-group-header h3 {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--ink-0);
+    letter-spacing: -0.01em;
+    margin-bottom: 2px;
+  }
+  .matrix-group-header .sub {
+    font-size: 12px;
+    color: var(--ink-3);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .matrix-scroll {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+  }
+  .matrix {
+    width: 100%;
+    min-width: 720px;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 13px;
+  }
+  .matrix thead th {
+    background: linear-gradient(180deg, rgba(255, 61, 0, 0.08), rgba(255, 61, 0, 0.02));
+    padding: 12px 10px;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--fire-3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    border-bottom: 1px solid var(--line-hot);
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+  .matrix thead th:first-child {
+    text-align: left;
+    min-width: 160px;
+    background: linear-gradient(180deg, rgba(255, 61, 0, 0.15), rgba(255, 61, 0, 0.05));
+    position: sticky;
+    left: 0;
+    z-index: 3;
+  }
+  .matrix tbody td {
+    padding: 11px 10px;
+    font-size: 12.5px;
+    color: var(--ink-1);
+    border-bottom: 1px solid var(--line);
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  .matrix tbody td:first-child {
+    text-align: left;
+    font-weight: 700;
+    color: var(--ink-0);
+    padding-left: 14px;
+    background: var(--bg-2);
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    border-right: 1px solid var(--line);
+    white-space: nowrap;
+    min-width: 160px;
+  }
+  .matrix tbody td:first-child .flag {
+    display: block;
+    font-size: 10px;
+    color: var(--ink-3);
+    font-weight: 500;
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 2px;
+    letter-spacing: 0.05em;
+  }
+  .matrix tbody tr.pexx-row td {
+    background: rgba(255, 61, 0, 0.06) !important;
+    color: var(--ink-0);
+    font-weight: 600;
+  }
+  .matrix tbody tr.pexx-row td:first-child {
+    background: linear-gradient(90deg, rgba(255, 61, 0, 0.2), rgba(255, 61, 0, 0.08)) !important;
+    color: var(--fire-4);
+    border-left: 3px solid var(--fire-2);
+    padding-left: 11px;
+  }
+  .matrix tbody tr:hover td:not(:first-child) { background: rgba(255, 165, 64, 0.04); }
+  .matrix .y { color: var(--ok); font-weight: 700; }
+  .matrix .n { color: var(--danger); opacity: 0.6; }
+  .matrix .m { color: var(--warn); }
+  .matrix .dash { color: var(--ink-4); }
+  .matrix .num-col { color: var(--fire-3); font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+
+  .matrix-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 14px;
+    padding: 12px 18px;
+    background: var(--bg-3);
+    border-radius: 10px;
+    font-size: 12px;
+    color: var(--ink-3);
+  }
+  .matrix-legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+  /* Category tabs */
+  .cat-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 24px 0 0 0;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  .cat-tab {
+    padding: 10px 16px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--ink-2);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .cat-tab:hover {
+    border-color: var(--line-hot);
+    color: var(--fire-3);
+    transform: translateY(-1px);
+  }
+
+  /* Glossary */
+  .gloss-group {
+    margin-top: 36px;
+  }
+  .gloss-group-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 22px;
+    border-radius: 14px;
+    background: linear-gradient(145deg, var(--glass-hot), transparent);
+    border: 1px solid var(--line-hot);
+    margin-bottom: 18px;
+  }
+  .gloss-group-header .ico {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    display: grid; place-items: center;
+    font-size: 18px;
+    background: var(--bg-3);
+    border: 1px solid var(--line-hot);
+  }
+  .gloss-group-header h3 {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--fire-3);
+    letter-spacing: -0.01em;
+  }
+  .gloss-group-header .count {
+    margin-left: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .gloss-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+  }
+  .gloss-card {
+    padding: 18px;
+    border-radius: 12px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    transition: all 0.2s;
+  }
+  .gloss-card:hover {
+    border-color: var(--line-hot);
+    background: var(--bg-2);
+    transform: translateY(-2px);
+  }
+  .gloss-term {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .gloss-abbr {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--fire-3);
+    letter-spacing: -0.01em;
+  }
+  .gloss-type {
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--bg-3);
+    color: var(--ink-3);
+    white-space: nowrap;
+  }
+  .gloss-type.license { background: rgba(74, 222, 128, 0.12); color: var(--ok); }
+  .gloss-type.bank { background: rgba(96, 165, 250, 0.12); color: #60a5fa; }
+  .gloss-type.crypto { background: rgba(255, 107, 26, 0.12); color: var(--fire-3); }
+  .gloss-type.fee { background: rgba(251, 191, 36, 0.12); color: var(--warn); }
+  .gloss-type.yield { background: rgba(167, 139, 250, 0.15); color: #c4b5fd; }
+  .gloss-type.card { background: rgba(236, 72, 153, 0.12); color: #f472b6; }
+  .gloss-type.biz { background: rgba(255, 107, 26, 0.08); color: var(--fire-4); }
+  .gloss-full {
+    font-size: 11px;
+    color: var(--ink-3);
+    margin-bottom: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.02em;
+  }
+  .gloss-def {
+    font-size: 13px;
+    color: var(--ink-1);
+    line-height: 1.55;
+  }
+  .gloss-def b {
+    color: var(--fire-3);
+    font-weight: 600;
+  }
+  .gloss-why {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--line);
+    font-size: 11.5px;
+    color: var(--ink-2);
+    line-height: 1.5;
+  }
+  .gloss-why::before {
+    content: '💡 ';
+    opacity: 0.6;
+  }
+
+  /* Value Reference */
+  .val-group {
+    margin-top: 32px;
+    padding: 28px;
+    border-radius: 18px;
+    background: linear-gradient(160deg, var(--bg-2), var(--bg-1));
+    border: 1px solid var(--line);
+  }
+  .val-group-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .val-group-header .ico {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    display: grid; place-items: center;
+    font-size: 20px;
+    background: var(--glass-hot);
+    border: 1px solid var(--line-hot);
+  }
+  .val-group-header h3 {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--ink-0);
+    letter-spacing: -0.01em;
+    margin-bottom: 2px;
+  }
+  .val-group-header .context {
+    font-size: 12px;
+    color: var(--ink-3);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .val-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 14px;
+  }
+  .val-card {
+    padding: 18px;
+    border-radius: 12px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    transition: all 0.2s;
+  }
+  .val-card:hover {
+    border-color: var(--line-hot);
+    transform: translateY(-2px);
+  }
+  .val-sample {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+    margin-bottom: 12px;
+    color: var(--ink-1);
+    min-width: 60px;
+    text-align: center;
+  }
+  .val-sample.y { color: var(--ok); background: rgba(74, 222, 128, 0.08); border-color: rgba(74, 222, 128, 0.3); }
+  .val-sample.n { color: var(--danger); background: rgba(248, 113, 113, 0.08); border-color: rgba(248, 113, 113, 0.3); }
+  .val-sample.m { color: var(--warn); background: rgba(251, 191, 36, 0.08); border-color: rgba(251, 191, 36, 0.3); }
+  .val-sample.dash { color: var(--ink-4); background: rgba(90, 77, 66, 0.08); border-color: rgba(90, 77, 66, 0.3); }
+  .val-sample.num { color: var(--fire-3); background: rgba(255, 165, 64, 0.08); border-color: var(--line-hot); }
+  .val-sample.special { color: #c4b5fd; background: rgba(139, 92, 246, 0.08); border-color: rgba(139, 92, 246, 0.3); }
+  .val-meaning {
+    font-size: 14px;
+    color: var(--ink-0);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .val-desc {
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.55;
+  }
+  .val-ex {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: var(--bg-3);
+    border-radius: 6px;
+    border-left: 2px solid var(--fire-2);
+    font-size: 11.5px;
+    color: var(--ink-3);
+    line-height: 1.5;
+  }
+  .val-ex b { color: var(--fire-3); font-family: 'JetBrains Mono', monospace; }
+
+  /* Positioning map */
+  .pos-map-wrap {
+    margin-top: 32px;
+    padding: 32px;
+    border-radius: 18px;
+    border: 1px solid var(--line-hot);
+    background: linear-gradient(160deg, var(--bg-2), var(--bg-1));
+    box-shadow: var(--shadow-deep);
+  }
+  .pos-map {
+    position: relative;
+    aspect-ratio: 1.4;
+    max-height: 580px;
+    background:
+      linear-gradient(90deg, transparent 49.8%, rgba(255, 165, 64, 0.15) 49.9%, rgba(255, 165, 64, 0.15) 50.1%, transparent 50.2%),
+      linear-gradient(0deg, transparent 49.8%, rgba(255, 165, 64, 0.15) 49.9%, rgba(255, 165, 64, 0.15) 50.1%, transparent 50.2%),
+      radial-gradient(ellipse at center, rgba(255, 107, 26, 0.05), transparent 70%);
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    margin-bottom: 20px;
+  }
+  .pos-label {
+    position: absolute;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ink-3);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .pos-label.top { top: 12px; left: 50%; transform: translateX(-50%); color: var(--fire-3); }
+  .pos-label.bot { bottom: 12px; left: 50%; transform: translateX(-50%); color: var(--fire-3); }
+  .pos-label.left { left: 12px; top: 50%; transform: translateY(-50%) rotate(-90deg); transform-origin: center; color: var(--fire-3); }
+  .pos-label.right { right: 12px; top: 50%; transform: translateY(-50%) rotate(90deg); transform-origin: center; color: var(--fire-3); }
+  .pos-point {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+    color: var(--ink-1);
+    cursor: default;
+    transition: all 0.2s;
+  }
+  .pos-point:hover { transform: translate(-50%, -50%) scale(1.1); z-index: 10; border-color: var(--line-hot); }
+  .pos-point.pexx {
+    background: var(--fire-1);
+    color: #fff;
+    border: 2px solid var(--fire-4);
+    box-shadow: 0 0 20px var(--fire-1);
+    font-weight: 800;
+    z-index: 5;
+  }
+  .pos-point.moonpay { background: rgba(139, 92, 246, 0.3); border-color: rgba(139, 92, 246, 0.6); color: #c4b5fd; }
+
+  /* Differentiator cards */
+  .diff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 18px;
+    margin-top: 32px;
+  }
+  .diff-card {
+    padding: 26px;
+    border-radius: 16px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .diff-card:hover { transform: translateY(-3px); border-color: var(--line-hot); }
+  .diff-card .diff-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .diff-card .diff-name {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--ink-0);
+    letter-spacing: -0.01em;
+  }
+  .diff-card .diff-flag {
+    padding: 3px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    background: var(--bg-3);
+    color: var(--fire-3);
+    border-radius: 5px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.08em;
+  }
+  .diff-card .diff-sub {
+    font-size: 12.5px;
+    color: var(--ink-3);
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  .diff-card .diff-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 7px 0;
+    font-size: 13px;
+  }
+  .diff-card .diff-row .dl { color: var(--ink-3); }
+  .diff-card .diff-row .dv { color: var(--ink-1); font-weight: 600; text-align: right; }
+  .diff-card .diff-row .dv.strong { color: var(--fire-3); }
+  .diff-card .unique {
+    margin-top: 14px;
+    padding: 12px 14px;
+    background: var(--bg-3);
+    border-radius: 8px;
+    border-left: 2px solid var(--fire-2);
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.5;
+  }
+  .diff-card .unique b { color: var(--fire-3); }
+
+  /* PEXX vs rest SWOT */
+  .swot-vs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 32px;
+  }
+  .swot-vs-card {
+    padding: 28px;
+    border-radius: 18px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+  }
+  .swot-vs-card.wins { border-left: 3px solid var(--ok); }
+  .swot-vs-card.loses { border-left: 3px solid var(--danger); }
+  .swot-vs-card h3 {
+    font-size: 17px;
+    font-weight: 800;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .swot-vs-card.wins h3 { color: var(--ok); }
+  .swot-vs-card.loses h3 { color: var(--danger); }
+  .swot-vs-card ul { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .swot-vs-card li {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-1);
+    padding-left: 24px;
+    position: relative;
+  }
+  .swot-vs-card li::before {
+    position: absolute;
+    left: 0; top: 0;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .swot-vs-card.wins li::before { content: '✓'; color: var(--ok); }
+  .swot-vs-card.loses li::before { content: '✗'; color: var(--danger); }
+  .swot-vs-card li b { color: var(--fire-3); }
+
+  /* Size categories */
+  .size-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+    margin-top: 20px;
+  }
+  .size-tier {
+    padding: 20px;
+    border-radius: 14px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+  }
+  .size-tier .tier-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .size-tier.t1 .tier-badge { background: rgba(74, 222, 128, 0.12); color: var(--ok); }
+  .size-tier.t2 .tier-badge { background: rgba(255, 165, 64, 0.12); color: var(--fire-3); }
+  .size-tier.t3 .tier-badge { background: rgba(251, 191, 36, 0.12); color: var(--warn); }
+  .size-tier h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink-0);
+    margin-bottom: 10px;
+  }
+  .size-tier .companies {
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.7;
+  }
+  .size-tier .companies b { color: var(--fire-3); }
+
+  footer {
+    padding: 50px 0 36px;
+    text-align: center;
+    border-top: 1px solid var(--line);
+    margin-top: 40px;
+  }
+  footer .flame { font-size: 36px; display: block; margin-bottom: 14px; animation: flicker 2.4s ease-in-out infinite; }
+  footer p { color: var(--ink-3); font-size: 13px; margin-bottom: 4px; }
+  footer .sig { font-family: 'JetBrains Mono', monospace; color: var(--fire-3); font-size: 12px; letter-spacing: 0.1em; }
+
+  @media (max-width: 840px) {
+    .swot-vs { grid-template-columns: 1fr; }
+    .moonpay-card { padding: 24px; }
+    .moonpay-header { flex-direction: column; align-items: flex-start; gap: 14px; }
+    .pos-map { aspect-ratio: 1; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="brand"><span class="flame">🔥</span> BOOM ORACLE · COMPETITIVE LANDSCAPE</div>
+  <div class="nav">
+    <a href="/">📊 Market Research</a>
+    <a href="/licenses.html">📋 License Guide</a>
+    <a href="/competitors.html" class="active">🎯 Competitors</a>
+  </div>
+  <h1>
+    <span class="accent">Stablecoin Banking · Who's In the Ring</span>
+    PEXX<span style="color:var(--fire-3);"> vs </span><span style="color:#c4b5fd;">MoonPay</span>
+    <span style="color:var(--fire-3); font-size:0.7em; display:block;">vs 15+ Competitors</span>
+  </h1>
+  <p class="subtitle">
+    แผนที่คู่แข่งในตลาด stablecoin banking ปี 2026 — ตั้งแต่ยักษ์ใหญ่อย่าง
+    <strong style="color:#c4b5fd">MoonPay</strong> (ARR $107M · 47 state MTLs)
+    ไปจนถึง startups ใหม่อย่าง <strong style="color:var(--fire-3)">Kast</strong> (unicorn ปี 2025) และ
+    <strong style="color:var(--fire-3)">RedotPay</strong> (5M users)
+  </p>
+</header>
+
+<!-- Market landscape -->
+<section class="block" id="landscape">
+  <div class="eyebrow">01 · Market Landscape</div>
+  <h2>ภูมิทัศน์ตลาด — <span class="hl">16 ผู้เล่น</span></h2>
+  <p class="section-intro">
+    ตลาด stablecoin banking / crypto-to-fiat ปี 2026 มีผู้เล่นหลากหลาย — แบ่งเป็น 3 tiers ตามขนาด
+  </p>
+
+  <div class="size-grid">
+    <div class="size-tier t1">
+      <span class="tier-badge">🟢 Tier 1 · Unicorns &amp; Giants</span>
+      <h4>$1B+ valuation · ล้านผู้ใช้</h4>
+      <div class="companies">
+        <b>MoonPay</b> · <b>Crypto.com</b> · <b>Revolut</b> · <b>Coinbase</b> · <b>RedotPay</b> (unicorn 2025) · <b>Wirex</b>
+      </div>
+    </div>
+    <div class="size-tier t2">
+      <span class="tier-badge">🟠 Tier 2 · Scaling Startups</span>
+      <h4>$100M–$1B val · 100K-1M users</h4>
+      <div class="companies">
+        <b>Kast</b> ($600M val) · <b>Rain</b> · <b>Juno</b> · <b>Dakota</b> · <b>hi</b> · <b>Bleap</b> · <b>Bitnob</b>
+      </div>
+    </div>
+    <div class="size-tier t3">
+      <span class="tier-badge">🟡 Tier 3 · Emerging</span>
+      <h4>Early-stage · &lt;100K users</h4>
+      <div class="companies">
+        <b>PEXX</b> (50K) · <b>Tuyo</b> · <b>Avici</b> · <b>Plasma</b> · <b>Superform</b> · <b>Gnosis Pay</b> · <b>Fiat24</b>
+      </div>
+    </div>
+  </div>
+
+  <div class="market-grid">
+    <div class="logo-card pexx">
+      <div class="logo-brand">PEXX</div>
+      <div class="logo-tag">AU · 2024</div>
+      <div class="logo-desc">Stablecoin bank · 50K users · AUSTRAC + FinCEN MSB</div>
+      <div class="logo-flag">🇦🇺 🇺🇸</div>
+    </div>
+    <div class="logo-card">
+      <div class="logo-brand">MoonPay</div>
+      <div class="logo-tag">US · 2019</div>
+      <div class="logo-desc">On/off ramp leader · 47 state MTLs + BitLicense</div>
+      <div class="logo-flag">🇺🇸 🇪🇺 🇬🇧 🇦🇺</div>
+    </div>
+    <div class="logo-card">
+      <div class="logo-brand">Kast</div>
+      <div class="logo-tag">SG · 2023</div>
+      <div class="logo-desc">1M users · $5B annualized · USDC-native · 190 countries</div>
+      <div class="logo-flag">🇸🇬 🌍</div>
+    </div>
+    <div class="logo-card">
+      <div class="logo-brand">RedotPay</div>
+      <div class="logo-tag">HK · 2023</div>
+      <div class="logo-desc">🦄 Unicorn · 5M users · 100+ countries · 130M merchants</div>
+      <div class="logo-flag">🇭🇰 🌍</div>
+    </div>
+    <div class="logo-card">
+      <div class="logo-brand">Wirex</div>
+      <div class="logo-tag">UK · 2014</div>
+      <div class="logo-desc">4-16% APY X-Accounts · multi-crypto cards · 6M users</div>
+      <div class="logo-flag">🇬🇧 🇺🇸 🇪🇺</div>
+    </div>
+    <div class="logo-card">
+      <div class="logo-brand">Juno</div>
+      <div class="logo-tag">US · 2020</div>
+      <div class="logo-desc">US-first crypto banking · salary-in-crypto · ACH</div>
+      <div class="logo-flag">🇺🇸</div>
+    </div>
+    <div class="logo-card">
+      <div class="logo-brand">Dakota</div>
+      <div class="logo-tag">US · 2024</div>
+      <div class="logo-desc">Stablecoin business banking · Rain-powered card program</div>
+      <div class="logo-flag">🇺🇸</div>
+    </div>
+    <div class="logo-card">
+      <div class="logo-brand">Rain.xyz</div>
+      <div class="logo-tag">US · 2021</div>
+      <div class="logo-desc">Infrastructure · card issuing · 100+ partners · 150+ countries</div>
+      <div class="logo-flag">🇺🇸 🌍</div>
+    </div>
+    <div class="logo-card">
+      <div class="logo-brand">Crypto.com</div>
+      <div class="logo-tag">SG · 2016</div>
+      <div class="logo-desc">100M+ users · Visa card · exchange + payment</div>
+      <div class="logo-flag">🌍</div>
+    </div>
+    <div class="logo-card">
+      <div class="logo-brand">Revolut</div>
+      <div class="logo-tag">UK · 2015</div>
+      <div class="logo-desc">45M users · hybrid bank + crypto + stocks</div>
+      <div class="logo-flag">🇬🇧 🇪🇺 🌍</div>
+    </div>
+    <div class="logo-card">
+      <div class="logo-brand">Coinbase</div>
+      <div class="logo-tag">US · 2012</div>
+      <div class="logo-desc">Public · Coinbase Card + Payments + Base network</div>
+      <div class="logo-flag">🇺🇸 🇪🇺</div>
+    </div>
+    <div class="logo-card">
+      <div class="logo-brand">hi</div>
+      <div class="logo-tag">US · 2021</div>
+      <div class="logo-desc">Web3 neobank · trade + save + spend</div>
+      <div class="logo-flag">🌍</div>
+    </div>
+    <div class="logo-card">
+      <div class="logo-brand">Bleap</div>
+      <div class="logo-tag">EU · 2023</div>
+      <div class="logo-desc">Hybrid Web2/Web3 banking · EUR + crypto + DeFi</div>
+      <div class="logo-flag">🇪🇺</div>
+    </div>
+    <div class="logo-card">
+      <div class="logo-brand">Bitnob</div>
+      <div class="logo-tag">NG · 2020</div>
+      <div class="logo-desc">Africa-focused · USDT/USDC + local rails + cards</div>
+      <div class="logo-flag">🇳🇬 🌍</div>
+    </div>
+    <div class="logo-card">
+      <div class="logo-brand">Gnosis Pay</div>
+      <div class="logo-tag">CH · 2023</div>
+      <div class="logo-desc">Self-custodial Visa · on-chain · wallet-first</div>
+      <div class="logo-flag">🇨🇭 🇪🇺</div>
+    </div>
+    <div class="logo-card">
+      <div class="logo-brand">Fiat24</div>
+      <div class="logo-tag">CH · 2022</div>
+      <div class="logo-desc">Swiss bank license · on-chain banking · CHF + crypto</div>
+      <div class="logo-flag">🇨🇭</div>
+    </div>
+  </div>
+</section>
+
+<!-- MoonPay Deep Dive -->
+<section class="block" id="moonpay">
+  <div class="eyebrow">02 · MoonPay Deep Dive</div>
+  <h2><span class="num">02</span>🌙 MoonPay<span class="hl"> — The Giant</span></h2>
+  <p class="section-intro">
+    <strong style="color:#c4b5fd">MoonPay</strong> คือผู้เล่นใหญ่ที่ PEXX ต้องเจอ —
+    ไม่ใช่แค่แข่งตลาด แต่ยังเป็น <b>infrastructure provider</b> ที่หลายแบรนด์ใช้ด้วย
+  </p>
+
+  <div class="moonpay-card">
+    <div class="moonpay-header">
+      <div class="moonpay-logo">🌙</div>
+      <div>
+        <h3>MoonPay</h3>
+        <div class="tagline">The on/off ramp giant · Founded 2019 by Ivan Soto-Wright & Victor Faramond</div>
+      </div>
+    </div>
+
+    <div class="moonpay-stats">
+      <div class="mp-stat"><div class="k">Revenue 2025</div><div class="v">$107.6M</div><div class="sub">Annual revenue</div></div>
+      <div class="mp-stat"><div class="k">Valuation</div><div class="v">$3.4B</div><div class="sub">Last round (2022)</div></div>
+      <div class="mp-stat"><div class="k">Users</div><div class="v">20M+</div><div class="sub">Global base</div></div>
+      <div class="mp-stat"><div class="k">Licenses</div><div class="v">50+</div><div class="sub">Multi-jurisdiction</div></div>
+      <div class="mp-stat"><div class="k">Card Fee</div><div class="v">4.5%</div><div class="sub">Card payments</div></div>
+      <div class="mp-stat"><div class="k">Bank Fee</div><div class="v">1%</div><div class="sub">Bank transfers</div></div>
+    </div>
+
+    <div class="moonpay-section-title">🏛️ License Stack (ครอบคลุมกว่า PEXX มาก)</div>
+    <div class="mp-license-list">
+      <div class="mp-license">
+        <span class="flag">🇺🇸 USA Federal</span>
+        FinCEN MSB registration
+      </div>
+      <div class="mp-license">
+        <span class="flag">🇺🇸 USA State</span>
+        Money Transmitter License 47 รัฐ
+      </div>
+      <div class="mp-license">
+        <span class="flag">🇺🇸 New York</span>
+        <b style="color:var(--fire-3)">BitLicense</b> (หายากที่สุดใน US)
+      </div>
+      <div class="mp-license">
+        <span class="flag">🇳🇱 Netherlands</span>
+        VASP registered with Dutch AFM (EU gateway)
+      </div>
+      <div class="mp-license">
+        <span class="flag">🇬🇧 UK</span>
+        FCA-registered crypto asset firm
+      </div>
+      <div class="mp-license">
+        <span class="flag">🇦🇺 Australia</span>
+        AUSTRAC registered DCE
+      </div>
+    </div>
+
+    <div class="moonpay-section-title">💰 Business Model</div>
+    <p style="font-size:14.5px; color:var(--ink-1); line-height:1.75; margin-bottom:16px;">
+      MoonPay ไม่ใช่ neobank — เป็น <b style="color:#c4b5fd">B2B2C infrastructure</b> ที่ให้แบรนด์อื่นฝัง crypto on/off-ramp เข้าไปในแอปของตัวเอง
+    </p>
+    <ul style="list-style:none; display:flex; flex-direction:column; gap:8px; font-size:14px; color:var(--ink-2);">
+      <li style="padding-left:22px; position:relative; line-height:1.6;">
+        <span style="position:absolute; left:0; color:#c4b5fd;">▸</span>
+        <b style="color:var(--ink-0)">On-ramp:</b> Buy crypto ด้วยบัตรเครดิต/debit, bank transfer, Apple Pay, Google Pay
+      </li>
+      <li style="padding-left:22px; position:relative; line-height:1.6;">
+        <span style="position:absolute; left:0; color:#c4b5fd;">▸</span>
+        <b style="color:var(--ink-0)">Off-ramp:</b> Sell crypto → fiat ไปบัญชีธนาคาร/บัตร
+      </li>
+      <li style="padding-left:22px; position:relative; line-height:1.6;">
+        <span style="position:absolute; left:0; color:#c4b5fd;">▸</span>
+        <b style="color:var(--ink-0)">Partner Platform:</b> 500+ brands ฝัง MoonPay widget (Bitcoin.com, OpenSea, Phantom, Ledger)
+      </li>
+      <li style="padding-left:22px; position:relative; line-height:1.6;">
+        <span style="position:absolute; left:0; color:#c4b5fd;">▸</span>
+        <b style="color:var(--ink-0)">Revenue share:</b> Partners ได้ส่วนแบ่งจาก transaction fees
+      </li>
+      <li style="padding-left:22px; position:relative; line-height:1.6;">
+        <span style="position:absolute; left:0; color:#c4b5fd;">▸</span>
+        <b style="color:var(--ink-0)">Direct consumer:</b> MoonPay app + web (150+ cryptocurrencies)
+      </li>
+    </ul>
+
+    <div class="moonpay-section-title">📊 MoonPay vs PEXX — Quick Diff</div>
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
+      <div style="padding:18px; background:rgba(139, 92, 246, 0.06); border-radius:12px; border:1px solid rgba(139, 92, 246, 0.2);">
+        <div style="font-size:14px; font-weight:700; color:#c4b5fd; margin-bottom:10px;">🌙 MoonPay ชนะ</div>
+        <ul style="list-style:none; font-size:13px; color:var(--ink-2); display:flex; flex-direction:column; gap:8px;">
+          <li>✓ Multi-jurisdiction license (50+ ใน US + EU + UK + AU)</li>
+          <li>✓ Revenue scale ($107M vs PEXX ไม่เปิด)</li>
+          <li>✓ Brand recognition · B2B pipeline</li>
+          <li>✓ NY BitLicense (barrier to entry สูงมาก)</li>
+          <li>✓ 500+ integrations กับ brands อื่น</li>
+        </ul>
+      </div>
+      <div style="padding:18px; background:var(--glass-hot); border-radius:12px; border:1px solid var(--line-hot);">
+        <div style="font-size:14px; font-weight:700; color:var(--fire-3); margin-bottom:10px;">🔥 PEXX ชนะ</div>
+        <ul style="list-style:none; font-size:13px; color:var(--ink-2); display:flex; flex-direction:column; gap:8px;">
+          <li>✓ Full banking experience (USD account, card, yield)</li>
+          <li>✓ 4% APY interest (MoonPay ไม่มี)</li>
+          <li>✓ QR merchant payments (MoonPay ไม่มี)</li>
+          <li>✓ Direct consumer neobank brand</li>
+          <li>✓ Lower fees (MoonPay 4.5% vs PEXX ~1-2%)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:20px; padding:18px; background:var(--bg-3); border-radius:10px; border:1px solid var(--line);">
+      <div style="font-size:12px; color:var(--ink-3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px;">💡 Key Insight</div>
+      <p style="font-size:13.5px; color:var(--ink-1); line-height:1.6;">
+        MoonPay และ PEXX <b style="color:var(--fire-3)">ไม่ได้แข่งโดยตรง</b> — MoonPay คือ <b>infrastructure</b> (เหมือนบริการ payment gateway) ส่วน PEXX คือ <b>neobank</b> (บัญชี + บัตร + yield) — จริง ๆ PEXX อาจ <b>ใช้ MoonPay</b> เป็น on-ramp ก็ได้
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Head-to-head : Full Matrix -->
+<section class="block" id="head-to-head">
+  <div class="eyebrow">03 · Full Feature Matrix</div>
+  <h2>เทียบ Feature-by-Feature · <span class="hl">ทุกคู่แข่ง</span></h2>
+  <p class="section-intro">
+    ตารางเทียบครบทุกผู้เล่นในตลาด (16 แบรนด์) · แบ่งเป็น 7 หมวด: Company · Licenses · Products · Crypto · Fees · Yield · Coverage
+  </p>
+
+  <div class="matrix-intro">
+    📊 <b>วิธีอ่านตาราง:</b> แถวแรกคือ PEXX (ไฮไลต์สีส้ม) · ⚠️ ข้อมูลรวบรวมจาก official sources + industry reports April 2026 ·
+    บาง data อาจเปลี่ยนแปลงได้ตลอดเวลา · <b style="color:var(--warn)">—</b> = ไม่มีข้อมูล/ไม่ publish
+  </div>
+
+  <div class="cat-tabs">
+    <a href="#mx-company" class="cat-tab">🏢 Company</a>
+    <a href="#mx-license" class="cat-tab">📜 Licenses</a>
+    <a href="#mx-products" class="cat-tab">📦 Products</a>
+    <a href="#mx-crypto" class="cat-tab">🪙 Crypto Support</a>
+    <a href="#mx-fees" class="cat-tab">💰 Fees</a>
+    <a href="#mx-yield" class="cat-tab">📈 Yield/APY</a>
+    <a href="#mx-coverage" class="cat-tab">🌍 Coverage</a>
+  </div>
+
+  <!-- Table 1: Company Overview -->
+  <div class="matrix-group" id="mx-company">
+    <div class="matrix-group-header">
+      <div class="ico">🏢</div>
+      <div>
+        <h3>1. Company Overview</h3>
+        <div class="sub">Founded · HQ · Users · Funding · Revenue</div>
+      </div>
+    </div>
+    <div class="matrix-scroll">
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th>Brand</th>
+            <th>Founded</th>
+            <th>HQ</th>
+            <th>Users</th>
+            <th>Valuation</th>
+            <th>Latest Round</th>
+            <th>Revenue</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="pexx-row">
+            <td>🔥 PEXX<span class="flag">AU · HK</span></td>
+            <td class="num-col">2024</td><td>🇦🇺 🇭🇰</td><td class="num-col">50K+</td>
+            <td class="m">Private</td><td class="dash">—</td><td class="dash">—</td>
+            <td>Early-stage</td>
+          </tr>
+          <tr>
+            <td>🌙 MoonPay<span class="flag">USA · Florida</span></td>
+            <td class="num-col">2019</td><td>🇺🇸</td><td class="num-col y">20M+</td>
+            <td class="num-col y">$3.4B</td><td>Series A 2022</td><td class="y">$107.6M ARR</td>
+            <td>Late-stage</td>
+          </tr>
+          <tr>
+            <td>⚡ Kast<span class="flag">Singapore</span></td>
+            <td class="num-col">2023</td><td>🇸🇬</td><td class="num-col y">1M+</td>
+            <td class="num-col y">$600M</td><td>$80M Series A</td><td>~$100M ARR</td>
+            <td>Growth</td>
+          </tr>
+          <tr>
+            <td>💎 RedotPay<span class="flag">Hong Kong</span></td>
+            <td class="num-col">2023</td><td>🇭🇰</td><td class="num-col y">5M+</td>
+            <td class="num-col y">$1B+ 🦄</td><td>Unicorn (Sep 2025)</td><td class="dash">—</td>
+            <td>Unicorn</td>
+          </tr>
+          <tr>
+            <td>🔵 Wirex<span class="flag">UK · London</span></td>
+            <td class="num-col">2014</td><td>🇬🇧</td><td class="num-col y">6M+</td>
+            <td class="m">Public (RWS)</td><td>RWS Token</td><td class="dash">—</td>
+            <td>Established</td>
+          </tr>
+          <tr>
+            <td>🟣 Juno<span class="flag">USA · San Francisco</span></td>
+            <td class="num-col">2020</td><td>🇺🇸</td><td class="num-col">100K+</td>
+            <td class="m">Private</td><td>Series A</td><td class="dash">—</td>
+            <td>Growth</td>
+          </tr>
+          <tr>
+            <td>🟢 Dakota<span class="flag">USA · New York</span></td>
+            <td class="num-col">2024</td><td>🇺🇸</td><td>Early</td>
+            <td class="m">Private</td><td>$12.5M seed</td><td class="dash">—</td>
+            <td>Early-stage</td>
+          </tr>
+          <tr>
+            <td>🟠 Bitnob<span class="flag">Nigeria</span></td>
+            <td class="num-col">2020</td><td>🇳🇬</td><td class="num-col">1M+</td>
+            <td class="m">Private</td><td>Seed/Series A</td><td class="dash">—</td>
+            <td>Growth (Africa)</td>
+          </tr>
+          <tr>
+            <td>🔷 hi<span class="flag">Global · SVG</span></td>
+            <td class="num-col">2021</td><td>🌍</td><td class="num-col">3M+</td>
+            <td class="m">Private</td><td>ICO $30M</td><td class="dash">—</td>
+            <td>Growth</td>
+          </tr>
+          <tr>
+            <td>🟤 Bleap<span class="flag">EU</span></td>
+            <td class="num-col">2023</td><td>🇪🇺</td><td>Early</td>
+            <td class="m">Private</td><td>Seed</td><td class="dash">—</td>
+            <td>Early-stage</td>
+          </tr>
+          <tr>
+            <td>🟡 Tuyo<span class="flag">Global</span></td>
+            <td class="num-col">2024</td><td>🌍</td><td>Early</td>
+            <td class="m">Private</td><td>Seed</td><td class="dash">—</td>
+            <td>Early-stage</td>
+          </tr>
+          <tr>
+            <td>💜 Avici<span class="flag">Solana-native</span></td>
+            <td class="num-col">2024</td><td>🌍</td><td>Early</td>
+            <td class="m">Private</td><td>Seed</td><td class="dash">—</td>
+            <td>Early-stage</td>
+          </tr>
+          <tr>
+            <td>🦉 Gnosis Pay<span class="flag">Gnosis DAO</span></td>
+            <td class="num-col">2023</td><td>🇨🇭</td><td class="num-col">50K+</td>
+            <td class="m">DAO</td><td>DAO-funded</td><td class="dash">—</td>
+            <td>Growth</td>
+          </tr>
+          <tr>
+            <td>🇨🇭 Fiat24<span class="flag">Swiss bank</span></td>
+            <td class="num-col">2022</td><td>🇨🇭</td><td class="num-col">10K+</td>
+            <td class="m">Private</td><td>Swiss bank license</td><td class="dash">—</td>
+            <td>Early-stage</td>
+          </tr>
+          <tr>
+            <td>⚫ Crypto.com<span class="flag">Singapore</span></td>
+            <td class="num-col">2016</td><td>🇸🇬</td><td class="num-col y">100M+</td>
+            <td class="num-col y">~$12B (est.)</td><td>Private</td><td>$1B+ ARR</td>
+            <td>Late-stage</td>
+          </tr>
+          <tr>
+            <td>🟦 Revolut<span class="flag">UK · London</span></td>
+            <td class="num-col">2015</td><td>🇬🇧</td><td class="num-col y">45M+</td>
+            <td class="num-col y">$45B</td><td>Secondary 2024</td><td class="y">$2.2B 2024</td>
+            <td>Late-stage</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Table 2: Licenses & Regulation -->
+  <div class="matrix-group" id="mx-license">
+    <div class="matrix-group-header">
+      <div class="ico">📜</div>
+      <div>
+        <h3>2. Licenses &amp; Regulation</h3>
+        <div class="sub">FinCEN MSB · NY BitLicense · State MTLs · EU · UK · AUSTRAC · Others</div>
+      </div>
+    </div>
+    <div class="matrix-scroll">
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th>Brand</th>
+            <th>US FinCEN MSB</th>
+            <th>NY BitLicense</th>
+            <th>US State MTLs</th>
+            <th>EU VASP/EMI</th>
+            <th>UK FCA</th>
+            <th>AUSTRAC</th>
+            <th>Singapore MAS</th>
+            <th>Other</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="pexx-row">
+            <td>🔥 PEXX</td>
+            <td class="y">✓</td><td class="n">✗</td><td class="n">None</td>
+            <td class="n">✗</td><td class="n">✗</td><td class="y">✓ DCE+Remit</td>
+            <td class="n">✗</td><td class="dash">—</td>
+          </tr>
+          <tr>
+            <td>🌙 MoonPay</td>
+            <td class="y">✓</td><td class="y">✓</td><td class="y">47 รัฐ</td>
+            <td class="y">✓ NL VASP</td><td class="y">✓</td><td class="y">✓</td>
+            <td class="m">Partner</td><td>CA · ES</td>
+          </tr>
+          <tr>
+            <td>⚡ Kast</td>
+            <td class="m">Partner</td><td class="n">✗</td><td class="m">Partner</td>
+            <td class="n">✗</td><td class="n">✗</td><td class="n">✗</td>
+            <td class="m">Operating in SG</td><td class="dash">—</td>
+          </tr>
+          <tr>
+            <td>💎 RedotPay</td>
+            <td class="m">Partner</td><td class="n">✗</td><td class="m">Partner</td>
+            <td class="n">✗</td><td class="n">✗</td><td class="n">✗</td>
+            <td class="n">✗</td><td>HK SFC-aware</td>
+          </tr>
+          <tr>
+            <td>🔵 Wirex</td>
+            <td class="y">✓</td><td class="n">✗</td><td class="y">~30 รัฐ</td>
+            <td class="y">✓ LT EMI</td><td class="y">✓ Registered</td><td class="n">✗</td>
+            <td class="n">✗</td><td>CA · JP</td>
+          </tr>
+          <tr>
+            <td>🟣 Juno</td>
+            <td class="m">Partner bank</td><td class="n">✗</td><td class="m">via Evolve</td>
+            <td class="n">✗</td><td class="n">✗</td><td class="n">✗</td>
+            <td class="n">✗</td><td>US-only</td>
+          </tr>
+          <tr>
+            <td>🟢 Dakota</td>
+            <td class="y">✓</td><td class="n">✗</td><td class="m">via Rain</td>
+            <td class="n">✗</td><td class="n">✗</td><td class="n">✗</td>
+            <td class="n">✗</td><td class="dash">—</td>
+          </tr>
+          <tr>
+            <td>🟠 Bitnob</td>
+            <td class="m">via partner</td><td class="n">✗</td><td class="n">✗</td>
+            <td class="n">✗</td><td class="n">✗</td><td class="n">✗</td>
+            <td class="n">✗</td><td>NG SEC</td>
+          </tr>
+          <tr>
+            <td>🔷 hi</td>
+            <td class="n">✗</td><td class="n">✗</td><td class="n">✗</td>
+            <td class="m">Malta? MFSA</td><td class="n">✗</td><td class="n">✗</td>
+            <td class="n">✗</td><td>SVG license</td>
+          </tr>
+          <tr>
+            <td>🟤 Bleap</td>
+            <td class="n">✗</td><td class="n">✗</td><td class="n">✗</td>
+            <td class="m">EU MiCA pending</td><td class="n">✗</td><td class="n">✗</td>
+            <td class="n">✗</td><td class="dash">—</td>
+          </tr>
+          <tr>
+            <td>🟡 Tuyo</td>
+            <td class="m">Partner</td><td class="n">✗</td><td class="n">✗</td>
+            <td class="n">✗</td><td class="n">✗</td><td class="n">✗</td>
+            <td class="n">✗</td><td class="dash">—</td>
+          </tr>
+          <tr>
+            <td>💜 Avici</td>
+            <td class="n">Non-custodial</td><td class="n">✗</td><td class="n">✗</td>
+            <td class="n">✗</td><td class="n">✗</td><td class="n">✗</td>
+            <td class="n">✗</td><td>Self-custody</td>
+          </tr>
+          <tr>
+            <td>🦉 Gnosis Pay</td>
+            <td class="n">✗</td><td class="n">✗</td><td class="n">✗</td>
+            <td class="y">✓ via Monerium EMI</td><td class="n">✗</td><td class="n">✗</td>
+            <td class="n">✗</td><td>EU focus</td>
+          </tr>
+          <tr>
+            <td>🇨🇭 Fiat24</td>
+            <td class="n">✗</td><td class="n">✗</td><td class="n">✗</td>
+            <td class="m">Swiss passport</td><td class="n">✗</td><td class="n">✗</td>
+            <td class="n">✗</td><td class="y">✓ FINMA bank</td>
+          </tr>
+          <tr>
+            <td>⚫ Crypto.com</td>
+            <td class="y">✓</td><td class="n">✗</td><td class="y">~40 รัฐ</td>
+            <td class="y">✓ MiCA 2025</td><td class="y">✓</td><td class="y">✓ AFSL</td>
+            <td class="y">✓ MAS MPI</td><td>FR, IT, SK+</td>
+          </tr>
+          <tr>
+            <td>🟦 Revolut</td>
+            <td class="y">✓</td><td class="y">✓</td><td class="y">~50 รัฐ</td>
+            <td class="y">✓ LT EMI + Bank</td><td class="y">✓ Banking</td><td class="y">✓ AFSL</td>
+            <td class="y">✓ MAS MPI</td><td>Full banking</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Table 3: Products -->
+  <div class="matrix-group" id="mx-products">
+    <div class="matrix-group-header">
+      <div class="ico">📦</div>
+      <div>
+        <h3>3. Core Products</h3>
+        <div class="sub">USD account · Card · Yield · Remittance · QR · Business account · Savings</div>
+      </div>
+    </div>
+    <div class="matrix-scroll">
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th>Brand</th>
+            <th>USD Account</th>
+            <th>EUR Account</th>
+            <th>Debit Card</th>
+            <th>Yield/Savings</th>
+            <th>Remittance</th>
+            <th>QR Pay</th>
+            <th>Business</th>
+            <th>Crypto Trading</th>
+            <th>Salary in Crypto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="pexx-row">
+            <td>🔥 PEXX</td>
+            <td class="y">✓ Full</td><td class="n">✗</td><td class="y">✓ V/MC</td>
+            <td class="y">✓ 4%</td><td class="y">✓ 17+ ctry</td><td class="y">✓</td>
+            <td class="y">✓ Business</td><td class="m">USDT/USDC only</td><td class="n">✗</td>
+          </tr>
+          <tr>
+            <td>🌙 MoonPay</td>
+            <td class="n">✗</td><td class="n">✗</td><td class="n">✗</td>
+            <td class="n">✗</td><td class="m">On/off ramp</td><td class="n">✗</td>
+            <td class="y">✓ API</td><td class="y">✓ 150+ coins</td><td class="n">✗</td>
+          </tr>
+          <tr>
+            <td>⚡ Kast</td>
+            <td class="y">✓ No US resident</td><td class="m">limited</td><td class="y">✓ Visa</td>
+            <td class="y">✓ 10%</td><td class="y">✓ 190 ctry</td><td class="m">~</td>
+            <td class="y">✓</td><td class="m">Swap only</td><td class="m">~</td>
+          </tr>
+          <tr>
+            <td>💎 RedotPay</td>
+            <td class="m">Limited</td><td class="n">✗</td><td class="y">✓ V/MC</td>
+            <td class="m">Small</td><td class="y">✓ 100+ ctry</td><td class="y">✓</td>
+            <td class="m">~</td><td class="m">Swap</td><td class="n">✗</td>
+          </tr>
+          <tr>
+            <td>🔵 Wirex</td>
+            <td class="y">✓</td><td class="y">✓</td><td class="y">✓ Visa</td>
+            <td class="y">✓ 4-16%</td><td class="y">✓ 130+ ctry</td><td class="n">✗</td>
+            <td class="y">✓</td><td class="y">✓ 150+ coins</td><td class="m">~</td>
+          </tr>
+          <tr>
+            <td>🟣 Juno</td>
+            <td class="y">✓ ACH</td><td class="n">✗</td><td class="y">✓ MC</td>
+            <td class="m">1-4%</td><td class="m">US focus</td><td class="n">✗</td>
+            <td class="n">✗</td><td class="m">USDC only</td><td class="y">✓</td>
+          </tr>
+          <tr>
+            <td>🟢 Dakota</td>
+            <td class="y">✓ ACH/Wire</td><td class="n">✗</td><td class="y">✓ via Rain</td>
+            <td class="m">USDC yield</td><td class="n">Business only</td><td class="n">✗</td>
+            <td class="y">✓ Business-focused</td><td class="n">Hold only</td><td class="n">✗</td>
+          </tr>
+          <tr>
+            <td>🟠 Bitnob</td>
+            <td class="y">✓ Nigerian</td><td class="n">✗</td><td class="y">✓ V/MC</td>
+            <td class="y">✓ BTC yield</td><td class="y">✓ Africa corridor</td><td class="y">✓</td>
+            <td class="y">✓</td><td class="y">✓ BTC/stable</td><td class="y">✓</td>
+          </tr>
+          <tr>
+            <td>🔷 hi</td>
+            <td class="m">Limited</td><td class="m">Limited</td><td class="y">✓ V</td>
+            <td class="m">Staking</td><td class="m">Limited</td><td class="n">✗</td>
+            <td class="n">✗</td><td class="y">✓ 150+ coins</td><td class="n">✗</td>
+          </tr>
+          <tr>
+            <td>🟤 Bleap</td>
+            <td class="n">✗</td><td class="y">✓ EUR IBAN</td><td class="y">✓ Visa</td>
+            <td class="y">✓ DeFi yield</td><td class="m">EU focus</td><td class="n">✗</td>
+            <td class="n">✗</td><td class="y">✓</td><td class="n">✗</td>
+          </tr>
+          <tr>
+            <td>🟡 Tuyo</td>
+            <td class="y">✓</td><td class="y">✓</td><td class="y">✓ Visa</td>
+            <td class="y">✓ 11%</td><td class="y">✓ Fee-free</td><td class="n">✗</td>
+            <td class="n">✗</td><td class="m">USDC/EURC</td><td class="n">✗</td>
+          </tr>
+          <tr>
+            <td>💜 Avici</td>
+            <td class="n">Self-custody</td><td class="n">✗</td><td class="y">✓ Visa</td>
+            <td class="m">DeFi</td><td class="n">✗</td><td class="n">✗</td>
+            <td class="n">✗</td><td class="y">✓ Solana</td><td class="n">✗</td>
+          </tr>
+          <tr>
+            <td>🦉 Gnosis Pay</td>
+            <td class="n">✗</td><td class="y">✓ EUR IBAN</td><td class="y">✓ Visa</td>
+            <td class="m">DeFi</td><td class="n">✗</td><td class="n">✗</td>
+            <td class="n">✗</td><td class="y">✓ On-chain</td><td class="n">✗</td>
+          </tr>
+          <tr>
+            <td>🇨🇭 Fiat24</td>
+            <td class="y">✓ USD IBAN</td><td class="y">✓ EUR IBAN</td><td class="y">✓ Debit/Credit</td>
+            <td class="m">Banking rates</td><td class="y">✓ SWIFT</td><td class="n">✗</td>
+            <td class="y">✓</td><td class="y">✓</td><td class="n">✗</td>
+          </tr>
+          <tr>
+            <td>⚫ Crypto.com</td>
+            <td class="y">✓</td><td class="y">✓</td><td class="y">✓ Visa tiered</td>
+            <td class="y">✓ CRO staking</td><td class="y">✓ Global</td><td class="m">Limited</td>
+            <td class="y">✓ SME</td><td class="y">✓ 300+ coins</td><td class="n">✗</td>
+          </tr>
+          <tr>
+            <td>🟦 Revolut</td>
+            <td class="y">✓ Full</td><td class="y">✓ Full</td><td class="y">✓ V/MC tiered</td>
+            <td class="y">✓ Savings 5%</td><td class="y">✓ 150+ ctry</td><td class="m">Limited</td>
+            <td class="y">✓ Full business</td><td class="y">✓ 170+ coins</td><td class="y">✓</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Table 4: Crypto Support -->
+  <div class="matrix-group" id="mx-crypto">
+    <div class="matrix-group-header">
+      <div class="ico">🪙</div>
+      <div>
+        <h3>4. Crypto &amp; Stablecoin Support</h3>
+        <div class="sub">USDT · USDC · BTC · ETH · SOL · Total coins</div>
+      </div>
+    </div>
+    <div class="matrix-scroll">
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th>Brand</th>
+            <th>USDT</th>
+            <th>USDC</th>
+            <th>BTC</th>
+            <th>ETH</th>
+            <th>SOL</th>
+            <th>Multi-chain</th>
+            <th>Self-custody</th>
+            <th>Total Cryptos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="pexx-row">
+            <td>🔥 PEXX</td>
+            <td class="y">✓</td><td class="y">✓</td><td class="n">✗</td>
+            <td class="n">✗</td><td class="n">✗</td><td class="y">✓ Multi</td>
+            <td class="n">Custodial</td><td class="num-col">2</td>
+          </tr>
+          <tr>
+            <td>🌙 MoonPay</td>
+            <td class="y">✓</td><td class="y">✓</td><td class="y">✓</td>
+            <td class="y">✓</td><td class="y">✓</td><td class="y">✓</td>
+            <td class="m">Both</td><td class="num-col y">150+</td>
+          </tr>
+          <tr>
+            <td>⚡ Kast</td>
+            <td class="m">Swap only</td><td class="y">✓ Native</td><td class="m">Deposit</td>
+            <td class="m">Deposit</td><td class="m">Deposit</td><td class="y">✓</td>
+            <td class="n">Custodial</td><td class="num-col">~10</td>
+          </tr>
+          <tr>
+            <td>💎 RedotPay</td>
+            <td class="y">✓</td><td class="y">✓</td><td class="y">✓</td>
+            <td class="y">✓</td><td class="m">~</td><td class="y">✓</td>
+            <td class="n">Custodial</td><td class="num-col">~20</td>
+          </tr>
+          <tr>
+            <td>🔵 Wirex</td>
+            <td class="y">✓</td><td class="y">✓</td><td class="y">✓</td>
+            <td class="y">✓</td><td class="y">✓</td><td class="y">✓</td>
+            <td class="n">Custodial</td><td class="num-col y">150+</td>
+          </tr>
+          <tr>
+            <td>🟣 Juno</td>
+            <td class="n">✗</td><td class="y">✓ Only</td><td class="m">Trade</td>
+            <td class="m">Trade</td><td class="n">✗</td><td class="n">ETH only</td>
+            <td class="n">Custodial</td><td class="num-col">~30</td>
+          </tr>
+          <tr>
+            <td>🟢 Dakota</td>
+            <td class="m">~</td><td class="y">✓ Focus</td><td class="n">✗</td>
+            <td class="n">✗</td><td class="n">✗</td><td class="y">✓</td>
+            <td class="n">Custodial</td><td class="num-col">~5</td>
+          </tr>
+          <tr>
+            <td>🟠 Bitnob</td>
+            <td class="y">✓</td><td class="y">✓</td><td class="y">✓ Focus</td>
+            <td class="m">Trade</td><td class="n">✗</td><td class="y">✓</td>
+            <td class="n">Custodial</td><td class="num-col">~10</td>
+          </tr>
+          <tr>
+            <td>🔷 hi</td>
+            <td class="y">✓</td><td class="y">✓</td><td class="y">✓</td>
+            <td class="y">✓</td><td class="y">✓</td><td class="y">✓</td>
+            <td class="n">Custodial</td><td class="num-col y">150+</td>
+          </tr>
+          <tr>
+            <td>🟤 Bleap</td>
+            <td class="y">✓</td><td class="y">✓</td><td class="y">✓</td>
+            <td class="y">✓</td><td class="m">Partial</td><td class="y">✓</td>
+            <td class="m">Hybrid</td><td class="num-col">~20</td>
+          </tr>
+          <tr>
+            <td>🟡 Tuyo</td>
+            <td class="n">✗</td><td class="y">✓</td><td class="y">✓</td>
+            <td class="m">~</td><td class="n">✗</td><td class="m">EURC too</td>
+            <td class="n">Custodial</td><td class="num-col">~5</td>
+          </tr>
+          <tr>
+            <td>💜 Avici</td>
+            <td class="m">Bridge</td><td class="y">✓ Native</td><td class="n">✗</td>
+            <td class="m">Bridge</td><td class="y">✓ Focus</td><td class="y">✓ SOL+POL+ARB</td>
+            <td class="y">✓ Self</td><td class="num-col">SOL ecosystem</td>
+          </tr>
+          <tr>
+            <td>🦉 Gnosis Pay</td>
+            <td class="n">✗</td><td class="y">✓ EURe native</td><td class="n">✗</td>
+            <td class="y">✓</td><td class="n">✗</td><td class="m">Gnosis Chain</td>
+            <td class="y">✓ Self</td><td class="num-col">ERC-20</td>
+          </tr>
+          <tr>
+            <td>🇨🇭 Fiat24</td>
+            <td class="m">Limited</td><td class="y">✓</td><td class="y">✓</td>
+            <td class="y">✓ Native (Arbitrum)</td><td class="n">✗</td><td class="m">Arbitrum focus</td>
+            <td class="m">Hybrid</td><td class="num-col">~5</td>
+          </tr>
+          <tr>
+            <td>⚫ Crypto.com</td>
+            <td class="y">✓</td><td class="y">✓</td><td class="y">✓</td>
+            <td class="y">✓</td><td class="y">✓</td><td class="y">✓</td>
+            <td class="n">Custodial</td><td class="num-col y">300+</td>
+          </tr>
+          <tr>
+            <td>🟦 Revolut</td>
+            <td class="y">✓</td><td class="y">✓</td><td class="y">✓</td>
+            <td class="y">✓</td><td class="y">✓</td><td class="y">✓</td>
+            <td class="n">Custodial</td><td class="num-col y">170+</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Table 5: Fees -->
+  <div class="matrix-group" id="mx-fees">
+    <div class="matrix-group-header">
+      <div class="ico">💰</div>
+      <div>
+        <h3>5. Fees Structure</h3>
+        <div class="sub">Buy crypto fees · Bank transfer · FX markup · ATM · Monthly subscription</div>
+      </div>
+    </div>
+    <div class="matrix-scroll">
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th>Brand</th>
+            <th>Card Purchase</th>
+            <th>Bank Transfer</th>
+            <th>FX Markup</th>
+            <th>ATM Withdrawal</th>
+            <th>Monthly Fee</th>
+            <th>Card Issuance</th>
+            <th>Crypto Spread</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="pexx-row">
+            <td>🔥 PEXX</td>
+            <td class="num-col y">~1-2%</td><td class="num-col y">Low</td><td class="num-col y">~0.5%</td>
+            <td class="num-col y">Free tier</td><td class="num-col y">Free</td><td class="num-col y">Free virtual</td>
+            <td class="num-col">~0.5%</td>
+          </tr>
+          <tr>
+            <td>🌙 MoonPay</td>
+            <td class="num-col m">4.5%</td><td class="num-col y">1%</td><td class="num-col">~1-2%</td>
+            <td class="n">No card</td><td class="n">No card</td><td class="n">No card</td>
+            <td class="num-col">1-3%</td>
+          </tr>
+          <tr>
+            <td>⚡ Kast</td>
+            <td class="num-col y">&lt;1%</td><td class="num-col y">Free</td><td class="num-col y">0%</td>
+            <td class="num-col y">Low</td><td class="num-col y">Free</td><td class="num-col">$5-50</td>
+            <td class="num-col">Swap fee 0.5%</td>
+          </tr>
+          <tr>
+            <td>💎 RedotPay</td>
+            <td class="num-col y">~1%</td><td class="num-col y">Low</td><td class="num-col">~1%</td>
+            <td class="num-col">2% ATM</td><td class="num-col y">Free</td><td class="num-col">$20-100</td>
+            <td class="num-col">~0.8%</td>
+          </tr>
+          <tr>
+            <td>🔵 Wirex</td>
+            <td class="num-col">~1-2%</td><td class="num-col y">Free</td><td class="num-col y">0% in-plan</td>
+            <td class="num-col y">Free up to limit</td><td class="num-col y">Free (basic)</td><td class="num-col">Free-£30</td>
+            <td class="num-col">~0.5-1%</td>
+          </tr>
+          <tr>
+            <td>🟣 Juno</td>
+            <td class="num-col m">2-3%</td><td class="num-col y">Free ACH</td><td class="num-col">~1%</td>
+            <td class="num-col y">Free 5 times/mo</td><td class="num-col y">Free</td><td class="num-col y">Free</td>
+            <td class="num-col">~0.5%</td>
+          </tr>
+          <tr>
+            <td>🟢 Dakota</td>
+            <td class="num-col y">Low (B2B)</td><td class="num-col y">Low</td><td class="num-col y">Low</td>
+            <td class="num-col">Business</td><td class="num-col">Custom</td><td class="num-col">via Rain</td>
+            <td class="num-col y">Tight</td>
+          </tr>
+          <tr>
+            <td>🟠 Bitnob</td>
+            <td class="num-col">~1-2%</td><td class="num-col y">Free local</td><td class="num-col">~1.5%</td>
+            <td class="num-col">Local ATM</td><td class="num-col y">Free</td><td class="num-col">$10-30</td>
+            <td class="num-col">~1%</td>
+          </tr>
+          <tr>
+            <td>🔷 hi</td>
+            <td class="num-col">~2%</td><td class="num-col">Varies</td><td class="num-col">~1%</td>
+            <td class="num-col m">Fee</td><td class="num-col">Tier-based</td><td class="num-col">Free-$200</td>
+            <td class="num-col">~1%</td>
+          </tr>
+          <tr>
+            <td>🟤 Bleap</td>
+            <td class="num-col y">Low</td><td class="num-col y">Free SEPA</td><td class="num-col y">0%</td>
+            <td class="num-col y">Low</td><td class="num-col y">Free</td><td class="num-col">€9-29</td>
+            <td class="num-col y">0%</td>
+          </tr>
+          <tr>
+            <td>🟡 Tuyo</td>
+            <td class="num-col y">Fee-free</td><td class="num-col y">Free</td><td class="num-col y">0%</td>
+            <td class="num-col y">Free</td><td class="num-col y">Free</td><td class="num-col">Free-$50</td>
+            <td class="num-col y">Spread 0.3%</td>
+          </tr>
+          <tr>
+            <td>💜 Avici</td>
+            <td class="num-col y">&lt;1%</td><td class="n">Self-custody</td><td class="num-col y">Network fee only</td>
+            <td class="num-col">Low</td><td class="num-col y">Free</td><td class="num-col">Free virtual</td>
+            <td class="num-col">Gas fees</td>
+          </tr>
+          <tr>
+            <td>🦉 Gnosis Pay</td>
+            <td class="num-col y">0%</td><td class="n">Self-custody</td><td class="num-col m">~1%</td>
+            <td class="num-col m">Fee</td><td class="num-col y">Free</td><td class="num-col">€25 one-time</td>
+            <td class="num-col y">On-chain only</td>
+          </tr>
+          <tr>
+            <td>🇨🇭 Fiat24</td>
+            <td class="num-col y">Bank rates</td><td class="num-col y">Bank rates</td><td class="num-col">Bank FX</td>
+            <td class="num-col">Standard</td><td class="num-col">CHF 20/mo</td><td class="num-col">CHF 0-50</td>
+            <td class="num-col">Bank spread</td>
+          </tr>
+          <tr>
+            <td>⚫ Crypto.com</td>
+            <td class="num-col m">2-4%</td><td class="num-col y">Free ACH</td><td class="num-col">~1%</td>
+            <td class="num-col m">Varies by tier</td><td class="num-col y">Free basic</td><td class="num-col">Free-$400</td>
+            <td class="num-col m">Variable</td>
+          </tr>
+          <tr>
+            <td>🟦 Revolut</td>
+            <td class="num-col">1-2%</td><td class="num-col y">Free up to limit</td><td class="num-col y">0% Premium</td>
+            <td class="num-col y">Free limit</td><td class="num-col">Free-£15/mo</td><td class="num-col">£5</td>
+            <td class="num-col">~0.5-2.5%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Table 6: Yield/APY -->
+  <div class="matrix-group" id="mx-yield">
+    <div class="matrix-group-header">
+      <div class="ico">📈</div>
+      <div>
+        <h3>6. Yield &amp; APY</h3>
+        <div class="sub">Interest rates on USD / Stablecoins / BTC / ETH</div>
+      </div>
+    </div>
+    <div class="matrix-scroll">
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th>Brand</th>
+            <th>USD</th>
+            <th>USDC</th>
+            <th>USDT</th>
+            <th>BTC</th>
+            <th>ETH</th>
+            <th>Max APY</th>
+            <th>Lockup</th>
+            <th>Yield Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="pexx-row">
+            <td>🔥 PEXX</td>
+            <td class="num-col y">4%</td><td class="num-col y">4%</td><td class="num-col y">4%</td>
+            <td class="n">✗</td><td class="n">✗</td><td class="num-col y">4%</td>
+            <td class="y">None</td><td>T-bills / partner</td>
+          </tr>
+          <tr>
+            <td>🌙 MoonPay</td>
+            <td class="dash">—</td><td class="n">None</td><td class="n">None</td>
+            <td class="n">✗</td><td class="n">✗</td><td class="n">N/A</td>
+            <td class="n">N/A</td><td>No yield product</td>
+          </tr>
+          <tr>
+            <td>⚡ Kast</td>
+            <td class="num-col y">~5%</td><td class="num-col y">10%</td><td class="num-col y">10%</td>
+            <td class="n">✗</td><td class="n">✗</td><td class="num-col y">10%+</td>
+            <td class="y">None</td><td>Gauntlet Vault (DeFi)</td>
+          </tr>
+          <tr>
+            <td>💎 RedotPay</td>
+            <td class="num-col m">Small</td><td class="num-col m">~2-4%</td><td class="num-col m">~2-4%</td>
+            <td class="n">✗</td><td class="n">✗</td><td class="num-col">~4%</td>
+            <td class="y">None</td><td>T-bill / money market</td>
+          </tr>
+          <tr>
+            <td>🔵 Wirex</td>
+            <td class="num-col y">4%</td><td class="num-col y">10-12%</td><td class="num-col y">10-12%</td>
+            <td class="num-col y">6%</td><td class="num-col y">8%</td><td class="num-col y">16%</td>
+            <td class="m">Some lockup</td><td>DeFi X-Accounts</td>
+          </tr>
+          <tr>
+            <td>🟣 Juno</td>
+            <td class="num-col m">1-4%</td><td class="num-col">4%</td><td class="n">✗</td>
+            <td class="n">✗</td><td class="n">✗</td><td class="num-col">4%</td>
+            <td class="y">None</td><td>Partner bank</td>
+          </tr>
+          <tr>
+            <td>🟢 Dakota</td>
+            <td class="num-col">~4%</td><td class="num-col">4-6%</td><td class="m">~</td>
+            <td class="n">✗</td><td class="n">✗</td><td class="num-col">~6%</td>
+            <td class="y">None</td><td>USDC yield programs</td>
+          </tr>
+          <tr>
+            <td>🟠 Bitnob</td>
+            <td class="n">✗</td><td class="m">~</td><td class="m">~</td>
+            <td class="num-col y">4-6%</td><td class="n">✗</td><td class="num-col">6%</td>
+            <td class="m">Variable</td><td>BTC DCA + yield</td>
+          </tr>
+          <tr>
+            <td>🔷 hi</td>
+            <td class="dash">—</td><td class="m">Staking</td><td class="m">Staking</td>
+            <td class="m">Staking</td><td class="m">Staking</td><td class="num-col">~5-15%</td>
+            <td class="m">Locked staking</td><td>CeFi staking</td>
+          </tr>
+          <tr>
+            <td>🟤 Bleap</td>
+            <td class="n">✗</td><td class="num-col">4-6%</td><td class="num-col">4-6%</td>
+            <td class="m">~</td><td class="num-col">3-5%</td><td class="num-col">~6%</td>
+            <td class="y">None</td><td>Aave / DeFi</td>
+          </tr>
+          <tr>
+            <td>🟡 Tuyo</td>
+            <td class="num-col y">~11%</td><td class="num-col y">11%</td><td class="n">✗</td>
+            <td class="num-col y">BTC yield</td><td class="n">✗</td><td class="num-col y">11%</td>
+            <td class="y">None</td><td>Institutional yield</td>
+          </tr>
+          <tr>
+            <td>💜 Avici</td>
+            <td class="n">✗</td><td class="m">DeFi APYs</td><td class="n">✗</td>
+            <td class="n">✗</td><td class="n">✗</td><td class="num-col">~5-10%</td>
+            <td class="m">Protocol risk</td><td>Solana DeFi</td>
+          </tr>
+          <tr>
+            <td>🦉 Gnosis Pay</td>
+            <td class="n">✗</td><td class="m">EURe yield</td><td class="n">✗</td>
+            <td class="n">✗</td><td class="m">Staking sep.</td><td class="num-col">~3-4%</td>
+            <td class="y">None</td><td>On-chain only</td>
+          </tr>
+          <tr>
+            <td>🇨🇭 Fiat24</td>
+            <td class="num-col m">Bank rates</td><td class="dash">—</td><td class="dash">—</td>
+            <td class="dash">—</td><td class="dash">—</td><td class="num-col">~1-2%</td>
+            <td class="y">None</td><td>Swiss banking</td>
+          </tr>
+          <tr>
+            <td>⚫ Crypto.com</td>
+            <td class="num-col m">2-4% (CRO tier)</td><td class="num-col">6-8%</td><td class="num-col">6-8%</td>
+            <td class="num-col">3-6%</td><td class="num-col">3-6%</td><td class="num-col y">14% (with CRO)</td>
+            <td class="m">1/3 mo terms</td><td>CeFi + CRO staking</td>
+          </tr>
+          <tr>
+            <td>🟦 Revolut</td>
+            <td class="num-col y">4-5%</td><td class="num-col m">~3%</td><td class="n">✗</td>
+            <td class="n">✗</td><td class="n">✗</td><td class="num-col">5%</td>
+            <td class="y">None (Flex)</td><td>MMF / fiat savings</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Table 7: Global Coverage -->
+  <div class="matrix-group" id="mx-coverage">
+    <div class="matrix-group-header">
+      <div class="ico">🌍</div>
+      <div>
+        <h3>7. Global Coverage &amp; Access</h3>
+        <div class="sub">Countries served · Languages · Card network · Mobile apps · KYC speed</div>
+      </div>
+    </div>
+    <div class="matrix-scroll">
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th>Brand</th>
+            <th>Countries</th>
+            <th>Merchants</th>
+            <th>Card Network</th>
+            <th>iOS / Android</th>
+            <th>Web App</th>
+            <th>API</th>
+            <th>KYC Speed</th>
+            <th>Languages</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="pexx-row">
+            <td>🔥 PEXX</td>
+            <td class="num-col">17+</td><td class="num-col">Visa/MC network</td><td>Visa + MC</td>
+            <td class="y">✓ Both</td><td class="y">✓</td><td class="m">Partner API</td>
+            <td class="y">~10-30 min</td><td class="num-col">EN</td>
+          </tr>
+          <tr>
+            <td>🌙 MoonPay</td>
+            <td class="num-col y">160+</td><td class="dash">—</td><td>N/A (on-ramp)</td>
+            <td class="y">✓ Both</td><td class="y">✓</td><td class="y">✓ Widget</td>
+            <td class="y">Instant-10 min</td><td class="num-col y">30+</td>
+          </tr>
+          <tr>
+            <td>⚡ Kast</td>
+            <td class="num-col y">190</td><td class="num-col y">Visa network</td><td>Visa</td>
+            <td class="y">✓ Both</td><td class="m">Limited</td><td class="m">~</td>
+            <td class="y">Fast</td><td class="num-col">EN + Asian</td>
+          </tr>
+          <tr>
+            <td>💎 RedotPay</td>
+            <td class="num-col y">100+</td><td class="num-col y">130M</td><td>Visa + MC</td>
+            <td class="y">✓ Both</td><td class="y">✓</td><td class="n">✗</td>
+            <td class="y">Fast</td><td class="num-col">EN + ZH</td>
+          </tr>
+          <tr>
+            <td>🔵 Wirex</td>
+            <td class="num-col y">130+</td><td class="num-col y">Visa network</td><td>Visa</td>
+            <td class="y">✓ Both</td><td class="y">✓</td><td class="m">Limited</td>
+            <td class="m">1-3 days</td><td class="num-col">10+</td>
+          </tr>
+          <tr>
+            <td>🟣 Juno</td>
+            <td class="num-col">US-only</td><td class="num-col">MC network</td><td>Mastercard</td>
+            <td class="y">✓ Both</td><td class="y">✓</td><td class="n">✗</td>
+            <td class="y">Fast (US)</td><td class="num-col">EN</td>
+          </tr>
+          <tr>
+            <td>🟢 Dakota</td>
+            <td class="num-col">US-focused</td><td class="num-col">Visa</td><td>Visa (via Rain)</td>
+            <td class="m">Business focus</td><td class="y">✓</td><td class="y">✓</td>
+            <td class="m">Business KYC</td><td class="num-col">EN</td>
+          </tr>
+          <tr>
+            <td>🟠 Bitnob</td>
+            <td class="num-col">10+ (Africa)</td><td class="num-col">Visa/MC</td><td>Visa + MC</td>
+            <td class="y">✓ Both</td><td class="m">Limited</td><td class="y">✓</td>
+            <td class="y">Fast</td><td class="num-col">EN + local</td>
+          </tr>
+          <tr>
+            <td>🔷 hi</td>
+            <td class="num-col">Global</td><td class="num-col">Visa network</td><td>Visa</td>
+            <td class="y">✓ Both</td><td class="y">✓</td><td class="n">✗</td>
+            <td class="m">Variable</td><td class="num-col">5+</td>
+          </tr>
+          <tr>
+            <td>🟤 Bleap</td>
+            <td class="num-col">EU-focused</td><td class="num-col">Visa</td><td>Visa</td>
+            <td class="y">✓ Both</td><td class="y">✓</td><td class="n">✗</td>
+            <td class="y">Fast</td><td class="num-col">EN + EU</td>
+          </tr>
+          <tr>
+            <td>🟡 Tuyo</td>
+            <td class="num-col">Global</td><td class="num-col">Visa</td><td>Visa</td>
+            <td class="y">✓ Both</td><td class="m">Limited</td><td class="n">✗</td>
+            <td class="y">Fast</td><td class="num-col">EN</td>
+          </tr>
+          <tr>
+            <td>💜 Avici</td>
+            <td class="num-col">Global</td><td class="num-col">Visa</td><td>Visa</td>
+            <td class="y">✓ Both</td><td class="y">✓</td><td class="y">Web3 API</td>
+            <td class="y">Wallet-based</td><td class="num-col">EN</td>
+          </tr>
+          <tr>
+            <td>🦉 Gnosis Pay</td>
+            <td class="num-col">EU (EEA)</td><td class="num-col">Visa</td><td>Visa</td>
+            <td class="m">~</td><td class="y">✓</td><td class="y">Web3</td>
+            <td class="y">Wallet-based</td><td class="num-col">EN + EU</td>
+          </tr>
+          <tr>
+            <td>🇨🇭 Fiat24</td>
+            <td class="num-col">Global (bank-grade)</td><td class="num-col">Visa/MC</td><td>Visa + MC</td>
+            <td class="y">✓ Both</td><td class="y">✓</td><td class="y">Web3 + API</td>
+            <td class="m">Bank KYC 1-3d</td><td class="num-col">EN + DE</td>
+          </tr>
+          <tr>
+            <td>⚫ Crypto.com</td>
+            <td class="num-col y">100+</td><td class="num-col y">Visa network</td><td>Visa</td>
+            <td class="y">✓ Both</td><td class="y">✓</td><td class="y">✓</td>
+            <td class="y">Instant-1 day</td><td class="num-col y">20+</td>
+          </tr>
+          <tr>
+            <td>🟦 Revolut</td>
+            <td class="num-col y">50+ (full banking)</td><td class="num-col y">Visa/MC</td><td>Visa + MC</td>
+            <td class="y">✓ Both</td><td class="y">✓</td><td class="y">Business API</td>
+            <td class="y">Instant-1 day</td><td class="num-col y">25+</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="matrix-legend">
+    <span><b class="y" style="color:var(--ok);">✓</b> มี / สนับสนุน</span>
+    <span><b class="n" style="color:var(--danger);">✗</b> ไม่มี</span>
+    <span><b class="m" style="color:var(--warn);">~</b> จำกัด / partial</span>
+    <span><b class="dash" style="color:var(--ink-4);">—</b> ไม่มีข้อมูล</span>
+    <span><b style="color:var(--fire-3);">🔥</b> PEXX (reference)</span>
+  </div>
+
+  <!-- Key Insights -->
+  <div style="margin-top:36px; padding:32px; border-radius:18px; background:linear-gradient(145deg, rgba(255, 107, 26, 0.08), rgba(255, 165, 64, 0.02)); border:1px solid var(--line-hot);">
+    <h3 style="font-size:18px; font-weight:800; color:var(--fire-3); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:18px;">🎯 Key Insights จาก Matrix</h3>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+      <div style="padding:18px; background:var(--bg-3); border-radius:12px; border-left:3px solid var(--ok);">
+        <div style="font-size:13px; font-weight:700; color:var(--ok); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.1em;">🏆 License Leaders</div>
+        <div style="font-size:13.5px; color:var(--ink-2); line-height:1.6;">
+          <b>Revolut</b> (full bank + NY BitLicense) &gt; <b>MoonPay</b> (50+ licenses) &gt; <b>Crypto.com</b> (MiCA + FCA + MAS + AFSL). PEXX อยู่ tier รอง (3 licenses)
+        </div>
+      </div>
+      <div style="padding:18px; background:var(--bg-3); border-radius:12px; border-left:3px solid var(--fire-3);">
+        <div style="font-size:13px; font-weight:700; color:var(--fire-3); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.1em;">🥇 APY Champions</div>
+        <div style="font-size:13.5px; color:var(--ink-2); line-height:1.6;">
+          <b>Wirex</b> (up to 16%) &gt; <b>Crypto.com</b> (14% with CRO) &gt; <b>Tuyo</b> (11%) &gt; <b>Kast</b> (10%). PEXX 4% อยู่ต่ำกว่า median
+        </div>
+      </div>
+      <div style="padding:18px; background:var(--bg-3); border-radius:12px; border-left:3px solid var(--warn);">
+        <div style="font-size:13px; font-weight:700; color:var(--warn); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.1em;">💰 Lowest Fees</div>
+        <div style="font-size:13.5px; color:var(--ink-2); line-height:1.6;">
+          <b>Tuyo</b> (fee-free) &lt; <b>Kast</b> (&lt;1%) &lt; <b>Gnosis Pay</b> (0% card) &lt; <b>PEXX</b> (1-2%). MoonPay 4.5% แพงที่สุด
+        </div>
+      </div>
+      <div style="padding:18px; background:var(--bg-3); border-radius:12px; border-left:3px solid var(--ember);">
+        <div style="font-size:13px; font-weight:700; color:var(--ember); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.1em;">🌐 Widest Coverage</div>
+        <div style="font-size:13.5px; color:var(--ink-2); line-height:1.6;">
+          <b>Kast</b> (190 ctry) &gt; <b>MoonPay</b> (160+) &gt; <b>Wirex</b> (130+) &gt; <b>RedotPay</b> (100+) &gt; <b>PEXX</b> (17+)
+        </div>
+      </div>
+      <div style="padding:18px; background:var(--bg-3); border-radius:12px; border-left:3px solid var(--fire-2);">
+        <div style="font-size:13px; font-weight:700; color:var(--fire-2); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.1em;">🎯 Similar to PEXX</div>
+        <div style="font-size:13.5px; color:var(--ink-2); line-height:1.6;">
+          Direct competitors: <b>Kast</b> (Asian base + USD account), <b>RedotPay</b> (retail mass-market), <b>Bitnob</b> (regional emerging market focus)
+        </div>
+      </div>
+      <div style="padding:18px; background:var(--bg-3); border-radius:12px; border-left:3px solid #8b5cf6;">
+        <div style="font-size:13px; font-weight:700; color:#c4b5fd; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.1em;">⭐ Unique Niches</div>
+        <div style="font-size:13.5px; color:var(--ink-2); line-height:1.6;">
+          <b>Fiat24</b>: เท่านั้นที่ถือ Swiss bank license / <b>Gnosis Pay</b>: self-custody ที่แท้จริง / <b>Dakota</b>: business-only focus
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Glossary -->
+<section class="block" id="glossary">
+  <div class="eyebrow">04 · Glossary &amp; Definitions</div>
+  <h2>คำนิยาม · <span class="hl">อธิบายทุกคำ</span> ที่ใช้ในตาราง</h2>
+  <p class="section-intro">
+    รวมคำศัพท์ทุกคำที่ใช้ใน Feature Matrix — regulator, license, banking, crypto, fee, yield —
+    แต่ละคำบอก <b>ตัวย่อ</b> → <b>ชื่อเต็ม</b> → <b>ความหมายภาษาไทย</b> + <b>ทำไมมันสำคัญ</b>
+  </p>
+
+  <!-- Group 1: Regulators & Licenses -->
+  <div class="gloss-group">
+    <div class="gloss-group-header">
+      <div class="ico">🏛️</div>
+      <h3>1. Regulators &amp; Licenses</h3>
+      <span class="count">18 terms</span>
+    </div>
+    <div class="gloss-grid">
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">FinCEN</span><span class="gloss-type license">US Agency</span></div>
+        <div class="gloss-full">Financial Crimes Enforcement Network</div>
+        <div class="gloss-def">หน่วยงานใต้กระทรวงการคลังสหรัฐฯ ที่ดูแล <b>AML/CTF</b> · ขึ้นทะเบียน MSB ที่นี่</div>
+        <div class="gloss-why">ถ้าจะทำ crypto/remittance ใน US ต้องลงทะเบียนกับ FinCEN เป็นอย่างน้อย</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">MSB</span><span class="gloss-type license">US License</span></div>
+        <div class="gloss-full">Money Services Business</div>
+        <div class="gloss-def">Federal registration ใน US · รวม <b>money transmitter, crypto exchange, check cashing</b></div>
+        <div class="gloss-why">ฟรี ยื่น Form 107 · renew ทุก 2 ปี · แต่ต้องมี state MTL เพิ่ม</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">BitLicense</span><span class="gloss-type license">NY State</span></div>
+        <div class="gloss-full">New York Virtual Currency Business Activity License</div>
+        <div class="gloss-def">License crypto ที่ <b>หายากและแพงที่สุดในโลก</b> · ใช้เฉพาะใน NY State</div>
+        <div class="gloss-why">ค่าใช้จ่ายรวม $500K-$2M · มีแค่ ~30 บริษัททั่วโลก · MoonPay, Coinbase, Revolut มี</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">MTL</span><span class="gloss-type license">US State</span></div>
+        <div class="gloss-full">Money Transmitter License</div>
+        <div class="gloss-def">License ระดับ <b>state-by-state</b> ใน US · ครบ 49 รัฐ (Montana เว้น)</div>
+        <div class="gloss-why">ต้นทุน $30K-$525K ต่อรัฐ · ครบทั้ง US = $5M-$20M+ ใช้เวลา 2 ปี</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">AUSTRAC</span><span class="gloss-type license">AU Agency</span></div>
+        <div class="gloss-full">Australian Transaction Reports and Analysis Centre</div>
+        <div class="gloss-def">หน่วยงาน <b>AML/CTF</b> ของออสเตรเลีย · ดูแล DCE + Remittance registrations</div>
+        <div class="gloss-why">ค่าจดทะเบียนฟรี · compliance cost A$20-200K · renew ทุก 3 ปี</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">DCE</span><span class="gloss-type license">AU License</span></div>
+        <div class="gloss-full">Digital Currency Exchange Provider</div>
+        <div class="gloss-def">AUSTRAC registration สำหรับธุรกิจ <b>crypto-to-fiat exchange</b> ใน Australia</div>
+        <div class="gloss-why">PEXX มี DCE100851583-001 · ตั้งแต่ มี.ค. 2026 ขยายครอบคลุม crypto-to-crypto</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">AFSL</span><span class="gloss-type license">AU License</span></div>
+        <div class="gloss-full">Australian Financial Services Licence</div>
+        <div class="gloss-def">License จาก <b>ASIC</b> (ไม่ใช่ AUSTRAC) · จำเป็นถ้า turnover &gt; A$10M</div>
+        <div class="gloss-why">ยากและแพงกว่า DCE · บริษัทใหญ่เท่านั้นที่ขอได้</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">VASP</span><span class="gloss-type license">EU Term</span></div>
+        <div class="gloss-full">Virtual Asset Service Provider</div>
+        <div class="gloss-def">EU registration type สำหรับ crypto business · แยกตามประเทศ (เช่น Dutch AFM, BaFin)</div>
+        <div class="gloss-why">MoonPay ใช้ Dutch VASP เป็น gateway เข้า EU ทั้งหมด</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">EMI</span><span class="gloss-type license">EU License</span></div>
+        <div class="gloss-full">Electronic Money Institution</div>
+        <div class="gloss-def">EU license สำหรับออก <b>e-money / virtual IBANs</b> · ระดับสูงกว่า VASP</div>
+        <div class="gloss-why">Revolut, Wirex, Bleap มี EMI license · Gnosis Pay ใช้ Monerium EMI</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">MiCA</span><span class="gloss-type license">EU Regulation</span></div>
+        <div class="gloss-full">Markets in Crypto-Assets Regulation</div>
+        <div class="gloss-def">EU <b>unified crypto regulation</b> มีผล 2024-2025 · แทน VASP ประเทศเดียว ใช้ทั่ว EU</div>
+        <div class="gloss-why">Crypto.com ได้ MiCA 2025 · เปิดตลาด EU 27 ประเทศด้วย license เดียว</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">FCA</span><span class="gloss-type license">UK Agency</span></div>
+        <div class="gloss-full">Financial Conduct Authority</div>
+        <div class="gloss-def">Regulator ของ UK · crypto firms ต้องขึ้นทะเบียนเป็น "crypto asset firm"</div>
+        <div class="gloss-why">Wirex, MoonPay, Revolut, Crypto.com มี · ขอยากและ rigorous มาก</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">MAS</span><span class="gloss-type license">SG Agency</span></div>
+        <div class="gloss-full">Monetary Authority of Singapore</div>
+        <div class="gloss-def">Regulator ของ Singapore · ออก <b>MPI license</b> (Major Payment Institution)</div>
+        <div class="gloss-why">Crypto.com, Revolut มี MAS MPI · เปิดตลาด Asian crypto ได้ดี</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">FINMA</span><span class="gloss-type license">CH Agency</span></div>
+        <div class="gloss-full">Swiss Financial Market Supervisory Authority</div>
+        <div class="gloss-def">Regulator สวิตเซอร์แลนด์ · ออก <b>banking license</b> จริง (ไม่ใช่แค่ crypto)</div>
+        <div class="gloss-why">Fiat24 มี FINMA bank license · มีน้อยมากในวงการ crypto</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">SFC</span><span class="gloss-type license">HK Agency</span></div>
+        <div class="gloss-full">Securities and Futures Commission (Hong Kong)</div>
+        <div class="gloss-def">Regulator ของ HK · ออก <b>Type 1/7/9 licenses</b> สำหรับ crypto</div>
+        <div class="gloss-why">RedotPay อยู่ HK · เจอ SFC เป็น regulator หลัก</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">AML</span><span class="gloss-type license">Compliance</span></div>
+        <div class="gloss-full">Anti-Money Laundering</div>
+        <div class="gloss-def">กรอบกฎหมายและระบบ <b>ป้องกันการฟอกเงิน</b> · ต้องมีทุกบริษัทที่ได้ license</div>
+        <div class="gloss-why">Component หลัก: customer screening, transaction monitoring, reporting</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">CTF</span><span class="gloss-type license">Compliance</span></div>
+        <div class="gloss-full">Counter-Terrorism Financing</div>
+        <div class="gloss-def">คู่กับ AML · <b>ป้องกันการสนับสนุนเงินแก่ผู้ก่อการร้าย</b></div>
+        <div class="gloss-why">มักเขียนคู่เสมอ "AML/CTF Program"</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">KYC</span><span class="gloss-type license">Compliance</span></div>
+        <div class="gloss-full">Know Your Customer</div>
+        <div class="gloss-def">กระบวนการ <b>ยืนยันตัวตนลูกค้า</b> · รับ ID + selfie + proof of address</div>
+        <div class="gloss-why">ทุกบริษัทที่ licensed ต้องทำ · KYC speed สำคัญต่อ UX</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">MLRO</span><span class="gloss-type license">Role</span></div>
+        <div class="gloss-full">Money Laundering Reporting Officer</div>
+        <div class="gloss-def">เจ้าหน้าที่ผู้รับผิดชอบรายงาน <b>suspicious transactions</b> ต่อ regulator</div>
+        <div class="gloss-why">ต้องแต่งตั้งตามกฎหมายสำหรับบริษัท licensed · outsource ได้</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Group 2: Banking & Payments -->
+  <div class="gloss-group">
+    <div class="gloss-group-header">
+      <div class="ico">🏦</div>
+      <h3>2. Banking &amp; Payment Rails</h3>
+      <span class="count">12 terms</span>
+    </div>
+    <div class="gloss-grid">
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">USD Account</span><span class="gloss-type bank">Banking</span></div>
+        <div class="gloss-full">Virtual USD bank account</div>
+        <div class="gloss-def">บัญชี USD ที่มี <b>routing number + account number</b> ของ US · รับ/ส่งเงินเหมือนธนาคารจริง</div>
+        <div class="gloss-why">จุดขายหลักของ PEXX · ให้คน non-US มีบัญชี US</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">IBAN</span><span class="gloss-type bank">EU/Global</span></div>
+        <div class="gloss-full">International Bank Account Number</div>
+        <div class="gloss-def">รหัสบัญชีธนาคาร <b>มาตรฐานสากล</b> (ใช้ใน EU, UK, ส่วนใหญ่เอเชีย)</div>
+        <div class="gloss-why">มี IBAN = ส่งเงินเข้าบัญชีได้จากทั่วโลกผ่าน SEPA/SWIFT</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">ACH</span><span class="gloss-type bank">US Rail</span></div>
+        <div class="gloss-full">Automated Clearing House</div>
+        <div class="gloss-def">ระบบโอนเงินอิเล็กทรอนิกส์ในประเทศสหรัฐฯ · <b>ช้าแต่ถูก</b></div>
+        <div class="gloss-why">ใช้เวลา 1-3 วันทำการ · ค่าธรรมเนียมต่ำกว่า $1</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Wire Transfer</span><span class="gloss-type bank">Global</span></div>
+        <div class="gloss-full">Bank wire transfer</div>
+        <div class="gloss-def">โอนเงินระหว่างธนาคาร <b>วันเดียวกัน</b> · แพงแต่เร็ว</div>
+        <div class="gloss-why">Fedwire (US domestic), SWIFT (international) · $15-50 ต่อธุรกรรม</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">SWIFT</span><span class="gloss-type bank">Global</span></div>
+        <div class="gloss-full">Society for Worldwide Interbank Financial Telecommunications</div>
+        <div class="gloss-def">เครือข่าย <b>สื่อสารข้ามธนาคารทั่วโลก</b> · รองรับโอนเงินข้ามประเทศ</div>
+        <div class="gloss-why">ใช้เวลา 1-3 วัน · ค่าธรรมเนียม $25-100 · มาตรฐานการโอนระหว่างประเทศ</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Fedwire</span><span class="gloss-type bank">US Rail</span></div>
+        <div class="gloss-full">Federal Reserve Wire Network</div>
+        <div class="gloss-def">ระบบโอนเงิน <b>real-time</b> ระหว่างธนาคารใน US · ดำเนินการโดย Federal Reserve</div>
+        <div class="gloss-why">Bank-to-bank only · settlement ทันที</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">RTP</span><span class="gloss-type bank">US Rail</span></div>
+        <div class="gloss-full">Real-Time Payments</div>
+        <div class="gloss-def">ระบบจ่ายเงิน <b>24/7 instant settlement</b> ของ US (ผู้ให้บริการ: The Clearing House)</div>
+        <div class="gloss-why">PEXX ใช้ RTP rail · คู่แข่งของ ACH (แต่เร็วกว่า)</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">SEPA</span><span class="gloss-type bank">EU Rail</span></div>
+        <div class="gloss-full">Single Euro Payments Area</div>
+        <div class="gloss-def">ระบบโอน EUR ในยุโรป · <b>instant + ฟรี</b> ระหว่าง 36 ประเทศ</div>
+        <div class="gloss-why">สำคัญมากสำหรับ neobank ที่เปิด EUR account (Bleap, Revolut, Gnosis Pay)</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">BaaS</span><span class="gloss-type bank">Business</span></div>
+        <div class="gloss-full">Banking-as-a-Service</div>
+        <div class="gloss-def">ใช้โครงสร้าง <b>ธนาคารคนอื่น</b> แทนการซื้อ banking license เอง</div>
+        <div class="gloss-why">PEXX ใช้ Cross River Bank · Kast ใช้ BaaS · ประหยัดเงิน $10M+</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Routing Number</span><span class="gloss-type bank">US</span></div>
+        <div class="gloss-full">ABA Routing Transit Number</div>
+        <div class="gloss-def">รหัส 9 หลักระบุธนาคาร US · ใช้ร่วมกับ account number ในการโอน</div>
+        <div class="gloss-why">บัญชี USD ที่มี routing + account number จริง = ใช้งานได้เหมือนธนาคาร US</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Remittance</span><span class="gloss-type bank">Service</span></div>
+        <div class="gloss-full">Cross-border money transfer</div>
+        <div class="gloss-def">บริการ <b>โอนเงินข้ามประเทศ</b> · ต้อง remittance license แยกจาก DCE</div>
+        <div class="gloss-why">PEXX มี IND100851583-001 (remittance) · ใช้สำหรับส่งเงินไป 17+ ประเทศ</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">QR Pay</span><span class="gloss-type bank">Consumer</span></div>
+        <div class="gloss-full">QR code payment</div>
+        <div class="gloss-def">จ่ายเงินด้วย <b>สแกน QR code</b> ที่ร้านค้า · popular ในเอเชีย</div>
+        <div class="gloss-why">PEXX, RedotPay มี · สำคัญมากใน SEA/China market</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Group 3: Crypto & Stablecoin -->
+  <div class="gloss-group">
+    <div class="gloss-group-header">
+      <div class="ico">🪙</div>
+      <h3>3. Crypto &amp; Stablecoin</h3>
+      <span class="count">13 terms</span>
+    </div>
+    <div class="gloss-grid">
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Stablecoin</span><span class="gloss-type crypto">Crypto</span></div>
+        <div class="gloss-full">Price-stable cryptocurrency</div>
+        <div class="gloss-def">Crypto ที่ <b>ผูกมูลค่ากับ fiat</b> (ปกติ USD) · ไม่ผันผวน</div>
+        <div class="gloss-why">Backed by cash + T-bills (USDC) หรือ reserves (USDT) · ราคา ~$1 เสมอ</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">USDT</span><span class="gloss-type crypto">Stablecoin</span></div>
+        <div class="gloss-full">Tether (by Tether Ltd)</div>
+        <div class="gloss-def">Stablecoin <b>ใหญ่ที่สุดในโลก</b> ตาม market cap · มีหลายเชน (Ethereum, Tron, Solana)</div>
+        <div class="gloss-why">Market cap &gt; $150B · liquidity สูงสุดในตลาด · ไม่ regulated หนักแน่นเท่า USDC</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">USDC</span><span class="gloss-type crypto">Stablecoin</span></div>
+        <div class="gloss-full">USD Coin (by Circle)</div>
+        <div class="gloss-def">Stablecoin <b>ผูก 1:1 กับ USD</b> · backed ด้วย cash + T-bills ของ US</div>
+        <div class="gloss-why">Regulated มากกว่า USDT · Circle audit รายเดือน · preferred โดย institution</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">EURC</span><span class="gloss-type crypto">Stablecoin</span></div>
+        <div class="gloss-full">Euro Coin (by Circle)</div>
+        <div class="gloss-def">EUR equivalent ของ USDC · issued โดย Circle · backed by EUR reserves</div>
+        <div class="gloss-why">Tuyo, Bleap รองรับ · ช่วยทำ EUR payment ใน DeFi</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">EURe</span><span class="gloss-type crypto">Stablecoin</span></div>
+        <div class="gloss-full">Monerium Euro e-money</div>
+        <div class="gloss-def">EUR stablecoin <b>ที่ regulated เป็น e-money จริง</b> ใน EU (EMI license)</div>
+        <div class="gloss-why">Gnosis Pay ใช้ EURe native · ถือว่าเป็น "legal e-money" ใน EU</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">BTC</span><span class="gloss-type crypto">Crypto</span></div>
+        <div class="gloss-full">Bitcoin</div>
+        <div class="gloss-def">Crypto <b>แรกและใหญ่ที่สุด</b> · store of value · ~$70-100K ต่อเหรียญ</div>
+        <div class="gloss-why">Must-have สำหรับ exchange ทุกเจ้า · แต่ neobanks บางเจ้าไม่รองรับ (Juno, Gnosis)</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">ETH</span><span class="gloss-type crypto">Crypto</span></div>
+        <div class="gloss-full">Ethereum</div>
+        <div class="gloss-def">Crypto อันดับ 2 · <b>smart contract platform</b> · รัน DeFi + stablecoins</div>
+        <div class="gloss-why">USDC ส่วนใหญ่อยู่บน Ethereum · gas fees สูงกว่า L2s</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">SOL</span><span class="gloss-type crypto">Crypto</span></div>
+        <div class="gloss-full">Solana</div>
+        <div class="gloss-def">Blockchain <b>เร็วและถูก</b> · ค่า gas &lt; $0.01 · popular สำหรับ consumer apps</div>
+        <div class="gloss-why">Avici เป็น Solana-native · USDC on Solana เร็วกว่า Ethereum 100 เท่า</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Multi-chain</span><span class="gloss-type crypto">Tech</span></div>
+        <div class="gloss-full">Multiple blockchain support</div>
+        <div class="gloss-def">Platform รองรับ <b>หลาย blockchain</b> เช่น ETH + SOL + Polygon + Base</div>
+        <div class="gloss-why">USDC มีบน 15+ chains · user เลือก chain ที่ค่า gas ถูกที่สุดได้</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Self-custody</span><span class="gloss-type crypto">Wallet</span></div>
+        <div class="gloss-full">User-controlled wallet</div>
+        <div class="gloss-def">User <b>เก็บ private key เอง</b> · platform ไม่ถือเงิน · "not your keys, not your coins"</div>
+        <div class="gloss-why">Avici, Gnosis Pay เป็น self-custody · ไม่ต้อง custody license</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Custodial</span><span class="gloss-type crypto">Wallet</span></div>
+        <div class="gloss-full">Platform-held wallet</div>
+        <div class="gloss-def">Platform <b>ถือเงินแทน user</b> · user trust platform · requires licensing</div>
+        <div class="gloss-why">PEXX, MoonPay, Kast, RedotPay เป็น custodial · UX ง่ายกว่าแต่มี counter-party risk</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">L2</span><span class="gloss-type crypto">Tech</span></div>
+        <div class="gloss-full">Layer 2 blockchain</div>
+        <div class="gloss-def">Blockchain สร้างอยู่บน L1 (เช่น Ethereum) · <b>เร็วและถูกกว่า</b></div>
+        <div class="gloss-why">Arbitrum, Base, Optimism, Polygon · USDC on L2 = ค่า gas ~$0.01</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Gas Fee</span><span class="gloss-type crypto">Tech</span></div>
+        <div class="gloss-full">Blockchain transaction fee</div>
+        <div class="gloss-def">ค่าธรรมเนียมเครือข่ายทุกธุรกรรม · จ่ายให้ validators/miners</div>
+        <div class="gloss-why">ETH ~$1-20 · Solana ~$0.001 · L2s ~$0.01 · ส่งผลต่อ UX</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Group 4: Fees -->
+  <div class="gloss-group">
+    <div class="gloss-group-header">
+      <div class="ico">💰</div>
+      <h3>4. Fees &amp; Pricing</h3>
+      <span class="count">7 terms</span>
+    </div>
+    <div class="gloss-grid">
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Card Purchase Fee</span><span class="gloss-type fee">Fee</span></div>
+        <div class="gloss-full">Credit/debit card on-ramp fee</div>
+        <div class="gloss-def">% ที่ platform เก็บเมื่อ user ใช้ <b>บัตรเครดิต/debit ซื้อ crypto</b></div>
+        <div class="gloss-why">MoonPay 4.5% · Kast &lt;1% · PEXX 1-2% · affects conversion rate</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Bank Transfer Fee</span><span class="gloss-type fee">Fee</span></div>
+        <div class="gloss-full">ACH/wire on-ramp fee</div>
+        <div class="gloss-def">% เมื่อ user ซื้อ crypto ผ่าน <b>bank transfer</b> (ACH/SEPA/wire)</div>
+        <div class="gloss-why">ถูกกว่า card fee มาก · MoonPay 1%, ส่วนใหญ่ฟรีถึง 0.5%</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">FX Markup</span><span class="gloss-type fee">Hidden Fee</span></div>
+        <div class="gloss-full">Foreign exchange spread</div>
+        <div class="gloss-def">ส่วนต่างระหว่าง <b>market rate กับ rate ที่ platform ให้</b> · "hidden fee"</div>
+        <div class="gloss-why">Revolut Premium 0% · Wirex 0% in-plan · แต่บางเจ้าแฝง 1-3%</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">ATM Fee</span><span class="gloss-type fee">Card Fee</span></div>
+        <div class="gloss-full">ATM withdrawal fee</div>
+        <div class="gloss-def">ค่าธรรมเนียมเมื่อกดเงินสดจาก ATM ด้วยบัตร · <b>อาจมี 2 ส่วน</b>: ของ platform + ของ ATM</div>
+        <div class="gloss-why">Wirex, Revolut ให้ฟรี up to limit · PEXX มี free tier</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Card Issuance</span><span class="gloss-type fee">One-time</span></div>
+        <div class="gloss-full">Card issuance fee</div>
+        <div class="gloss-def">ค่าออก <b>บัตรครั้งแรก</b> · Virtual card มักฟรี · physical card $5-50+</div>
+        <div class="gloss-why">Crypto.com premium metal cards $200-400 · แต่ tiered rewards</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Interchange</span><span class="gloss-type fee">Revenue</span></div>
+        <div class="gloss-full">Card network fee</div>
+        <div class="gloss-def">Fee ที่ Visa/Mastercard ชาร์จ <b>ร้านค้า</b> ตอน user รูดบัตร · 1-3%</div>
+        <div class="gloss-why">แบ่งให้ issuer bank (PEXX) · เป็น revenue source หลักของ neobank</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Crypto Spread</span><span class="gloss-type fee">Revenue</span></div>
+        <div class="gloss-full">Buy/sell price spread</div>
+        <div class="gloss-def">ส่วนต่างระหว่าง <b>ราคาซื้อกับราคาขาย</b> crypto · revenue source หลัก</div>
+        <div class="gloss-why">Coinbase Retail 0.5-2% · Crypto.com 1-3% · DEXs ~0.3%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Group 5: Yield -->
+  <div class="gloss-group">
+    <div class="gloss-group-header">
+      <div class="ico">📈</div>
+      <h3>5. Yield &amp; Returns</h3>
+      <span class="count">9 terms</span>
+    </div>
+    <div class="gloss-grid">
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">APY</span><span class="gloss-type yield">Yield</span></div>
+        <div class="gloss-full">Annual Percentage Yield</div>
+        <div class="gloss-def">อัตราผลตอบแทน <b>รวมการทบต้น</b> ต่อปี · สูงกว่า APR</div>
+        <div class="gloss-why">4% APY = ฝาก $1,000 ได้ $1,040 ในปี · metric มาตรฐานของ savings account</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">APR</span><span class="gloss-type yield">Rate</span></div>
+        <div class="gloss-full">Annual Percentage Rate</div>
+        <div class="gloss-def">อัตราดอกเบี้ย <b>ไม่รวมการทบต้น</b> · ใช้กับเงินกู้มากกว่า savings</div>
+        <div class="gloss-why">APR &lt; APY เสมอ · ระวัง marketing ที่ใช้ APR แทน APY</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">T-bills</span><span class="gloss-type yield">Source</span></div>
+        <div class="gloss-full">US Treasury Bills</div>
+        <div class="gloss-def">พันธบัตรรัฐบาลสหรัฐ <b>ระยะสั้น (&lt; 1 ปี)</b> · ปลอดภัยที่สุดในโลก</div>
+        <div class="gloss-why">Yield ~5% ปี 2026 · USDC/USDT ส่วนหนึ่ง backed by T-bills · ที่มาของ 4% APY ใน neobank</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">MMF</span><span class="gloss-type yield">Source</span></div>
+        <div class="gloss-full">Money Market Fund</div>
+        <div class="gloss-def">กองทุนรวมที่ลงทุนใน <b>short-term debt + T-bills</b> · low-risk</div>
+        <div class="gloss-why">Revolut Flex Savings ใช้ MMF · ~5% APY ยุคดอกเบี้ยสูง</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">DeFi</span><span class="gloss-type yield">Source</span></div>
+        <div class="gloss-full">Decentralized Finance</div>
+        <div class="gloss-def">ระบบการเงินบน <b>smart contracts</b> · lending + borrowing + trading บน chain</div>
+        <div class="gloss-why">Yield สูงกว่า CeFi · แต่มี smart contract risk · ใช้โดย Kast, Wirex, Bleap</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Aave</span><span class="gloss-type yield">Protocol</span></div>
+        <div class="gloss-full">Aave Protocol</div>
+        <div class="gloss-def">DeFi lending platform <b>ใหญ่ที่สุดในโลก</b> · &gt; $20B TVL</div>
+        <div class="gloss-why">USDC supply rate ~5-8% · Bleap และ neobank หลายเจ้าใช้ Aave</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Gauntlet Vault</span><span class="gloss-type yield">Vault</span></div>
+        <div class="gloss-full">Gauntlet risk-adjusted vaults</div>
+        <div class="gloss-def">DeFi strategy vault ที่ <b>บริหารความเสี่ยงโดย Gauntlet</b> · target 10%+ APY</div>
+        <div class="gloss-why">Kast ใช้ Gauntlet เป็น yield engine · ให้ 10% APY ปลอดภัยขึ้น</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Staking</span><span class="gloss-type yield">Action</span></div>
+        <div class="gloss-full">Locking crypto for rewards</div>
+        <div class="gloss-def"><b>ล็อก crypto</b> ใน network เพื่อรับ reward · มีใน PoS chains (ETH, SOL)</div>
+        <div class="gloss-why">ETH staking ~3-5% · SOL ~6-8% · hi + Crypto.com มี staking</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Lockup</span><span class="gloss-type yield">Term</span></div>
+        <div class="gloss-full">Fund lock-up period</div>
+        <div class="gloss-def">ระยะเวลาที่ <b>ถอนเงินไม่ได้</b> เพื่อแลกกับ yield สูงกว่า</div>
+        <div class="gloss-why">Crypto.com มี 1/3 month terms · ระวัง "no lockup" marketing (บางทีมี cooldown แอบแฝง)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Group 6: Card & Network -->
+  <div class="gloss-group">
+    <div class="gloss-group-header">
+      <div class="ico">💳</div>
+      <h3>6. Cards &amp; Networks</h3>
+      <span class="count">6 terms</span>
+    </div>
+    <div class="gloss-grid">
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Visa</span><span class="gloss-type card">Network</span></div>
+        <div class="gloss-full">Visa payment network</div>
+        <div class="gloss-def">เครือข่ายบัตรใหญ่ที่สุดในโลก · รองรับ <b>130M+ merchants</b></div>
+        <div class="gloss-why">ทุก neobank issue Visa card · PEXX, Kast, RedotPay, Wirex ใช้</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Mastercard</span><span class="gloss-type card">Network</span></div>
+        <div class="gloss-full">Mastercard payment network</div>
+        <div class="gloss-def">เครือข่ายบัตรใหญ่อันดับ 2 · รองรับร้านค้าพอ ๆ กับ Visa</div>
+        <div class="gloss-why">Juno ใช้ Mastercard only · PEXX มีทั้ง V + MC</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Virtual Card</span><span class="gloss-type card">Type</span></div>
+        <div class="gloss-full">Digital-only card</div>
+        <div class="gloss-def">บัตร <b>ไม่มีพลาสติก</b> · ใช้ออนไลน์ · instant issuance · มักฟรี</div>
+        <div class="gloss-why">ออกทันทีหลัง KYC · ใช้ Apple Pay/Google Pay ได้</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Physical Card</span><span class="gloss-type card">Type</span></div>
+        <div class="gloss-full">Plastic/metal card</div>
+        <div class="gloss-def">บัตรพลาสติก/โลหะที่ <b>ส่งมาทางไปรษณีย์</b> · ใช้กดเงินสดได้</div>
+        <div class="gloss-why">ค่าออกบัตร $5-400 · delivery 1-3 สัปดาห์</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Tiered Cards</span><span class="gloss-type card">Structure</span></div>
+        <div class="gloss-full">Loyalty tier cards</div>
+        <div class="gloss-def">Card levels ที่ <b>ต้อง stake เหรียญ native</b> ถึงจะได้ perks สูงขึ้น</div>
+        <div class="gloss-why">Crypto.com: stake CRO $400-$4M สำหรับ tiers · Wirex: stake WXT</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Cashback</span><span class="gloss-type card">Perk</span></div>
+        <div class="gloss-full">Spending rewards</div>
+        <div class="gloss-def">% เงินคืนจากการรูดบัตร · อาจจ่ายเป็น <b>fiat หรือ crypto</b></div>
+        <div class="gloss-why">Crypto.com 1-8% in CRO · Wirex 0.5-8% in WXT · Revolut ~1%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Group 7: Business & Stats -->
+  <div class="gloss-group">
+    <div class="gloss-group-header">
+      <div class="ico">📊</div>
+      <h3>7. Business &amp; Funding Terms</h3>
+      <span class="count">8 terms</span>
+    </div>
+    <div class="gloss-grid">
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">ARR</span><span class="gloss-type biz">Revenue</span></div>
+        <div class="gloss-full">Annual Recurring Revenue</div>
+        <div class="gloss-def">รายได้ <b>ต่อปีแบบต่อเนื่อง</b> · คำนวณจาก subscription + recurring fees</div>
+        <div class="gloss-why">MoonPay $107.6M ARR · Kast ~$100M ARR · เป็น metric สำคัญของ fintech</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Unicorn</span><span class="gloss-type biz">Valuation</span></div>
+        <div class="gloss-full">$1B+ valuation private company</div>
+        <div class="gloss-def">บริษัทเอกชนที่ <b>มีมูลค่า &gt; $1 billion</b> · หายากในวงการ startup</div>
+        <div class="gloss-why">RedotPay เป็น unicorn ปี 2025 · MoonPay ($3.4B) และ Revolut ($45B) เป็น unicorn แล้ว</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Series A/B/C</span><span class="gloss-type biz">Funding</span></div>
+        <div class="gloss-full">VC funding rounds</div>
+        <div class="gloss-def">รอบการระดมทุน VC · <b>A = early growth, B = scaling, C = late stage</b></div>
+        <div class="gloss-why">Kast: $80M Series A (2026) · แสดงการเติบโตของบริษัท</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">Seed</span><span class="gloss-type biz">Funding</span></div>
+        <div class="gloss-full">Seed round</div>
+        <div class="gloss-def">รอบ VC <b>ช่วงแรกสุด</b> · ปกติ $500K-$5M · pre-product-market fit</div>
+        <div class="gloss-why">Dakota $12.5M seed · Tuyo, Avici, Bleap ยังอยู่ช่วง seed</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">ICO</span><span class="gloss-type biz">Crypto Fund</span></div>
+        <div class="gloss-full">Initial Coin Offering</div>
+        <div class="gloss-def">ระดมทุนผ่านการ <b>ออกเหรียญ crypto</b> · ไม่ใช่ equity</div>
+        <div class="gloss-why">hi.com ICO raised $30M · regulated เข้มขึ้นใน US หลังปี 2018</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">TVL</span><span class="gloss-type biz">DeFi Metric</span></div>
+        <div class="gloss-full">Total Value Locked</div>
+        <div class="gloss-def">เงินรวมที่ล็อกอยู่ใน <b>smart contract</b> · metric สำคัญของ DeFi</div>
+        <div class="gloss-why">Aave $20B+ TVL · vault ใหญ่ = trust สูงขึ้น</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">TPV</span><span class="gloss-type biz">Volume</span></div>
+        <div class="gloss-full">Total Payment Volume</div>
+        <div class="gloss-def">เงินรวมที่ประมวลผ่าน platform ต่อปี · Kast $5B annualized</div>
+        <div class="gloss-why">ตัวชี้วัดขนาด payment business · MoonPay, Stripe, Visa report TPV</div>
+      </div>
+      <div class="gloss-card">
+        <div class="gloss-term"><span class="gloss-abbr">MAU</span><span class="gloss-type biz">User Metric</span></div>
+        <div class="gloss-full">Monthly Active Users</div>
+        <div class="gloss-def">จำนวน <b>user ที่ active ในเดือน</b> · ไม่ใช่ user ทั้งหมด (registered)</div>
+        <div class="gloss-why">MAU สำคัญกว่า registered users · Revolut 45M คือ MAU</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Summary -->
+  <div style="margin-top:32px; padding:28px; border-radius:16px; background:linear-gradient(145deg, rgba(255, 107, 26, 0.08), transparent); border:1px solid var(--line-hot);">
+    <div style="font-size:14px; font-weight:700; color:var(--fire-3); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:14px;">📚 Quick Reference</div>
+    <p style="font-size:15px; color:var(--ink-1); line-height:1.75;">
+      Glossary นี้ครอบคลุม <b style="color:var(--fire-3)">73 terms</b> ใน 7 หมวด
+      — ตั้งแต่ regulator (FinCEN, AUSTRAC, FCA) ไปจนถึง technical term (L2, gas fee, TVL)
+      — ใช้เป็น reference ประกอบการอ่านตาราง Feature Matrix ด้านบนครับ
+      <br><br>
+      <b style="color:var(--fire-3)">ถ้าเจอคำที่ไม่เข้าใจในตาราง</b> ให้กลับมาดูที่นี่ได้เลย
+    </p>
+  </div>
+</section>
+
+<!-- Value Reference -->
+<section class="block" id="value-ref">
+  <div class="eyebrow">05 · Value Reference · อ่าน Values ในตารางยังไง</div>
+  <h2>ไกด์อ่าน <span class="hl">Values ในตาราง</span> — สำหรับคนไม่ใช่สาย tech</h2>
+  <p class="section-intro">
+    อธิบายทุก <b>ค่า (value)</b> ที่อยู่ใน cells ของตาราง Feature Matrix —
+    สัญลักษณ์, ตัวเลข, ระดับ, คำย่อ — เพื่อให้คนทั่วไปอ่านแล้วเข้าใจได้ทันที
+  </p>
+
+  <!-- Group 1: Symbols -->
+  <div class="val-group">
+    <div class="val-group-header">
+      <div class="ico">🔣</div>
+      <div>
+        <h3>1. สัญลักษณ์พื้นฐาน — Common Symbols</h3>
+        <div class="context">ใช้ในทุกตาราง</div>
+      </div>
+    </div>
+    <div class="val-grid">
+      <div class="val-card">
+        <div class="val-sample y">✓</div>
+        <div class="val-meaning">มี · รองรับเต็มรูปแบบ</div>
+        <div class="val-desc">Platform ให้บริการตัวนั้นได้ <b>จริงและเต็มรูปแบบ</b></div>
+        <div class="val-ex">ตัวอย่าง: PEXX "USD Account" = <b>✓</b> หมายถึง <b>มีบัญชี USD แบบครบ</b> routing + account number ใช้งานได้เหมือน US bank</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample n">✗</div>
+        <div class="val-meaning">ไม่มี · ไม่รองรับ</div>
+        <div class="val-desc">Platform <b>ไม่มีบริการนี้</b> · feature นี้ไม่ใช้งานได้</div>
+        <div class="val-ex">ตัวอย่าง: MoonPay "USD Account" = <b>✗</b> หมายถึง MoonPay <b>ไม่มีบัญชี USD</b> (เพราะเป็น on/off-ramp อย่างเดียว)</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample m">~</div>
+        <div class="val-meaning">มีบ้าง · จำกัด / Partial</div>
+        <div class="val-desc">Platform มีบริการนี้ <b>แบบจำกัด</b> หรือไม่เต็มรูปแบบ</div>
+        <div class="val-ex">ตัวอย่าง: RedotPay "USD Account" = <b>~ Limited</b> หมายถึง <b>มีบ้างแต่ไม่ครบ</b> เช่น ไม่รับ wire transfer</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample dash">—</div>
+        <div class="val-meaning">ไม่มีข้อมูล · N/A</div>
+        <div class="val-desc"><b>ไม่มีข้อมูลเปิดเผย</b> หรือ feature ไม่เกี่ยวข้องกับ platform นี้</div>
+        <div class="val-ex">ตัวอย่าง: MoonPay "Yield" = <b>—</b> หมายถึง <b>ไม่มี yield product เลย</b> (MoonPay ไม่ใช่ neobank)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Group 2: Company Status -->
+  <div class="val-group">
+    <div class="val-group-header">
+      <div class="ico">🏢</div>
+      <div>
+        <h3>2. Company Status · ระดับบริษัท</h3>
+        <div class="context">Column "Status" ใน Company Overview</div>
+      </div>
+    </div>
+    <div class="val-grid">
+      <div class="val-card">
+        <div class="val-sample">Early-stage</div>
+        <div class="val-meaning">บริษัทเพิ่งเริ่ม</div>
+        <div class="val-desc">อายุ <b>1-3 ปี</b> · users &lt; 500K · ยังหา product-market fit</div>
+        <div class="val-ex">ตัวอย่าง: PEXX, Dakota, Tuyo, Avici, Bleap, Fiat24 · <b>high risk + high potential</b></div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample">Growth</div>
+        <div class="val-meaning">กำลังเติบโต</div>
+        <div class="val-desc">อายุ <b>3-5 ปี</b> · users 500K-5M · มี PMF แล้ว · scaling</div>
+        <div class="val-ex">ตัวอย่าง: Kast, Bitnob, hi, Juno · มี Series A/B funding</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample y">Unicorn 🦄</div>
+        <div class="val-meaning">มูลค่า &gt; $1B</div>
+        <div class="val-desc">บริษัทเอกชนที่มีมูลค่า <b>เกิน $1 billion</b> (ยังไม่ IPO)</div>
+        <div class="val-ex">ตัวอย่าง: <b>RedotPay</b> (ได้สถานะกันยา 2025), MoonPay ($3.4B), Revolut ($45B)</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample">Late-stage</div>
+        <div class="val-meaning">บริษัทใหญ่และมั่นคง</div>
+        <div class="val-desc"><b>Pre-IPO</b> หรือ public already · mature business · profitable</div>
+        <div class="val-ex">ตัวอย่าง: MoonPay, Crypto.com, Revolut · ใกล้ IPO หรือเป็น unicorn แล้ว</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample">Established</div>
+        <div class="val-meaning">อยู่ในตลาดนาน</div>
+        <div class="val-desc">อายุ <b>7+ ปี</b> · มี brand recognition · ผ่าน market cycles</div>
+        <div class="val-ex">ตัวอย่าง: Wirex (ก่อตั้ง 2014) · ผ่าน bear market มาหลายรอบ</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Group 3: Funding Stages -->
+  <div class="val-group">
+    <div class="val-group-header">
+      <div class="ico">💵</div>
+      <div>
+        <h3>3. Funding Rounds · ขั้นการระดมทุน</h3>
+        <div class="context">Column "Latest Round"</div>
+      </div>
+    </div>
+    <div class="val-grid">
+      <div class="val-card">
+        <div class="val-sample">Seed</div>
+        <div class="val-meaning">รอบแรกสุด</div>
+        <div class="val-desc">ระดมทุนจาก <b>angel investors + early VCs</b> · ขนาด $500K-$5M · pre-PMF</div>
+        <div class="val-ex">ตัวอย่าง: Dakota $12.5M seed · Tuyo, Bleap, Avici อยู่ช่วง seed</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample">Series A</div>
+        <div class="val-meaning">รอบเติบโตช่วงแรก</div>
+        <div class="val-desc">หลังมี PMF · ขนาด <b>$5M-$100M</b> · VCs tier 1-2 เข้ามา</div>
+        <div class="val-ex">ตัวอย่าง: Kast $80M Series A ปี 2026 · MoonPay Series A ปี 2022 ($87M)</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample">Series B/C</div>
+        <div class="val-meaning">Scaling rounds</div>
+        <div class="val-desc">ขนาด <b>$50M-$500M+</b> · กำลัง scale business · pre-IPO</div>
+        <div class="val-ex">ตัวอย่าง: Revolut Series E · Crypto.com secondary rounds</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample">ICO</div>
+        <div class="val-meaning">Initial Coin Offering</div>
+        <div class="val-desc">ระดมทุนผ่าน <b>ออกเหรียญ crypto</b> ให้นักลงทุน · ไม่ใช่ equity</div>
+        <div class="val-ex">ตัวอย่าง: hi.com ICO ได้ $30M · ระวังว่าถูก regulated เข้มใน US</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample">DAO</div>
+        <div class="val-meaning">Decentralized Autonomous Organization</div>
+        <div class="val-desc">องค์กร <b>ไม่มีเจ้าของ</b> · governance โดย token holders · on-chain voting</div>
+        <div class="val-ex">ตัวอย่าง: Gnosis Pay funded by Gnosis DAO · decisions ผ่าน GNO token</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample special">Public (RWS)</div>
+        <div class="val-meaning">Public · tradable token</div>
+        <div class="val-desc">มี <b>token ที่ trade ได้</b> บน exchange (ไม่จำเป็นต้อง list บน stock)</div>
+        <div class="val-ex">ตัวอย่าง: Wirex มี WXT token trade ได้ · คล้าย equity แต่เป็น utility token</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Group 4: License Values -->
+  <div class="val-group">
+    <div class="val-group-header">
+      <div class="ico">📜</div>
+      <div>
+        <h3>4. License Values · ค่าใน License Matrix</h3>
+        <div class="context">Licenses &amp; Regulation table</div>
+      </div>
+    </div>
+    <div class="val-grid">
+      <div class="val-card">
+        <div class="val-sample y">✓</div>
+        <div class="val-meaning">ถือ license เอง (Direct)</div>
+        <div class="val-desc">บริษัท <b>ขอ license ด้วยตัวเอง</b> · ชื่อในทะเบียน regulator คือบริษัทนี้</div>
+        <div class="val-ex">ตัวอย่าง: PEXX AUSTRAC = <b>✓</b> · PEXX Technology Pty Ltd ถือ DCE100851583-001 เอง</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample m">Partner</div>
+        <div class="val-meaning">ใช้ license ของคนอื่น</div>
+        <div class="val-desc">อาศัย <b>BaaS partner</b> (เช่น Cross River) ที่มี license อยู่แล้ว · ไม่ต้องขอเอง</div>
+        <div class="val-ex">ตัวอย่าง: Kast "FinCEN MSB = Partner" · ใช้ partner bank ที่ถือ license ให้แทน</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample m">via Rain</div>
+        <div class="val-meaning">ผ่าน specific partner</div>
+        <div class="val-desc">ใช้ platform ของ <b>บริษัทที่ระบุ</b> (Rain, Evolve, Monerium) เป็น backend</div>
+        <div class="val-ex">ตัวอย่าง: Dakota "via Rain" · Dakota card ใช้ Rain.xyz เป็น issuer · Juno "via Evolve" · via Evolve Bank</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample num">47 รัฐ</div>
+        <div class="val-meaning">จำนวน State MTLs</div>
+        <div class="val-desc">จำนวน <b>Money Transmitter Licenses</b> ที่มีใน US states (รวม Federal MSB คนละเรื่อง)</div>
+        <div class="val-ex">ตัวอย่าง: MoonPay "47 รัฐ" = มี state MTL ครบ 47 จาก 50 รัฐ · ใช้บริการได้เกือบทั้ง US</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample num">NL VASP</div>
+        <div class="val-meaning">VASP ในประเทศเฉพาะ</div>
+        <div class="val-desc">VASP registration ในประเทศ <b>specific ใน EU</b> (NL = Netherlands, LT = Lithuania)</div>
+        <div class="val-ex">ตัวอย่าง: MoonPay "NL VASP" · ขึ้นทะเบียนกับ Dutch AFM · ใช้เป็น passport เข้า EU</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample num">LT EMI</div>
+        <div class="val-meaning">EMI ใน Lithuania</div>
+        <div class="val-desc">Electronic Money Institution license จาก <b>Lithuania</b> — จุดเข้า EU ที่ถูกสุด</div>
+        <div class="val-ex">ตัวอย่าง: Wirex "LT EMI" · Lithuania เป็น hub EMI ของ EU · license อนุมัติเร็ว</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample n">Non-custodial</div>
+        <div class="val-meaning">ไม่ต้องมี license</div>
+        <div class="val-desc">User ถือ key เอง · platform <b>ไม่เก็บเงินลูกค้า</b> · ดังนั้นไม่ต้องขอ custody license</div>
+        <div class="val-ex">ตัวอย่าง: Avici "Non-custodial" · user connect wallet (เช่น Phantom) · Avici ไม่ถือเงิน</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample special">MiCA 2025</div>
+        <div class="val-meaning">EU unified crypto license</div>
+        <div class="val-desc">License ตาม <b>Markets in Crypto-Assets Regulation</b> · ใช้ทั่ว EU 27 ประเทศ</div>
+        <div class="val-ex">ตัวอย่าง: Crypto.com "MiCA 2025" · ได้ license ปี 2025 · ปลดล็อก EU ทั้งทวีป</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample special">Swiss passport</div>
+        <div class="val-meaning">ใช้ license สวิสเข้า EU</div>
+        <div class="val-desc">Swiss bank license ให้สิทธิ์ <b>ขยายบริการไป EU</b> ได้ผ่าน passporting</div>
+        <div class="val-ex">ตัวอย่าง: Fiat24 "Swiss passport" · ไม่ต้องขอ EU EMI แยก</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Group 5: Product Availability -->
+  <div class="val-group">
+    <div class="val-group-header">
+      <div class="ico">📦</div>
+      <div>
+        <h3>5. Product Availability · ระดับการให้บริการ</h3>
+        <div class="context">Core Products &amp; Crypto Support tables</div>
+      </div>
+    </div>
+    <div class="val-grid">
+      <div class="val-card">
+        <div class="val-sample y">✓ Full</div>
+        <div class="val-meaning">บริการเต็มรูปแบบ</div>
+        <div class="val-desc">Feature ทำงานเต็ม ไม่มีข้อจำกัด · เทียบเท่ากับเจ้าใหญ่ในวงการ</div>
+        <div class="val-ex">ตัวอย่าง: PEXX "USD Account ✓ Full" · มี routing + account number + ACH + wire ครบ</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample y">✓ No US resident</div>
+        <div class="val-meaning">เปิดได้โดยไม่ต้องเป็น US resident</div>
+        <div class="val-desc">USD account ที่เปิดได้ <b>โดยไม่ต้องอยู่ US</b> · เหมาะกับ non-US users</div>
+        <div class="val-ex">ตัวอย่าง: Kast "USD Account ✓ No US resident" · target users เป็น freelancer นอก US</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample m">~ Limited</div>
+        <div class="val-meaning">มีแต่จำกัดมาก</div>
+        <div class="val-desc">มีบริการแต่ <b>ข้อจำกัดเยอะ</b> · เช่น จำกัดวงเงิน, ไม่รับ wire, รับเฉพาะ token</div>
+        <div class="val-ex">ตัวอย่าง: RedotPay "USD Account ~ Limited" · อาจรับได้แค่ stablecoin deposit ไม่รับ ACH</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample m">Hold only</div>
+        <div class="val-meaning">เก็บได้ ซื้อขายไม่ได้</div>
+        <div class="val-desc">User <b>hold token ได้ แต่ซื้อ/ขาย/swap ไม่ได้</b> · ต้องส่งออกไป exchange อื่น</div>
+        <div class="val-ex">ตัวอย่าง: Dakota "Crypto Trading: Hold only" · focus บน USDC deposit ไม่ใช่ trading</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample m">Swap only</div>
+        <div class="val-meaning">แลกเปลี่ยนได้ ไม่ hold นาน</div>
+        <div class="val-desc"><b>Swap token ได้ในแอป</b> แต่ไม่ใช่ full exchange · ไม่มี orderbook</div>
+        <div class="val-ex">ตัวอย่าง: Kast "USDT: Swap only" · swap USDT → USDC ได้ แต่ไม่ใช่ trading pair แท้</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample m">Deposit only</div>
+        <div class="val-meaning">รับ deposit ได้</div>
+        <div class="val-desc">Platform <b>รับ crypto นี้เข้าได้</b> แต่ไม่ให้ trade หรือ hold นาน · มักถูก auto-swap</div>
+        <div class="val-ex">ตัวอย่าง: Kast "BTC: Deposit" · ส่ง BTC เข้าได้ แต่จะ auto-swap เป็น USDC</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample m">Bridge</div>
+        <div class="val-meaning">ต้องใช้ cross-chain bridge</div>
+        <div class="val-desc">ต้อง <b>โอน asset จาก chain อื่น</b> ผ่าน bridge (เช่น Wormhole, Axelar) ก่อน</div>
+        <div class="val-ex">ตัวอย่าง: Avici "ETH: Bridge" · Avici อยู่ Solana → ต้อง bridge ETH มาก่อน</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample y">Native</div>
+        <div class="val-meaning">ใช้งานแบบดั้งเดิม</div>
+        <div class="val-desc">Crypto นี้คือ <b>สกุลหลัก</b> ของ platform · ไม่ต้อง swap หรือ bridge</div>
+        <div class="val-ex">ตัวอย่าง: Kast "USDC: Native" · USDC คือสกุลหลักที่ Kast ใช้ทุกฟีเจอร์</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample num">US-only</div>
+        <div class="val-meaning">จำกัดเฉพาะ US</div>
+        <div class="val-desc">Platform เปิดบริการ <b>เฉพาะในประเทศเดียว</b> · ตลาดอื่นเข้าไม่ได้</div>
+        <div class="val-ex">ตัวอย่าง: Juno "US-only" · ต้องมี US address + SSN ถึงจะสมัครได้</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample num">EU-focused</div>
+        <div class="val-meaning">เน้นตลาด EU</div>
+        <div class="val-desc">Platform เปิดบริการเต็มใน EU · ตลาดอื่นมีแต่ไม่ครบ feature</div>
+        <div class="val-ex">ตัวอย่าง: Bleap "EU-focused" · EUR IBAN + SEPA · แต่ไม่มี USD account</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Group 6: Fee Descriptors -->
+  <div class="val-group">
+    <div class="val-group-header">
+      <div class="ico">💰</div>
+      <div>
+        <h3>6. Fee Descriptors · คำอธิบายค่าธรรมเนียม</h3>
+        <div class="context">Fees Structure table</div>
+      </div>
+    </div>
+    <div class="val-grid">
+      <div class="val-card">
+        <div class="val-sample y">Free</div>
+        <div class="val-meaning">ไม่คิดค่าธรรมเนียม</div>
+        <div class="val-desc"><b>ฟรี 100%</b> · platform absorb cost · มักมี limit (จำนวนครั้ง/จำนวนเงิน)</div>
+        <div class="val-ex">ตัวอย่าง: Wirex ATM "Free up to limit" · ฟรี £400/เดือนแรก หลังจากนั้นคิดค่าธรรมเนียม</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample y">Low</div>
+        <div class="val-meaning">ต่ำมาก (&lt; 0.5%)</div>
+        <div class="val-desc">ค่าธรรมเนียม <b>ต่ำกว่า 0.5%</b> · ถือว่า competitive ในตลาด</div>
+        <div class="val-ex">ตัวอย่าง: PEXX "Bank Transfer: Low" · ~0.2-0.5% หรือน้อยกว่า</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample num">~1-2%</div>
+        <div class="val-meaning">เปอร์เซ็นต์โดยประมาณ</div>
+        <div class="val-desc">ค่าธรรมเนียม <b>ขึ้นอยู่กับ tier/amount</b> · range ปกติ 1-2%</div>
+        <div class="val-ex">ตัวอย่าง: PEXX Card Purchase "~1-2%" · small amounts 2%, large amounts 1%</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample m">Tier-based</div>
+        <div class="val-meaning">ขึ้นกับระดับสมาชิก</div>
+        <div class="val-desc">ค่าธรรมเนียม <b>แตกต่างตาม tier</b> ที่ user ถือ token/plan</div>
+        <div class="val-ex">ตัวอย่าง: Crypto.com "Tier-based" · Obsidian tier (stake $400K CRO) = fee ต่ำสุด</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample num">Spread 0.5%</div>
+        <div class="val-meaning">ส่วนต่างราคา buy/sell</div>
+        <div class="val-desc">ไม่คิด fee ตรง แต่ <b>ราคา buy/sell ต่างกัน</b> · เป็น hidden fee</div>
+        <div class="val-ex">ตัวอย่าง: PEXX "Spread 0.5%" · ราคาซื้อ $1.005/USDC, ราคาขาย $0.995/USDC</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample m">CHF 20/mo</div>
+        <div class="val-meaning">รายเดือนแบบ subscription</div>
+        <div class="val-desc">Platform คิด <b>monthly subscription</b> · ได้ features premium</div>
+        <div class="val-ex">ตัวอย่าง: Fiat24 "CHF 20/mo" · เป็น Swiss bank account ต้องจ่ายรายเดือน</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample y">0%</div>
+        <div class="val-meaning">ฟรีจริง (non-custodial)</div>
+        <div class="val-desc"><b>ไม่มี fee</b> เพราะ platform ไม่ถือเงิน · user จ่ายแค่ gas fee</div>
+        <div class="val-ex">ตัวอย่าง: Gnosis Pay "Card Purchase: 0%" · on-chain ไม่มี platform fee</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample num">Bank rates</div>
+        <div class="val-meaning">เรทเทียบเท่าธนาคาร</div>
+        <div class="val-desc">ค่าธรรมเนียม <b>เหมือนธนาคารปกติ</b> · ไม่ใช่ competitive แบบ fintech</div>
+        <div class="val-ex">ตัวอย่าง: Fiat24 "Bank rates" · เพราะเป็น Swiss bank license · ค่าธรรมเนียมตาม banking norms</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Group 7: Yield Sources -->
+  <div class="val-group">
+    <div class="val-group-header">
+      <div class="ico">📈</div>
+      <div>
+        <h3>7. Yield Sources · ที่มาของดอกเบี้ย</h3>
+        <div class="context">Yield &amp; APY table · Column "Yield Source"</div>
+      </div>
+    </div>
+    <div class="val-grid">
+      <div class="val-card">
+        <div class="val-sample y">T-bills</div>
+        <div class="val-meaning">พันธบัตรรัฐบาลสหรัฐฯ</div>
+        <div class="val-desc">เงินลูกค้าไปซื้อ <b>US Treasury Bills</b> · ปลอดภัยที่สุด · ~5% ปัจจุบัน</div>
+        <div class="val-ex">ตัวอย่าง: PEXX "T-bills / partner" · Cross River Bank เอาเงินฝากซื้อ T-bills</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample y">MMF</div>
+        <div class="val-meaning">Money Market Fund</div>
+        <div class="val-desc">กองทุนรวม <b>ระดับต่ำสุดของความเสี่ยง</b> · hold T-bills + commercial paper</div>
+        <div class="val-ex">ตัวอย่าง: Revolut "Flex Savings" · ~5% APY จาก MMF</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample special">DeFi</div>
+        <div class="val-meaning">Decentralized Finance</div>
+        <div class="val-desc">เงินลูกค้าไปฝากใน <b>smart contracts</b> (Aave, Compound) · high yield + smart contract risk</div>
+        <div class="val-ex">ตัวอย่าง: Wirex "DeFi X-Accounts" · ใช้ DeFi ทำให้ APY สูง 10-16%</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample special">Gauntlet Vault</div>
+        <div class="val-meaning">Risk-adjusted DeFi</div>
+        <div class="val-desc">DeFi vault ที่ <b>บริหารความเสี่ยงโดย Gauntlet</b> · smart contract + risk management</div>
+        <div class="val-ex">ตัวอย่าง: Kast "Gauntlet Vault" · 10% APY ที่มี professional risk management</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample special">Aave / DeFi</div>
+        <div class="val-meaning">ผ่าน Aave protocol</div>
+        <div class="val-desc">ฝาก stablecoin ใน <b>Aave</b> (DeFi lending ใหญ่สุด) · แตกดอก 5-8%</div>
+        <div class="val-ex">ตัวอย่าง: Bleap "Aave / DeFi" · Bleap ใช้ Aave เป็น yield engine หลัก</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample m">CeFi staking</div>
+        <div class="val-meaning">Centralized Finance staking</div>
+        <div class="val-desc">Platform <b>รวมเงินไปใช้เอง</b> (ไม่เปิดเผย strategy) · counter-party risk สูง</div>
+        <div class="val-ex">ตัวอย่าง: hi "CeFi staking" · เหมือน Celsius ที่ล้มไปแล้ว · ระวังเรื่อง transparency</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample num">Partner bank</div>
+        <div class="val-meaning">ฝากใน BaaS partner</div>
+        <div class="val-desc">เงินฝากอยู่ <b>ในธนาคาร partner</b> (เช่น Cross River, Evolve) · ได้ T-bill yield ผ่าน bank</div>
+        <div class="val-ex">ตัวอย่าง: Juno "Partner bank" · เงินอยู่ Evolve Bank · 4% APY</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample m">BTC DCA + yield</div>
+        <div class="val-meaning">Bitcoin dollar-cost averaging</div>
+        <div class="val-desc">User ซื้อ BTC เรื่อย ๆ + ได้ <b>ดอกเบี้ยจาก BTC lending</b></div>
+        <div class="val-ex">ตัวอย่าง: Bitnob "BTC DCA + yield" · focus africa users sending BTC to family</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample m">Protocol risk</div>
+        <div class="val-meaning">Smart contract ไม่มั่นใจ 100%</div>
+        <div class="val-desc">Platform <b>บอกตรง ๆ</b> ว่ามี smart contract risk · user ต้องรับเอง</div>
+        <div class="val-ex">ตัวอย่าง: Avici "Protocol risk" · self-custody · ถ้า protocol hack ก็เสียเงิน</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Group 8: Speed & Coverage -->
+  <div class="val-group">
+    <div class="val-group-header">
+      <div class="ico">⚡</div>
+      <div>
+        <h3>8. Speed &amp; Coverage · คำบอกความเร็ว</h3>
+        <div class="context">Global Coverage &amp; Access table</div>
+      </div>
+    </div>
+    <div class="val-grid">
+      <div class="val-card">
+        <div class="val-sample y">Instant</div>
+        <div class="val-meaning">ทันที · &lt; 1 นาที</div>
+        <div class="val-desc">KYC approved <b>ทันที</b> โดย AI/automated · user เริ่มใช้ได้เลย</div>
+        <div class="val-ex">ตัวอย่าง: Crypto.com, Revolut "Instant-1 day" · ส่วนใหญ่ผ่านใน 5 นาที</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample y">Fast</div>
+        <div class="val-meaning">เร็ว · 10-30 นาที</div>
+        <div class="val-desc">KYC ผ่านใน <b>ไม่กี่สิบนาที</b> · มี manual review แต่เร็ว</div>
+        <div class="val-ex">ตัวอย่าง: PEXX "~10-30 min" · Kast, RedotPay, Bleap · เจอ manual review แต่ไม่เกินครึ่งชั่วโมง</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample m">1-3 days</div>
+        <div class="val-meaning">ช้า · ระยะวัน</div>
+        <div class="val-desc">KYC ใช้เวลา <b>หลายชั่วโมงถึงหลายวัน</b> · manual review เต็มรูปแบบ</div>
+        <div class="val-ex">ตัวอย่าง: Wirex "1-3 days" · Fiat24 "Bank KYC 1-3d" · เข้มงวดเพราะเป็น bank-grade</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample special">Wallet-based</div>
+        <div class="val-meaning">KYC แบบ connect wallet</div>
+        <div class="val-desc">ไม่ต้องทำ KYC แบบเดิม · แค่ <b>connect crypto wallet</b> (เช่น MetaMask)</div>
+        <div class="val-ex">ตัวอย่าง: Avici, Gnosis Pay "Wallet-based" · self-custody platforms ไม่ต้อง KYC</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample num">17+ ctry</div>
+        <div class="val-meaning">จำนวนประเทศรองรับ</div>
+        <div class="val-desc">จำนวน <b>ประเทศที่ platform เปิดให้บริการ</b> · แต่ละประเทศ feature ต่างกัน</div>
+        <div class="val-ex">ตัวอย่าง: PEXX 17+ / MoonPay 160+ / Kast 190 · ยิ่งมากยิ่งตลาด addressable ใหญ่</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample num">130M merchants</div>
+        <div class="val-meaning">จำนวนร้านค้ายอมรับ</div>
+        <div class="val-desc">จำนวน <b>ร้านค้าที่รับบัตร</b> · Visa/Mastercard มี 130M+ ทั่วโลก</div>
+        <div class="val-ex">ตัวอย่าง: RedotPay "130M merchants" · PEXX ใช้ Visa/MC network เหมือนกัน</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample y">API ✓</div>
+        <div class="val-meaning">มี API สำหรับ integration</div>
+        <div class="val-desc">Platform มี <b>API</b> ให้ businesses เชื่อมต่อ · B2B เข้าได้</div>
+        <div class="val-ex">ตัวอย่าง: MoonPay API (widget), Crypto.com API, Revolut Business API · PEXX ยังไม่มี</div>
+      </div>
+      <div class="val-card">
+        <div class="val-sample special">Web3 API</div>
+        <div class="val-meaning">API แบบ on-chain</div>
+        <div class="val-desc">API ที่ <b>ทำงานกับ smart contracts</b> ไม่ใช่ REST ปกติ · dev web3-native</div>
+        <div class="val-ex">ตัวอย่าง: Gnosis Pay, Avici "Web3 API" · ใช้ EIP-1193, ethers.js</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- How to read summary -->
+  <div style="margin-top:32px; padding:30px; border-radius:18px; background:linear-gradient(145deg, rgba(255, 107, 26, 0.1), transparent); border:1px solid var(--line-hot);">
+    <div style="font-size:16px; font-weight:800; color:var(--fire-3); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:18px;">🎓 วิธีอ่านตารางทั้ง 7 หมวดแบบ Pro</div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:14px;">
+      <div style="padding:16px; background:var(--bg-3); border-radius:10px; border-left:3px solid var(--fire-2);">
+        <div style="font-size:13px; font-weight:700; color:var(--fire-3); margin-bottom:8px;">1️⃣ เริ่มจาก Symbol</div>
+        <div style="font-size:12.5px; color:var(--ink-2); line-height:1.55;">
+          <b class="y" style="color:var(--ok)">✓ = มี</b> · <b class="n" style="color:var(--danger)">✗ = ไม่มี</b> ·
+          <b class="m" style="color:var(--warn)">~ = จำกัด</b> · <b style="color:var(--ink-4)">— = ไม่มีข้อมูล</b>
+        </div>
+      </div>
+      <div style="padding:16px; background:var(--bg-3); border-radius:10px; border-left:3px solid var(--fire-2);">
+        <div style="font-size:13px; font-weight:700; color:var(--fire-3); margin-bottom:8px;">2️⃣ อ่าน Qualifier</div>
+        <div style="font-size:12.5px; color:var(--ink-2); line-height:1.55;">
+          หลัง symbol มักมีคำเสริม เช่น <b>Full / Limited / Only / Focus / via X</b> — บอก <b>ระดับ</b>
+        </div>
+      </div>
+      <div style="padding:16px; background:var(--bg-3); border-radius:10px; border-left:3px solid var(--fire-2);">
+        <div style="font-size:13px; font-weight:700; color:var(--fire-3); margin-bottom:8px;">3️⃣ ตัวเลข = Context</div>
+        <div style="font-size:12.5px; color:var(--ink-2); line-height:1.55;">
+          ตัวเลขเช่น <b>47 รัฐ, 5M users, 10% APY</b> ต้องเทียบ tier กับเจ้าอื่นในตารางด้วย
+        </div>
+      </div>
+      <div style="padding:16px; background:var(--bg-3); border-radius:10px; border-left:3px solid var(--fire-2);">
+        <div style="font-size:13px; font-weight:700; color:var(--fire-3); margin-bottom:8px;">4️⃣ คำพิเศษ = อ่าน Ref</div>
+        <div style="font-size:12.5px; color:var(--ink-2); line-height:1.55;">
+          เจอคำแปลก ๆ (<b>Gauntlet, MiCA, Swiss passport</b>) → กลับมาดูที่ Glossary หมวด 04
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Positioning map -->
+<section class="block" id="positioning">
+  <div class="eyebrow">06 · Positioning Map</div>
+  <h2>แผนที่ <span class="hl">Positioning</span> ของตลาด</h2>
+  <p class="section-intro">
+    วาง player ตาม 2 แกน — <b>ระดับธุรกิจ</b> (B2C neobank ↔ B2B infrastructure) และ <b>ขนาด</b> (Early-stage ↔ Established)
+  </p>
+
+  <div class="pos-map-wrap">
+    <div class="pos-map">
+      <div class="pos-label top">⬆️ ESTABLISHED</div>
+      <div class="pos-label bot">⬇️ EARLY STAGE</div>
+      <div class="pos-label left">🧑 B2C NEOBANK</div>
+      <div class="pos-label right">🏢 B2B INFRASTRUCTURE</div>
+
+      <!-- Top-right: Established B2B -->
+      <div class="pos-point moonpay" style="top:18%; left:78%;">🌙 MoonPay</div>
+      <div class="pos-point" style="top:8%; left:62%;">Coinbase</div>
+      <div class="pos-point" style="top:25%; left:70%;">Circle</div>
+      <div class="pos-point" style="top:30%; left:85%;">Rain.xyz</div>
+
+      <!-- Top-left: Established B2C -->
+      <div class="pos-point" style="top:10%; left:15%;">Revolut</div>
+      <div class="pos-point" style="top:20%; left:8%;">Crypto.com</div>
+      <div class="pos-point" style="top:22%; left:28%;">Wirex</div>
+      <div class="pos-point" style="top:35%; left:18%;">RedotPay</div>
+
+      <!-- Mid -->
+      <div class="pos-point" style="top:45%; left:32%;">Kast</div>
+      <div class="pos-point" style="top:50%; left:60%;">Dakota</div>
+      <div class="pos-point" style="top:55%; left:20%;">Juno</div>
+      <div class="pos-point" style="top:58%; left:42%;">hi</div>
+
+      <!-- Bottom-left: Early B2C -->
+      <div class="pos-point pexx" style="top:70%; left:25%;">🔥 PEXX</div>
+      <div class="pos-point" style="top:75%; left:38%;">Bleap</div>
+      <div class="pos-point" style="top:80%; left:15%;">Bitnob</div>
+      <div class="pos-point" style="top:85%; left:48%;">Gnosis Pay</div>
+      <div class="pos-point" style="top:78%; left:60%;">Fiat24</div>
+      <div class="pos-point" style="top:88%; left:30%;">Tuyo</div>
+      <div class="pos-point" style="top:90%; left:55%;">Avici</div>
+    </div>
+    <div style="padding:18px; background:var(--bg-3); border-radius:10px; font-size:13.5px; color:var(--ink-2); line-height:1.7;">
+      <b style="color:var(--fire-3);">📍 ตำแหน่ง PEXX:</b> อยู่ <b>B2C neobank · Early stage</b> — quadrant เดียวกับ Bleap, Bitnob, Tuyo
+      — คู่แข่งตรงที่สุด ไม่ใช่ MoonPay (ที่เป็น B2B) แต่เป็น <b style="color:var(--fire-3)">RedotPay, Kast, Bitnob</b>
+    </div>
+  </div>
+</section>
+
+<!-- Differentiators -->
+<section class="block" id="differentiators">
+  <div class="eyebrow">07 · Key Differentiators</div>
+  <h2>แต่ละเจ้า <span class="hl">ต่างกันยังไง</span></h2>
+  <p class="section-intro">
+    เจาะจุดขายเฉพาะของแต่ละ player ที่ทำให้ยืนอยู่ในตลาดได้
+  </p>
+
+  <div class="diff-grid">
+    <div class="diff-card">
+      <div class="diff-header">
+        <div class="diff-name">🔥 PEXX</div>
+        <span class="diff-flag">AU/HK</span>
+      </div>
+      <div class="diff-sub">"The world's first stablecoin bank"</div>
+      <div class="diff-row"><span class="dl">Scale</span><span class="dv">50K users</span></div>
+      <div class="diff-row"><span class="dl">Sweet spot</span><span class="dv strong">USD account + yield</span></div>
+      <div class="diff-row"><span class="dl">Partner</span><span class="dv">Cross River Bank</span></div>
+      <div class="unique">
+        <b>Unique:</b> Full banking feel (account + card + yield + remit + QR pay) ใน one-stop app —
+        ไม่มี neobank เล็กเจ้าไหนทำครบขนาดนี้
+      </div>
+    </div>
+
+    <div class="diff-card">
+      <div class="diff-header">
+        <div class="diff-name">🌙 MoonPay</div>
+        <span class="diff-flag">US</span>
+      </div>
+      <div class="diff-sub">"On/off ramp infrastructure"</div>
+      <div class="diff-row"><span class="dl">Scale</span><span class="dv">20M+ users</span></div>
+      <div class="diff-row"><span class="dl">Sweet spot</span><span class="dv strong">Fiat ↔ Crypto ramps</span></div>
+      <div class="diff-row"><span class="dl">B2B Partners</span><span class="dv">500+ brands</span></div>
+      <div class="unique">
+        <b>Unique:</b> NY BitLicense + 47 state MTLs + B2B widget model —
+        ไม่ใช่ neobank แต่เป็น "<b>Stripe สำหรับ crypto</b>"
+      </div>
+    </div>
+
+    <div class="diff-card">
+      <div class="diff-header">
+        <div class="diff-name">⚡ Kast</div>
+        <span class="diff-flag">SG</span>
+      </div>
+      <div class="diff-sub">"USDC-native money app"</div>
+      <div class="diff-row"><span class="dl">Scale</span><span class="dv">1M users · $5B volume</span></div>
+      <div class="diff-row"><span class="dl">Sweet spot</span><span class="dv strong">10% APY + card</span></div>
+      <div class="diff-row"><span class="dl">Valuation</span><span class="dv">$600M ($80M Series A)</span></div>
+      <div class="unique">
+        <b>Unique:</b> ดอกเบี้ย <b>10%+ APY</b> จาก Gauntlet Vault (สูงกว่า PEXX 2.5 เท่า) +
+        USD account ได้โดยไม่ต้อง US resident
+      </div>
+    </div>
+
+    <div class="diff-card">
+      <div class="diff-header">
+        <div class="diff-name">💎 RedotPay</div>
+        <span class="diff-flag">HK</span>
+      </div>
+      <div class="diff-sub">"Mass retail crypto payments"</div>
+      <div class="diff-row"><span class="dl">Scale</span><span class="dv">🦄 5M+ users</span></div>
+      <div class="diff-row"><span class="dl">Sweet spot</span><span class="dv strong">Merchant coverage</span></div>
+      <div class="diff-row"><span class="dl">Merchants</span><span class="dv">130M globally</span></div>
+      <div class="unique">
+        <b>Unique:</b> <b>Unicorn ปี 2025</b> · ใหญ่ที่สุดในเอเชีย · ครอบคลุม 100+ ประเทศ +
+        รับ BTC/ETH/USDT/USDC ทุกเหรียญ
+      </div>
+    </div>
+
+    <div class="diff-card">
+      <div class="diff-header">
+        <div class="diff-name">🔵 Wirex</div>
+        <span class="diff-flag">UK</span>
+      </div>
+      <div class="diff-sub">"OG crypto card (2014)"</div>
+      <div class="diff-row"><span class="dl">Scale</span><span class="dv">6M+ users</span></div>
+      <div class="diff-row"><span class="dl">Sweet spot</span><span class="dv strong">X-Accounts 4-16% APY</span></div>
+      <div class="diff-row"><span class="dl">Cryptos</span><span class="dv">150+ supported</span></div>
+      <div class="unique">
+        <b>Unique:</b> <b>10+ ปี track record</b> · highest APY range (4-16%) ·
+        supports crypto rewards on card spending
+      </div>
+    </div>
+
+    <div class="diff-card">
+      <div class="diff-header">
+        <div class="diff-name">🟣 Juno</div>
+        <span class="diff-flag">US</span>
+      </div>
+      <div class="diff-sub">"Salary in crypto"</div>
+      <div class="diff-row"><span class="dl">Scale</span><span class="dv">100K users</span></div>
+      <div class="diff-row"><span class="dl">Sweet spot</span><span class="dv strong">US bank account + crypto</span></div>
+      <div class="diff-row"><span class="dl">Target</span><span class="dv">US crypto workers</span></div>
+      <div class="unique">
+        <b>Unique:</b> รับเงินเดือน USD → auto-convert เป็น USDC ได้ —
+        popular สำหรับ US remote workers ที่อยาก hold crypto
+      </div>
+    </div>
+
+    <div class="diff-card">
+      <div class="diff-header">
+        <div class="diff-name">⚙️ Rain.xyz</div>
+        <span class="diff-flag">US</span>
+      </div>
+      <div class="diff-sub">"Card issuing infrastructure"</div>
+      <div class="diff-row"><span class="dl">Scale</span><span class="dv">100+ partners</span></div>
+      <div class="diff-row"><span class="dl">Sweet spot</span><span class="dv strong">Stablecoin cards backend</span></div>
+      <div class="diff-row"><span class="dl">Countries</span><span class="dv">150+</span></div>
+      <div class="unique">
+        <b>Unique:</b> Powers <b>Dakota, Bridge, และอีกหลายเจ้า</b> —
+        not competitor แต่เป็น infrastructure (คู่ปรับของ Marqeta ใน crypto)
+      </div>
+    </div>
+
+    <div class="diff-card">
+      <div class="diff-header">
+        <div class="diff-name">🇨🇭 Fiat24</div>
+        <span class="diff-flag">CH</span>
+      </div>
+      <div class="diff-sub">"Swiss bank on-chain"</div>
+      <div class="diff-row"><span class="dl">Scale</span><span class="dv">Early stage</span></div>
+      <div class="diff-row"><span class="dl">Sweet spot</span><span class="dv strong">Real Swiss banking license</span></div>
+      <div class="diff-row"><span class="dl">Products</span><span class="dv">CHF + crypto accounts</span></div>
+      <div class="unique">
+        <b>Unique:</b> <b>ถือ Swiss bank license จริง</b> — ไม่ต้องพึ่ง BaaS partner
+        (ต่างจาก PEXX/Kast/RedotPay ที่พึ่ง Cross River ฯลฯ)
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PEXX SWOT vs rest -->
+<section class="block" id="pexx-position">
+  <div class="eyebrow">08 · PEXX Positioning</div>
+  <h2>PEXX <span class="hl">ชนะและแพ้</span> ยังไงเทียบคู่แข่ง</h2>
+  <p class="section-intro">
+    วิเคราะห์จุดที่ PEXX ได้เปรียบและเสียเปรียบใน landscape นี้
+  </p>
+
+  <div class="swot-vs">
+    <div class="swot-vs-card wins">
+      <h3>✓ PEXX ชนะในจุดนี้</h3>
+      <ul>
+        <li><b>Full banking experience</b> — MoonPay มีแค่ on/off-ramp, PEXX มีครบ account + card + yield + remit + QR</li>
+        <li><b>AUSTRAC + FinCEN combo</b> — ง่ายและถูกสำหรับ launch เร็ว (Kast, Bitnob ไม่มี licenses ระดับนี้)</li>
+        <li><b>Niche: borderless USD banking</b> — โฟกัสกลุ่ม non-US residents ที่อยากได้ USD account (คล้าย Kast แต่ licensed ชัดกว่า)</li>
+        <li><b>Competitive fees</b> — 1-2% card transfer vs MoonPay 4.5%</li>
+        <li><b>Regulated brand</b> — ต่างจาก Gnosis Pay (non-custodial ไม่ licensed)</li>
+      </ul>
+    </div>
+    <div class="swot-vs-card loses">
+      <h3>✗ PEXX ตามหลังในจุดนี้</h3>
+      <ul>
+        <li><b>Scale ยังเล็กมาก</b> — 50K vs MoonPay 20M, RedotPay 5M, Wirex 6M</li>
+        <li><b>ไม่มี NY BitLicense</b> — เข้า New York ไม่ได้ (MoonPay, Coinbase มี)</li>
+        <li><b>APY ต่ำกว่าคู่แข่ง</b> — 4% vs Kast 10% vs Wirex 4-16%</li>
+        <li><b>ไม่มี EU EMI license</b> — เข้าตลาด EU ไม่ได้เต็มสูบ (MoonPay, Wirex, Bleap มี)</li>
+        <li><b>Brand awareness</b> — ยังไม่ค่อยมีใครรู้จัก (Trustpilot แค่ 4 reviews)</li>
+        <li><b>ไม่มี state MTLs ครบ</b> — US coverage จำกัด (ต่างจาก MoonPay 47 รัฐ)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="margin-top:32px; padding:30px; border-radius:18px; background:linear-gradient(145deg, rgba(255, 107, 26, 0.08), rgba(255, 165, 64, 0.02)); border:1px solid var(--line-hot);">
+    <div style="font-size:14px; font-weight:700; color:var(--fire-3); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:14px;">💡 Boom's Strategic Take</div>
+    <p style="font-size:15px; color:var(--ink-1); line-height:1.75;">
+      PEXX อยู่ในกลุ่ม <b style="color:var(--fire-3)">"emerging stablecoin neobank"</b> เดียวกับ
+      <b>Kast, Bitnob, Tuyo, RedotPay (ช่วงแรก)</b> — ไม่ได้แข่งกับ MoonPay โดยตรง
+      <br><br>
+      ถ้าจะ <b style="color:var(--fire-3)">ชนะในตลาดนี้</b> ต้องเลือกหนึ่งใน 3 ทาง:
+    </p>
+    <ul style="list-style:none; margin-top:16px; display:flex; flex-direction:column; gap:10px;">
+      <li style="padding:12px 16px; background:var(--bg-3); border-radius:10px; border-left:3px solid var(--fire-2); font-size:14px; color:var(--ink-1);">
+        <b>1. Regional dominance</b> — แข่งกับ Kast/RedotPay ในเอเชีย (ที่ PEXX HQ อยู่ HK อยู่แล้ว)
+      </li>
+      <li style="padding:12px 16px; background:var(--bg-3); border-radius:10px; border-left:3px solid var(--fire-2); font-size:14px; color:var(--ink-1);">
+        <b>2. Niche vertical</b> — โฟกัส SMB remittance หรือ freelancer payments (ตลาดที่ MoonPay ไม่เล่น)
+      </li>
+      <li style="padding:12px 16px; background:var(--bg-3); border-radius:10px; border-left:3px solid var(--fire-2); font-size:14px; color:var(--ink-1);">
+        <b>3. License moat</b> — ได้ NY BitLicense + EU EMI (สูง investment แต่ barrier สูงมาก)
+      </li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <span class="flame">🔥</span>
+  <p>Generated by <b style="color:var(--fire-3);">Boom Oracle</b> — fire-forged competitive intelligence</p>
+  <p>Research date · 2026-04-17 · ข้อมูลรวบรวมจาก official sources + industry reports</p>
+  <p class="sig">ORACLE · NOTHING IS DELETED · FIRE REFINES</p>
+</footer>
+
+</div>
+
+</body>
+</html>
