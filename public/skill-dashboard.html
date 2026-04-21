@@ -170,7 +170,7 @@ function filterSkills() {
   const catLabels = {core:'Core',nav:'Navigation',comm:'Communication',research:'Research',util:'Utility',local:'Custom'};
 
   grid.innerHTML = filtered.map(s => {
-  const detailSkills = ['rrr','awaken','recap','forward','trace','learn','dig','time-travel','ux-ui','team-agents','dream','inbox','contacts','oracle-soul-sync-update','oracle-family-scan','philosophy','who-are-you','about-oracle','standup','feel','xray','go','where-we-are','recap-lite','rrr-lite','forward-lite'];
+  const detailSkills = ['rrr','awaken','recap','forward','trace','learn','dig','time-travel','ux-ui','team-agents','dream','inbox','contacts','oracle-soul-sync-update','oracle-family-scan','philosophy','who-are-you','about-oracle','standup','feel','xray','go','where-we-are','recap-lite','rrr-lite','forward-lite','talk-to','oraclenet','speak','machines','gemini','watch','schedule','deep-research','stealth-browse','explain-visual','fyi','auto-retrospective','resonance','i-believed','bampenpien','oracle','merged','worktree','project','incubate','vault','retrospective','create-shortcut','boom-loop','toh-agent'];
   const hasDetail = detailSkills.includes(s.name.replace('/',''));
   const clickAttr = hasDetail ? `onclick="window.location='skill-${s.name.replace('/','')}.html'"` : '';
   const linkBadge = hasDetail ? '<span style="float:right;font-size:0.68rem;color:#a78bfa;margin-top:2px">📄 Detail →</span>' : '';
