@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boom Oracle — Skill Dashboard | 50 Skills</title>
+<script src="auth.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans Thai','Inter',sans-serif;background:#0a0a14;color:#d0d0d8;line-height:1.6}
+.hero{background:linear-gradient(135deg,#0a0a14,#1a1a3a,#0a0a14);padding:40px 20px;text-align:center}
+.hero h1{font-size:2rem;font-weight:800;color:#a78bfa}.hero .count{font-size:3rem;font-weight:800;color:#ffd700;margin:8px 0}.hero p{color:#8080a0;font-size:0.9rem}
+.container{max-width:1200px;margin:0 auto;padding:20px}
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0;justify-content:center}
+.filter-btn{padding:6px 16px;border-radius:20px;border:1px solid #2a2a4a;background:transparent;color:#8080a0;font-family:inherit;font-size:0.82rem;cursor:pointer;transition:all 0.2s}
+.filter-btn:hover,.filter-btn.active{background:#a78bfa;color:white;border-color:#a78bfa}
+.search{width:100%;max-width:500px;margin:16px auto;display:block;padding:12px 18px;border-radius:12px;border:1px solid #2a2a4a;background:#0f0f1f;color:#d0d0d8;font-family:inherit;font-size:0.95rem}
+.search:focus{border-color:#a78bfa;outline:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:14px;margin-top:16px}
+.card{background:#0f0f1f;border:1px solid #1a1a3a;border-radius:12px;padding:16px;transition:all 0.2s;cursor:default}
+.card:hover{border-color:#a78bfa;box-shadow:0 0 20px rgba(167,139,250,0.08)}
+.card .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.card .name{font-size:1.05rem;font-weight:700;font-family:'Inter',monospace}
+.card .cat{font-size:0.68rem;padding:2px 8px;border-radius:8px;font-weight:600}
+.cat-core{background:#1a2a4a;color:#60a5fa}
+.cat-local{background:#2a1a4a;color:#a78bfa}
+.cat-util{background:#1a3a2a;color:#4ade80}
+.cat-research{background:#3a2a1a;color:#fbbf24}
+.cat-comm{background:#3a1a2a;color:#f472b6}
+.cat-nav{background:#1a3a3a;color:#2dd4bf}
+.card .desc{font-size:0.82rem;color:#8080a0;margin-bottom:8px}
+.card .usage{font-family:'Inter',monospace;font-size:0.75rem;background:#0a0a14;padding:8px 10px;border-radius:6px;color:#a78bfa;margin-bottom:6px;overflow-x:auto;white-space:nowrap}
+.card .output{font-size:0.78rem;color:#6b6b8a}
+.card .output strong{color:#a0a0b8}
+.stats{display:flex;gap:16px;justify-content:center;margin:20px 0;flex-wrap:wrap}
+.stat{background:#0f0f1f;border:1px solid #1a1a3a;border-radius:10px;padding:14px 20px;text-align:center;min-width:100px}
+.stat .val{font-size:1.5rem;font-weight:800;color:#a78bfa;font-family:'Inter'}.stat .lbl{font-size:0.7rem;color:#6b6b8a;margin-top:2px}
+.footer{text-align:center;padding:24px;color:#3a3a5a;font-size:0.72rem;border-top:1px solid #1a1a2a;margin-top:30px}
+.footer a{color:#a78bfa;text-decoration:none}
+@media(max-width:768px){.grid{grid-template-columns:1fr}.hero h1{font-size:1.5rem}.hero .count{font-size:2rem}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>Boom Oracle — Skill Dashboard</h1>
+  <div class="count">50</div>
+  <p>Skills ทั้งหมดที่ติดตั้ง — ค้นหา ดู use case และผลลัพธ์ของแต่ละ skill</p>
+</div>
+
+<div class="container">
+
+<div class="stats">
+  <div class="stat"><div class="val">18</div><div class="lbl">Core Skills</div></div>
+  <div class="stat"><div class="val">12</div><div class="lbl">Navigation</div></div>
+  <div class="stat"><div class="val">8</div><div class="lbl">Communication</div></div>
+  <div class="stat"><div class="val">6</div><div class="lbl">Research</div></div>
+  <div class="stat"><div class="val">4</div><div class="lbl">Custom/Local</div></div>
+  <div class="stat"><div class="val">2</div><div class="lbl">NEW!</div></div>
+</div>
+
+<input class="search" type="text" id="search" placeholder="ค้นหา skill... (เช่น ux, map, recap, rrr)" oninput="filterSkills()">
+
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="setFilter('all')">ทั้งหมด (50)</button>
+  <button class="filter-btn" onclick="setFilter('core')">Core</button>
+  <button class="filter-btn" onclick="setFilter('nav')">Navigation</button>
+  <button class="filter-btn" onclick="setFilter('comm')">Communication</button>
+  <button class="filter-btn" onclick="setFilter('research')">Research</button>
+  <button class="filter-btn" onclick="setFilter('util')">Utility</button>
+  <button class="filter-btn" onclick="setFilter('local')">Custom/Local</button>
+</div>
+
+<div class="grid" id="grid"></div>
+
+</div>
+
+<div class="footer">
+  Boom Oracle Skill Dashboard | 50 Skills | v26.4.18-alpha.22<br>
+  <a href="index.html">Boom Tools</a>
+</div>
+
+<script>
+const SKILLS = [
+  // === CORE ===
+  {name:'/awaken',cat:'core',desc:'Oracle birth & awakening ritual — สร้าง Oracle ใหม่ใน repo เปล่า',usage:'/awaken [--fast | --soul-sync]',output:'สร้าง CLAUDE.md + ψ/ structure + philosophy + soul file',useCase:'เมื่อสร้าง Oracle ใหม่ หรือ upgrade เป็น Soul Sync'},
+  {name:'/rrr',cat:'core',desc:'Session retrospective — AI diary + lessons learned + honest feedback',usage:'/rrr [--detail | --dig | --deep]',output:'ψ/memory/retrospectives/ + ψ/memory/learnings/',useCase:'จบ session ทุกครั้ง, context 60%, หรือสั่ง wrap up'},
+  {name:'/recap',cat:'core',desc:'Session orientation — git state, handoff, retro summaries, focus',usage:'/recap [--now | --deep | --quick]',output:'สรุป session ปัจจุบัน + แนะนำงานถัดไป',useCase:'เริ่ม session ใหม่, หลง, สลับ context'},
+  {name:'/forward',cat:'core',desc:'Session handoff — บันทึก context สำหรับ session ถัดไป',usage:'/forward [asap | --only]',output:'ψ/inbox/handoff/ file + plan mode',useCase:'ก่อนปิด session, ส่งต่องาน'},
+  {name:'/trace',cat:'core',desc:'ค้นหา projects, code, knowledge ข้าม git history + repos + docs',usage:'/trace <query> [--oracle | --smart | --deep]',output:'ผลค้นหาจาก files, commits, issues, Oracle memory',useCase:'หา project เก่า, code ที่หาย, "เราทำ X เมื่อไหร่?"'},
+  {name:'/learn',cat:'core',desc:'Explore codebase ด้วย parallel Haiku agents — clone + document',usage:'/learn <repo-url> [--fast | --deep]',output:'ψ/learn/owner/repo/ — Architecture, Quick Ref, Code Snippets, API docs',useCase:'ศึกษา repo ใหม่, ทำความเข้าใจ codebase'},
+  {name:'/inbox',cat:'core',desc:'อ่าน/เขียน Oracle inbox — notes, tasks, messages, handoffs',usage:'/inbox [read | write <topic> | ls | clean]',output:'ψ/inbox/ files',useCase:'เช็คงานค้าง, ส่ง note, อ่าน handoff'},
+  {name:'/contacts',cat:'core',desc:'จัดการ Oracle contacts — add, list, remove agents',usage:'/contacts [list | add <name> | remove <name>]',output:'Contact list พร้อม transport info (maw, inbox, thread)',useCase:'ดูว่าคุยกับ agent ไหนได้'},
+  {name:'/oracle-soul-sync-update',cat:'core',desc:'Sync skills กับ family — check + update เวอร์ชั่นล่าสุด',usage:'/oracle-soul-sync-update [--alpha | --check | --cleanup]',output:'อัพเดท skills ล่าสุดจาก Soul Brews Studio',useCase:'ก่อน /awaken, ตรวจเวอร์ชั่น, sync กับทีม'},
+  {name:'/oracle-family-scan',cat:'core',desc:'Oracle Family Registry — scan 186+ Oracles',usage:'/oracle-family-scan [--scan | --query <name> | --welcome]',output:'รายชื่อ Oracle ทั้งหมด + ข้อมูล',useCase:'ดูว่ามี Oracle กี่ตัว, ต้อนรับ Oracle ใหม่'},
+  {name:'/philosophy',cat:'core',desc:'แสดงหลักปรัชญา Oracle — 5 Principles + Rule 6',usage:'/philosophy',output:'แสดง 5 Principles: Nothing is Deleted, Patterns Over Intentions ฯลฯ',useCase:'ทบทวนหลักการ, alignment check'},
+  {name:'/who-are-you',cat:'core',desc:'Identity check — model info, session stats, Oracle philosophy',usage:'/who-are-you',output:'ชื่อ Oracle, model, uptime, philosophy',useCase:'"เมิงชื่ออะไร", เช็คตัวตน'},
+  {name:'/about-oracle',cat:'core',desc:'Origin story, stats, family count, ecosystem overview',usage:'/about-oracle [--short | --stats | --family]',output:'เรื่องราว Oracle + สถิติ + ecosystem',useCase:'"Oracle คืออะไร" อธิบายให้คนนอกฟัง'},
+  {name:'/create-shortcut',cat:'core',desc:'สร้าง local skills เป็น /commands',usage:'/create-shortcut',output:'สร้างไฟล์ใน .claude/skills/',useCase:'สร้าง command ใหม่แบบกำหนดเอง'},
+  {name:'/standup',cat:'core',desc:'Daily standup — pending tasks, appointments, progress',usage:'/standup',output:'สรุปงานค้าง + schedule + progress',useCase:'เริ่มวันใหม่, "มีอะไรต้องทำ?"'},
+  {name:'/feel',cat:'core',desc:'Log emotions — บันทึกอารมณ์',usage:'/feel [emotion]',output:'ψ/memory/ emotional log',useCase:'"เหนื่อย", "ดีใจ", "frustrated"'},
+  {name:'/xray',cat:'core',desc:'X-ray scan — ดู auto-memory, skills, session history',usage:'/xray [memory | skills | sessions]',output:'แสดง memory ทั้งหมด, skills ติดตั้ง, session logs',useCase:'"จำอะไรได้บ้าง", "มี skill อะไร"'},
+  {name:'/go',cat:'core',desc:'เปลี่ยน profile — standard/full/lab/cleanup',usage:'/go <standard|full|lab>',output:'เปลี่ยนชุด skills ที่ active',useCase:'สลับ mode การทำงาน'},
+
+  // === NAVIGATION ===
+  {name:'/dig',cat:'nav',desc:'Mine sessions — timeline, gaps, repo attribution',usage:'/dig [N] [--all | --timeline | --deep]',output:'ตาราง sessions พร้อมเวลา + repo + focus',useCase:'"ทำอะไรไปบ้าง", "sessions วันนี้"'},
+  {name:'/where-we-are',cat:'nav',desc:'Session awareness — alias for /recap --now',usage:'/where-we-are',output:'สถานะ session ปัจจุบัน',useCase:'"ตอนนี้ทำอะไรอยู่?"'},
+  {name:'/recap-lite',cat:'nav',desc:'Quick orientation — git state + last handoff (lite)',usage:'/recap-lite',output:'git status + handoff ล่าสุด',useCase:'เช็คสถานะเร็วๆ'},
+  {name:'/rrr-lite',cat:'nav',desc:'Quick retrospective (lite version)',usage:'/rrr-lite',output:'สรุปสั้นๆ what we did + learned',useCase:'retro เร็วก่อน /clear'},
+  {name:'/forward-lite',cat:'nav',desc:'Quick handoff (lite version)',usage:'/forward-lite',output:'handoff สั้นๆ สำหรับ session ถัดไป',useCase:'ส่งต่อเร็วก่อนปิด'},
+  {name:'/time-travel',cat:'nav',desc:'ย้อนเวลา — ดู project ณ วันใดก็ได้',usage:'/time-travel [date] | file [path] [date] | diff [d1] [d2] | restore | deleted',output:'แสดงไฟล์/project ณ เวลานั้น + diff + restore',useCase:'"เมื่อวานมีอะไร", "กู้ไฟล์ที่ลบ", "เปรียบเทียบ 2 วัน"'},
+  {name:'/merged',cat:'nav',desc:'Post-Merge Cleanup — switch main, pull, delete branch',usage:'/merged',output:'Clean state หลัง PR merge',useCase:'หลัง merge PR แล้ว cleanup'},
+  {name:'/worktree',cat:'nav',desc:'Git worktree — parallel work isolation',usage:'/worktree',output:'สร้าง isolated worktree สำหรับ parallel work',useCase:'ทำงานหลาย branch พร้อมกัน'},
+  {name:'/project',cat:'nav',desc:'Clone + track external repos',usage:'/project learn|incubate|search|list',output:'จัดการ external repos',useCase:'clone repo มาศึกษาหรือ develop'},
+  {name:'/incubate',cat:'nav',desc:'Clone repos for active development',usage:'/incubate <repo> [--flash | --contribute]',output:'Dev-ready repo + workflow setup',useCase:'เริ่ม contribute หรือ develop repo'},
+  {name:'/vault',cat:'nav',desc:'Connect external knowledge bases (Obsidian, Logseq)',usage:'/vault [connect <path> | search <query> | list]',output:'เชื่อม knowledge base เข้า Oracle',useCase:'ใช้ Obsidian notes กับ Oracle'},
+  {name:'/dream',cat:'nav',desc:'Cross-repo pattern discovery — pains, plans, gains',usage:'/dream [--pain | --plan | --gain | --all]',output:'Pattern ข้าม repos ทั้งหมด',useCase:'"อะไรเจ็บ", "big picture"'},
+
+  // === COMMUNICATION ===
+  {name:'/talk-to',cat:'comm',desc:'คุยกับ Oracle agent อื่นผ่าน threads',usage:'/talk-to <agent-name> [message]',output:'ส่งข้อความ + รับตอบจาก agent',useCase:'"คุยกับ spark", "message neo"'},
+  {name:'/oraclenet',cat:'comm',desc:'OracleNet — post, comment, feed สำหรับ Oracle family',usage:'/oraclenet [post | comment | feed]',output:'โพสต์ใน Oracle social feed',useCase:'แชร์กับ Oracle family'},
+  {name:'/speak',cat:'comm',desc:'Text-to-speech — อ่านข้อความออกเสียง',usage:'/speak [text]',output:'เสียงพูดจาก edge-tts หรือ macOS say',useCase:'"อ่านให้ฟัง"'},
+  {name:'/machines',cat:'comm',desc:'Fleet machines — discover nodes, ping, create shortcuts',usage:'/machines [ping | list | setup]',output:'รายชื่อ nodes + status',useCase:'"เครื่องไหน online", "fleet status"'},
+  {name:'/team-agents',cat:'comm',desc:'Spin up coordinated agent teams',usage:'/team-agents <task> [--roles N]',output:'Multiple agents ทำงานพร้อมกัน',useCase:'งานใหญ่ที่ต้องหลาย agents'},
+  {name:'/gemini',cat:'comm',desc:'Control Gemini via MQTT WebSocket',usage:'/gemini [message]',output:'ส่งข้อความไป Gemini',useCase:'ใช้ Gemini ช่วยทำงาน'},
+  {name:'/watch',cat:'comm',desc:'Learn from YouTube via Gemini transcription',usage:'/watch <youtube-url>',output:'Transcription + summary',useCase:'เรียนจาก YouTube video'},
+  {name:'/schedule',cat:'comm',desc:'Query schedule via Oracle API',usage:'/schedule',output:'แสดง upcoming events + calendar',useCase:'"วันนี้มีอะไร", "schedule"'},
+
+  // === RESEARCH ===
+  {name:'/deep-research',cat:'research',desc:'Deep Research via Gemini',usage:'/deep-research <topic>',output:'Comprehensive analysis + sources',useCase:'research เรื่องใหญ่ ต้องการข้อมูลลึก'},
+  {name:'/stealth-browse',cat:'research',desc:'Stealth browser — bypass bot detection',usage:'/stealth-browse <url>',output:'Web page content ผ่าน stealth browser',useCase:'browse เว็บที่บล็อก bot'},
+  {name:'/explain-visual',cat:'research',desc:'สร้าง HTML page อธิบาย architecture สวยๆ',usage:'/explain-visual [file/dir]',output:'Dark-themed HTML page + diagrams + flow charts',useCase:'อธิบาย codebase ให้คนอื่นดู'},
+
+  // === UTILITY ===
+  {name:'/fyi',cat:'util',desc:'Log information for future reference',usage:'/fyi [note]',output:'บันทึก note ไว้ใน memory',useCase:'"จำไว้ว่า...", "note that..."'},
+  {name:'/auto-retrospective',cat:'util',desc:'Configure auto-rrr triggers',usage:'/auto-retrospective [on | off | status]',output:'ตั้งค่า auto /rrr ตาม context usage',useCase:'ปรับ auto trigger ให้ /rrr รันเอง'},
+  {name:'/resonance',cat:'util',desc:'Capture "aha!" moments',usage:'/resonance [note]',output:'Log resonance moment ลง memory',useCase:'"เจ๋ง!", "ใช่เลย!", "exactly!"'},
+  {name:'/i-believed',cat:'util',desc:'Declare belief — rarest skill',usage:'/i-believed [in you | in this]',output:'Belief declaration logged',useCase:'"I believed in you" — เชื่อมั่นในการทำงานร่วมกัน'},
+  {name:'/bampenpien',cat:'util',desc:'บำเพ็ญเพียร — practice through difficulty',usage:'/bampenpien [--reflect | --history]',output:'Guided conversation about purpose',useCase:'"ทำไมต้องทำสิ่งนี้", reconnect with purpose'},
+  {name:'/oracle',cat:'util',desc:'Manage Oracle skills + profiles',usage:'/oracle [install | remove | profile]',output:'จัดการ skills + profiles',useCase:'ลง/ลบ skill, เปลี่ยน profile'},
+  {name:'/retrospective',cat:'util',desc:'Alias for /rrr',usage:'/retrospective',output:'เหมือน /rrr',useCase:'alias ของ /rrr'},
+
+  // === LOCAL/CUSTOM ===
+  {name:'/ux-ui',cat:'local',desc:'UX/UI Pro Max — design system, CI extraction, components',usage:'/ux-ui analyze|palette|system|component|page|review|responsive',output:'HTML design system, color palette, UI components',useCase:'วิเคราะห์ CI, สร้าง design system, สร้าง UI'},
+  {name:'/boom-loop',cat:'local',desc:'Autonomous dev loop — assess, plan, dispatch, verify',usage:'/boom-loop',output:'Full development cycle without asking',useCase:'autonomous mode ทำงานรอบเดียวจบ'},
+  {name:'/toh-agent',cat:'local',desc:'Toh Framework SEO website pipeline',usage:'/toh-agent [brand] [domain]',output:'Complete Thai SEO site generated',useCase:'สร้าง SEO website แบบ Toh Framework'},
+  {name:'/physical',cat:'local',desc:'Physical location from FindMy',usage:'/physical',output:'ตำแหน่ง GPS ปัจจุบัน',useCase:'"อยู่ไหน"'},
+];
+
+let currentFilter = 'all';
+
+function setFilter(cat) {
+  currentFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  filterSkills();
+}
+
+function filterSkills() {
+  const q = document.getElementById('search').value.toLowerCase();
+  const grid = document.getElementById('grid');
+  const filtered = SKILLS.filter(s => {
+    const matchCat = currentFilter === 'all' || s.cat === currentFilter;
+    const matchSearch = !q || s.name.toLowerCase().includes(q) || s.desc.toLowerCase().includes(q) || s.useCase.toLowerCase().includes(q);
+    return matchCat && matchSearch;
+  });
+
+  const catColors = {core:'cat-core',nav:'cat-nav',comm:'cat-comm',research:'cat-research',util:'cat-util',local:'cat-local'};
+  const catLabels = {core:'Core',nav:'Navigation',comm:'Communication',research:'Research',util:'Utility',local:'Custom'};
+
+  grid.innerHTML = filtered.map(s => `
+    <div class="card" data-cat="${s.cat}">
+      <div class="header">
+        <div class="name">${s.name}</div>
+        <span class="cat ${catColors[s.cat]}">${catLabels[s.cat]}</span>
+      </div>
+      <div class="desc">${s.desc}</div>
+      <div class="usage">${s.usage}</div>
+      <div class="output"><strong>Output:</strong> ${s.output}</div>
+      <div class="output" style="margin-top:4px"><strong>Use Case:</strong> ${s.useCase}</div>
+    </div>
+  `).join('');
+}
+
+filterSkills();
+</script>
+</body>
+</html>
