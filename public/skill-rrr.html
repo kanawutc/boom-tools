@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>/rrr — Session Retrospective | Skill Detail</title>
+<script src="auth.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans Thai','Inter',sans-serif;background:#0a0a14;color:#d0d0d8;line-height:1.7}
+.hero{background:linear-gradient(135deg,#0a0a14,#1a1a3a,#0a0a14);padding:40px 20px;text-align:center;border-bottom:1px solid #1a1a3a}
+.hero .cmd{font-family:'JetBrains Mono',monospace;font-size:2.5rem;font-weight:800;color:#a78bfa}
+.hero .tag{display:inline-block;background:#1a2a4a;color:#60a5fa;padding:3px 12px;border-radius:8px;font-size:0.75rem;font-weight:600;margin:8px 4px}
+.hero p{color:#8080a0;font-size:0.95rem;margin-top:8px;max-width:600px;display:inline-block}
+.container{max-width:900px;margin:0 auto;padding:30px 20px}
+h2{font-size:1.3rem;font-weight:700;color:#a78bfa;border-left:4px solid #7c3aed;padding-left:12px;margin:28px 0 12px}
+h3{font-size:1rem;font-weight:600;color:#8080c0;margin:16px 0 8px}
+p{color:#a0a0b8;font-size:0.9rem;margin-bottom:10px}
+.card{background:#0f0f1f;border:1px solid #1a1a3a;border-radius:12px;padding:18px;margin:10px 0}
+.card.highlight{border-color:#a78bfa;box-shadow:0 0 20px rgba(167,139,250,0.06)}
+code{font-family:'JetBrains Mono',monospace;background:#141428;padding:2px 6px;border-radius:4px;font-size:0.85rem;color:#c4b5fd}
+.code-block{font-family:'JetBrains Mono',monospace;background:#0a0a18;border:1px solid #1a1a3a;border-radius:8px;padding:14px;font-size:0.82rem;color:#c4b5fd;overflow-x:auto;margin:10px 0;line-height:1.5}
+.output-section{background:#0a0a18;border:1px solid #2a2a4a;border-radius:12px;padding:20px;margin:16px 0}
+.output-section h3{color:#4ade80;margin-top:0}
+.output-file{background:#0f0f1f;border:1px solid #1a1a3a;border-radius:8px;padding:14px;margin:10px 0;font-size:0.85rem}
+.output-file .path{font-family:'JetBrains Mono',monospace;color:#fbbf24;font-size:0.78rem;margin-bottom:6px}
+.output-file .content{color:#a0a0b8;font-size:0.85rem;white-space:pre-wrap}
+.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.mode-card{background:#0f0f1f;border:1px solid #1a1a3a;border-radius:10px;padding:14px}
+.mode-card h4{color:#a78bfa;font-family:'JetBrains Mono',monospace;font-size:0.9rem;margin-bottom:4px}
+.mode-card p{font-size:0.82rem;color:#8080a0}
+.step{display:flex;gap:12px;margin:10px 0;align-items:flex-start}
+.step-num{background:#7c3aed;color:white;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;flex-shrink:0}
+.step-content{flex:1}
+.step-content h4{color:#d0d0d8;font-size:0.9rem;margin-bottom:2px}
+.step-content p{font-size:0.82rem;color:#8080a0;margin:0}
+.footer{text-align:center;padding:24px;color:#3a3a5a;font-size:0.72rem;border-top:1px solid #1a1a2a;margin-top:30px}
+.footer a{color:#a78bfa;text-decoration:none}
+@media(max-width:768px){.mode-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="cmd">/rrr</div>
+  <div>
+    <span class="tag">Core</span>
+    <span class="tag">v3.5.2</span>
+    <span class="tag">G-SKLL</span>
+  </div>
+  <p>Session retrospective — AI diary + lessons learned + honest feedback</p>
+</div>
+
+<div class="container">
+
+<!-- Usage -->
+<h2>Usage</h2>
+<div class="code-block">/rrr              # Quick retro (default)
+/rrr --detail     # Full template with all sections
+/rrr --dig        # Reconstruct timeline from session .jsonl
+/rrr --deep       # 5 parallel agents deep analysis</div>
+
+<!-- Modes -->
+<h2>4 Modes</h2>
+<div class="mode-grid">
+  <div class="mode-card">
+    <h4>/rrr</h4>
+    <p><strong>Default</strong> — Quick retro. Main agent only. สรุป session, timeline, files, AI diary 150+ words, honest feedback 3 จุด, lessons learned</p>
+  </div>
+  <div class="mode-card">
+    <h4>/rrr --detail</h4>
+    <p><strong>Full template</strong> — เพิ่ม Key Code Changes, Architecture Decisions, What Went Well/Could Improve, Blockers, Metrics</p>
+  </div>
+  <div class="mode-card">
+    <h4>/rrr --dig</h4>
+    <p><strong>Session goldminer</strong> — ดึง timeline จาก .jsonl file จริง ได้ข้อมูลละเอียดกว่า จับ gap + idle ได้</p>
+  </div>
+  <div class="mode-card">
+    <h4>/rrr --deep</h4>
+    <p><strong>5 parallel agents</strong> — วิเคราะห์ลึก ใช้ 5 agents สำหรับ session ที่ซับซ้อน (mode เดียวที่ใช้ subagent)</p>
+  </div>
+</div>
+
+<!-- How it works -->
+<h2>วิธีทำงาน (5 ขั้นตอน)</h2>
+<div class="step"><div class="step-num">1</div><div class="step-content"><h4>Gather</h4><p>รัน <code>git log</code> + <code>git diff --stat</code> + ตรวจจับ session ID จาก .jsonl</p></div></div>
+<div class="step"><div class="step-num">2</div><div class="step-content"><h4>Write Retrospective</h4><p>เขียน retro ลง <code>ψ/memory/retrospectives/YYYY-MM/DD/HH.MM_slug.md</code> ทันที ไม่ถาม</p></div></div>
+<div class="step"><div class="step-num">3</div><div class="step-content"><h4>Write Lesson Learned</h4><p>สกัดบทเรียนลง <code>ψ/memory/learnings/YYYY-MM-DD_slug.md</code></p></div></div>
+<div class="step"><div class="step-num">4</div><div class="step-content"><h4>Oracle Sync</h4><p>ส่งบทเรียนไป <code>arra_learn()</code> เพื่อให้ค้นหาได้ผ่าน /trace</p></div></div>
+<div class="step"><div class="step-num">5</div><div class="step-content"><h4>Save</h4><p>เขียนลง vault (ψ symlink) — ห้าม git add ψ/ เพราะเป็น shared state</p></div></div>
+
+<!-- Required Sections -->
+<h2>Sections ที่ต้องมี</h2>
+<div class="card">
+  <p><strong style="color:#a78bfa">Session Summary</strong> — สรุปสั้นๆ ทำอะไรไป</p>
+  <p><strong style="color:#a78bfa">Timeline</strong> — ลำดับเวลา + งานที่ทำ</p>
+  <p><strong style="color:#a78bfa">Files Modified</strong> — ไฟล์ที่แก้ไข</p>
+  <p><strong style="color:#f97316">AI Diary (150+ words)</strong> — เขียนในมุมมอง AI, vulnerable, first-person, ห้ามเขียนแบบ corporate</p>
+  <p><strong style="color:#ef4444">Honest Feedback (100+ words, 3 จุด)</strong> — 3 friction points ที่เจอจริง ห้ามเกรงใจ</p>
+  <p><strong style="color:#4ade80">Lessons Learned</strong> — บทเรียนที่ได้จาก session นี้</p>
+  <p><strong style="color:#60a5fa">Next Steps</strong> — งานที่ต้องทำต่อ</p>
+</div>
+
+<!-- Live Output -->
+<h2>ผลลัพธ์จริง (Live Output)</h2>
+<p>ด้านล่างคือ output จริงจากการรัน /rrr ใน session ล่าสุด:</p>
+
+<div class="output-section">
+  <h3>📁 Retrospective File</h3>
+  <div class="output-file">
+    <div class="path">ψ/memory/retrospectives/2026-04/22/00.19_skill-dashboard-session.md</div>
+    <div class="content"># Session Retrospective — Skill Dashboard + Soul Sync
+
+<strong>Session Date</strong>: 2026-04-22
+<strong>Duration</strong>: ~2 hours (continuation session)
+<strong>Focus</strong>: Soul sync, skill creation, dashboard, ไตรลักษณ์
+<strong>Type</strong>: Feature + Infrastructure
+
+## Session Summary
+Session ที่ soul sync กับ Soul Brews Studio ล่าสุด, สร้าง 2 skills ใหม่
+(/ux-ui + /time-travel), สร้าง Skill Dashboard 50 skills,
+สร้าง ไตรลักษณ์ visual guide, อัพเดท maw-js + arra-oracle-skills
+
+## Timeline
+- 23:40 — Soul sync check: v26.4.18 stable ✅
+- 23:45 — เช็ค Soul Brews Studio 60+ repos
+- 23:50 — อัพเดท maw-js → v26.4.20-alpha.11
+- 23:55 — อัพเดท arra-oracle-skills → v26.4.18-alpha.22
+- 00:00 — สร้าง /ux-ui skill (UX/UI Pro Max)
+- 00:05 — สร้าง /time-travel skill (Navigate History)
+- 00:10 — สร้าง ไตรลักษณ์ visual guide
+- 00:15 — สร้าง Skill Dashboard (50 skills)
+- 00:19 — /rrr
+
+## AI Diary
+Session สั้นแต่ productive — soul sync กับ Soul Brews Studio
+เห็นว่า ecosystem ใหญ่มาก 60+ repos! maw-js เปลี่ยนเป็น
+CalVer (v26.x) แล้ว
+
+เรื่อง UX/UI + Time Travel skills — Boom ถามหาจาก Discord
+ที่ได้ยินพี่ๆคุยกัน ก็สร้างให้ทันที
+
+## Honest Feedback
+1. PimQuin training ค้าง — ส่ง Q2-Q8 ไปแต่ติด crash loop
+2. Context management — ดีขึ้นแต่ยังต้อง compact บ่อย
+3. Skill quality — สร้างเร็วแต่ยังไม่ได้ test จริง
+
+## Lessons Learned
+1. Soul Brews Studio มี 60+ repos
+2. CalVer (v26.x) เป็น standard ใหม่
+3. Local skills สร้างง่าย — mkdir + skill.md = ใช้ได้ทันที</div>
+  </div>
+</div>
+
+<div class="output-section">
+  <h3>📁 Previous Retro (10hr Mega Session)</h3>
+  <div class="output-file">
+    <div class="path">ψ/memory/retrospectives/2026-04/21/05.30_10hr-mega-session.md</div>
+    <div class="content">## Metrics (จาก session 10 ชม.)
+- Duration: ~10 hours
+- Pages deployed: 11
+- Properties imported: 66,148
+- Images: 169,632
+- Provinces in map: 60
+- Laws documented: 7
+- Plant varieties researched: 45+
+- Suppliers compared: 12
+- Agents dispatched: 3
+- Discord reports sent: 15+
+- Git commits: 30+
+- Context resets: 5+</div>
+  </div>
+</div>
+
+<!-- Rules -->
+<h2>กฎเหล็ก</h2>
+<div class="card highlight">
+  <p>🚫 <strong>NO SUBAGENTS</strong> — ห้ามใช้ Task tool หรือ spawn subagent (ยกเว้น --deep)</p>
+  <p>📝 <strong>AI Diary 150+ words</strong> — vulnerable, first-person, ไม่ใช่ corporate summary</p>
+  <p>💬 <strong>Honest Feedback 100+ words, 3 จุด</strong> — friction points จริง ห้ามเกรงใจ</p>
+  <p>🔄 <strong>Oracle Sync</strong> — ต้อง sync ทุกครั้งหลัง lesson learned</p>
+  <p>🕐 <strong>Timezone</strong> — GMT+7 (Bangkok) เสมอ</p>
+  <p>📂 <strong>ห้าม git add ψ/</strong> — เป็น symlink ไปที่ vault, shared state</p>
+</div>
+
+<!-- When to use -->
+<h2>ใช้เมื่อไหร่?</h2>
+<div class="card">
+  <p>✅ จบ session ทุกครั้ง</p>
+  <p>✅ Context ถึง 60% (ก่อน /clear)</p>
+  <p>✅ Boom สั่ง "wrap up" หรือ "retrospective"</p>
+  <p>✅ ก่อน /forward handoff</p>
+  <p>✅ หลังเสร็จงานใหญ่ (milestone)</p>
+</div>
+
+<!-- Related Skills -->
+<h2>Skills ที่เกี่ยวข้อง</h2>
+<div class="mode-grid">
+  <div class="mode-card">
+    <h4>/rrr-lite</h4>
+    <p>Quick version — สรุปสั้นไม่มี AI diary ละเอียด สำหรับ compact เร็ว</p>
+  </div>
+  <div class="mode-card">
+    <h4>/forward</h4>
+    <p>Handoff — ส่งต่อ context ให้ session ถัดไป มักใช้คู่กับ /rrr</p>
+  </div>
+  <div class="mode-card">
+    <h4>/recap</h4>
+    <p>Orientation — อ่าน retro + handoff กลับมาเมื่อเริ่ม session ใหม่</p>
+  </div>
+  <div class="mode-card">
+    <h4>/dig</h4>
+    <p>Session mining — ดู timeline + gaps จาก .jsonl (ใช้คู่ --dig mode)</p>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  /rrr Skill Detail | Boom Oracle | April 2026<br>
+  <a href="skill-dashboard.html">← กลับ Skill Dashboard</a> | <a href="index.html">Boom Tools</a>
+</div>
+</body>
+</html>
