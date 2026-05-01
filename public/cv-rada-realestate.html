@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="auth.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rada Angkarattanapichai — CV Real Estate Sales | Boom Oracle CV Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-0: #0a0608;
+    --bg-1: #110e0c;
+    --bg-2: #18140f;
+    --bg-3: #201b15;
+    --bg-4: #2c241c;
+    --fire-1: #ff3d00;
+    --fire-2: #ff6b1a;
+    --fire-3: #ffa540;
+    --fire-4: #ffd280;
+    --ember: #cc2200;
+    --gold: #d4a843;
+    --ink-0: #f5f0eb;
+    --ink-1: #d6cdc4;
+    --ink-2: #a89a8c;
+    --ink-3: #7a6e62;
+    --ink-4: #5a4d42;
+    --ok: #4ade80;
+    --danger: #f87171;
+    --warn: #fbbf24;
+    --blue: #6b9cff;
+    --line: rgba(255,165,64,0.1);
+    --line-hot: rgba(255,165,64,0.25);
+    --glass: rgba(255,165,64,0.03);
+    --glass-hot: rgba(255,165,64,0.06);
+    --shadow-fire: 0 4px 24px rgba(255,61,0,0.12);
+    --shadow-deep: 0 8px 48px rgba(0,0,0,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', 'Noto Sans Thai', -apple-system, sans-serif;
+    background: var(--bg-0);
+    background-image:
+      radial-gradient(ellipse at 20% 0, rgba(255,61,0,0.07), transparent 60%),
+      radial-gradient(ellipse at 80% 100%, rgba(204,34,0,0.05), transparent 55%);
+    color: var(--ink-1);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,165,64,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,165,64,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+    mask-image: radial-gradient(circle at center, black, transparent 80%);
+  }
+  .wrap { position: relative; z-index: 1; max-width: 1320px; margin: 0 auto; padding: 0 28px; }
+
+  /* ── HEADER / HERO ── */
+  header.hero { padding-top: 48px; padding-bottom: 48px; }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--fire-3);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding: 7px 14px;
+    border: 1px solid var(--line-hot);
+    border-radius: 999px;
+    background: var(--glass-hot);
+  }
+  .brand .flame { animation: flicker 2.4s ease-in-out infinite; display: inline-block; }
+  @keyframes flicker {
+    0%, 100% { transform: scale(1) rotate(-2deg); opacity: 1; }
+    50% { transform: scale(1.1) rotate(2deg); opacity: 0.8; }
+  }
+  nav.topnav {
+    margin-bottom: 28px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  nav.topnav a {
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  nav.topnav a.active {
+    background: var(--glass-hot);
+    border: 1px solid var(--line-hot);
+    color: var(--fire-3);
+  }
+  nav.topnav a:not(.active) {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    color: var(--ink-2);
+  }
+  nav.topnav a:not(.active):hover {
+    border-color: var(--line-hot);
+    color: var(--fire-3);
+  }
+  h1 {
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 900;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, var(--fire-4) 0%, var(--fire-3) 40%, var(--fire-2) 70%, var(--fire-1) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .subtitle {
+    font-size: 17px;
+    color: var(--ink-2);
+    max-width: 680px;
+    margin-bottom: 40px;
+    line-height: 1.7;
+  }
+
+  /* ── TOC ── */
+  .toc-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-3);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .cat-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-bottom: 8px;
+  }
+  .cat-tab {
+    padding: 9px 16px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--ink-2);
+    text-decoration: none;
+    font-size: 12.5px;
+    font-weight: 600;
+    transition: all 0.2s;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.03em;
+  }
+  .cat-tab:hover {
+    border-color: var(--line-hot);
+    color: var(--fire-3);
+    transform: translateY(-1px);
+    background: var(--bg-3);
+  }
+
+  /* ── SECTION BLOCKS ── */
+  section.block {
+    padding: 60px 0;
+    border-top: 1px solid var(--line);
+  }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--fire-2);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--fire-2); flex-shrink: 0; }
+  h2 {
+    font-size: clamp(26px, 4vw, 40px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
+    color: var(--ink-0);
+    line-height: 1.1;
+  }
+  h2 .hl { color: var(--fire-3); }
+  .section-intro {
+    font-size: 16px;
+    color: var(--ink-2);
+    max-width: 720px;
+    margin-bottom: 32px;
+    line-height: 1.7;
+  }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box {
+    margin-top: 24px;
+    padding: 20px 24px;
+    border-radius: 14px;
+    background: linear-gradient(145deg, var(--glass-hot), transparent);
+    border: 1px solid var(--line-hot);
+    font-size: 14px;
+    color: var(--ink-1);
+    line-height: 1.75;
+  }
+  .insight-box strong { color: var(--fire-3); }
+
+  /* ── CV HEADER CARD ── */
+  .cv-header-card {
+    padding: 36px 40px;
+    border-radius: 20px;
+    background: linear-gradient(145deg, var(--bg-2) 0%, var(--bg-1) 100%);
+    border: 1px solid var(--line-hot);
+    box-shadow: var(--shadow-fire);
+    margin-bottom: 20px;
+  }
+  .cv-name {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    color: var(--ink-0);
+    margin-bottom: 8px;
+    line-height: 1.05;
+  }
+  .cv-tagline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--fire-3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    font-weight: 700;
+  }
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .contact-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 14px;
+    border-radius: 10px;
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-1);
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .contact-pill:hover { border-color: var(--line-hot); color: var(--fire-3); }
+  .contact-pill .icon { font-size: 14px; }
+
+  /* ── CV CARDS ── */
+  .cv-card {
+    padding: 28px 32px;
+    border-radius: 16px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  .cv-card:hover { border-color: var(--line-hot); }
+  .cv-card.featured {
+    background: linear-gradient(145deg, rgba(255,61,0,0.06), var(--bg-1));
+    border-color: rgba(255,61,0,0.3);
+    box-shadow: var(--shadow-fire);
+  }
+  .cv-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .cv-card-title-group { flex: 1; min-width: 200px; }
+  .cv-company {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--ink-0);
+    letter-spacing: -0.02em;
+    margin-bottom: 3px;
+  }
+  .cv-company.featured { color: var(--fire-3); }
+  .cv-role {
+    font-size: 14px;
+    color: var(--ink-2);
+    font-weight: 500;
+  }
+  .cv-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .cv-badge {
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .cv-badge-date { background: rgba(255,165,64,0.08); color: var(--fire-3); border: 1px solid var(--line-hot); }
+  .cv-badge-location { background: var(--bg-3); color: var(--ink-3); border: 1px solid var(--line); }
+  .cv-badge-star { background: rgba(255,61,0,0.12); color: var(--fire-2); border: 1px solid rgba(255,61,0,0.3); }
+
+  .cv-bullets {
+    padding-left: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .cv-bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--ink-1);
+    line-height: 1.65;
+  }
+  .cv-bullets li::before {
+    content: '▸';
+    color: var(--fire-3);
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+  .relevance-note {
+    margin-top: 14px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: rgba(255,61,0,0.04);
+    border-left: 3px solid var(--fire-2);
+    font-size: 12.5px;
+    color: var(--ink-2);
+    font-style: italic;
+    line-height: 1.6;
+  }
+  .relevance-note strong { color: var(--fire-3); font-style: normal; }
+
+  /* ── SUMMARY CARD ── */
+  .summary-card {
+    padding: 28px 32px;
+    border-radius: 16px;
+    background: linear-gradient(145deg, rgba(74,222,128,0.04), var(--bg-1));
+    border: 1px solid rgba(74,222,128,0.18);
+    margin-bottom: 16px;
+  }
+  .summary-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ok);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .summary-text {
+    font-size: 15px;
+    color: var(--ink-1);
+    line-height: 1.8;
+  }
+
+  /* ── SKILLS GRID ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+    margin-top: 4px;
+  }
+  .skill-group {
+    padding: 20px;
+    border-radius: 12px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    transition: border-color 0.2s;
+  }
+  .skill-group:hover { border-color: var(--line-hot); }
+  .skill-group-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--fire-3);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .skill-tag {
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--ink-2);
+    font-weight: 500;
+  }
+
+  /* ── EDUCATION CARD ── */
+  .edu-card {
+    padding: 24px 28px;
+    border-radius: 14px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    margin-bottom: 12px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+  .edu-card:hover { border-color: var(--line-hot); }
+  .edu-icon { font-size: 2rem; flex-shrink: 0; }
+  .edu-info { flex: 1; }
+  .edu-school {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--ink-0);
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  .edu-degree {
+    font-size: 13.5px;
+    color: var(--ink-2);
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+  .edu-meta-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .edu-note {
+    font-size: 12.5px;
+    color: var(--ink-3);
+    line-height: 1.6;
+  }
+
+  /* ── PROJECTS CARD ── */
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .project-item {
+    padding: 18px 22px;
+    border-radius: 12px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    transition: border-color 0.2s;
+  }
+  .project-item:hover { border-color: var(--line-hot); }
+  .project-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink-0);
+    margin-bottom: 4px;
+  }
+  .project-desc {
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.65;
+  }
+
+  /* ── COMPANY CARDS (Section 02) ── */
+  .company-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .company-tip-card {
+    padding: 26px 28px;
+    border-radius: 16px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    transition: all 0.25s;
+  }
+  .company-tip-card:hover { transform: translateY(-2px); border-color: var(--line-hot); box-shadow: var(--shadow-fire); }
+  .company-tip-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .company-logo-placeholder {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+  .company-tip-name {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--ink-0);
+    letter-spacing: -0.02em;
+    margin-bottom: 2px;
+  }
+  .company-tip-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .focus-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--fire-3);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .focus-text {
+    font-size: 13.5px;
+    color: var(--ink-0);
+    font-weight: 600;
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+  .tip-thai {
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.7;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+  }
+  .tip-thai .tip-icon {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--warn);
+    font-weight: 700;
+    margin-right: 4px;
+  }
+
+  /* ── INTERVIEW TABLE ── */
+  .interview-wrap {
+    margin-top: 24px;
+    border-radius: 16px;
+    border: 1px solid var(--line-hot);
+    overflow: hidden;
+    background: var(--bg-1);
+  }
+  .interview-table { width: 100%; border-collapse: collapse; }
+  .interview-table thead th {
+    padding: 14px 20px;
+    background: linear-gradient(180deg, rgba(255,61,0,0.12), rgba(255,61,0,0.04));
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--fire-3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: left;
+    border-bottom: 1px solid var(--line-hot);
+  }
+  .interview-table tbody td {
+    padding: 16px 20px;
+    font-size: 13.5px;
+    color: var(--ink-1);
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+    line-height: 1.7;
+  }
+  .interview-table tbody tr:last-child td { border-bottom: none; }
+  .interview-table tbody tr:hover td { background: var(--glass-hot); }
+  .interview-table td:first-child {
+    font-weight: 700;
+    color: var(--ink-0);
+    width: 36%;
+  }
+  .interview-table td:last-child {
+    color: var(--ink-2);
+  }
+  .interview-answer-key {
+    display: inline-block;
+    margin-top: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--fire-3);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── PILLARS (Conclusion) ── */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .pillar-card {
+    padding: 28px 24px;
+    border-radius: 18px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    text-align: center;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .pillar-card:hover { transform: translateY(-3px); border-color: var(--line-hot); box-shadow: var(--shadow-fire); }
+  .pillar-icon { font-size: 2.4rem; margin-bottom: 16px; display: block; }
+  .pillar-name {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--ink-0);
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .pillar-name.fire { color: var(--fire-3); }
+  .pillar-name.blue { color: var(--blue); }
+  .pillar-name.green { color: var(--ok); }
+  .pillar-desc {
+    font-size: 13px;
+    color: var(--ink-3);
+    line-height: 1.75;
+  }
+  .pillar-card:nth-child(1) { background: linear-gradient(145deg, rgba(255,61,0,0.06), var(--bg-1)); border-color: rgba(255,61,0,0.25); }
+  .pillar-card:nth-child(2) { background: linear-gradient(145deg, rgba(107,156,255,0.05), var(--bg-1)); border-color: rgba(107,156,255,0.2); }
+  .pillar-card:nth-child(3) { background: linear-gradient(145deg, rgba(74,222,128,0.05), var(--bg-1)); border-color: rgba(74,222,128,0.2); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 48px 0;
+    text-align: center;
+  }
+  .footer-sig {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-4);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .footer-sig .flame-f { animation: flicker 2.4s ease-in-out infinite; display: inline-block; }
+
+  /* ── TAG SYSTEM ── */
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+  .tag-ok { background: rgba(74,222,128,0.12); color: var(--ok); border: 1px solid rgba(74,222,128,0.3); }
+  .tag-fire { background: rgba(255,165,64,0.1); color: var(--fire-3); border: 1px solid var(--line-hot); }
+  .tag-blue { background: rgba(107,156,255,0.1); color: var(--blue); border: 1px solid rgba(107,156,255,0.3); }
+  .tag-warn { background: rgba(251,191,36,0.12); color: var(--warn); border: 1px solid rgba(251,191,36,0.3); }
+
+  /* ── SECTION DIVIDER (timeline connector) ── */
+  .timeline-connector {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 8px 0 16px 0;
+    padding-left: 2px;
+  }
+  .timeline-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--fire-2);
+    flex-shrink: 0;
+    box-shadow: 0 0 10px rgba(255,107,26,0.4);
+  }
+  .timeline-line {
+    width: 2px;
+    height: 32px;
+    background: linear-gradient(180deg, var(--fire-2), transparent);
+    margin-left: 4px;
+  }
+  .section-label-mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-4);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .wrap { padding: 0 16px; }
+    .cv-header-card { padding: 24px 20px; }
+    .cv-card { padding: 20px; }
+    .company-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .pillars-grid { grid-template-columns: 1fr; }
+    header.hero { padding-top: 32px; }
+    section.block { padding: 40px 0; }
+    .edu-card { flex-direction: column; }
+    .cv-card-header { flex-direction: column; gap: 12px; }
+    .interview-table td:first-child { width: 45%; }
+  }
+  @media (max-width: 480px) {
+    h1 { font-size: 32px; }
+    .cv-name { font-size: 26px; }
+    .contact-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ── HERO ── -->
+  <header class="hero">
+    <div class="brand">
+      <span class="flame">🔥</span>
+      BOOM ORACLE · CV BUILDER
+    </div>
+
+    <nav class="topnav">
+      <a href="index.html">← Boom Tools</a>
+      <a href="job-search-realestate.html">← Job Search</a>
+      <a href="#" class="active">📄 CV — Rada</a>
+    </nav>
+
+    <h1>Rada Angkarattanapichai</h1>
+    <p class="subtitle">CV ปรับแต่งสำหรับตำแหน่งเซลล์ขายบ้าน — เน้นจุดแข็งที่ match กับแต่ละบริษัท โดย Boom Oracle CV Builder</p>
+
+    <div class="toc-label">สารบัญ</div>
+    <div class="cat-tabs">
+      <a href="#s1" class="cat-tab">01 MASTER CV</a>
+      <a href="#s2" class="cat-tab">02 TAILORED HIGHLIGHTS</a>
+      <a href="#s3" class="cat-tab">03 INTERVIEW PREP</a>
+      <a href="#conclusion" class="cat-tab">CONCLUSION</a>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 01: MASTER CV
+  ══════════════════════════════════════════════ -->
+  <section class="block" id="s1">
+    <div class="eyebrow">01 · MASTER CV</div>
+    <h2>Resume — <span class="hl">Optimized for Real Estate Sales</span></h2>
+    <p class="section-intro">CV เวอร์ชันหลักที่ปรับให้เน้นประสบการณ์ด้านอสังหาริมทรัพย์และทักษะ Sales — สามารถนำไปปรับสำหรับแต่ละบริษัทใน Section 02</p>
+
+    <!-- CV Header -->
+    <div class="cv-header-card">
+      <div class="cv-name">RADA ANGKARATTANAPICHAI</div>
+      <div class="cv-tagline">Bilingual Sales Professional &nbsp;|&nbsp; Real Estate Enthusiast &nbsp;|&nbsp; ABAC Graduate</div>
+      <div class="contact-row">
+        <div class="contact-pill"><span class="icon">📱</span> (+66) 94-570-3366</div>
+        <div class="contact-pill"><span class="icon">📧</span> madebypairis@gmail.com</div>
+        <div class="contact-pill"><span class="icon">📸</span> @ppairis</div>
+        <div class="contact-pill"><span class="icon">📍</span> Bangpla, Bangpli, Samutprakan</div>
+      </div>
+    </div>
+
+    <!-- Profile Summary -->
+    <div class="summary-card">
+      <div class="summary-label">Professional Profile</div>
+      <p class="summary-text">
+        Results-driven ABAC graduate with hands-on experience in Thailand's real estate industry through Sansiri, where I created promotional content for residential properties and gained deep understanding of property selling points and buyer psychology. Combined with international sales experience at Walmart (USA) — handling customer needs, product recommendations, and service excellence — I bring a unique blend of real estate knowledge, sales skills, and bilingual communication (Thai/English) that enables me to serve both Thai and international clients effectively. Passionate about helping customers find their ideal home.
+      </p>
+    </div>
+
+    <!-- Experience: Sansiri (Featured) -->
+    <div class="section-label-mono" style="margin-bottom: 16px;">WORK EXPERIENCE</div>
+
+    <div class="cv-card featured">
+      <div class="cv-card-header">
+        <div class="cv-card-title-group">
+          <div class="cv-company featured">⭐ Sansiri Public Company Limited</div>
+          <div class="cv-role">Content Creator &amp; Property Marketing — TikTok @nowhometour</div>
+        </div>
+        <div class="cv-meta">
+          <span class="cv-badge cv-badge-star">Real Estate Industry</span>
+          <span class="cv-badge cv-badge-date">Oct 2025</span>
+          <span class="cv-badge cv-badge-location">Bangkok, Thailand</span>
+        </div>
+      </div>
+      <ul class="cv-bullets">
+        <li>Created promotional content for residential houses and condominiums, developing deep understanding of property features, selling points, and target buyer profiles</li>
+        <li>Scripted and produced TikTok content that effectively communicated project highlights to potential homebuyers, bridging property marketing with real buyer needs</li>
+        <li>Gained firsthand exposure to real estate sales processes, customer journey, and property marketing strategies at one of Thailand's top developers</li>
+        <li>Collaborated with the Sansiri sales and marketing team to ensure content accuracy, brand consistency, and campaign effectiveness at the booth</li>
+      </ul>
+      <div class="relevance-note">
+        <strong>Relevance:</strong> Direct real estate industry experience — understands property products, Sansiri's brand, and how to communicate project value to buyers. The ONLY first jobber with this advantage.
+      </div>
+    </div>
+
+    <!-- Experience: Walmart -->
+    <div class="cv-card">
+      <div class="cv-card-header">
+        <div class="cv-card-title-group">
+          <div class="cv-company">Walmart Inc.</div>
+          <div class="cv-role">Sales Associate &amp; Customer Service Representative</div>
+        </div>
+        <div class="cv-meta">
+          <span class="cv-badge cv-badge-date">May–Sep 2025</span>
+          <span class="cv-badge cv-badge-location">Dickinson, North Dakota, USA</span>
+        </div>
+      </div>
+      <ul class="cv-bullets">
+        <li>Provided personalized product recommendations to customers, analyzing individual needs and suggesting the best solutions — a skill directly transferable to property consultation and matching buyers with the right project</li>
+        <li>Handled customer inquiries, product exchanges, and issue resolution with professionalism and patience in a high-volume retail environment</li>
+        <li>Operated cashier systems and managed financial transactions efficiently with zero discrepancy record</li>
+        <li>Built rapport with repeat customers through consistent, friendly service — demonstrating strong relationship-building skills essential in real estate sales</li>
+      </ul>
+      <div class="relevance-note">
+        <strong>Relevance:</strong> Customer needs analysis, product recommendation, objection handling, and relationship building — all core real estate sales competencies.
+      </div>
+    </div>
+
+    <!-- Experience: International Work (Combined) -->
+    <div class="cv-card">
+      <div class="cv-card-header">
+        <div class="cv-card-title-group">
+          <div class="cv-company">Work and Travel USA Program</div>
+          <div class="cv-role">International Work Experience — Dairy Queen &amp; Arby's (Crew Member)</div>
+        </div>
+        <div class="cv-meta">
+          <span class="cv-badge cv-badge-date">May–Sep 2025</span>
+          <span class="cv-badge cv-badge-location">North Dakota, USA</span>
+        </div>
+      </div>
+      <ul class="cv-bullets">
+        <li>Successfully managed multiple concurrent positions simultaneously — demonstrating exceptional time management, self-discipline, and professional work ethic across all roles</li>
+        <li>Adapted seamlessly to American workplace culture, communicating effectively in English with diverse customers and multinational colleagues across every shift</li>
+        <li>Performed cashier, front counter, and drive-thru operations under time pressure, building speed, accuracy, and calm under high-demand conditions</li>
+      </ul>
+      <div class="relevance-note">
+        <strong>Relevance:</strong> Proves real-world English fluency, extraordinary work ethic, adaptability — qualities that distinguish a great sales professional from an average one.
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="section-label-mono" style="margin: 28px 0 16px;">EDUCATION</div>
+
+    <div class="edu-card">
+      <div class="edu-icon">🎓</div>
+      <div class="edu-info">
+        <div class="edu-school">Assumption University (ABAC)</div>
+        <div class="edu-degree">Bachelor of Communication Arts — Major: Advertising &nbsp;|&nbsp; GPA 3.01</div>
+        <div class="edu-meta-row">
+          <span class="cv-badge cv-badge-date">2022–2025</span>
+          <span class="cv-badge cv-badge-location">Bangkok, Thailand</span>
+          <span class="tag tag-ok">Graduated</span>
+        </div>
+        <div class="edu-note">
+          <strong style="color: var(--ink-0);">Key Coursework:</strong> Consumer Behavior, Market Research, Integrated Marketing Communications, Digital Marketing, Creative Design<br>
+          <strong style="color: var(--fire-3);">Relevance for Sales:</strong> Understanding consumer psychology, persuasive communication, market analysis — the intellectual foundation of high-performance sales.
+        </div>
+      </div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-icon">🏫</div>
+      <div class="edu-info">
+        <div class="edu-school">Assumption College Samutprakan</div>
+        <div class="edu-degree">High School Diploma</div>
+        <div class="edu-meta-row">
+          <span class="cv-badge cv-badge-date">2018–2021</span>
+          <span class="cv-badge cv-badge-location">Samutprakan, Thailand</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="section-label-mono" style="margin: 28px 0 16px;">SKILLS — REFRAMED FOR REAL ESTATE SALES</div>
+
+    <div class="cv-card" style="margin-bottom: 0;">
+      <div class="skills-grid">
+        <div class="skill-group">
+          <div class="skill-group-name">Sales &amp; Customer Service</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Needs Analysis</span>
+            <span class="skill-tag">Property Consultation</span>
+            <span class="skill-tag">Objection Handling</span>
+            <span class="skill-tag">Relationship Building</span>
+            <span class="skill-tag">Product Presentation</span>
+            <span class="skill-tag">Service Excellence</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Communication</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Thai (Native)</span>
+            <span class="skill-tag">English (Fluent)</span>
+            <span class="skill-tag">Bilingual Presentation</span>
+            <span class="skill-tag">Cross-Cultural</span>
+            <span class="skill-tag">Public Speaking</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Digital &amp; Marketing</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Social Media Marketing</span>
+            <span class="skill-tag">Content Creation</span>
+            <span class="skill-tag">Market Research</span>
+            <span class="skill-tag">Competitor Analysis</span>
+            <span class="skill-tag">TikTok / Instagram</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Tools</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Microsoft Office</span>
+            <span class="skill-tag">Canva</span>
+            <span class="skill-tag">CapCut</span>
+            <span class="skill-tag">Procreate</span>
+            <span class="skill-tag">ChatGPT</span>
+            <span class="skill-tag">CRM (Willing to Learn)</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Personal Strengths</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Goal-Oriented</span>
+            <span class="skill-tag">Self-Motivated</span>
+            <span class="skill-tag">Adaptable</span>
+            <span class="skill-tag">Team Player</span>
+            <span class="skill-tag">Strong Work Ethic</span>
+            <span class="skill-tag">Time Management</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Relevant Projects -->
+    <div class="section-label-mono" style="margin: 28px 0 16px;">ACADEMIC PROJECTS — RELEVANT TRANSFERABLE SKILLS</div>
+
+    <div class="cv-card">
+      <div class="projects-list">
+        <div class="project-item">
+          <div class="project-name">Hua Seng Heng Gold — Digital Marketing Campaign <span style="color:var(--ink-3);font-weight:400;font-size:13px;">&nbsp;·&nbsp; May–Aug 2024</span></div>
+          <div class="project-desc">Led market analysis, identified target audience segments, and coordinated influencer outreach. Demonstrates ability to research markets, understand buyers, and execute multi-channel communication — applicable to property sales outreach and campaign coordination.</div>
+        </div>
+        <div class="project-item">
+          <div class="project-name">Baby Lovett — Brand Research &amp; Positioning <span style="color:var(--ink-3);font-weight:400;font-size:13px;">&nbsp;·&nbsp; Jul–Aug 2024</span></div>
+          <div class="project-desc">Conducted competitor analysis, consumer surveys, and brand positioning strategy. Core skills for understanding the real estate competitive landscape and identifying what makes a project stand out to buyers.</div>
+        </div>
+        <div class="project-item">
+          <div class="project-name">UFC Oat Milk — Marketing Campaign <span style="color:var(--ink-3);font-weight:400;font-size:13px;">&nbsp;·&nbsp; Nov 2022–Mar 2023</span></div>
+          <div class="project-desc">Developed campaign concepts, created visual content, and coordinated influencer partnerships. Shows project management ability, creative problem-solving, and stakeholder coordination under timeline pressure.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <strong>CV Summary:</strong> Rada brings what most first-jobbers cannot — direct experience with Thailand's #1 developer (Sansiri), real sales floor experience in America, genuine bilingual fluency proven abroad, and an advertising education that teaches exactly why and how people make buying decisions.
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 02: TAILORED HIGHLIGHTS
+  ══════════════════════════════════════════════ -->
+  <section class="block" id="s2">
+    <div class="eyebrow">02 · TAILORED HIGHLIGHTS</div>
+    <h2>จุดเน้นสำหรับ<span class="hl">แต่ละบริษัท</span></h2>
+    <p class="section-intro">แต่ละบริษัทมีจุดที่สนใจต่างกัน — เลือกเน้นจุดแข็งที่ตรงที่สุดในการสัมภาษณ์แต่ละแห่ง</p>
+
+    <div class="company-grid">
+
+      <!-- AP Thailand -->
+      <div class="company-tip-card" style="border-color: rgba(74,222,128,0.2); background: linear-gradient(145deg, rgba(74,222,128,0.03), var(--bg-1));">
+        <div class="company-tip-header">
+          <div class="company-logo-placeholder" style="background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.2);">🏢</div>
+          <div>
+            <div class="company-tip-name">AP Thailand</div>
+            <div class="company-tip-sub">Listed developer · Bangna corridor</div>
+          </div>
+        </div>
+        <div class="focus-label">จุดเน้นหลัก</div>
+        <div class="focus-text">Sansiri experience (คู่แข่งตรง = รู้ตลาด), Walmart sales skills, bilingual เพื่อลูกค้าต่างชาติ</div>
+        <div class="tip-thai">
+          <span class="tip-icon">💬</span> ข้อความสำคัญ: <strong style="color:var(--ink-0);">"มีประสบการณ์ตรงกับอุตสาหกรรมอสังหาฯ ผ่าน Sansiri + ทักษะ sales จาก Walmart USA"</strong><br><br>
+          <span class="tip-icon">📌</span> Tips: เตรียมพูดเรื่องโครงการ PLENO, Baan Klang Muang ในโซนบางนา–บางพลี เพราะอยู่ใกล้บ้าน = รู้พื้นที่จริง
+        </div>
+      </div>
+
+      <!-- Sansiri -->
+      <div class="company-tip-card" style="border-color: rgba(255,61,0,0.3); background: linear-gradient(145deg, rgba(255,61,0,0.05), var(--bg-1));">
+        <div class="company-tip-header">
+          <div class="company-logo-placeholder" style="background: rgba(255,61,0,0.08); border: 1px solid rgba(255,61,0,0.25);">⭐</div>
+          <div>
+            <div class="company-tip-name">Sansiri</div>
+            <div class="company-tip-sub">Thailand's #1 developer</div>
+          </div>
+        </div>
+        <div class="focus-label">จุดเน้นหลัก</div>
+        <div class="focus-text">เคยทำงานกับ Sansiri แล้ว! @nowhometour = insider advantage ไม่มีใครมี</div>
+        <div class="tip-thai">
+          <span class="tip-icon">💬</span> ข้อความสำคัญ: <strong style="color:var(--ink-0);">"เคยสร้าง content ให้ Sansiri — เข้าใจ product, brand voice, target audience อยู่แล้ว พร้อมทำงานได้เลย"</strong><br><br>
+          <span class="tip-icon">📌</span> Tips: อ้างอิง TikTok content ที่เคยทำ, ถามชื่อโครงการที่เคยทำ และขอ connection จากทีมที่เคยร่วมงาน ใช้เป็น internal referral
+        </div>
+      </div>
+
+      <!-- Origin Property -->
+      <div class="company-tip-card" style="border-color: rgba(107,156,255,0.2); background: linear-gradient(145deg, rgba(107,156,255,0.03), var(--bg-1));">
+        <div class="company-tip-header">
+          <div class="company-logo-placeholder" style="background: rgba(107,156,255,0.08); border: 1px solid rgba(107,156,255,0.2);">🌐</div>
+          <div>
+            <div class="company-tip-name">Origin Property</div>
+            <div class="company-tip-sub">Fast-growing · Bangna focus</div>
+          </div>
+        </div>
+        <div class="focus-label">จุดเน้นหลัก</div>
+        <div class="focus-text">อยู่บางพลี = ใกล้โครงการ Origin Bangna–Bangpli, digital native ช่วยขายออนไลน์</div>
+        <div class="tip-thai">
+          <span class="tip-icon">💬</span> ข้อความสำคัญ: <strong style="color:var(--ink-0);">"คนท้องถิ่น รู้พื้นที่บางนา–บางพลีจริง + ทักษะ digital marketing ช่วยสร้าง content ขายออนไลน์ได้"</strong><br><br>
+          <span class="tip-icon">📌</span> Tips: เตรียมพูดเรื่อง Park Avenue, Britania ในโซนบางนา รู้จัก neighborhood ดี = ขายลูกค้าได้น่าเชื่อถือกว่า
+        </div>
+      </div>
+
+      <!-- LH (Land & Houses) -->
+      <div class="company-tip-card" style="border-color: rgba(251,191,36,0.2); background: linear-gradient(145deg, rgba(251,191,36,0.03), var(--bg-1));">
+        <div class="company-tip-header">
+          <div class="company-logo-placeholder" style="background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.2);">🏠</div>
+          <div>
+            <div class="company-tip-name">Land &amp; Houses (LH)</div>
+            <div class="company-tip-sub">Premium detached homes</div>
+          </div>
+        </div>
+        <div class="focus-label">จุดเน้นหลัก</div>
+        <div class="focus-text">Customer service จาก Walmart, work ethic proof จากการทำ 3 งานพร้อมกัน</div>
+        <div class="tip-thai">
+          <span class="tip-icon">💬</span> ข้อความสำคัญ: <strong style="color:var(--ink-0);">"ทำงาน 3 ตำแหน่งพร้อมกันในอเมริกา 4 เดือน ไม่เคยขาดวัน — ถ้ารับ pressure นั้นได้ งานเซลล์ไม่มีอะไรที่รับไม่ได้"</strong><br><br>
+          <span class="tip-icon">📌</span> Tips: LH เน้น premium จ่ายดี แต่ standard สูง เน้นความน่าเชื่อถือและความขยัน อ้าง Villaggio, Centro Bangna–Trad
+        </div>
+      </div>
+
+      <!-- SC Asset -->
+      <div class="company-tip-card" style="border-color: rgba(255,165,64,0.2); background: linear-gradient(145deg, rgba(255,165,64,0.04), var(--bg-1));">
+        <div class="company-tip-header">
+          <div class="company-logo-placeholder" style="background: rgba(255,165,64,0.08); border: 1px solid rgba(255,165,64,0.2);">✨</div>
+          <div>
+            <div class="company-tip-name">SC Asset</div>
+            <div class="company-tip-sub">Design-led luxury developer</div>
+          </div>
+        </div>
+        <div class="focus-label">จุดเน้นหลัก</div>
+        <div class="focus-text">Bilingual (English fluent) = ขาย expat ได้, creative design background ตรงกับ brand SC</div>
+        <div class="tip-thai">
+          <span class="tip-icon">💬</span> ข้อความสำคัญ: <strong style="color:var(--ink-0);">"ภาษาอังกฤษระดับ professional ทำงานในอเมริกา + สาย advertising/design ตรงกับ DNA ของ SC ที่เน้น design-led"</strong><br><br>
+          <span class="tip-icon">📌</span> Tips: SC Asset เน้น design aesthetic = background Advertising จาก ABAC ตรงมาก เตรียม portfolio งาน creative ไปด้วย
+        </div>
+      </div>
+
+    </div>
+
+    <div class="insight-box">
+      <strong>กลยุทธ์การสมัคร:</strong> ส่ง CV เดียวกัน แต่ cover letter ต่างกัน — เน้น story ที่ match กับแต่ละบริษัท Sansiri experience เป็น unique selling point ที่ใช้ได้กับทุกที่ แต่ emphasize ต่างกันตาม context
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 03: INTERVIEW PREP
+  ══════════════════════════════════════════════ -->
+  <section class="block" id="s3">
+    <div class="eyebrow">03 · INTERVIEW TIPS</div>
+    <h2>เตรียมสัมภาษณ์ — <span class="hl">คำถามที่ต้องเจอ</span></h2>
+    <p class="section-intro">คำถามสัมภาษณ์ที่ HR อสังหาฯ มักถาม พร้อมแนวตอบที่ใช้จุดแข็งของ Rada ให้เป็นประโยชน์สูงสุด</p>
+
+    <div class="interview-wrap">
+      <table class="interview-table">
+        <thead>
+          <tr>
+            <th>คำถาม</th>
+            <th>แนวตอบที่แนะนำ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              ทำไมอยากเป็นเซลล์ขายบ้าน?
+              <div class="interview-answer-key">WHY REAL ESTATE</div>
+            </td>
+            <td>
+              เริ่มสนใจจากงานกับ Sansiri — ได้เห็นว่าการช่วยคนหาบ้านที่ใช่เป็นงานที่มีคุณค่าจริงๆ ไม่ใช่แค่ขายสินค้า แต่ช่วยเปลี่ยน milestone ในชีวิตคน อยากทำงานที่รู้สึก meaningful แบบนี้อย่างจริงจัง
+            </td>
+          </tr>
+          <tr>
+            <td>
+              จุดแข็งของคุณคืออะไร?
+              <div class="interview-answer-key">UNIQUE VALUE PROP</div>
+            </td>
+            <td>
+              3 สิ่งที่คนอื่นอาจไม่มีพร้อมกัน: (1) ประสบการณ์จริงกับ Sansiri เข้าใจ property product ลึกกว่าคนที่เพิ่งเริ่ม (2) English fluent ทำงานในอเมริกา = ขายลูกค้าต่างชาติได้ (3) Marketing background รู้ว่าทำไมคนถึงซื้อ = ปิดดีลได้ตรงจุด
+            </td>
+          </tr>
+          <tr>
+            <td>
+              ทำไมจบ Advertising มาทำ Sales?
+              <div class="interview-answer-key">CAREER SWITCH</div>
+            </td>
+            <td>
+              Advertising สอน consumer behavior, persuasion, communication — นี่คือหัวใจของ sales เลย เข้าใจว่าทำไมคนถึงตัดสินใจซื้อ ไม่ใช่แค่พูดว่าสินค้าดียังไง แต่รู้ว่าต้องพูดอะไรให้คนคนนั้นอยากซื้อ
+            </td>
+          </tr>
+          <tr>
+            <td>
+              รับ pressure ได้ไหม? มี quota ทุกเดือน
+              <div class="interview-answer-key">PRESSURE HANDLING</div>
+            </td>
+            <td>
+              ทำ 3 งานพร้อมกันในอเมริกา 4 เดือน ไม่เคยขาดงานสักวัน ทุกวันต้องผ่าน shift ที่หนักและสื่อสารภาษาต่างประเทศตลอดเวลา ถ้ารับ pressure นั้นได้ เชื่อว่า quota รายเดือนเป็นสิ่งที่รับมือได้
+            </td>
+          </tr>
+          <tr>
+            <td>
+              เป้าหมาย 3 ปีข้างหน้า?
+              <div class="interview-answer-key">AMBITION SIGNAL</div>
+            </td>
+            <td>
+              ปีที่ 1: เรียนรู้ product ของบริษัทและ close first deal ให้ได้เร็วที่สุด เป้าหมายเป็น top sales ของโครงการ ปีที่ 2: Senior Sales ที่ช่วย onboard น้องใหม่ ปีที่ 3: Sales Manager ที่บริหารทีมได้
+            </td>
+          </tr>
+          <tr>
+            <td>
+              รู้จักโครงการของเราบ้างไหม?
+              <div class="interview-answer-key">PREPARATION</div>
+            </td>
+            <td>
+              ต้อง research ก่อนไปสัมภาษณ์ทุกครั้ง เตรียม: ชื่อโครงการ, ราคา, zone, target buyer, จุดเด่น เทียบกับคู่แข่ง — แสดงว่า motivated จริง ไม่ใช่แค่ส่ง CV ทุกที่
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight-box">
+      <strong>Golden Rule ของการสัมภาษณ์:</strong> ทุกคำตอบต้องมี story จาก Sansiri หรือ Walmart — อย่าพูดลอยๆ ว่า "ฉันขยัน" แต่พูดว่า "ตอนทำงานที่ Walmart ฉัน..." เพราะ story ที่จับต้องได้ convince ได้ดีกว่า claim ทั่วไปเสมอ
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       CONCLUSION
+  ══════════════════════════════════════════════ -->
+  <section class="block" id="conclusion">
+    <div class="eyebrow">CONCLUSION</div>
+    <h2>จุดแข็งสูงสุด 3 อย่าง — <span class="hl">ที่ First Jobber คนอื่นไม่มี</span></h2>
+    <p class="section-intro">ทำไม Rada ถึงได้เปรียบในตลาดงานเซลล์อสังหาฯ — สรุปสั้นๆ สำหรับใช้ pitch ตัวเอง</p>
+
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <span class="pillar-icon">🏠</span>
+        <div class="pillar-name fire">Sansiri Experience</div>
+        <div class="pillar-desc">
+          ไม่ใช่ first jobber ทั่วไป — มีประสบการณ์จริงกับอสังหาฯ ผ่าน Sansiri เข้าใจ product, buyer journey, และ sales process ก่อนที่จะเริ่มงานจริง<br><br>
+          <strong style="color:var(--fire-3);">Advantage: รู้จักอุตสาหกรรมแล้ว ไม่ต้อง train from zero</strong>
+        </div>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-icon">🌏</span>
+        <div class="pillar-name blue">Bilingual + International</div>
+        <div class="pillar-desc">
+          English fluent จากการทำงานจริงในอเมริกา ไม่ใช่แค่เรียนในห้อง — สื่อสารกับลูกค้าต่างชาติ expat ได้ทันที โอกาส commission สูงกว่า<br><br>
+          <strong style="color:var(--blue);">Advantage: ขาย expat segment ได้ = commission สูงกว่า</strong>
+        </div>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-icon">📱</span>
+        <div class="pillar-name green">Digital Native</div>
+        <div class="pillar-desc">
+          สร้าง content, ทำ social media, รู้ consumer behavior จาก ABAC — ช่วยทีม sales ขายออนไลน์ได้นอกเหนือจาก walk-in ที่ sales gallery<br><br>
+          <strong style="color:var(--ok);">Advantage: ขยาย reach sales team ผ่าน digital ได้</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box" style="margin-top: 28px;">
+      <strong>สรุปโดย Boom Oracle:</strong> CV นี้ถูกปรับให้เน้นจุดแข็งที่ตรงกับงานเซลล์อสังหาฯ อย่างมีเจตนา — Sansiri experience คือจุดขาย #1 ที่ first jobber คนอื่นไม่มี ใช้มันให้เต็มที่ทุกที่ที่สมัคร ร่วมกับ bilingual advantage และ digital skill ที่ทำให้ Rada ไม่ใช่แค่ "เซลล์อีกคน" แต่เป็นคนที่ developer อยากได้ในทีม
+    </div>
+  </section>
+
+</div><!-- /.wrap -->
+
+<footer>
+  <div class="wrap">
+    <div class="footer-sig">
+      <span class="flame-f">🔥</span>
+      Boom Oracle &nbsp;·&nbsp; CV Builder &nbsp;·&nbsp; Rada Angkarattanapichai 2026
+      &nbsp;·&nbsp;
+      Generated 2026-05-02
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
