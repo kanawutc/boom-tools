@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<script src="auth.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Thai Developer Landscape 2026 — ภูมิทัศน์อสังหาริมทรัพย์ไทย | Boom Oracle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-0: #0a0608;
+    --bg-1: #110e0c;
+    --bg-2: #18140f;
+    --bg-3: #201b15;
+    --bg-4: #2c241c;
+    --fire-1: #ff3d00;
+    --fire-2: #ff6b1a;
+    --fire-3: #ffa540;
+    --fire-4: #ffd280;
+    --ember: #cc2200;
+    --gold: #d4a843;
+    --ink-0: #f5f0eb;
+    --ink-1: #d6cdc4;
+    --ink-2: #a89a8c;
+    --ink-3: #7a6e62;
+    --ink-4: #5a4d42;
+    --ok: #4ade80;
+    --danger: #f87171;
+    --warn: #fbbf24;
+    --line: rgba(255,165,64,0.1);
+    --line-hot: rgba(255,165,64,0.25);
+    --glass: rgba(255,165,64,0.03);
+    --glass-hot: rgba(255,165,64,0.06);
+    --shadow-fire: 0 4px 24px rgba(255,61,0,0.12);
+    --shadow-deep: 0 8px 48px rgba(0,0,0,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', 'Noto Sans Thai', -apple-system, sans-serif;
+    background: var(--bg-0);
+    background-image:
+      radial-gradient(ellipse at 20% 0, rgba(255,61,0,0.07), transparent 60%),
+      radial-gradient(ellipse at 80% 100%, rgba(204,34,0,0.05), transparent 55%);
+    color: var(--ink-1);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,165,64,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,165,64,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+    mask-image: radial-gradient(circle at center, black, transparent 80%);
+  }
+  .wrap { position: relative; z-index: 1; max-width: 1320px; margin: 0 auto; padding: 0 28px; }
+
+  /* ── HEADER / HERO ── */
+  header.hero { padding-top: 48px; padding-bottom: 48px; }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--fire-3);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding: 7px 14px;
+    border: 1px solid var(--line-hot);
+    border-radius: 999px;
+    background: var(--glass-hot);
+  }
+  .brand .flame { animation: flicker 2.4s ease-in-out infinite; display: inline-block; }
+  @keyframes flicker {
+    0%, 100% { transform: scale(1) rotate(-2deg); opacity: 1; }
+    50% { transform: scale(1.1) rotate(2deg); opacity: 0.8; }
+  }
+  nav.topnav {
+    margin-bottom: 28px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  nav.topnav a {
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  nav.topnav a.active {
+    background: var(--glass-hot);
+    border: 1px solid var(--line-hot);
+    color: var(--fire-3);
+  }
+  nav.topnav a:not(.active) {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    color: var(--ink-2);
+  }
+  nav.topnav a:not(.active):hover {
+    border-color: var(--line-hot);
+    color: var(--fire-3);
+  }
+
+  h1 {
+    font-size: clamp(36px, 6vw, 76px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--fire-4) 0%, var(--fire-3) 40%, var(--fire-2) 70%, var(--fire-1) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .subtitle {
+    font-size: 18px;
+    color: var(--ink-2);
+    max-width: 680px;
+    margin-bottom: 40px;
+    line-height: 1.7;
+  }
+
+  /* ── STATS BAR ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+  .stat-card {
+    padding: 20px 18px;
+    border-radius: 14px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    text-align: center;
+    transition: all 0.25s;
+  }
+  .stat-card:hover { border-color: var(--line-hot); background: var(--bg-2); }
+  .stat-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--fire-3);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+  }
+
+  /* ── TOC ── */
+  .toc-wrap { margin-bottom: 8px; }
+  .toc-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-3);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .cat-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-bottom: 20px;
+  }
+  .cat-tab {
+    padding: 9px 16px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--ink-2);
+    text-decoration: none;
+    font-size: 12.5px;
+    font-weight: 600;
+    transition: all 0.2s;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.03em;
+  }
+  .cat-tab:hover {
+    border-color: var(--line-hot);
+    color: var(--fire-3);
+    transform: translateY(-1px);
+    background: var(--bg-3);
+  }
+
+  /* ── SECTION BLOCKS ── */
+  section.block {
+    padding: 60px 0;
+    border-top: 1px solid var(--line);
+  }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--fire-2);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--fire-2); flex-shrink: 0; }
+  h2 {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
+    color: var(--ink-0);
+    line-height: 1.1;
+  }
+  h2 .hl { color: var(--fire-3); }
+  .section-intro {
+    font-size: 16px;
+    color: var(--ink-2);
+    max-width: 720px;
+    margin-bottom: 32px;
+    line-height: 1.7;
+  }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box {
+    margin-top: 24px;
+    padding: 20px 24px;
+    border-radius: 14px;
+    background: linear-gradient(145deg, var(--glass-hot), transparent);
+    border: 1px solid var(--line-hot);
+    font-size: 14px;
+    color: var(--ink-1);
+    line-height: 1.75;
+  }
+  .insight-box strong { color: var(--fire-3); }
+
+  /* ── COMPARE TABLES ── */
+  .compare-wrap {
+    margin-top: 28px;
+    border-radius: 16px;
+    border: 1px solid var(--line-hot);
+    overflow: hidden;
+    background: var(--bg-1);
+    overflow-x: auto;
+  }
+  .compare {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 720px;
+  }
+  .compare thead th {
+    padding: 16px 14px;
+    text-align: left;
+    background: linear-gradient(180deg, rgba(255,61,0,0.12), rgba(255,61,0,0.04));
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--fire-3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--line-hot);
+    vertical-align: bottom;
+  }
+  .compare thead th.hi-col {
+    background: linear-gradient(180deg, rgba(255,61,0,0.22), rgba(255,61,0,0.08));
+    color: var(--fire-4);
+  }
+  .compare tbody td {
+    padding: 13px 14px;
+    border-bottom: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-1);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+  .compare tbody td.row-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--fire-3);
+    white-space: nowrap;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+  }
+  .compare tbody td.rank-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink-4);
+    text-align: center;
+    width: 50px;
+  }
+  .compare tbody td.rank-num.top3 { color: var(--fire-3); }
+  .compare tbody tr:hover td { background: var(--glass-hot); }
+  .compare tbody tr:last-child td { border-bottom: none; }
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+  .tag-ok { background: rgba(74,222,128,0.12); color: var(--ok); border: 1px solid rgba(74,222,128,0.3); }
+  .tag-warn { background: rgba(251,191,36,0.12); color: var(--warn); border: 1px solid rgba(251,191,36,0.3); }
+  .tag-danger { background: rgba(248,113,113,0.12); color: var(--danger); border: 1px solid rgba(248,113,113,0.3); }
+  .tag-fire { background: rgba(255,165,64,0.1); color: var(--fire-3); border: 1px solid var(--line-hot); }
+  .tag-blue { background: rgba(99,156,255,0.1); color: #6b9cff; border: 1px solid rgba(99,156,255,0.25); }
+
+  /* ── COMP GRID CARDS ── */
+  .comp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin-top: 28px;
+  }
+  .comp-card {
+    padding: 22px 20px;
+    border-radius: 16px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .comp-card:hover { border-color: var(--line-hot); transform: translateY(-2px); box-shadow: var(--shadow-fire); }
+  .comp-card.highlight {
+    background: linear-gradient(145deg, rgba(255,61,0,0.08), var(--bg-1));
+    border-color: rgba(255,61,0,0.35);
+  }
+  .comp-name {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--ink-0);
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+  .comp-origin {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-4);
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .comp-desc {
+    font-size: 12.5px;
+    color: var(--ink-3);
+    line-height: 1.6;
+  }
+
+  /* ── DIFF CARDS ── */
+  .diff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .diff-card {
+    padding: 26px 22px;
+    border-radius: 18px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    transition: all 0.25s;
+  }
+  .diff-card:hover { border-color: var(--line-hot); transform: translateY(-2px); }
+  .diff-card-header {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--ink-0);
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .diff-card-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--fire-3);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+
+  /* ── MP STAT CARDS ── */
+  .mp-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin-top: 28px;
+  }
+  .mp-stat {
+    padding: 22px 18px;
+    border-radius: 16px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    text-align: center;
+    transition: all 0.25s;
+  }
+  .mp-stat:hover { border-color: var(--line-hot); background: var(--bg-2); }
+  .mp-stat-phase {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-4);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .mp-stat-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--fire-3);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .mp-stat-label {
+    font-size: 12px;
+    color: var(--ink-3);
+    line-height: 1.5;
+  }
+
+  /* ── PILLAR CARDS ── */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .pillar-card {
+    padding: 28px 24px;
+    border-radius: 18px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .pillar-card:hover { transform: translateY(-3px); border-color: var(--line-hot); box-shadow: var(--shadow-fire); }
+  .pillar-icon { font-size: 2.2rem; margin-bottom: 14px; display: block; }
+  .pillar-name {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--ink-0);
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+  .pillar-name.fire { color: var(--fire-3); }
+  .pillar-name.warn { color: var(--warn); }
+  .pillar-name.ok { color: var(--ok); }
+  .pillar-name.danger { color: var(--danger); }
+  .pillar-name.blue { color: #6b9cff; }
+  .pillar-desc {
+    font-size: 13px;
+    color: var(--ink-3);
+    line-height: 1.75;
+  }
+
+  /* ── BAR CHART CSS ── */
+  .bar-chart {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .bar-row {
+    display: grid;
+    grid-template-columns: 180px 1fr 80px;
+    align-items: center;
+    gap: 14px;
+  }
+  .bar-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-1);
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .bar-track {
+    height: 28px;
+    background: var(--bg-2);
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--fire-1), var(--fire-3));
+    border-radius: 6px;
+    transition: width 0.8s ease;
+    position: relative;
+  }
+  .bar-fill.alt { background: linear-gradient(90deg, var(--ember), var(--fire-2)); }
+  .bar-fill.small { background: linear-gradient(90deg, var(--bg-4), var(--ink-3)); }
+  .bar-pct {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--fire-3);
+  }
+
+  /* ── BANK CARDS ── */
+  .bank-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .bank-card {
+    padding: 18px 16px;
+    border-radius: 14px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    transition: all 0.25s;
+  }
+  .bank-card:hover { border-color: var(--line-hot); transform: translateY(-2px); }
+  .bank-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--fire-3);
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+  }
+  .bank-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--ink-0);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .bank-label {
+    font-size: 11px;
+    color: var(--ink-4);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── GEO TABLE ── */
+  .geo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 28px;
+  }
+  @media (max-width: 768px) { .geo-grid { grid-template-columns: 1fr; } }
+  .geo-panel {
+    background: var(--bg-1);
+    border: 1px solid var(--line-hot);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .geo-panel-head {
+    padding: 14px 18px;
+    background: linear-gradient(180deg, rgba(255,61,0,0.12), rgba(255,61,0,0.04));
+    border-bottom: 1px solid var(--line-hot);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--fire-3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .geo-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--line);
+    transition: background 0.2s;
+  }
+  .geo-row:last-child { border-bottom: none; }
+  .geo-row:hover { background: var(--glass-hot); }
+  .geo-province {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-1);
+  }
+  .geo-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--fire-3);
+  }
+
+  /* ── SCENARIO TABLE ── */
+  .scenario-wrap {
+    margin-top: 24px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--line-hot);
+    background: var(--bg-1);
+    overflow-x: auto;
+  }
+  .scenario-table { width: 100%; border-collapse: collapse; min-width: 600px; }
+  .scenario-table thead th {
+    padding: 14px 16px;
+    background: linear-gradient(180deg, rgba(255,61,0,0.12), rgba(255,61,0,0.04));
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--fire-3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: left;
+    border-bottom: 1px solid var(--line-hot);
+  }
+  .scenario-table tbody td {
+    padding: 14px 16px;
+    font-size: 13px;
+    color: var(--ink-1);
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  .scenario-table tbody tr:last-child td { border-bottom: none; }
+  .scenario-table tbody tr:hover td { background: var(--glass-hot); }
+  .scenario-table tbody td:first-child { font-weight: 700; font-size: 14px; white-space: nowrap; color: var(--ink-0); }
+
+  /* ── SOURCES LIST ── */
+  .sources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .source-card {
+    padding: 22px 20px;
+    border-radius: 14px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    transition: all 0.25s;
+  }
+  .source-card:hover { border-color: var(--line-hot); }
+  .source-card-head {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--fire-3);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .source-list {
+    list-style: none;
+    padding: 0;
+  }
+  .source-list li {
+    padding: 5px 0;
+    font-size: 12.5px;
+    color: var(--ink-2);
+    border-bottom: 1px solid rgba(255,165,64,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 1.5;
+  }
+  .source-list li:last-child { border-bottom: none; }
+  .source-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--fire-3);
+    font-weight: 700;
+    white-space: nowrap;
+    margin-left: 8px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 48px 0;
+    text-align: center;
+  }
+  .footer-sig {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-4);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .footer-flame {
+    font-size: 1.8rem;
+    animation: flicker 2.4s ease-in-out infinite;
+    display: inline-block;
+    margin-bottom: 12px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .wrap { padding: 0 16px; }
+    .bar-row { grid-template-columns: 120px 1fr 60px; }
+    .bar-label { font-size: 11px; }
+    .quad-grid { grid-template-columns: 1fr; }
+    h1 { font-size: clamp(28px, 8vw, 52px); }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brand">
+      <span class="flame">🔥</span>
+      Boom Oracle · SCC Market Intelligence · May 2026
+    </div>
+
+    <nav class="topnav">
+      <a href="#summary" class="active">ภาพรวม</a>
+      <a href="#ranking">อันดับ Developer</a>
+      <a href="#scc-data">SCC Database</a>
+      <a href="#market-share">Market Share</a>
+      <a href="#geo">ภูมิภาค</a>
+      <a href="#types">ประเภท</a>
+      <a href="#price">ราคา</a>
+      <a href="#outlook">แนวโน้ม 2026</a>
+      <a href="#sources">แหล่งข้อมูล</a>
+    </nav>
+
+    <h1>Thai Developer<br>Landscape 2026</h1>
+    <p class="subtitle">
+      ภูมิทัศน์อสังหาริมทรัพย์ไทย — วิเคราะห์จาก SCC Database<br>
+      <strong style="color:var(--fire-3)">105,872 records</strong> จาก <strong style="color:var(--fire-3)">28 แหล่งข้อมูล</strong>
+    </p>
+
+    <!-- Key Metrics -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-num">105,872</div>
+        <div class="stat-label">รายการทั้งหมดใน SCC</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">6,760</div>
+        <div class="stat-label">โครงการ Developer</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">99,112</div>
+        <div class="stat-label">NPA Bank Listings</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">28</div>
+        <div class="stat-label">แหล่งข้อมูล</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">39</div>
+        <div class="stat-label">Developer ที่ track ได้</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">260B</div>
+        <div class="stat-label">ขนาดตลาด (THB)</div>
+      </div>
+    </div>
+
+    <!-- TOC -->
+    <div class="toc-wrap">
+      <div class="toc-label">สารบัญ — เลือกหัวข้อ</div>
+      <div class="cat-tabs">
+        <a href="#summary" class="cat-tab">§1 ภาพรวม</a>
+        <a href="#ranking" class="cat-tab">§2 อันดับ Developer</a>
+        <a href="#scc-data" class="cat-tab">§3 SCC Database</a>
+        <a href="#market-share" class="cat-tab">§4 Market Share</a>
+        <a href="#geo" class="cat-tab">§5 การกระจายตามพื้นที่</a>
+        <a href="#types" class="cat-tab">§6 ประเภทอสังหาฯ</a>
+        <a href="#price" class="cat-tab">§7 วิเคราะห์ราคา</a>
+        <a href="#outlook" class="cat-tab">§8 แนวโน้ม 2026</a>
+        <a href="#sources" class="cat-tab">§9 แหล่งข้อมูล</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SECTION 1: EXECUTIVE SUMMARY                           -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="block" id="summary">
+  <div class="wrap">
+    <div class="eyebrow">§ 01 — EXECUTIVE SUMMARY</div>
+    <h2>ภาพรวม<span class="hl">ตลาด</span>อสังหาริมทรัพย์ไทย</h2>
+    <p class="section-intro">
+      ตลาดอสังหาริมทรัพย์ไทยกำลังเผชิญกับภาวะถดถอยรุนแรงที่สุดในรอบ 30 ปี — แต่มีสัญญาณบวกในบางเซกเมนต์ที่น่าสนใจ
+    </p>
+
+    <!-- Summary Cards -->
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <span class="pillar-icon">📉</span>
+        <div class="pillar-name danger">ยอดขายบ้านใหม่ลด 49%</div>
+        <p class="pillar-desc">
+          ธุรกรรมที่อยู่อาศัยใหม่ทั่วประเทศในปี 2025-2026 หดตัวลงถึง 49% เมื่อเทียบกับช่วงเดียวกันปีก่อน นับเป็นการหดตัวรุนแรงที่สุดในรอบสามทศวรรษ
+        </p>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-icon">🏦</span>
+        <div class="pillar-name danger">อัตราปฏิเสธสินเชื่อสูงถึง 70%</div>
+        <p class="pillar-desc">
+          บ้านราคาต่ำกว่า 3 ล้านบาท มีอัตราการปฏิเสธสินเชื่อจากสถาบันการเงินสูงถึง 70% ส่งผลให้ผู้ซื้อรายย่อยเข้าถึงตลาดได้ยากมากขึ้น
+        </p>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-icon">💎</span>
+        <div class="pillar-name ok">Luxury ยังแข็งแกร่ง 93%</div>
+        <p class="pillar-desc">
+          ตลาดคอนโดหรูและ Super-luxury ยังคงมีอัตราการขายสูงถึง 93% ขับเคลื่อนโดยผู้ซื้อต่างชาติ (ส่วนใหญ่เป็นชาวจีน) ที่ยังคงมีความต้องการต่อเนื่อง
+        </p>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-icon">🏛️</span>
+        <div class="pillar-name warn">มาตรการกระตุ้นจากรัฐ</div>
+        <p class="pillar-desc">
+          รัฐบาลลดค่าธรรมเนียมการโอนจาก 2% เหลือ 0.01% สำหรับบ้านราคาไม่เกิน 7 ล้านบาท มีผลถึงมิถุนายน 2569 เพื่อกระตุ้นตลาดที่อยู่อาศัย
+        </p>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-icon">🇨🇳</span>
+        <div class="pillar-name blue">ผู้ซื้อต่างชาติขับเคลื่อนคอนโด</div>
+        <p class="pillar-desc">
+          ผู้ซื้อชาวจีนยังคงเป็นกลุ่มสำคัญในตลาดคอนโดทั้งในกรุงเทพฯ ชลบุรี และภูเก็ต การลงทุนจากต่างชาติช่วยพยุงตลาดในช่วงที่ดีมานด์ในประเทศอ่อนตัว
+        </p>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-icon">🏆</span>
+        <div class="pillar-name fire">Top 10 ครอง 63% ตลาด</div>
+        <p class="pillar-desc">
+          ผู้พัฒนา 10 อันดับแรกมีรายได้รวมกว่า 260 พันล้านบาท คิดเป็น 63% ของมูลค่าตลาดทั้งหมด แสดงถึงการกระจุกตัวของตลาดในมือผู้เล่นรายใหญ่
+        </p>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <strong>สรุปภาวะตลาด 2025-2026:</strong> ตลาดอสังหาริมทรัพย์ไทยแบ่งเป็นสองขั้วชัดเจน — ตลาดระดับล่างถึงกลาง (ต่ำกว่า 7 ล้านบาท) ซบเซาหนักจากปัญหาสินเชื่อ ในขณะที่ตลาดหรูยังสดใส ผู้ที่อยู่รอดได้ต้องปรับตัวเข้าหาเซกเมนต์ที่มีกำลังซื้อจริง โดยเฉพาะลูกค้าต่างชาติและผู้มีรายได้สูง
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SECTION 2: TOP DEVELOPERS RANKING                      -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="block" id="ranking">
+  <div class="wrap">
+    <div class="eyebrow">§ 02 — TOP DEVELOPERS RANKING</div>
+    <h2>อันดับ<span class="hl">บริษัทพัฒนา</span>อสังหาริมทรัพย์</h2>
+    <p class="section-intro">
+      อันดับจาก SCC Database (home.co.th + reviews) + ข้อมูลการเงินจาก SET Filings H1 2024 (annualized). รายได้/กำไรเป็นการประมาณการ
+    </p>
+
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th style="width:50px;text-align:center">#</th>
+            <th>บริษัท (Ticker)</th>
+            <th>รายได้ (ประมาณ)</th>
+            <th>กำไรสุทธิ (ประมาณ)</th>
+            <th class="hi-col">โครงการใน SCC</th>
+            <th>กลุ่มผลิตภัณฑ์</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rank-num top3">1</td>
+            <td>
+              <strong style="color:var(--ink-0);font-size:15px">แสนสิริ</strong><br>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fire-3)">SIRI</span>
+            </td>
+            <td><span class="tag tag-fire">~40B THB</span></td>
+            <td><span style="font-family:'JetBrains Mono',monospace;color:var(--ok);font-size:13px">~3B THB</span></td>
+            <td class="hi-col">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--fire-3)">2,382</span>
+            </td>
+            <td>
+              <span class="tag tag-blue">คอนโด</span>
+              <span class="tag tag-warn" style="margin-left:4px">บ้านเดี่ยว</span>
+              <span class="tag" style="margin-left:4px;background:rgba(74,222,128,0.08);color:var(--ok);border:1px solid rgba(74,222,128,0.25)">ทาวน์โฮม</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="rank-num top3">2</td>
+            <td>
+              <strong style="color:var(--ink-0);font-size:15px">เอพี ไทยแลนด์</strong><br>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fire-3)">AP</span>
+            </td>
+            <td><span class="tag tag-fire">~38B THB</span></td>
+            <td><span style="font-family:'JetBrains Mono',monospace;color:var(--ok);font-size:13px">~6B THB</span></td>
+            <td class="hi-col">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--fire-3)">1,797</span>
+            </td>
+            <td>
+              <span class="tag tag-blue">คอนโด</span>
+              <span class="tag tag-warn" style="margin-left:4px">บ้านเดี่ยว</span>
+              <span class="tag" style="margin-left:4px;background:rgba(74,222,128,0.08);color:var(--ok);border:1px solid rgba(74,222,128,0.25)">ทาวน์โฮม</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="rank-num top3">3</td>
+            <td>
+              <strong style="color:var(--ink-0);font-size:15px">แลนด์ แอนด์ เฮ้าส์</strong><br>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fire-3)">LH</span>
+            </td>
+            <td><span class="tag tag-fire">~30B THB</span></td>
+            <td><span style="font-family:'JetBrains Mono',monospace;color:var(--ok);font-size:13px">~8B THB</span></td>
+            <td class="hi-col">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--fire-3)">232</span>
+            </td>
+            <td>
+              <span class="tag tag-blue">คอนโด</span>
+              <span class="tag tag-warn" style="margin-left:4px">บ้านเดี่ยว</span>
+              <span class="tag" style="margin-left:4px;background:rgba(74,222,128,0.08);color:var(--ok);border:1px solid rgba(74,222,128,0.25)">ทาวน์โฮม</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="rank-num">4</td>
+            <td>
+              <strong style="color:var(--ink-0);font-size:15px">พฤกษา</strong><br>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fire-3)">PSH</span>
+            </td>
+            <td><span class="tag tag-fire">~26B THB</span></td>
+            <td><span style="font-family:'JetBrains Mono',monospace;color:var(--ok);font-size:13px">~2.2B THB</span></td>
+            <td class="hi-col">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--fire-3)">285</span>
+            </td>
+            <td>
+              <span class="tag tag-blue">คอนโด</span>
+              <span class="tag tag-warn" style="margin-left:4px">บ้านเดี่ยว</span>
+              <span class="tag" style="margin-left:4px;background:rgba(74,222,128,0.08);color:var(--ok);border:1px solid rgba(74,222,128,0.25)">ทาวน์โฮม</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="rank-num">5</td>
+            <td>
+              <strong style="color:var(--ink-0);font-size:15px">ศุภาลัย</strong><br>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fire-3)">SPALI</span>
+            </td>
+            <td><span class="tag tag-fire">~25B THB</span></td>
+            <td><span style="font-family:'JetBrains Mono',monospace;color:var(--ok);font-size:13px">~5B THB</span></td>
+            <td class="hi-col">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--fire-3)">154</span>
+            </td>
+            <td>
+              <span class="tag tag-blue">คอนโด</span>
+              <span class="tag tag-warn" style="margin-left:4px">บ้านเดี่ยว</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="rank-num">6</td>
+            <td>
+              <strong style="color:var(--ink-0);font-size:15px">อนันดา</strong><br>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fire-3)">ANAN</span>
+            </td>
+            <td><span class="tag tag-warn">~16B THB</span></td>
+            <td><span style="font-family:'JetBrains Mono',monospace;color:var(--warn);font-size:13px">~1B THB</span></td>
+            <td class="hi-col">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--fire-3)">47</span>
+            </td>
+            <td>
+              <span class="tag tag-blue">คอนโด</span>
+              <span class="tag" style="margin-left:4px;background:rgba(74,222,128,0.08);color:var(--ok);border:1px solid rgba(74,222,128,0.25)">ทาวน์โฮม</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="rank-num">7</td>
+            <td>
+              <strong style="color:var(--ink-0);font-size:15px">ออริจิ้น</strong><br>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fire-3)">ORI</span>
+            </td>
+            <td><span class="tag tag-warn">~15B THB</span></td>
+            <td><span style="font-family:'JetBrains Mono',monospace;color:var(--warn);font-size:13px">~2B THB</span></td>
+            <td class="hi-col">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--fire-3)">26</span>
+            </td>
+            <td>
+              <span class="tag tag-blue">คอนโด</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="rank-num">8</td>
+            <td>
+              <strong style="color:var(--ink-0);font-size:15px">SC แอสเสท</strong><br>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fire-3)">SC</span>
+            </td>
+            <td><span class="tag tag-warn">~14B THB</span></td>
+            <td><span style="font-family:'JetBrains Mono',monospace;color:var(--warn);font-size:13px">~1.5B THB</span></td>
+            <td class="hi-col">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--fire-3)">36</span>
+            </td>
+            <td>
+              <span class="tag tag-blue">คอนโด</span>
+              <span class="tag" style="margin-left:4px;background:rgba(74,222,128,0.08);color:var(--ok);border:1px solid rgba(74,222,128,0.25)">ทาวน์โฮม</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="rank-num">9</td>
+            <td>
+              <strong style="color:var(--ink-0);font-size:15px">โนเบิล</strong><br>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fire-3)">NOBLE</span>
+            </td>
+            <td><span class="tag tag-warn">~11B THB</span></td>
+            <td><span style="font-family:'JetBrains Mono',monospace;color:var(--warn);font-size:13px">~1.3B THB</span></td>
+            <td class="hi-col">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--fire-3)">27</span>
+            </td>
+            <td>
+              <span class="tag tag-blue">คอนโด</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="rank-num">10</td>
+            <td>
+              <strong style="color:var(--ink-0);font-size:15px">ควอลิตี้เฮ้าส์</strong><br>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fire-3)">QH</span>
+            </td>
+            <td><span class="tag tag-warn">~10B THB</span></td>
+            <td><span style="font-family:'JetBrains Mono',monospace;color:var(--warn);font-size:13px">~1.5B THB</span></td>
+            <td class="hi-col">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--fire-3)">44</span>
+            </td>
+            <td>
+              <span class="tag tag-blue">คอนโด</span>
+              <span class="tag tag-warn" style="margin-left:4px">บ้านเดี่ยว</span>
+              <span class="tag tag-danger" style="margin-left:4px">บ้านแฝด</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight-box">
+      <strong>หมายเหตุ:</strong> จำนวน "โครงการใน SCC" นับจาก home.co.th + reviews รวม Thai+EN names. รายได้/กำไรประมาณการจาก SET filings H1 2024 (annualized). <strong>แสนสิริ</strong> และ <strong>เอพี</strong> ครองตำแหน่ง 1-2 ทั้งในแง่รายได้และจำนวนโครงการใน SCC โดยแสนสิริมีโครงการในฐานข้อมูลมากที่สุดถึง 2,382 โครงการ
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SECTION 3: SCC DATA LANDSCAPE                          -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="block" id="scc-data">
+  <div class="wrap">
+    <div class="eyebrow">§ 03 — SCC DATABASE LANDSCAPE</div>
+    <h2>ข้อมูลจาก<span class="hl">SCC Database</span></h2>
+    <p class="section-intro">
+      SCC (Scraper Command Center) รวบรวมข้อมูลอสังหาริมทรัพย์จาก 28 แหล่งข้อมูล แบ่งเป็นสองกลุ่มหลัก: โครงการ Developer และ NPA Bank Listings
+    </p>
+
+    <!-- Developer Projects Summary -->
+    <div style="margin-bottom:32px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-3);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:16px">Developer Projects (home.co.th enriched)</div>
+      <div class="mp-stats">
+        <div class="mp-stat">
+          <div class="mp-stat-phase">โครงการทั้งหมด</div>
+          <div class="mp-stat-num">6,760</div>
+          <div class="mp-stat-label">home.co.th enriched</div>
+        </div>
+        <div class="mp-stat">
+          <div class="mp-stat-phase">Developer</div>
+          <div class="mp-stat-num">39</div>
+          <div class="mp-stat-label">รายที่ระบุได้</div>
+        </div>
+        <div class="mp-stat">
+          <div class="mp-stat-phase">คอนโด</div>
+          <div class="mp-stat-num">2,103</div>
+          <div class="mp-stat-label">โครงการ</div>
+        </div>
+        <div class="mp-stat">
+          <div class="mp-stat-phase">บ้านเดี่ยว</div>
+          <div class="mp-stat-num">296</div>
+          <div class="mp-stat-label">โครงการ</div>
+        </div>
+        <div class="mp-stat">
+          <div class="mp-stat-phase">ทาวน์โฮม</div>
+          <div class="mp-stat-num">179</div>
+          <div class="mp-stat-label">โครงการ</div>
+        </div>
+        <div class="mp-stat">
+          <div class="mp-stat-phase">บ้านแฝด</div>
+          <div class="mp-stat-num">123</div>
+          <div class="mp-stat-label">โครงการ</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NPA Bank Listings -->
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-3);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:16px">NPA Bank Listings — 99,112 ทรัพย์สินจาก 11 สถาบันการเงิน</div>
+
+    <div class="bank-grid">
+      <div class="bank-card">
+        <div class="bank-name">GHB</div>
+        <div class="bank-count">25,163</div>
+        <div class="bank-label">ธนาคารอาคารสงเคราะห์</div>
+      </div>
+      <div class="bank-card">
+        <div class="bank-name">LivingInsider</div>
+        <div class="bank-count">20,775</div>
+        <div class="bank-label">Property Portal</div>
+      </div>
+      <div class="bank-card">
+        <div class="bank-name">BAM</div>
+        <div class="bank-count">15,891</div>
+        <div class="bank-label">บริษัทบริหารสินทรัพย์</div>
+      </div>
+      <div class="bank-card">
+        <div class="bank-name">KBank</div>
+        <div class="bank-count">14,303</div>
+        <div class="bank-label">ธนาคารกสิกรไทย</div>
+      </div>
+      <div class="bank-card">
+        <div class="bank-name">GSB</div>
+        <div class="bank-count">6,135</div>
+        <div class="bank-label">ธนาคารออมสิน</div>
+      </div>
+      <div class="bank-card">
+        <div class="bank-name">SAM</div>
+        <div class="bank-count">4,874</div>
+        <div class="bank-label">บริษัทบริหารสินทรัพย์สุขุมวิท</div>
+      </div>
+      <div class="bank-card">
+        <div class="bank-name">SCB</div>
+        <div class="bank-count">3,845</div>
+        <div class="bank-label">ธนาคารไทยพาณิชย์</div>
+      </div>
+      <div class="bank-card">
+        <div class="bank-name">Krungthai</div>
+        <div class="bank-count">2,957</div>
+        <div class="bank-label">ธนาคารกรุงไทย</div>
+      </div>
+      <div class="bank-card">
+        <div class="bank-name">KKPFG</div>
+        <div class="bank-count">1,791</div>
+        <div class="bank-label">กลุ่มธุรกิจ KKP</div>
+      </div>
+      <div class="bank-card">
+        <div class="bank-name">Krungsri</div>
+        <div class="bank-count">1,723</div>
+        <div class="bank-label">ธนาคารกรุงศรีอยุธยา</div>
+      </div>
+      <div class="bank-card">
+        <div class="bank-name">SWPAMC</div>
+        <div class="bank-count">1,655</div>
+        <div class="bank-label">บริษัทบริหารสินทรัพย์</div>
+      </div>
+    </div>
+
+    <div class="insight-box" style="margin-top:28px">
+      <strong>ข้อสังเกตสำคัญ:</strong> NPA listings 99,112 รายการคือภาพสะท้อนของหนี้ที่ไม่ก่อให้เกิดรายได้ (NPL) ในระบบธนาคาร ทรัพย์สินเหล่านี้ส่วนใหญ่เป็นบ้านและคอนโดที่ถูกยึดจากการผิดชำระหนี้ ทำให้ตลาดบ้านมือสองมีซัพพลายเพิ่มขึ้นมาก เป็นปัจจัยกดดันราคาในตลาดทั่วไปแต่เป็นโอกาสสำหรับนักลงทุนที่มองหาราคาต่ำกว่าตลาด
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SECTION 4: MARKET SHARE VISUALIZATION                  -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="block" id="market-share">
+  <div class="wrap">
+    <div class="eyebrow">§ 04 — MARKET SHARE</div>
+    <h2>สัดส่วน<span class="hl">โครงการในตลาด</span></h2>
+    <p class="section-intro">
+      วัดจากจำนวนโครงการใน SCC Database — แสนสิริครองอันดับหนึ่งด้วยสัดส่วน 35.2% ของโครงการทั้งหมดในฐานข้อมูล
+    </p>
+
+    <div class="bar-chart">
+      <div class="bar-row">
+        <div class="bar-label">แสนสิริ (SIRI)</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:35.2%"></div>
+        </div>
+        <div class="bar-pct">35.2%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">เอพี ไทยแลนด์ (AP)</div>
+        <div class="bar-track">
+          <div class="bar-fill alt" style="width:26.6%"></div>
+        </div>
+        <div class="bar-pct">26.6%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">แลนด์ แอนด์ เฮ้าส์ (LH)</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:3.4%"></div>
+        </div>
+        <div class="bar-pct">3.4%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">พฤกษา (PSH)</div>
+        <div class="bar-track">
+          <div class="bar-fill alt" style="width:4.2%"></div>
+        </div>
+        <div class="bar-pct">4.2%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">ศุภาลัย (SPALI)</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:2.3%"></div>
+        </div>
+        <div class="bar-pct">2.3%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">อื่นๆ (35+ Developer)</div>
+        <div class="bar-track">
+          <div class="bar-fill small" style="width:28.3%"></div>
+        </div>
+        <div class="bar-pct">28.3%</div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <strong>การกระจุกตัว:</strong> แสนสิริและเอพีรวมกันครอง 61.8% ของโครงการทั้งหมดใน SCC Database แสดงถึงการกระจุกตัวสูงในตลาดส่วนบนสุด ขณะที่ 35+ Developer ที่เหลือแบ่งกัน 28.3% ซึ่งสอดคล้องกับภาพ Top 10 ครอง 63% ของมูลค่าตลาดรวม
+    </div>
+
+    <!-- Additional Market Stats -->
+    <div class="mp-stats" style="margin-top:28px">
+      <div class="mp-stat">
+        <div class="mp-stat-phase">แสนสิริ + เอพี</div>
+        <div class="mp-stat-num">61.8%</div>
+        <div class="mp-stat-label">สัดส่วนโครงการรวมกัน</div>
+      </div>
+      <div class="mp-stat">
+        <div class="mp-stat-phase">Top 5 รวม</div>
+        <div class="mp-stat-num">71.7%</div>
+        <div class="mp-stat-label">ของโครงการทั้งหมด</div>
+      </div>
+      <div class="mp-stat">
+        <div class="mp-stat-phase">Developer อื่นๆ</div>
+        <div class="mp-stat-num">35+</div>
+        <div class="mp-stat-label">รายใน SCC Database</div>
+      </div>
+      <div class="mp-stat">
+        <div class="mp-stat-phase">HHI Index</div>
+        <div class="mp-stat-num">สูง</div>
+        <div class="mp-stat-label">ตลาดกระจุกตัว</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SECTION 5: GEOGRAPHIC DISTRIBUTION                     -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="block" id="geo">
+  <div class="wrap">
+    <div class="eyebrow">§ 05 — GEOGRAPHIC DISTRIBUTION</div>
+    <h2>การกระจาย<span class="hl">ตามพื้นที่</span></h2>
+    <p class="section-intro">
+      กรุงเทพมหานครยังคงครองตำแหน่งศูนย์กลาง — ทั้งโครงการใหม่และ NPA listings กระจุกตัวใน กทม. และปริมณฑล
+    </p>
+
+    <div class="geo-grid">
+      <!-- Developer Projects by Province -->
+      <div class="geo-panel">
+        <div class="geo-panel-head">โครงการ Developer — จังหวัดหลัก (home.co.th)</div>
+        <div class="geo-row">
+          <div class="geo-province">กรุงเทพมหานคร</div>
+          <div class="geo-count">1,838 โครงการ</div>
+        </div>
+        <div class="geo-row">
+          <div class="geo-province">นนทบุรี</div>
+          <div class="geo-count">67 โครงการ</div>
+        </div>
+        <div class="geo-row">
+          <div class="geo-province">ชลบุรี</div>
+          <div class="geo-count">49 โครงการ</div>
+        </div>
+        <div class="geo-row">
+          <div class="geo-province">ภูเก็ต</div>
+          <div class="geo-count">37 โครงการ</div>
+        </div>
+        <div class="geo-row">
+          <div class="geo-province">ปทุมธานี</div>
+          <div class="geo-count">36 โครงการ</div>
+        </div>
+        <div class="geo-row" style="background:var(--glass);border-top:1px solid var(--line-hot)">
+          <div class="geo-province" style="color:var(--ink-3);font-size:12px">จังหวัดอื่นๆ</div>
+          <div class="geo-count" style="color:var(--ink-3)">4,733 โครงการ</div>
+        </div>
+      </div>
+
+      <!-- NPA by Province -->
+      <div class="geo-panel">
+        <div class="geo-panel-head">NPA Bank Listings — จังหวัดหลัก</div>
+        <div class="geo-row">
+          <div class="geo-province">กรุงเทพมหานคร</div>
+          <div class="geo-count">708 รายการ</div>
+        </div>
+        <div class="geo-row">
+          <div class="geo-province">ปทุมธานี</div>
+          <div class="geo-count">134 รายการ</div>
+        </div>
+        <div class="geo-row">
+          <div class="geo-province">สมุทรปราการ</div>
+          <div class="geo-count">94 รายการ</div>
+        </div>
+        <div class="geo-row">
+          <div class="geo-province">นนทบุรี</div>
+          <div class="geo-count">86 รายการ</div>
+        </div>
+        <div class="geo-row">
+          <div class="geo-province">ชลบุรี</div>
+          <div class="geo-count">44 รายการ</div>
+        </div>
+        <div class="geo-row" style="background:var(--glass);border-top:1px solid var(--line-hot)">
+          <div class="geo-province" style="color:var(--ink-3);font-size:12px">จังหวัดอื่นๆ</div>
+          <div class="geo-count" style="color:var(--ink-3)">97,046 รายการ</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <strong>ข้อสังเกตเชิงพื้นที่:</strong> กรุงเทพฯ ครองถึง 27.2% ของโครงการ Developer ทั้งหมด (1,838 จาก 6,760) สะท้อนการกระจุกตัวของดีมานด์ในเมืองหลวง ขณะที่ภูเก็ตและชลบุรีเป็น 2 จังหวัดนอก กทม. ที่มีโครงการมากสุด ซึ่งสอดคล้องกับดีมานด์จากนักท่องเที่ยวและผู้ซื้อต่างชาติ
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SECTION 6: PROPERTY TYPE ANALYSIS                      -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="block" id="types">
+  <div class="wrap">
+    <div class="eyebrow">§ 06 — PROPERTY TYPE ANALYSIS</div>
+    <h2>วิเคราะห์<span class="hl">ประเภทอสังหาริมทรัพย์</span></h2>
+    <p class="section-intro">
+      คอนโดมิเนียมครองสัดส่วนใหญ่ที่สุดใน SCC Database สะท้อนทิศทางตลาดที่มุ่งสู่ที่อยู่อาศัยแนวสูงในเมือง
+    </p>
+
+    <div class="bar-chart">
+      <div class="bar-row">
+        <div class="bar-label">คอนโด</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:64%"></div>
+        </div>
+        <div class="bar-pct">64% (2,103)</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">บ้านเดี่ยว</div>
+        <div class="bar-track">
+          <div class="bar-fill alt" style="width:9%"></div>
+        </div>
+        <div class="bar-pct">9% (296)</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">รวมโครงการ</div>
+        <div class="bar-track">
+          <div class="bar-fill alt" style="width:9%"></div>
+        </div>
+        <div class="bar-pct">9% (296)</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">ทาวน์โฮม</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:5.5%"></div>
+        </div>
+        <div class="bar-pct">5.5% (179)</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">รีวิว</div>
+        <div class="bar-track">
+          <div class="bar-fill small" style="width:4.6%"></div>
+        </div>
+        <div class="bar-pct">4.6% (150)</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">บ้านแฝด</div>
+        <div class="bar-track">
+          <div class="bar-fill small" style="width:3.8%"></div>
+        </div>
+        <div class="bar-pct">3.8% (123)</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">บทความ</div>
+        <div class="bar-track">
+          <div class="bar-fill small" style="width:2.9%"></div>
+        </div>
+        <div class="bar-pct">2.9% (93)</div>
+      </div>
+    </div>
+
+    <!-- Type breakdown cards -->
+    <div class="comp-grid" style="margin-top:32px">
+      <div class="comp-card highlight">
+        <div class="comp-name" style="color:var(--fire-3)">คอนโดมิเนียม</div>
+        <div class="comp-origin">CONDOMINIUM · 64%</div>
+        <div class="comp-desc">
+          ประเภทที่ได้รับความนิยมสูงสุด เหมาะกับทั้งลูกค้าในเมืองและนักลงทุนต่างชาติ ตลาดหรูยังมีดีมานด์แข็งแกร่ง
+        </div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-name">บ้านเดี่ยว</div>
+        <div class="comp-origin">SINGLE HOUSE · 9%</div>
+        <div class="comp-desc">
+          ตลาดได้รับผลกระทบหนักจากการปฏิเสธสินเชื่อ โดยเฉพาะในช่วงราคา 3-7 ล้านบาท ดีมานด์ชะลอตัวมาก
+        </div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-name">ทาวน์โฮม</div>
+        <div class="comp-origin">TOWNHOME · 5.5%</div>
+        <div class="comp-desc">
+          ทาวน์โฮมราคาประหยัดยังคงมีดีมานด์จากครอบครัวรุ่นใหม่ แต่ได้รับผลกระทบจากความเข้มงวดของสินเชื่อเช่นกัน
+        </div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-name">บ้านแฝด</div>
+        <div class="comp-origin">SEMI-DETACHED · 3.8%</div>
+        <div class="comp-desc">
+          ตลาดเฉพาะกลุ่ม ราคาต่ำกว่าบ้านเดี่ยวแต่ยังคงถูกกระทบจากปัญหาสินเชื่อในระดับเดียวกัน
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SECTION 7: PRICE ANALYSIS                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="block" id="price">
+  <div class="wrap">
+    <div class="eyebrow">§ 07 — PRICE ANALYSIS</div>
+    <h2>วิเคราะห์<span class="hl">ช่วงราคา</span>แต่ละ Developer</h2>
+    <p class="section-intro">
+      ช่วงราคาสะท้อนกลยุทธ์ตลาดของแต่ละ Developer — บางรายมุ่งเน้นตลาดระดับกลาง บางรายครอบคลุมทุกช่วงราคา
+    </p>
+
+    <div class="scenario-wrap">
+      <table class="scenario-table">
+        <thead>
+          <tr>
+            <th>Developer</th>
+            <th>ราคาต่ำสุด</th>
+            <th>ราคาสูงสุด</th>
+            <th>กลุ่มเป้าหมายหลัก</th>
+            <th>ลักษณะเด่น</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>แสนสิริ (SIRI)</td>
+            <td>
+              <span style="font-family:'JetBrains Mono',monospace;color:var(--ok)">1M THB</span>
+            </td>
+            <td>
+              <span style="font-family:'JetBrains Mono',monospace;color:var(--fire-3)">600M THB</span>
+            </td>
+            <td>ระดับกลาง-หรู</td>
+            <td>
+              <span class="tag tag-fire">Luxury Focus</span>
+              <span class="tag tag-ok" style="margin-left:4px">Wide Range</span>
+            </td>
+          </tr>
+          <tr>
+            <td>เอพี ไทยแลนด์ (AP)</td>
+            <td>
+              <span style="font-family:'JetBrains Mono',monospace;color:var(--ok)">0.1M THB</span>
+            </td>
+            <td>
+              <span style="font-family:'JetBrains Mono',monospace;color:var(--fire-3)">600M THB</span>
+            </td>
+            <td>ทุกระดับ</td>
+            <td>
+              <span class="tag tag-fire">Widest Reach</span>
+              <span class="tag tag-blue" style="margin-left:4px">All Segments</span>
+            </td>
+          </tr>
+          <tr>
+            <td>พฤกษา (PSH)</td>
+            <td>
+              <span style="font-family:'JetBrains Mono',monospace;color:var(--ok)">1M THB</span>
+            </td>
+            <td>
+              <span style="font-family:'JetBrains Mono',monospace;color:var(--fire-3)">700M THB</span>
+            </td>
+            <td>ทุกระดับ</td>
+            <td>
+              <span class="tag tag-warn">Highest Ceiling</span>
+            </td>
+          </tr>
+          <tr>
+            <td>ศุภาลัย (SPALI)</td>
+            <td>
+              <span style="font-family:'JetBrains Mono',monospace;color:var(--ok)">1M THB</span>
+            </td>
+            <td>
+              <span style="font-family:'JetBrains Mono',monospace;color:var(--warn)">20M THB</span>
+            </td>
+            <td>ระดับล่าง-กลาง</td>
+            <td>
+              <span class="tag tag-ok">Affordable Focus</span>
+            </td>
+          </tr>
+          <tr>
+            <td>แลนด์ แอนด์ เฮ้าส์ (LH)</td>
+            <td>
+              <span style="font-family:'JetBrains Mono',monospace;color:var(--ok)">1.5M THB</span>
+            </td>
+            <td>
+              <span style="font-family:'JetBrains Mono',monospace;color:var(--fire-3)">500M THB</span>
+            </td>
+            <td>ระดับกลาง-หรู</td>
+            <td>
+              <span class="tag tag-fire">Premium</span>
+              <span class="tag tag-warn" style="margin-left:4px">Selective</span>
+            </td>
+          </tr>
+          <tr>
+            <td>อนันดา (ANAN)</td>
+            <td>
+              <span style="font-family:'JetBrains Mono',monospace;color:var(--ok)">2M THB</span>
+            </td>
+            <td>
+              <span style="font-family:'JetBrains Mono',monospace;color:var(--fire-3)">300M THB</span>
+            </td>
+            <td>ระดับกลาง-สูง</td>
+            <td>
+              <span class="tag tag-blue">Urban Condo</span>
+            </td>
+          </tr>
+          <tr>
+            <td>ออริจิ้น (ORI)</td>
+            <td>
+              <span style="font-family:'JetBrains Mono',monospace;color:var(--ok)">1.5M THB</span>
+            </td>
+            <td>
+              <span style="font-family:'JetBrains Mono',monospace;color:var(--fire-3)">200M THB</span>
+            </td>
+            <td>ระดับกลาง</td>
+            <td>
+              <span class="tag tag-blue">Condo Only</span>
+            </td>
+          </tr>
+          <tr>
+            <td>โนเบิล (NOBLE)</td>
+            <td>
+              <span style="font-family:'JetBrains Mono',monospace;color:var(--warn)">3M THB</span>
+            </td>
+            <td>
+              <span style="font-family:'JetBrains Mono',monospace;color:var(--fire-3)">400M THB</span>
+            </td>
+            <td>ระดับสูง-หรู</td>
+            <td>
+              <span class="tag tag-fire">Ultra Premium</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight-box">
+      <strong>การแบ่งตลาดเชิงราคา:</strong> ตลาดแบ่งเป็น 3 ช่วงชัดเจน — <strong>ราคาต่ำกว่า 3M</strong> (ปัญหาสินเชื่อสูง อัตราปฏิเสธ 70%), <strong>3M-7M</strong> (ได้ประโยชน์จากมาตรการรัฐ ค่าโอน 0.01%), และ <strong>เกิน 7M</strong> (ตลาดหรู ยังแข็งแกร่ง). คอนโดใจกลางเมืองคาดแตะ 315,000 บาท/ตร.ม. สิ้นปี 2025 และเพิ่ม 15% ในปี 2026
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SECTION 8: MARKET OUTLOOK 2026                         -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="block" id="outlook">
+  <div class="wrap">
+    <div class="eyebrow">§ 08 — MARKET OUTLOOK 2026</div>
+    <h2>แนวโน้ม<span class="hl">ตลาด 2026</span></h2>
+    <p class="section-intro">
+      6 ปัจจัยสำคัญที่จะกำหนดทิศทางตลาดอสังหาริมทรัพย์ไทยในปี 2026 — ทั้งความเสี่ยงและโอกาส
+    </p>
+
+    <div class="pillars-grid">
+      <div class="pillar-card" style="border-color:rgba(248,113,113,0.3);background:linear-gradient(145deg,rgba(248,113,113,0.06),var(--bg-1))">
+        <span class="pillar-icon">📉</span>
+        <div class="pillar-name danger">ตลาดซบเซาหนักที่สุด 30 ปี</div>
+        <p class="pillar-desc">
+          ยอดขายบ้านใหม่ลด 49% — ซบเซาที่สุดในรอบ 3 ทศวรรษ สาเหตุหลักมาจากหนี้ครัวเรือนสูง อัตราดอกเบี้ยยังไม่ลดพอ และมาตรฐานสินเชื่อที่เข้มงวดขึ้น ผู้พัฒนาต้องปรับลดราคาและเพิ่มโปรโมชันเพื่อระบายสต็อก
+        </p>
+      </div>
+
+      <div class="pillar-card" style="border-color:rgba(74,222,128,0.25);background:linear-gradient(145deg,rgba(74,222,128,0.05),var(--bg-1))">
+        <span class="pillar-icon">💎</span>
+        <div class="pillar-name ok">คอนโดหรูยังแข็งแกร่ง</div>
+        <p class="pillar-desc">
+          อัตราขาย 93% ในเซกเมนต์ Luxury และ Super-luxury ขับเคลื่อนโดยผู้ซื้อต่างชาติ โดยเฉพาะชาวจีนที่มองหาสินทรัพย์ปลอดภัยนอกประเทศ โครงการหรูในทำเล Prime ยังมีดีมานด์ต่อเนื่อง
+        </p>
+      </div>
+
+      <div class="pillar-card" style="border-color:rgba(251,191,36,0.25);background:linear-gradient(145deg,rgba(251,191,36,0.05),var(--bg-1))">
+        <span class="pillar-icon">🏛️</span>
+        <div class="pillar-name warn">มาตรการรัฐช่วยพยุง</div>
+        <p class="pillar-desc">
+          ลดค่าโอนและค่าจดจำนองเหลือ 0.01% สำหรับบ้านราคาไม่เกิน 7 ล้านบาท มีผลถึงมิถุนายน 2569 คาดกระตุ้นยอดโอนในช่วง Q1-Q2/2569 ก่อนหมดอายุมาตรการ
+        </p>
+      </div>
+
+      <div class="pillar-card" style="border-color:rgba(99,156,255,0.25);background:linear-gradient(145deg,rgba(99,156,255,0.05),var(--bg-1))">
+        <span class="pillar-icon">🗺️</span>
+        <div class="pillar-name blue">4 โซน Real Demand สูง</div>
+        <p class="pillar-desc">
+          ภูเก็ต (tourism + expat), สุราษฎร์ธานี (เกาะสมุย), ประจวบคีรีขันธ์ (หัวหิน), นครราชสีมา (gateway เมืองรอง) — ทั้ง 4 โซนมีดีมานด์จริงจากทั้งคนในพื้นที่และนักลงทุน
+        </p>
+      </div>
+
+      <div class="pillar-card" style="border-color:rgba(255,165,64,0.3);background:linear-gradient(145deg,rgba(255,165,64,0.06),var(--bg-1))">
+        <span class="pillar-icon">🏚️</span>
+        <div class="pillar-name fire">บ้านมือสองและ NPA พุ่ง</div>
+        <p class="pillar-desc">
+          NPA 99,112 รายการจาก 11 สถาบันการเงินสร้างซัพพลายบ้านมือสองจำนวนมาก กดดันราคาในตลาดทั่วไป แต่เปิดโอกาสสำหรับนักลงทุนที่ต้องการราคาต่ำกว่าตลาด 20-40%
+        </p>
+      </div>
+
+      <div class="pillar-card" style="border-color:rgba(255,61,0,0.3);background:linear-gradient(145deg,rgba(255,61,0,0.08),var(--bg-1))">
+        <span class="pillar-icon">💰</span>
+        <div class="pillar-name fire">ราคาคอนโดใจกลางเมืองพุ่ง</div>
+        <p class="pillar-desc">
+          คาดราคาคอนโดใจกลาง กทม. แตะ 315,000 บาท/ตร.ม. สิ้นปี 2025 และเพิ่มขึ้นอีก 15% ในปี 2026 สวนทางกับตลาดทั่วไปที่ซบเซา — ความแตกต่างระหว่างเซกเมนต์ยิ่งชัดเจนขึ้น
+        </p>
+      </div>
+    </div>
+
+    <!-- Outlook Table -->
+    <div class="scenario-wrap" style="margin-top:32px">
+      <table class="scenario-table">
+        <thead>
+          <tr>
+            <th>เซกเมนต์</th>
+            <th>สถานการณ์ปัจจุบัน</th>
+            <th>แนวโน้ม 2026</th>
+            <th>ความเสี่ยง</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>คอนโดหรู (7M+)</td>
+            <td>แข็งแกร่ง อัตราขาย 93%</td>
+            <td><span class="tag tag-ok">เติบโตต่อ +15%</span></td>
+            <td>นโยบาย foreign quota</td>
+          </tr>
+          <tr>
+            <td>บ้านระดับกลาง (3-7M)</td>
+            <td>ได้ประโยชน์มาตรการรัฐ</td>
+            <td><span class="tag tag-warn">ทรงตัว ±5%</span></td>
+            <td>มาตรการหมดอายุ มิ.ย. 2569</td>
+          </tr>
+          <tr>
+            <td>บ้านราคาต่ำ (&lt;3M)</td>
+            <td>ซบเซา ปฏิเสธสินเชื่อ 70%</td>
+            <td><span class="tag tag-danger">ลดลง -10 ถึง -20%</span></td>
+            <td>หนี้ครัวเรือน, ดอกเบี้ย</td>
+          </tr>
+          <tr>
+            <td>NPA / บ้านมือสอง</td>
+            <td>ซัพพลายพุ่ง 99,112 รายการ</td>
+            <td><span class="tag tag-warn">โอกาสนักลงทุน</span></td>
+            <td>ราคากด developer ใหม่</td>
+          </tr>
+          <tr>
+            <td>ภูมิภาค (ภูเก็ต/หัวหิน)</td>
+            <td>ดีมานด์ท่องเที่ยวแข็งแกร่ง</td>
+            <td><span class="tag tag-ok">เติบโต +8 ถึง +12%</span></td>
+            <td>ความไม่แน่นอนท่องเที่ยว</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SECTION 9: DATA SOURCES                                -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="block" id="sources">
+  <div class="wrap">
+    <div class="eyebrow">§ 09 — DATA SOURCES</div>
+    <h2>แหล่งข้อมูล<span class="hl">28 แหล่ง</span></h2>
+    <p class="section-intro">
+      SCC Database รวบรวมและ normalize ข้อมูลจาก 28 แหล่งข้อมูลต่างๆ ครอบคลุมทั้ง Developer projects, NPA listings, ข้อมูลการเงิน และรายงานตลาด
+    </p>
+
+    <div class="sources-grid">
+      <!-- SCC Internal -->
+      <div class="source-card">
+        <div class="source-card-head">
+          🗄️ SCC Database (Internal)
+        </div>
+        <ul class="source-list">
+          <li>
+            <span>home.co.th scraper</span>
+            <span class="source-count">6,760 โครงการ</span>
+          </li>
+          <li>
+            <span>GHB (ธอส.)</span>
+            <span class="source-count">25,163</span>
+          </li>
+          <li>
+            <span>LivingInsider</span>
+            <span class="source-count">20,775</span>
+          </li>
+          <li>
+            <span>BAM</span>
+            <span class="source-count">15,891</span>
+          </li>
+          <li>
+            <span>KBank (กสิกร)</span>
+            <span class="source-count">14,303</span>
+          </li>
+          <li>
+            <span>GSB (ออมสิน)</span>
+            <span class="source-count">6,135</span>
+          </li>
+          <li>
+            <span>SAM</span>
+            <span class="source-count">4,874</span>
+          </li>
+          <li>
+            <span>SCB (ไทยพาณิชย์)</span>
+            <span class="source-count">3,845</span>
+          </li>
+          <li>
+            <span>Krungthai (กรุงไทย)</span>
+            <span class="source-count">2,957</span>
+          </li>
+          <li>
+            <span>KKPFG</span>
+            <span class="source-count">1,791</span>
+          </li>
+          <li>
+            <span>Krungsri (กรุงศรี)</span>
+            <span class="source-count">1,723</span>
+          </li>
+          <li>
+            <span>SWPAMC</span>
+            <span class="source-count">1,655</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Market Research -->
+      <div class="source-card">
+        <div class="source-card-head">
+          📊 ข้อมูลวิจัยตลาด
+        </div>
+        <ul class="source-list">
+          <li><span>ThinkOfLiving</span><span class="source-count">รายงานตลาด</span></li>
+          <li><span>TerraBKK</span><span class="source-count">ดัชนีราคา</span></li>
+          <li><span>ReviewYourLiving</span><span class="source-count">รีวิวโครงการ</span></li>
+          <li><span>PropertyScout</span><span class="source-count">ข้อมูลราคา</span></li>
+          <li><span>DDProperty</span><span class="source-count">listings portal</span></li>
+          <li><span>AREA.co.th</span><span class="source-count">สมาคมอสังหาฯ</span></li>
+        </ul>
+      </div>
+
+      <!-- RSS Feeds -->
+      <div class="source-card">
+        <div class="source-card-head">
+          📡 RSS Feeds — News & Blogs
+        </div>
+        <ul class="source-list">
+          <li><span>Sansiri Blog</span><span class="source-count">official</span></li>
+          <li><span>HomeDD</span><span class="source-count">property news</span></li>
+          <li><span>Banidea</span><span class="source-count">design+property</span></li>
+          <li><span>PropertyToday</span><span class="source-count">news feed</span></li>
+          <li><span>ReviewYourLiving Blog</span><span class="source-count">rss</span></li>
+          <li><span>TerraBKK Blog</span><span class="source-count">market insight</span></li>
+        </ul>
+      </div>
+
+      <!-- Financial & Reports -->
+      <div class="source-card">
+        <div class="source-card-head">
+          💹 ข้อมูลการเงินและรายงานระดับโลก
+        </div>
+        <ul class="source-list">
+          <li><span>SET Filings</span><span class="source-count">H1 2024</span></li>
+          <li><span>Statista</span><span class="source-count">market size</span></li>
+          <li><span>Cushman &amp; Wakefield</span><span class="source-count">Q4 2024</span></li>
+          <li><span>CBRE Thailand</span><span class="source-count">annual report</span></li>
+          <li><span>Savills Thailand</span><span class="source-count">luxury segment</span></li>
+          <li><span>Mordor Intelligence</span><span class="source-count">forecast</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <strong>ความครอบคลุมของข้อมูล:</strong> SCC Database ครอบคลุม 105,872 records ณ เดือนพฤษภาคม 2569 โดยรวม home.co.th (Developer projects enriched), NPA listings จาก 11 สถาบันการเงิน, portal อสังหาฯ ชั้นนำ 5 แห่ง, RSS feeds 6 สำนัก, และรายงานการเงินจากทั้ง SET Filings และบริษัทวิจัยระดับโลก 4 แห่ง ทำให้ได้ภาพตลาดที่ครอบคลุมที่สุดในไทย
+    </div>
+
+    <!-- Data Freshness -->
+    <div class="mp-stats" style="margin-top:28px">
+      <div class="mp-stat">
+        <div class="mp-stat-phase">อัปเดตล่าสุด</div>
+        <div class="mp-stat-num" style="font-size:18px">พ.ค. 2569</div>
+        <div class="mp-stat-label">May 2026</div>
+      </div>
+      <div class="mp-stat">
+        <div class="mp-stat-phase">รวมทั้งหมด</div>
+        <div class="mp-stat-num">105,872</div>
+        <div class="mp-stat-label">records ใน SCC</div>
+      </div>
+      <div class="mp-stat">
+        <div class="mp-stat-phase">แหล่งข้อมูล</div>
+        <div class="mp-stat-num">28</div>
+        <div class="mp-stat-label">sources</div>
+      </div>
+      <div class="mp-stat">
+        <div class="mp-stat-phase">Update ถัดไป</div>
+        <div class="mp-stat-num" style="font-size:18px">มิ.ย. 2569</div>
+        <div class="mp-stat-label">Quarterly refresh</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- FOOTER                                                  -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-flame">🔥</div>
+    <div class="footer-sig">Powered by Boom Oracle — SCC (Scraper Command Center)</div>
+    <div style="font-size:13px;color:var(--ink-3);margin-top:8px">
+      Data as of May 2026 · 105,872 records · 28 แหล่งข้อมูล
+    </div>
+    <div style="font-size:11px;color:var(--ink-4);margin-top:16px;font-family:'JetBrains Mono',monospace;letter-spacing:0.1em">
+      Thai Developer Landscape 2026 · Market Intelligence Report · ภูมิทัศน์อสังหาริมทรัพย์ไทย
+    </div>
+    <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--line);font-size:11px;color:var(--ink-4);line-height:1.8">
+      รายงานนี้จัดทำโดย Boom Oracle เพื่อวัตถุประสงค์ในการวิจัยตลาดเท่านั้น<br>
+      ข้อมูลรายได้/กำไรเป็นการประมาณการจาก SET filings — ไม่ใช่ข้อมูลอย่างเป็นทางการ<br>
+      Oracle Never Pretends to Be Human — Transparency Always (Rule 6)
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
