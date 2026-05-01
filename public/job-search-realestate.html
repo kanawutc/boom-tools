@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<script src="auth.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>หางานเซลล์ขายบ้าน สมุทรปราการ 2026 — Boom Oracle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-0: #0a0608;
+    --bg-1: #110e0c;
+    --bg-2: #18140f;
+    --bg-3: #201b15;
+    --bg-4: #2c241c;
+    --fire-1: #ff3d00;
+    --fire-2: #ff6b1a;
+    --fire-3: #ffa540;
+    --fire-4: #ffd280;
+    --ember: #cc2200;
+    --gold: #d4a843;
+    --ink-0: #f5f0eb;
+    --ink-1: #d6cdc4;
+    --ink-2: #a89a8c;
+    --ink-3: #7a6e62;
+    --ink-4: #5a4d42;
+    --ok: #4ade80;
+    --danger: #f87171;
+    --warn: #fbbf24;
+    --line: rgba(255,165,64,0.1);
+    --line-hot: rgba(255,165,64,0.25);
+    --glass: rgba(255,165,64,0.03);
+    --glass-hot: rgba(255,165,64,0.06);
+    --shadow-fire: 0 4px 24px rgba(255,61,0,0.12);
+    --shadow-deep: 0 8px 48px rgba(0,0,0,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', 'Noto Sans Thai', -apple-system, sans-serif;
+    background: var(--bg-0);
+    background-image:
+      radial-gradient(ellipse at 20% 0, rgba(255,61,0,0.07), transparent 60%),
+      radial-gradient(ellipse at 80% 100%, rgba(204,34,0,0.05), transparent 55%);
+    color: var(--ink-1);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,165,64,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,165,64,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+    mask-image: radial-gradient(circle at center, black, transparent 80%);
+  }
+  .wrap { position: relative; z-index: 1; max-width: 1320px; margin: 0 auto; padding: 0 28px; }
+
+  /* ── HEADER / HERO ── */
+  header.hero { padding-top: 48px; padding-bottom: 48px; }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--fire-3);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding: 7px 14px;
+    border: 1px solid var(--line-hot);
+    border-radius: 999px;
+    background: var(--glass-hot);
+  }
+  .brand .flame { animation: flicker 2.4s ease-in-out infinite; display: inline-block; }
+  @keyframes flicker {
+    0%, 100% { transform: scale(1) rotate(-2deg); opacity: 1; }
+    50% { transform: scale(1.1) rotate(2deg); opacity: 0.8; }
+  }
+  nav.topnav {
+    margin-bottom: 28px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  nav.topnav a {
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  nav.topnav a.active {
+    background: var(--glass-hot);
+    border: 1px solid var(--line-hot);
+    color: var(--fire-3);
+  }
+  nav.topnav a:not(.active) {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    color: var(--ink-2);
+  }
+  nav.topnav a:not(.active):hover {
+    border-color: var(--line-hot);
+    color: var(--fire-3);
+  }
+
+  h1 {
+    font-size: clamp(38px, 6vw, 80px);
+    font-weight: 900;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--fire-4) 0%, var(--fire-3) 40%, var(--fire-2) 70%, var(--fire-1) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .subtitle {
+    font-size: 18px;
+    color: var(--ink-2);
+    max-width: 720px;
+    margin-bottom: 40px;
+    line-height: 1.7;
+  }
+
+  /* ── STATS BAR ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+  .stat-card {
+    padding: 20px 18px;
+    border-radius: 14px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    text-align: center;
+    transition: all 0.25s;
+  }
+  .stat-card:hover { border-color: var(--line-hot); background: var(--bg-2); }
+  .stat-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--fire-3);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+  }
+
+  /* ── TOC ── */
+  .toc-wrap { margin-bottom: 8px; }
+  .toc-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-3);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .cat-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-bottom: 20px;
+  }
+  .cat-tab {
+    padding: 9px 16px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--ink-2);
+    text-decoration: none;
+    font-size: 12.5px;
+    font-weight: 600;
+    transition: all 0.2s;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.03em;
+  }
+  .cat-tab:hover {
+    border-color: var(--line-hot);
+    color: var(--fire-3);
+    transform: translateY(-1px);
+    background: var(--bg-3);
+  }
+
+  /* ── SECTION BLOCKS ── */
+  section.block {
+    padding: 60px 0;
+    border-top: 1px solid var(--line);
+  }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--fire-2);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--fire-2); flex-shrink: 0; }
+  h2 {
+    font-size: clamp(26px, 4vw, 40px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
+    color: var(--ink-0);
+    line-height: 1.1;
+  }
+  h2 .hl { color: var(--fire-3); }
+  .section-intro {
+    font-size: 16px;
+    color: var(--ink-2);
+    max-width: 720px;
+    margin-bottom: 32px;
+    line-height: 1.7;
+  }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box {
+    margin-top: 24px;
+    padding: 20px 24px;
+    border-radius: 14px;
+    background: linear-gradient(145deg, var(--glass-hot), transparent);
+    border: 1px solid var(--line-hot);
+    font-size: 14px;
+    color: var(--ink-1);
+    line-height: 1.75;
+  }
+  .insight-box strong { color: var(--fire-3); }
+
+  /* ── PROFILE CARD ── */
+  .profile-card {
+    padding: 32px;
+    border-radius: 20px;
+    background: linear-gradient(145deg, var(--bg-2), var(--bg-1));
+    border: 1px solid var(--line-hot);
+    box-shadow: var(--shadow-fire);
+    margin-bottom: 28px;
+  }
+  .profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .profile-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .profile-row:last-child { border-bottom: none; }
+  .profile-key {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--fire-3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    min-width: 80px;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+  .profile-val {
+    font-size: 14px;
+    color: var(--ink-0);
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  /* ── DIFF CARDS (3-col) ── */
+  .diff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .diff-card {
+    padding: 24px 20px;
+    border-radius: 16px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    transition: all 0.25s;
+  }
+  .diff-card:hover { border-color: var(--line-hot); transform: translateY(-2px); box-shadow: var(--shadow-fire); }
+  .diff-icon { font-size: 1.8rem; margin-bottom: 12px; display: block; }
+  .diff-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--ink-0);
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+  .diff-title .hl { color: var(--fire-3); }
+  .diff-desc {
+    font-size: 13px;
+    color: var(--ink-3);
+    line-height: 1.75;
+  }
+
+  /* ── COMPARE TABLE ── */
+  .compare-wrap {
+    margin-top: 28px;
+    border-radius: 16px;
+    border: 1px solid var(--line-hot);
+    overflow: hidden;
+    background: var(--bg-1);
+    overflow-x: auto;
+  }
+  .compare {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 720px;
+  }
+  .compare thead th {
+    padding: 16px 14px;
+    text-align: left;
+    background: linear-gradient(180deg, rgba(255,61,0,0.12), rgba(255,61,0,0.04));
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--fire-3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--line-hot);
+    vertical-align: bottom;
+  }
+  .compare thead th.ap-col {
+    background: linear-gradient(180deg, rgba(255,61,0,0.22), rgba(255,61,0,0.08));
+    color: var(--fire-4);
+  }
+  .compare tbody td {
+    padding: 13px 14px;
+    border-bottom: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-1);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+  .compare tbody td.row-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--fire-3);
+    white-space: nowrap;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+  .compare tbody td.ap-col {
+    background: rgba(255,61,0,0.04);
+    border-left: 1px solid var(--line-hot);
+    border-right: 1px solid var(--line-hot);
+    font-weight: 600;
+    color: var(--ink-0);
+  }
+  .compare tbody tr:hover td:not(.ap-col) { background: var(--glass-hot); }
+  .compare tbody tr:last-child td { border-bottom: none; }
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+  .tag-ok { background: rgba(74,222,128,0.12); color: var(--ok); border: 1px solid rgba(74,222,128,0.3); }
+  .tag-warn { background: rgba(251,191,36,0.12); color: var(--warn); border: 1px solid rgba(251,191,36,0.3); }
+  .tag-danger { background: rgba(248,113,113,0.12); color: var(--danger); border: 1px solid rgba(248,113,113,0.3); }
+  .tag-fire { background: rgba(255,165,64,0.1); color: var(--fire-3); border: 1px solid var(--line-hot); }
+
+  /* ── COMPANY CARDS ── */
+  .company-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .company-card {
+    padding: 24px 22px;
+    border-radius: 18px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .company-card:hover { border-color: var(--line-hot); transform: translateY(-3px); box-shadow: var(--shadow-fire); }
+  .company-card.highlight {
+    background: linear-gradient(145deg, rgba(255,61,0,0.06), var(--bg-1));
+    border-color: rgba(255,61,0,0.35);
+  }
+  .company-card.highlight::before {
+    content: '⭐ แนะนำ';
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--fire-3);
+    background: rgba(255,165,64,0.1);
+    border: 1px solid var(--line-hot);
+    padding: 3px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.1em;
+  }
+  .company-name {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--ink-0);
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+  .company-name.fire { color: var(--fire-3); }
+  .company-abbr {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-4);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .company-rows { display: flex; flex-direction: column; gap: 8px; }
+  .company-row {
+    display: flex;
+    gap: 10px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .company-row-key {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--fire-2);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    min-width: 70px;
+    flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .company-row-val { color: var(--ink-2); }
+  .company-row-val a { color: var(--fire-3); text-decoration: none; }
+  .company-row-val a:hover { color: var(--fire-4); text-decoration: underline; }
+  .company-dist {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-4);
+    letter-spacing: 0.08em;
+  }
+  .company-dist span { color: var(--ok); font-weight: 700; }
+
+  /* ── JOB CARDS ── */
+  .job-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .job-card {
+    padding: 24px 22px;
+    border-radius: 16px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    transition: all 0.25s;
+  }
+  .job-card:hover { border-color: var(--line-hot); background: var(--bg-2); }
+  .job-card.top {
+    border-color: rgba(255,61,0,0.3);
+    background: linear-gradient(145deg, rgba(255,61,0,0.04), var(--bg-1));
+  }
+  .job-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--ink-0);
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .job-company {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--fire-3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .job-rows { display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; }
+  .job-row { display: flex; gap: 10px; font-size: 13px; }
+  .job-key {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-4);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+    min-width: 70px;
+    flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .job-val { color: var(--ink-2); line-height: 1.5; }
+  .job-why {
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: var(--glass-hot);
+    border: 1px solid var(--line);
+    font-size: 12.5px;
+    color: var(--ink-2);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .job-stars {
+    font-size: 14px;
+    color: var(--fire-3);
+    letter-spacing: 2px;
+  }
+  .job-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--fire-2);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+  .job-link:hover { color: var(--fire-3); }
+
+  /* ── FLOW STEPS ── */
+  .flow-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+  }
+  .flow-step {
+    padding: 10px 18px;
+    border-radius: 10px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-2);
+    text-align: center;
+    line-height: 1.4;
+  }
+  .flow-step.hot {
+    background: var(--glass-hot);
+    border-color: var(--line-hot);
+    color: var(--fire-3);
+    font-weight: 600;
+  }
+  .flow-step sub { display: block; font-size: 10px; color: var(--ink-4); font-family: 'JetBrains Mono', monospace; margin-top: 2px; }
+  .flow-arrow { color: var(--fire-2); font-size: 18px; flex-shrink: 0; }
+
+  /* ── MVP / ACTION TABLE ── */
+  .mvp-wrap {
+    margin-top: 24px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--line-hot);
+    background: var(--bg-1);
+    overflow-x: auto;
+  }
+  .mvp-table { width: 100%; border-collapse: collapse; min-width: 640px; }
+  .mvp-table thead th {
+    padding: 14px 16px;
+    background: linear-gradient(180deg, rgba(255,61,0,0.12), rgba(255,61,0,0.04));
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--fire-3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: left;
+    border-bottom: 1px solid var(--line-hot);
+  }
+  .mvp-table tbody td {
+    padding: 14px 16px;
+    font-size: 13px;
+    color: var(--ink-1);
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+  .mvp-table tbody td:first-child { font-weight: 700; color: var(--fire-3); font-family: 'JetBrains Mono', monospace; font-size: 12px; white-space: nowrap; }
+  .mvp-table tbody tr:last-child td { border-bottom: none; }
+  .mvp-table tbody tr:hover td { background: var(--glass-hot); }
+
+  /* ── TIPS ── */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .tip-card {
+    padding: 22px 20px;
+    border-radius: 16px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    transition: all 0.25s;
+  }
+  .tip-card:hover { border-color: var(--line-hot); }
+  .tip-icon { font-size: 1.6rem; margin-bottom: 10px; display: block; }
+  .tip-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--ink-0);
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .tip-desc { font-size: 13px; color: var(--ink-3); line-height: 1.75; }
+
+  /* ── COMMUTE TABLE ── */
+  .commute-wrap {
+    margin-top: 24px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--line-hot);
+    background: var(--bg-1);
+    overflow-x: auto;
+  }
+  .commute-table { width: 100%; border-collapse: collapse; min-width: 600px; }
+  .commute-table thead th {
+    padding: 14px 16px;
+    background: linear-gradient(180deg, rgba(255,61,0,0.12), rgba(255,61,0,0.04));
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--fire-3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: left;
+    border-bottom: 1px solid var(--line-hot);
+  }
+  .commute-table tbody td {
+    padding: 13px 16px;
+    font-size: 13px;
+    color: var(--ink-1);
+    border-bottom: 1px solid var(--line);
+    vertical-align: middle;
+    line-height: 1.55;
+  }
+  .commute-table tbody td:first-child { font-weight: 700; color: var(--ink-0); }
+  .commute-table tbody tr:hover td { background: var(--glass-hot); }
+  .commute-table tbody tr:last-child td { border-bottom: none; }
+  .commute-time {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--ok);
+    font-weight: 700;
+    font-size: 12px;
+  }
+  .commute-time.warn { color: var(--warn); }
+  .commute-time.danger { color: var(--danger); }
+
+  /* ── PILLAR CARDS (Conclusion) ── */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .pillar-card {
+    padding: 28px 24px;
+    border-radius: 18px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    text-align: center;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .pillar-card:hover { transform: translateY(-3px); border-color: var(--line-hot); box-shadow: var(--shadow-fire); }
+  .pillar-icon { font-size: 2.4rem; margin-bottom: 16px; display: block; }
+  .pillar-name {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--ink-0);
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .pillar-name.fire { color: var(--fire-3); }
+  .pillar-name.orange { color: var(--fire-2); }
+  .pillar-name.green { color: var(--ok); }
+  .pillar-desc { font-size: 13px; color: var(--ink-3); line-height: 1.75; }
+  .pillar-card:nth-child(1) { background: linear-gradient(145deg, rgba(255,61,0,0.06), var(--bg-1)); border-color: rgba(255,61,0,0.25); }
+  .pillar-card:nth-child(2) { background: linear-gradient(145deg, rgba(255,107,26,0.06), var(--bg-1)); border-color: rgba(255,107,26,0.25); }
+  .pillar-card:nth-child(3) { background: linear-gradient(145deg, rgba(74,222,128,0.05), var(--bg-1)); border-color: rgba(74,222,128,0.2); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 48px 0;
+    text-align: center;
+  }
+  .footer-sig {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-4);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .footer-sig .flame-f { animation: flicker 2.4s ease-in-out infinite; display: inline-block; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .wrap { padding: 0 16px; }
+    .job-grid { grid-template-columns: 1fr; }
+    .company-grid { grid-template-columns: 1fr; }
+    .pillars-grid { grid-template-columns: 1fr; }
+    .diff-grid { grid-template-columns: 1fr; }
+    .tips-grid { grid-template-columns: 1fr; }
+    header.hero { padding-top: 32px; }
+    section.block { padding: 40px 0; }
+    .profile-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    h1 { font-size: 34px; }
+    .stats-row { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ── HERO ── -->
+  <header class="hero">
+    <div class="brand">
+      <span class="flame">🔥</span>
+      BOOM ORACLE · JOB SEARCH
+    </div>
+
+    <nav class="topnav">
+      <a href="index.html">← Boom Tools</a>
+      <a href="#" class="active">🏠 Job Search</a>
+    </nav>
+
+    <h1>หางานเซลล์ขายบ้าน<br>สมุทรปราการ & ปริมณฑล 2026</h1>
+    <p class="subtitle">คู่มือหางานสำหรับ First Jobber จบบริหาร ABAC — วิเคราะห์ตำแหน่ง เงินเดือน บริษัทชั้นนำ และกลยุทธ์ได้งาน 30K+ ในโซนบางนา-บางพลี-สมุทรปราการ</p>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-num">30K+</div>
+        <div class="stat-label">เป้าเงินเดือน</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">&lt; 1 ชม.</div>
+        <div class="stat-label">ระยะเดินทาง</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">ตำแหน่งแนะนำ</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">5</div>
+        <div class="stat-label">บริษัทชั้นนำ</div>
+      </div>
+    </div>
+
+    <div class="toc-wrap">
+      <div class="toc-label">สารบัญ — 7 หัวข้อ</div>
+      <div class="cat-tabs">
+        <a href="#s1" class="cat-tab">01 โปรไฟล์</a>
+        <a href="#s2" class="cat-tab">02 ตลาดงาน</a>
+        <a href="#s3" class="cat-tab">03 บริษัทชั้นนำ</a>
+        <a href="#s4" class="cat-tab">04 ตำแหน่งงาน</a>
+        <a href="#s5" class="cat-tab">05 เปรียบเทียบ</a>
+        <a href="#s6" class="cat-tab">06 กลยุทธ์</a>
+        <a href="#s7" class="cat-tab">07 แผนที่</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 01: โปรไฟล์
+  ══════════════════════════════════════════════ -->
+  <section class="block" id="s1">
+    <div class="eyebrow">01 · YOUR PROFILE</div>
+    <h2>โปรไฟล์ — <span class="hl">จุดแข็งของคุณ</span></h2>
+    <p class="section-intro">วิเคราะห์โปรไฟล์ส่วนตัวและจุดแข็งที่ทำให้คุณเหมาะกับสายงานเซลล์อสังหาริมทรัพย์</p>
+
+    <div class="profile-card">
+      <div class="profile-grid">
+        <div>
+          <div class="profile-row">
+            <div class="profile-key">วุฒิ</div>
+            <div class="profile-val">ป.ตรี บริหารธุรกิจ — ABAC (มหาวิทยาลัยอัสสัมชัญ)</div>
+          </div>
+          <div class="profile-row">
+            <div class="profile-key">ที่พัก</div>
+            <div class="profile-val">บางปลา สมุทรปราการ</div>
+          </div>
+          <div class="profile-row">
+            <div class="profile-key">รถ</div>
+            <div class="profile-val">มีรถยนต์ส่วนตัว</div>
+          </div>
+        </div>
+        <div>
+          <div class="profile-row">
+            <div class="profile-key">สถานะ</div>
+            <div class="profile-val">First Jobber (จบใหม่)</div>
+          </div>
+          <div class="profile-row">
+            <div class="profile-key">ภาษา</div>
+            <div class="profile-val">ไทย + อังกฤษ (จบ ABAC = bilingual advantage)</div>
+          </div>
+          <div class="profile-row">
+            <div class="profile-key">เป้าหมาย</div>
+            <div class="profile-val" style="color:var(--fire-3);font-weight:700;">เงินเดือน 30,000+ บาท</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="diff-grid">
+      <div class="diff-card">
+        <span class="diff-icon">🎓</span>
+        <div class="diff-title"><span class="hl">จบ ABAC</span> — ได้เปรียบด้านภาพลักษณ์</div>
+        <div class="diff-desc">มหาวิทยาลัยเอกชนชั้นนำ หลักสูตรอินเตอร์และสองภาษา ภาพลักษณ์ดีในสาย sales ลูกค้าให้ความเชื่อถือสูง เหมาะขาย premium segment</div>
+      </div>
+      <div class="diff-card">
+        <span class="diff-icon">📍</span>
+        <div class="diff-title"><span class="hl">ทำเลดี</span> — ใจกลางโซนอสังหาฯ</div>
+        <div class="diff-desc">บางปลาอยู่ใกล้โซนบางนา-บางพลี-สมุทรปราการ ซึ่งมีโครงการอสังหาริมทรัพย์เยอะมาก เดินทางถึงหลายโครงการได้ใน 15-40 นาที</div>
+      </div>
+      <div class="diff-card">
+        <span class="diff-icon">🚗</span>
+        <div class="diff-title"><span class="hl">มีรถ</span> — ข้อได้เปรียบสำคัญ</div>
+        <div class="diff-desc">งานเซลล์อสังหาฯ ต้องเดินทางไป site ตลอด การมีรถเป็นข้อได้เปรียบที่บริษัทให้ความสำคัญ บางบริษัทกำหนดให้มีรถส่วนตัว</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 02: ตลาดงาน
+  ══════════════════════════════════════════════ -->
+  <section class="block" id="s2">
+    <div class="eyebrow">02 · MARKET OVERVIEW</div>
+    <h2>ตลาดงาน — <span class="hl">เซลล์อสังหาริมทรัพย์ 2026</span></h2>
+    <p class="section-intro">ภาพรวมตลาดและโครงสร้างรายได้ที่คุณจะได้รับในสายงานเซลล์ขายบ้าน</p>
+
+    <div class="insight-box">
+      ตลาดอสังหาฯ ไทย 2026 ยังเติบโต โดยเฉพาะ<strong>ทาวน์โฮม-บ้านเดี่ยว ราคา 2-6 ล้าน</strong>ในโซนชานเมือง บริษัทใหญ่เปิดรับ sales ตลอดทั้งปีเพราะ turnover สูง = โอกาสสำหรับ first jobber ที่มีพลังงานและความกระตือรือร้น
+    </div>
+
+    <div class="compare-wrap" style="margin-top:24px;">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>รายการ</th>
+            <th>รายละเอียด</th>
+            <th class="ap-col">หมายเหตุ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label">ฐานเงินเดือน</td>
+            <td>15,000 – 25,000 บาท</td>
+            <td class="ap-col">ขึ้นอยู่กับบริษัทและประสบการณ์</td>
+          </tr>
+          <tr>
+            <td class="row-label">Commission Rate</td>
+            <td>0.25% – 0.5% ของยอดขาย</td>
+            <td class="ap-col">บางบริษัทสูงถึง 0.5%+ สำหรับ top performer</td>
+          </tr>
+          <tr>
+            <td class="row-label">ตัวอย่าง: ขายบ้าน 3 ล้าน</td>
+            <td>Commission 7,500 – 15,000 บาท/หลัง</td>
+            <td class="ap-col">ปิดได้ 1 หลัง = โบนัสดีกว่าหลายอาชีพ</td>
+          </tr>
+          <tr>
+            <td class="row-label">เป้าหมาย 2 หลัง/เดือน</td>
+            <td>Commission 15,000 – 30,000 บาท</td>
+            <td class="ap-col" style="color:var(--ok);font-weight:700;">ทำได้จริงใน 3-6 เดือนแรก</td>
+          </tr>
+          <tr>
+            <td class="row-label">รายได้รวม (ฐาน + com)</td>
+            <td style="color:var(--ok);font-weight:700;">30,000 – 55,000 บาท/เดือน</td>
+            <td class="ap-col" style="color:var(--fire-3);font-weight:700;">เป้าหมายที่ทำได้จริง</td>
+          </tr>
+          <tr>
+            <td class="row-label">Top Performer</td>
+            <td style="color:var(--warn);font-weight:700;">60,000 – 100,000+ บาท/เดือน</td>
+            <td class="ap-col">ใน 1-2 ปีถ้า perform ดีต่อเนื่อง</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight-box">
+      <strong>สรุป:</strong> เซลล์อสังหาฯ เป็นสายงานที่ first jobber สามารถทำเงิน 30K+ ได้จริงถ้า perform ดี เพราะ commission ไม่มีเพดาน ต่างจากอาชีพอื่นที่ขึ้นเงินเดือนทีละ 3-5%/ปี
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 03: บริษัทชั้นนำ
+  ══════════════════════════════════════════════ -->
+  <section class="block" id="s3">
+    <div class="eyebrow">03 · TOP COMPANIES</div>
+    <h2>บริษัทอสังหาฯ ชั้นนำ — <span class="hl">ใกล้บ้านคุณ</span></h2>
+    <p class="section-intro">5 บริษัทอสังหาริมทรัพย์ชั้นนำที่มีโครงการในโซนบางนา-บางพลี-สมุทรปราการ และรับ first jobber</p>
+
+    <div class="company-grid">
+
+      <!-- AP Thailand -->
+      <div class="company-card highlight">
+        <div class="company-name fire">AP Thailand</div>
+        <div class="company-abbr">เอพี ไทยแลนด์ · SET: AP</div>
+        <div class="company-rows">
+          <div class="company-row">
+            <div class="company-row-key">โครงการ</div>
+            <div class="company-row-val">PLENO, GOLDEN TOWN, Baan Klang Muang, LIFE</div>
+          </div>
+          <div class="company-row">
+            <div class="company-row-key">โซน</div>
+            <div class="company-row-val">บางนา, บางพลี, เทพารักษ์, ศรีนครินทร์</div>
+          </div>
+          <div class="company-row">
+            <div class="company-row-key">เงินเดือน</div>
+            <div class="company-row-val" style="color:var(--ok);font-weight:700;">20,000–25,000 + commission</div>
+          </div>
+          <div class="company-row">
+            <div class="company-row-key">จุดเด่น</div>
+            <div class="company-row-val">องค์กรใหญ่, training เข้มข้น, career path ชัด</div>
+          </div>
+          <div class="company-row">
+            <div class="company-row-key">สมัคร</div>
+            <div class="company-row-val"><a href="https://career.apthai.com" target="_blank">career.apthai.com</a></div>
+          </div>
+        </div>
+        <div class="company-dist">ระยะจากบางปลา: <span>~20-40 นาที</span></div>
+      </div>
+
+      <!-- Land & Houses -->
+      <div class="company-card">
+        <div class="company-name">Land & Houses</div>
+        <div class="company-abbr">แลนด์แอนด์เฮ้าส์ · SET: LH</div>
+        <div class="company-rows">
+          <div class="company-row">
+            <div class="company-row-key">โครงการ</div>
+            <div class="company-row-val">Villaggio, Centro, Inizio, Habitia</div>
+          </div>
+          <div class="company-row">
+            <div class="company-row-key">โซน</div>
+            <div class="company-row-val">บางนา-ตราด, กิ่งแก้ว, บางพลี</div>
+          </div>
+          <div class="company-row">
+            <div class="company-row-key">เงินเดือน</div>
+            <div class="company-row-val" style="color:var(--ok);font-weight:700;">18,000–22,000 + commission</div>
+          </div>
+          <div class="company-row">
+            <div class="company-row-key">จุดเด่น</div>
+            <div class="company-row-val">แบรนด์แข็งแกร่ง, โครงการครอบคลุม</div>
+          </div>
+          <div class="company-row">
+            <div class="company-row-key">สมัคร</div>
+            <div class="company-row-val"><a href="https://lh.co.th/th/job" target="_blank">lh.co.th/th/job</a></div>
+          </div>
+        </div>
+        <div class="company-dist">ระยะจากบางปลา: <span>~20-45 นาที</span></div>
+      </div>
+
+      <!-- Sansiri -->
+      <div class="company-card">
+        <div class="company-name">Sansiri</div>
+        <div class="company-abbr">แสนสิริ · SET: SIRI</div>
+        <div class="company-rows">
+          <div class="company-row">
+            <div class="company-row-key">โครงการ</div>
+            <div class="company-row-val">Siri Place, Saransiri, Setthasiri</div>
+          </div>
+          <div class="company-row">
+            <div class="company-row-key">โซน</div>
+            <div class="company-row-val">บางนา, สุวรรณภูมิ, ศรีนครินทร์</div>
+          </div>
+          <div class="company-row">
+            <div class="company-row-key">เงินเดือน</div>
+            <div class="company-row-val" style="color:var(--ok);font-weight:700;">20,000–25,000 + commission</div>
+          </div>
+          <div class="company-row">
+            <div class="company-row-key">จุดเด่น</div>
+            <div class="company-row-val">แบรนด์ premium, งบ marketing สูง</div>
+          </div>
+          <div class="company-row">
+            <div class="company-row-key">สมัคร</div>
+            <div class="company-row-val"><a href="https://sansiri.com/career" target="_blank">sansiri.com/career</a></div>
+          </div>
+        </div>
+        <div class="company-dist">ระยะจากบางปลา: <span>~25-45 นาที</span></div>
+      </div>
+
+      <!-- Origin Property -->
+      <div class="company-card">
+        <div class="company-name">Origin Property</div>
+        <div class="company-abbr">ออริจิ้น พร็อพเพอร์ตี้ · SET: ORI</div>
+        <div class="company-rows">
+          <div class="company-row">
+            <div class="company-row-key">โครงการ</div>
+            <div class="company-row-val">Park Avenue, Britania, The Origin</div>
+          </div>
+          <div class="company-row">
+            <div class="company-row-key">โซน</div>
+            <div class="company-row-val">บางนา-บางพลี, ศรีนครินทร์</div>
+          </div>
+          <div class="company-row">
+            <div class="company-row-key">เงินเดือน</div>
+            <div class="company-row-val" style="color:var(--ok);font-weight:700;">18,000–22,000 + commission</div>
+          </div>
+          <div class="company-row">
+            <div class="company-row-key">จุดเด่น</div>
+            <div class="company-row-val">เติบโตเร็ว, วัฒนธรรมคนรุ่นใหม่</div>
+          </div>
+          <div class="company-row">
+            <div class="company-row-key">สมัคร</div>
+            <div class="company-row-val"><a href="https://origin.co.th/career" target="_blank">origin.co.th/career</a></div>
+          </div>
+        </div>
+        <div class="company-dist">ระยะจากบางปลา: <span>~15-35 นาที</span></div>
+      </div>
+
+      <!-- SC Asset -->
+      <div class="company-card">
+        <div class="company-name">SC Asset</div>
+        <div class="company-abbr">เอสซี แอสเสท · SET: SC</div>
+        <div class="company-rows">
+          <div class="company-row">
+            <div class="company-row-key">โครงการ</div>
+            <div class="company-row-val">Verve, Chambers, Centric</div>
+          </div>
+          <div class="company-row">
+            <div class="company-row-key">โซน</div>
+            <div class="company-row-val">บางนา, สุขุมวิท</div>
+          </div>
+          <div class="company-row">
+            <div class="company-row-key">เงินเดือน</div>
+            <div class="company-row-val" style="color:var(--ok);font-weight:700;">20,000–25,000 + commission</div>
+          </div>
+          <div class="company-row">
+            <div class="company-row-key">จุดเด่น</div>
+            <div class="company-row-val">design ดี, target กลุ่ม premium</div>
+          </div>
+          <div class="company-row">
+            <div class="company-row-key">สมัคร</div>
+            <div class="company-row-val"><a href="https://scasset.com/career" target="_blank">scasset.com/career</a></div>
+          </div>
+        </div>
+        <div class="company-dist">ระยะจากบางปลา: <span class="warn">~30-50 นาที</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 04: ตำแหน่งงาน
+  ══════════════════════════════════════════════ -->
+  <section class="block" id="s4">
+    <div class="eyebrow">04 · RECOMMENDED JOBS</div>
+    <h2>ตำแหน่งงาน — <span class="hl">เหมาะกับโปรไฟล์คุณ</span></h2>
+    <p class="section-intro">ตำแหน่งงานที่แนะนำพร้อมเหตุผลว่าทำไมถึงเหมาะกับคุณ และลิงก์สมัครตรง</p>
+
+    <div class="job-grid">
+
+      <div class="job-card top">
+        <div class="job-title">⭐ Sales ขายบ้านทาวน์โฮม</div>
+        <div class="job-company">AP Thailand</div>
+        <div class="job-rows">
+          <div class="job-row">
+            <div class="job-key">เงินเดือน</div>
+            <div class="job-val">20,000–25,000 + commission สูงสุด 0.35%</div>
+          </div>
+          <div class="job-row">
+            <div class="job-key">โซน</div>
+            <div class="job-val">บางนา, บางพลี, เทพารักษ์</div>
+          </div>
+          <div class="job-row">
+            <div class="job-key">คุณสมบัติ</div>
+            <div class="job-val">จบ ปวส. ขึ้นไป, ยินดีรับจบใหม่</div>
+          </div>
+        </div>
+        <div class="job-why">ทำไมเหมาะ: โซนตรงบ้าน, AP ใหญ่สุดในตลาด, training ดีที่สุดในอุตสาหกรรม เหมาะสำหรับ first jobber อยากได้รากฐานที่แข็งแกร่ง</div>
+        <div class="job-stars">★★★★★</div>
+        <a href="https://career.apthai.com" target="_blank" class="job-link">→ career.apthai.com</a>
+      </div>
+
+      <div class="job-card">
+        <div class="job-title">Sales ประจำโครงการบ้านเดี่ยว/ทาวน์โฮม</div>
+        <div class="job-company">Land & Houses</div>
+        <div class="job-rows">
+          <div class="job-row">
+            <div class="job-key">เงินเดือน</div>
+            <div class="job-val">18,000–22,000 + commission</div>
+          </div>
+          <div class="job-row">
+            <div class="job-key">โซน</div>
+            <div class="job-val">บางนา-ตราด, กิ่งแก้ว</div>
+          </div>
+          <div class="job-row">
+            <div class="job-key">คุณสมบัติ</div>
+            <div class="job-val">ป.ตรี, ยินดีรับจบใหม่</div>
+          </div>
+        </div>
+        <div class="job-why">ทำไมเหมาะ: โครงการเยอะในโซนบางพลี แบรนด์แข็งแกร่ง ลูกค้าเชื่อถือ ปิดง่ายกว่า</div>
+        <div class="job-stars">★★★★☆</div>
+        <a href="https://lh.co.th/th/job" target="_blank" class="job-link">→ lh.co.th/th/job</a>
+      </div>
+
+      <div class="job-card">
+        <div class="job-title">Sales Consultant</div>
+        <div class="job-company">Sansiri</div>
+        <div class="job-rows">
+          <div class="job-row">
+            <div class="job-key">เงินเดือน</div>
+            <div class="job-val">20,000–25,000 + commission</div>
+          </div>
+          <div class="job-row">
+            <div class="job-key">โซน</div>
+            <div class="job-val">บางนา, สุวรรณภูมิ</div>
+          </div>
+          <div class="job-row">
+            <div class="job-key">คุณสมบัติ</div>
+            <div class="job-val">ป.ตรี, ภาษาอังกฤษดีได้เปรียบ</div>
+          </div>
+        </div>
+        <div class="job-why">ทำไมเหมาะ: ABAC = ภาษาอังกฤษดี ได้เปรียบตอนขายให้ลูกค้า expat ราคาบ้านสูง commission ต่อหลังสูงกว่า</div>
+        <div class="job-stars">★★★★☆</div>
+        <a href="https://sansiri.com/career" target="_blank" class="job-link">→ sansiri.com/career</a>
+      </div>
+
+      <div class="job-card">
+        <div class="job-title">Sales Executive</div>
+        <div class="job-company">Origin Property</div>
+        <div class="job-rows">
+          <div class="job-row">
+            <div class="job-key">เงินเดือน</div>
+            <div class="job-val">18,000–22,000 + commission</div>
+          </div>
+          <div class="job-row">
+            <div class="job-key">โซน</div>
+            <div class="job-val">บางนา-บางพลี</div>
+          </div>
+          <div class="job-row">
+            <div class="job-key">คุณสมบัติ</div>
+            <div class="job-val">ป.ตรี ทุกสาขา, มีรถส่วนตัว</div>
+          </div>
+        </div>
+        <div class="job-why">ทำไมเหมาะ: ใกล้บ้านที่สุด Origin มีโครงการบางนา-บางพลีหลายโครงการ บรรยากาศการทำงานคนรุ่นใหม่</div>
+        <div class="job-stars">★★★★☆</div>
+        <a href="https://origin.co.th/career" target="_blank" class="job-link">→ origin.co.th/career</a>
+      </div>
+
+      <div class="job-card">
+        <div class="job-title">Property Sales</div>
+        <div class="job-company">SC Asset</div>
+        <div class="job-rows">
+          <div class="job-row">
+            <div class="job-key">เงินเดือน</div>
+            <div class="job-val">20,000–25,000 + commission</div>
+          </div>
+          <div class="job-row">
+            <div class="job-key">โซน</div>
+            <div class="job-val">บางนา, สุขุมวิท</div>
+          </div>
+          <div class="job-row">
+            <div class="job-key">คุณสมบัติ</div>
+            <div class="job-val">ป.ตรี, มีรถส่วนตัว</div>
+          </div>
+        </div>
+        <div class="job-why">ทำไมเหมาะ: กลุ่ม premium commission ต่อหลังสูงกว่า ถ้าขายได้แม้แค่ 1-2 หลัง/เดือน รายได้รวมสูงมาก</div>
+        <div class="job-stars">★★★★☆</div>
+        <a href="https://scasset.com/career" target="_blank" class="job-link">→ scasset.com/career</a>
+      </div>
+
+      <div class="job-card">
+        <div class="job-title">เซลล์ขายคอนโด — ทุกบริษัท</div>
+        <div class="job-company">Multiple Companies</div>
+        <div class="job-rows">
+          <div class="job-row">
+            <div class="job-key">เงินเดือน</div>
+            <div class="job-val">18,000–22,000 + commission</div>
+          </div>
+          <div class="job-row">
+            <div class="job-key">โซน</div>
+            <div class="job-val">บางนา, อ่อนนุช, แบริ่ง</div>
+          </div>
+          <div class="job-row">
+            <div class="job-key">คุณสมบัติ</div>
+            <div class="job-val">ป.ตรี, personality ดี</div>
+          </div>
+        </div>
+        <div class="job-why">ทำไมเหมาะ: คอนโดราคาต่ำ = ปิดง่ายกว่า เหมาะเริ่มต้นสร้างประสบการณ์ก่อนขยับไปขายบ้าน</div>
+        <div class="job-stars">★★★☆☆</div>
+        <a href="https://jobthai.com" target="_blank" class="job-link">→ jobthai.com / jobsdb.com</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 05: เปรียบเทียบบริษัท
+  ══════════════════════════════════════════════ -->
+  <section class="block" id="s5">
+    <div class="eyebrow">05 · COMPANY COMPARISON</div>
+    <h2>เปรียบเทียบ — <span class="hl">บริษัทไหนดีสุดสำหรับคุณ</span></h2>
+    <p class="section-intro">วิเคราะห์แต่ละบริษัทในมิติที่สำคัญ ช่วยในการตัดสินใจสมัครและลำดับความสำคัญ</p>
+
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th class="ap-col">AP Thailand ⭐</th>
+            <th>LH</th>
+            <th>Sansiri</th>
+            <th>Origin</th>
+            <th>SC Asset</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label">ฐานเงินเดือน</td>
+            <td class="ap-col">20–25K</td>
+            <td>18–22K</td>
+            <td>20–25K</td>
+            <td>18–22K</td>
+            <td>20–25K</td>
+          </tr>
+          <tr>
+            <td class="row-label">Commission Rate</td>
+            <td class="ap-col">0.25–0.35%</td>
+            <td>0.2–0.3%</td>
+            <td>0.25–0.35%</td>
+            <td>0.2–0.3%</td>
+            <td>0.3–0.5%</td>
+          </tr>
+          <tr>
+            <td class="row-label">Training Program</td>
+            <td class="ap-col" style="color:var(--fire-3);">★★★★★</td>
+            <td>★★★★☆</td>
+            <td>★★★★★</td>
+            <td>★★★☆☆</td>
+            <td>★★★★☆</td>
+          </tr>
+          <tr>
+            <td class="row-label">Career Path</td>
+            <td class="ap-col" style="color:var(--fire-3);">★★★★★</td>
+            <td>★★★★☆</td>
+            <td>★★★★☆</td>
+            <td>★★★★☆</td>
+            <td>★★★★☆</td>
+          </tr>
+          <tr>
+            <td class="row-label">โครงการใกล้บ้าน</td>
+            <td class="ap-col" style="color:var(--fire-3);">★★★★★</td>
+            <td>★★★★☆</td>
+            <td>★★★★☆</td>
+            <td>★★★★★</td>
+            <td>★★★☆☆</td>
+          </tr>
+          <tr>
+            <td class="row-label">รับ First Jobber</td>
+            <td class="ap-col"><span class="tag tag-ok">✓ ยินดี</span></td>
+            <td><span class="tag tag-ok">✓ ยินดี</span></td>
+            <td><span class="tag tag-ok">✓</span></td>
+            <td><span class="tag tag-ok">✓ ยินดี</span></td>
+            <td><span class="tag tag-ok">✓</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">วัฒนธรรม</td>
+            <td class="ap-col">Corporate</td>
+            <td>Corporate</td>
+            <td>Premium</td>
+            <td>Startup</td>
+            <td>Design-focused</td>
+          </tr>
+          <tr>
+            <td class="row-label">ระยะจากบ้าน</td>
+            <td class="ap-col">20–40 นาที</td>
+            <td>20–45 นาที</td>
+            <td>25–45 นาที</td>
+            <td style="color:var(--ok);font-weight:700;">15–35 นาที</td>
+            <td>30–50 นาที</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight-box">
+      <strong>สรุป:</strong> AP Thailand ชนะในมิติ training, career path และโครงการใกล้บ้าน ส่วน Origin ใกล้บ้านที่สุดและบรรยากาศคนรุ่นใหม่ SC Asset commission rate สูงสุดแต่ต้องการ experience มากกว่า
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 06: กลยุทธ์
+  ══════════════════════════════════════════════ -->
+  <section class="block" id="s6">
+    <div class="eyebrow">06 · JOB HUNTING STRATEGY</div>
+    <h2>กลยุทธ์ — <span class="hl">ได้งาน 30K+ ใน 30 วัน</span></h2>
+    <p class="section-intro">แผนการหางานรายสัปดาห์ที่ผ่านการคิดมาแล้ว ทำตามได้เลย</p>
+
+    <div class="flow-row">
+      <div class="flow-step hot">สัปดาห์ 1<sub>เตรียมตัว</sub></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">สัปดาห์ 2<sub>สมัคร</sub></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">สัปดาห์ 3<sub>สัมภาษณ์</sub></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="border-color:rgba(74,222,128,0.4);color:var(--ok);">สัปดาห์ 4<sub>เจรจา ✅</sub></div>
+    </div>
+
+    <div class="mvp-wrap">
+      <table class="mvp-table">
+        <thead>
+          <tr>
+            <th>สัปดาห์</th>
+            <th>Action</th>
+            <th>รายละเอียด</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Week 1</td>
+            <td style="color:var(--ink-0);font-weight:700;">Resume & Portfolio</td>
+            <td>ทำ Resume ภาษาอังกฤษ + ไทย เน้นทักษะ ABAC (bilingual, presentation, communication, project management)</td>
+          </tr>
+          <tr>
+            <td>Week 1</td>
+            <td style="color:var(--ink-0);font-weight:700;">LinkedIn</td>
+            <td>สร้าง/อัปเดต LinkedIn ให้ professional เชื่อมต่อ recruiter อสังหาฯ และ HR บริษัทที่สนใจ</td>
+          </tr>
+          <tr>
+            <td>Week 2</td>
+            <td style="color:var(--ink-0);font-weight:700;">Apply 10+ ตำแหน่ง</td>
+            <td>สมัครทุกบริษัทที่แนะนำผ่าน career website + walk-in ที่สำนักงานขายหรือ sales office โครงการ</td>
+          </tr>
+          <tr>
+            <td>Week 2</td>
+            <td style="color:var(--ink-0);font-weight:700;">Research บริษัท</td>
+            <td>ศึกษาโครงการแต่ละบริษัท ราคา จุดเด่น ทำเล เพื่อพร้อมตอบคำถามสัมภาษณ์ได้อย่างแม่นยำ</td>
+          </tr>
+          <tr>
+            <td>Week 3</td>
+            <td style="color:var(--ink-0);font-weight:700;">Interview Prep</td>
+            <td>ซ้อมตอบ "ทำไมอยากเป็นเซลล์", "จุดแข็งของคุณ", "handle rejection ยังไง", "goal 6 เดือน"</td>
+          </tr>
+          <tr>
+            <td>Week 3</td>
+            <td style="color:var(--ink-0);font-weight:700;">สัมภาษณ์</td>
+            <td>แต่งกายดี, มาก่อนเวลา 15 นาที, แสดงความกระตือรือร้น, ถามคำถามกลับเกี่ยวกับ commission structure</td>
+          </tr>
+          <tr>
+            <td>Week 4</td>
+            <td style="color:var(--ink-0);font-weight:700;">เจรจาเงินเดือน</td>
+            <td>ถ้าเสนอต่ำกว่า 30K — ขอ commission rate สูงขึ้น หรือขอ review 3 เดือน หรือ joining bonus</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tips-grid">
+      <div class="tip-card">
+        <span class="tip-icon">💡</span>
+        <div class="tip-title">ข้อได้เปรียบ ABAC</div>
+        <div class="tip-desc">พูดภาษาอังกฤษได้ = ขายลูกค้า expat และชาวต่างชาติได้ ซึ่ง commission สูงกว่า เพราะบ้านราคา 5-20 ล้าน เน้นจุดนี้ทุกครั้งที่สัมภาษณ์</div>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🎯</span>
+        <div class="tip-title">เป้าหมายจริง</div>
+        <div class="tip-desc">ฐานเงินเดือน 20-25K + commission 2 หลัง/เดือน = 35-55K/เดือน ทำได้จริงใน 3-6 เดือน ถ้า perform ดี commission ไม่มีเพดาน</div>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🚀</span>
+        <div class="tip-title">Career Path</div>
+        <div class="tip-desc">Sales → Senior Sales (1-2 ปี) → Sales Manager (3-5 ปี) → ผู้จัดการโครงการ → ผู้บริหารระดับสูง เส้นทางชัดเจน เงินเดือนทบต้น</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 07: แผนที่เดินทาง
+  ══════════════════════════════════════════════ -->
+  <section class="block" id="s7">
+    <div class="eyebrow">07 · COMMUTE MAP</div>
+    <h2>ระยะทาง — <span class="hl">จากบางปลาถึงแต่ละโซน</span></h2>
+    <p class="section-intro">เวลาเดินทางโดยรถยนต์จากบางปลา สมุทรปราการ ไปยังแต่ละโซนอสังหาฯ (ไม่รวมชั่วโมงเร่งด่วน)</p>
+
+    <div class="commute-wrap">
+      <table class="commute-table">
+        <thead>
+          <tr>
+            <th>โซน</th>
+            <th>ระยะทาง</th>
+            <th>เวลา (รถยนต์)</th>
+            <th>โครงการที่อยู่</th>
+            <th>เหมาะสม</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>บางพลี</td>
+            <td>5–15 km</td>
+            <td><span class="commute-time">10–25 นาที</span></td>
+            <td>Origin, LH, AP</td>
+            <td style="color:var(--ok);">★★★★★</td>
+          </tr>
+          <tr>
+            <td>บางนา</td>
+            <td>15–25 km</td>
+            <td><span class="commute-time">20–40 นาที</span></td>
+            <td>AP, Sansiri, LH, SC Asset</td>
+            <td style="color:var(--ok);">★★★★★</td>
+          </tr>
+          <tr>
+            <td>เทพารักษ์</td>
+            <td>10–20 km</td>
+            <td><span class="commute-time">15–30 นาที</span></td>
+            <td>AP (PLENO), LH</td>
+            <td style="color:var(--ok);">★★★★☆</td>
+          </tr>
+          <tr>
+            <td>ศรีนครินทร์</td>
+            <td>20–30 km</td>
+            <td><span class="commute-time">25–45 นาที</span></td>
+            <td>Sansiri, Origin</td>
+            <td style="color:var(--ok);">★★★★☆</td>
+          </tr>
+          <tr>
+            <td>สุวรรณภูมิ</td>
+            <td>15–25 km</td>
+            <td><span class="commute-time">20–35 นาที</span></td>
+            <td>Sansiri, AP</td>
+            <td style="color:var(--ok);">★★★★☆</td>
+          </tr>
+          <tr>
+            <td>อ่อนนุช–แบริ่ง</td>
+            <td>25–35 km</td>
+            <td><span class="commute-time warn">30–50 นาที</span></td>
+            <td>SC Asset, Sansiri</td>
+            <td style="color:var(--warn);">★★★☆☆</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight-box">
+      <strong>ข้อสรุป:</strong> บางพลีและบางนาเหมาะที่สุด อยู่ในรัศมี 20-40 นาที ครอบคลุม AP, Origin, LH และ Sansiri ทุกบริษัทหลัก ถ้าต้องการโซนที่ใกล้สุดให้เริ่มที่ Origin + AP ในบางพลี
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       CONCLUSION
+  ══════════════════════════════════════════════ -->
+  <section class="block" id="conclusion">
+    <div class="eyebrow">RECOMMENDATION</div>
+    <h2>สรุป — <span class="hl">คำแนะนำอันดับ 1</span></h2>
+    <p class="section-intro">จากการวิเคราะห์ครบทุกมิติ นี่คือลำดับความสำคัญที่แนะนำสำหรับคุณ</p>
+
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <span class="pillar-icon">🥇</span>
+        <div class="pillar-name fire">AP Thailand</div>
+        <div class="pillar-desc">
+          โครงการเยอะในโซนบ้าน<br>
+          training เข้มข้นที่สุดในอุตสาหกรรม<br>
+          รับ first jobber เต็มใจ<br>
+          <strong style="color:var(--fire-3);">→ สมัครก่อนเป็นอันดับ 1</strong>
+        </div>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-icon">🥈</span>
+        <div class="pillar-name orange">Origin Property</div>
+        <div class="pillar-desc">
+          ใกล้บ้านที่สุด (15-35 นาที)<br>
+          วัฒนธรรมคนรุ่นใหม่<br>
+          เติบโตเร็ว โอกาส career<br>
+          <strong style="color:var(--fire-2);">→ สมัครคู่ขนานกับ AP</strong>
+        </div>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-icon">🥉</span>
+        <div class="pillar-name green">Sansiri</div>
+        <div class="pillar-desc">
+          ถ้าอยากขาย premium + ใช้ภาษาอังกฤษ<br>
+          commission ต่อหลังสูงสุด<br>
+          เหมาะ ABAC มากที่สุด<br>
+          <strong style="color:var(--ok);">→ สมัครเป็นตัวเลือกที่ 3</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box" style="margin-top:28px;">
+      <strong>บทสรุปสุดท้าย:</strong> ด้วยจุดแข็ง ABAC (ภาษา + presentation) + ทำเลบางปลา (ใกล้โซนอสังหาฯ ร้อน) + มีรถส่วนตัว คุณมีโปรไฟล์ที่ดีมากสำหรับเซลล์อสังหาฯ<br><br>
+      เริ่มที่ <strong>AP Thailand</strong> ก่อน ถ้าไม่ได้ สมัคร <strong>Origin + Sansiri</strong> คู่ขนาน เป้าหมาย <strong>30K+ บาท ทำได้จริงใน 3-6 เดือนแรก</strong> ขอให้โชคดีในการสมัครงาน!
+    </div>
+  </section>
+
+</div><!-- /.wrap -->
+
+<footer>
+  <div class="wrap">
+    <div class="footer-sig">
+      <span class="flame-f">🔥</span>
+      Boom Oracle · Job Search · Real Estate Sales 2026
+      &nbsp;·&nbsp;
+      Generated 2026-05-02
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
