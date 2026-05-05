@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="th">
+<head><script src="auth.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Slip Verification Market — Competitor Analysis Report | Boom Oracle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-0: #0a0608;
+    --bg-1: #120a0d;
+    --bg-2: #1a0f13;
+    --bg-3: #241419;
+    --bg-4: #2e1a20;
+    --fire-1: #ff3d00;
+    --fire-2: #ff6b1a;
+    --fire-3: #ffa540;
+    --fire-4: #ffd166;
+    --ember: #ff2d55;
+    --gold: #ffb340;
+    --ink-0: #ffffff;
+    --ink-1: #f4e8d8;
+    --ink-2: #c8b8a8;
+    --ink-3: #8a7868;
+    --ink-4: #5a4d42;
+    --ok: #4ade80;
+    --warn: #fbbf24;
+    --danger: #f87171;
+    --line: rgba(255, 165, 64, 0.12);
+    --line-hot: rgba(255, 61, 0, 0.35);
+    --glass: rgba(255, 255, 255, 0.03);
+    --glass-hot: rgba(255, 107, 26, 0.06);
+    --shadow-fire: 0 30px 80px -20px rgba(255, 61, 0, 0.25);
+    --shadow-deep: 0 40px 100px -30px rgba(0, 0, 0, 0.8);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', 'Noto Sans Thai', -apple-system, sans-serif;
+    background: var(--bg-0);
+    color: var(--ink-1);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 0%, rgba(255, 61, 0, 0.12), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(255, 45, 85, 0.08), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 165, 64, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 165, 64, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+    mask-image: radial-gradient(circle at center, black, transparent 80%);
+  }
+  .wrap { position: relative; z-index: 1; max-width: 1320px; margin: 0 auto; padding: 0 28px; }
+
+  header.hero { padding: 70px 0 50px; }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--fire-3);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    padding: 8px 14px;
+    border: 1px solid var(--line-hot);
+    border-radius: 999px;
+    background: var(--glass-hot);
+  }
+  .brand .flame { animation: flicker 2.4s ease-in-out infinite; }
+  @keyframes flicker {
+    0%, 100% { transform: scale(1) rotate(-2deg); opacity: 1; }
+    50% { transform: scale(1.08) rotate(2deg); opacity: 0.85; }
+  }
+  .nav {
+    margin-bottom: 24px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .nav a {
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .nav a.active {
+    background: var(--glass-hot);
+    border: 1px solid var(--line-hot);
+    color: var(--fire-3);
+  }
+  .nav a:not(.active) {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    color: var(--ink-2);
+  }
+  .nav a:not(.active):hover {
+    border-color: var(--line-hot);
+    color: var(--fire-3);
+  }
+
+  h1 {
+    font-size: clamp(36px, 6vw, 76px);
+    font-weight: 900;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--ink-0) 0%, var(--fire-3) 40%, var(--fire-1) 70%, var(--ember) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  h1 .accent {
+    display: block;
+    font-size: 0.3em;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    background: none;
+    -webkit-text-fill-color: var(--ink-3);
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    font-size: 17px;
+    color: var(--ink-2);
+    max-width: 780px;
+    margin-bottom: 36px;
+  }
+
+  /* Company cards grid */
+  .company-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 32px;
+  }
+  .company-card {
+    padding: 26px;
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    background: var(--bg-1);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .company-card:hover { transform: translateY(-3px); border-color: var(--line-hot); background: var(--bg-2); }
+  .company-card .co-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--fire-2);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    opacity: 0.7;
+  }
+  .company-card .co-name {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--ink-0);
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+  .company-card .co-thai {
+    font-size: 13px;
+    color: var(--ink-3);
+    margin-bottom: 14px;
+  }
+  .company-card .co-website {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--fire-3);
+    text-decoration: none;
+    margin-bottom: 14px;
+    display: inline-block;
+  }
+  .co-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+    padding: 14px;
+    background: var(--bg-3);
+    border-radius: 10px;
+    border: 1px solid var(--line);
+  }
+  .co-meta-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12px;
+  }
+  .co-meta-row .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--ink-3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    min-width: 80px;
+    flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .co-meta-row .val {
+    color: var(--ink-1);
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  .co-stat-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+  .co-stat {
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: var(--glass-hot);
+    border: 1px solid var(--line-hot);
+    font-size: 11px;
+    color: var(--fire-3);
+    font-weight: 600;
+  }
+  .co-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .co-tag {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+    color: var(--ink-2);
+  }
+  .co-tag.green { background: rgba(74, 222, 128, 0.08); border-color: rgba(74, 222, 128, 0.25); color: var(--ok); }
+
+  /* Sections */
+  section.block {
+    padding: 60px 0;
+    border-top: 1px solid var(--line);
+  }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--fire-2);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--fire-2); }
+  h2 {
+    font-size: clamp(26px, 4vw, 40px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 14px;
+    color: var(--ink-0);
+    line-height: 1.1;
+  }
+  h2 .hl { color: var(--fire-3); }
+  h2 .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55em;
+    color: var(--fire-2);
+    margin-right: 12px;
+    opacity: 0.6;
+  }
+  .section-intro {
+    font-size: 16px;
+    color: var(--ink-2);
+    max-width: 720px;
+    margin-bottom: 32px;
+  }
+
+  /* Comparison table */
+  .compare-wrap {
+    margin-top: 32px;
+    border-radius: 16px;
+    border: 1px solid var(--line-hot);
+    overflow: hidden;
+    background: var(--bg-1);
+    overflow-x: auto;
+  }
+  .compare {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 700px;
+  }
+  .compare thead th {
+    padding: 16px 14px;
+    text-align: left;
+    background: linear-gradient(180deg, rgba(255, 61, 0, 0.12), rgba(255, 61, 0, 0.04));
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--fire-3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--line-hot);
+    vertical-align: bottom;
+  }
+  .compare thead th.brand-col {
+    font-size: 14px;
+    color: var(--ink-0);
+    letter-spacing: -0.01em;
+    text-transform: none;
+    font-weight: 800;
+  }
+  .compare thead th .sub {
+    display: block;
+    font-size: 10px;
+    color: var(--ink-3);
+    font-weight: 500;
+    margin-top: 4px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .compare tbody td {
+    padding: 13px 14px;
+    border-bottom: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-1);
+    vertical-align: middle;
+  }
+  .compare tbody td.row-label {
+    font-weight: 700;
+    color: var(--fire-3);
+    white-space: nowrap;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+  }
+  .compare tbody tr:hover td { background: var(--glass-hot); }
+  .compare .yes { color: var(--ok); font-weight: 600; }
+  .compare .no { color: var(--danger); }
+  .compare .mid { color: var(--warn); }
+  .compare .num { font-family: 'JetBrains Mono', monospace; color: var(--fire-3); font-weight: 600; }
+  .compare .best { color: var(--ok); font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+  .compare .high { color: var(--danger); font-family: 'JetBrains Mono', monospace; }
+
+  /* Pricing tables */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .pricing-card {
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    background: var(--bg-1);
+    overflow: hidden;
+  }
+  .pricing-card-header {
+    padding: 20px 22px 16px;
+    border-bottom: 1px solid var(--line);
+    background: linear-gradient(145deg, var(--bg-2), var(--bg-1));
+  }
+  .pricing-card-header .brand-name {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--ink-0);
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+  .pricing-card-header .brand-url {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--fire-3);
+  }
+  .pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .pricing-table thead th {
+    padding: 10px 12px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--fire-3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: rgba(255, 61, 0, 0.06);
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+  }
+  .pricing-table tbody td {
+    padding: 10px 12px;
+    font-size: 12.5px;
+    color: var(--ink-1);
+    border-bottom: 1px solid var(--line);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .pricing-table tbody td:first-child {
+    color: var(--ink-0);
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+  }
+  .pricing-table tbody tr:last-child td { border-bottom: none; }
+  .pricing-table tbody tr:hover td { background: var(--glass-hot); }
+  .pricing-table .cheapest { color: var(--ok); font-weight: 700; }
+  .pricing-table .priciest { color: var(--danger); }
+
+  /* SWOT */
+  .swot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .swot-card {
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    background: var(--bg-1);
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .swot-card:hover { transform: translateY(-3px); border-color: var(--line-hot); }
+  .swot-card-header {
+    padding: 20px 22px 16px;
+    border-bottom: 1px solid var(--line);
+    background: linear-gradient(145deg, var(--bg-2), var(--bg-1));
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .swot-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: var(--glass-hot);
+    border: 1px solid var(--line-hot);
+    display: grid; place-items: center;
+    font-size: 22px;
+  }
+  .swot-card-header .swot-name {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--ink-0);
+    letter-spacing: -0.02em;
+    margin-bottom: 2px;
+  }
+  .swot-card-header .swot-url {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--fire-3);
+  }
+  .swot-body { padding: 20px 22px; }
+  .swot-quadrant {
+    margin-bottom: 14px;
+  }
+  .swot-quadrant-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .swot-quadrant-label.s { color: var(--ok); }
+  .swot-quadrant-label.w { color: var(--danger); }
+  .swot-quadrant-label.o { color: #60a5fa; }
+  .swot-quadrant-label.t { color: var(--warn); }
+  .swot-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .swot-list li {
+    font-size: 13px;
+    color: var(--ink-2);
+    padding: 6px 10px 6px 24px;
+    position: relative;
+    background: var(--bg-3);
+    border-radius: 6px;
+    line-height: 1.4;
+  }
+  .swot-list li::before {
+    position: absolute;
+    left: 8px;
+    top: 7px;
+    font-size: 11px;
+  }
+  .swot-list.s li::before { content: '▲'; color: var(--ok); }
+  .swot-list.w li::before { content: '▼'; color: var(--danger); }
+  .swot-list.o li::before { content: '◆'; color: #60a5fa; }
+  .swot-list.t li::before { content: '⚠'; color: var(--warn); }
+
+  /* Gap Analysis */
+  .gap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 18px;
+    margin-top: 32px;
+  }
+  .gap-card {
+    padding: 22px;
+    border-radius: 16px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .gap-card:hover { transform: translateY(-3px); border-color: var(--line-hot); background: var(--bg-2); }
+  .gap-card-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--fire-2);
+    letter-spacing: 0.15em;
+    margin-bottom: 10px;
+    opacity: 0.7;
+  }
+  .gap-card-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--ink-0);
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .gap-card-desc {
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.6;
+  }
+  .gap-card-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .gap-card-badge.critical { background: rgba(248, 113, 113, 0.15); color: var(--danger); border: 1px solid rgba(248, 113, 113, 0.3); }
+  .gap-card-badge.high { background: rgba(255, 165, 64, 0.12); color: var(--fire-3); border: 1px solid var(--line-hot); }
+  .gap-card-badge.medium { background: rgba(251, 191, 36, 0.1); color: var(--warn); border: 1px solid rgba(251, 191, 36, 0.25); }
+
+  /* Market size */
+  .market-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 18px;
+    margin-top: 28px;
+  }
+  .market-stat {
+    padding: 24px 20px;
+    border-radius: 16px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    text-align: center;
+    transition: all 0.3s;
+  }
+  .market-stat:hover { border-color: var(--line-hot); transform: translateY(-3px); }
+  .market-stat .stat-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 30px;
+    font-weight: 900;
+    color: var(--fire-3);
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+    line-height: 1;
+  }
+  .market-stat .stat-label {
+    font-size: 12px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .market-stat .stat-desc {
+    font-size: 12px;
+    color: var(--ink-2);
+    line-height: 1.5;
+  }
+
+  /* Other competitors */
+  .other-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .other-card {
+    padding: 18px 20px;
+    border-radius: 14px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    transition: all 0.2s;
+  }
+  .other-card:hover { border-color: var(--line-hot); transform: translateY(-2px); }
+  .other-card .o-name {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--ink-0);
+    margin-bottom: 4px;
+  }
+  .other-card .o-url {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--fire-3);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .other-card .o-desc {
+    font-size: 12.5px;
+    color: var(--ink-2);
+    line-height: 1.5;
+  }
+
+  /* Info boxes */
+  .info-box {
+    padding: 20px 24px;
+    border-radius: 14px;
+    background: linear-gradient(145deg, var(--glass-hot), transparent);
+    border: 1px solid var(--line-hot);
+    font-size: 14px;
+    color: var(--ink-1);
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+  .info-box b { color: var(--fire-3); }
+
+  /* Footer */
+  footer {
+    padding: 40px 0 30px;
+    border-top: 1px solid var(--line);
+    margin-top: 20px;
+  }
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-3);
+  }
+  .footer-brand span { color: var(--fire-3); }
+  .footer-back {
+    padding: 8px 18px;
+    border-radius: 8px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    color: var(--ink-2);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .footer-back:hover { border-color: var(--line-hot); color: var(--fire-3); }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .wrap { padding: 0 16px; }
+    header.hero { padding: 40px 0 30px; }
+    .company-grid, .pricing-grid, .swot-grid, .gap-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="brand">
+      <span class="flame">🔥</span>
+      BOOM ORACLE &mdash; MARKET INTELLIGENCE
+    </div>
+    <div class="nav">
+      <a href="index.html">← Home</a>
+      <a href="#overview" class="active">Overview</a>
+      <a href="#seo">SEO & Traffic</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#others">Others</a>
+      <a href="#swot">SWOT</a>
+      <a href="#gaps">Gap Analysis</a>
+      <a href="#market">Market Size</a>
+    </div>
+    <h1>
+      <span class="accent">Competitor Analysis Report</span>
+      Slip Verification<br>Market
+    </h1>
+    <p class="subtitle">วิเคราะห์ตลาดบริการตรวจสอบสลิปโอนเงินในประเทศไทย | Updated May 2026</p>
+  </header>
+
+  <!-- SECTION 1: COMPANY OVERVIEW -->
+  <section class="block" id="overview">
+    <div class="eyebrow">Section 01</div>
+    <h2><span class="num">01</span>Company <span class="hl">Overview</span></h2>
+    <p class="section-intro">ผู้เล่นหลักในตลาดบริการ Slip Verification API ของประเทศไทย — ข้อมูลจดทะเบียน บริษัท, บริการ, กลุ่มเป้าหมาย</p>
+
+    <div class="company-grid">
+
+      <!-- SlipOK -->
+      <div class="company-card">
+        <div class="co-num">COMPETITOR #01</div>
+        <div class="co-name">SlipOK</div>
+        <div class="co-thai">บริษัท สลิปโอเค จำกัด</div>
+        <a href="https://slipok.com" class="co-website" target="_blank">slipok.com ↗</a>
+        <div class="co-meta">
+          <div class="co-meta-row">
+            <span class="label">เลขทะเบียน</span>
+            <span class="val">0105565157667</span>
+          </div>
+          <div class="co-meta-row">
+            <span class="label">ทุนจดทะเบียน</span>
+            <span class="val">1,500,000 บาท</span>
+          </div>
+          <div class="co-meta-row">
+            <span class="label">สถานะ</span>
+            <span class="val" style="color:var(--ok)">ยังดำเนินกิจการอยู่</span>
+          </div>
+          <div class="co-meta-row">
+            <span class="label">Free Tier</span>
+            <span class="val">100 slips/เดือน</span>
+          </div>
+        </div>
+        <div class="co-stat-row">
+          <div class="co-stat">LINE Bot</div>
+          <div class="co-stat">Page365</div>
+          <div class="co-stat">API</div>
+          <div class="co-stat">WooCommerce</div>
+        </div>
+        <div class="co-tags">
+          <span class="co-tag">ร้านค้าออนไลน์</span>
+          <span class="co-tag">SME</span>
+          <span class="co-tag green">AIS Partner ฟรี 3 เดือน</span>
+        </div>
+      </div>
+
+      <!-- Slip2Go -->
+      <div class="company-card">
+        <div class="co-num">COMPETITOR #02</div>
+        <div class="co-name">Slip2Go</div>
+        <div class="co-thai">บริษัท สลิปทูโก จำกัด</div>
+        <a href="https://slip2go.com" class="co-website" target="_blank">slip2go.com ↗</a>
+        <div class="co-meta">
+          <div class="co-meta-row">
+            <span class="label">เลขทะเบียน</span>
+            <span class="val">0105567129881</span>
+          </div>
+          <div class="co-meta-row">
+            <span class="label">ทุนจดทะเบียน</span>
+            <span class="val">ไม่ระบุ</span>
+          </div>
+          <div class="co-meta-row">
+            <span class="label">Free Tier</span>
+            <span class="val">100 slips (สมาชิกใหม่)</span>
+          </div>
+          <div class="co-meta-row">
+            <span class="label">Plans</span>
+            <span class="val">BASIC / STANDARD / PREMIUM (1/3/6 เดือน, ส่วนลด 5-10%)</span>
+          </div>
+        </div>
+        <div class="co-stat-row">
+          <div class="co-stat">LINE</div>
+          <div class="co-stat">LINE OA</div>
+          <div class="co-stat">LINE Group</div>
+          <div class="co-stat">FB Page</div>
+          <div class="co-stat">API</div>
+        </div>
+        <div class="co-tags">
+          <span class="co-tag">E-commerce</span>
+          <span class="co-tag">ร้านค้าหลายสาขา</span>
+          <span class="co-tag green">One Stop Service</span>
+          <span class="co-tag green">E-Catalog</span>
+        </div>
+      </div>
+
+      <!-- Thunder Solution -->
+      <div class="company-card">
+        <div class="co-num">COMPETITOR #03</div>
+        <div class="co-name">Thunder</div>
+        <div class="co-thai">บริษัท ธันเดอร์ โซลูชั่น จำกัด</div>
+        <a href="https://thunder.in.th" class="co-website" target="_blank">thunder.in.th ↗</a>
+        <div class="co-meta">
+          <div class="co-meta-row">
+            <span class="label">เลขทะเบียน</span>
+            <span class="val">0465566000017</span>
+          </div>
+          <div class="co-meta-row">
+            <span class="label">ทุนจดทะเบียน</span>
+            <span class="val">1,000,000 บาท</span>
+          </div>
+          <div class="co-meta-row">
+            <span class="label">ที่ตั้ง</span>
+            <span class="val">ขอนแก่น</span>
+          </div>
+          <div class="co-meta-row">
+            <span class="label">สถานะ</span>
+            <span class="val" style="color:var(--ok)">ยังดำเนินกิจการอยู่</span>
+          </div>
+          <div class="co-meta-row">
+            <span class="label">Pricing</span>
+            <span class="val">12 tiers, ฿0 – ฿14,000</span>
+          </div>
+        </div>
+        <div class="co-stat-row">
+          <div class="co-stat">99.98% Accuracy</div>
+          <div class="co-stat">3,000+ Businesses</div>
+          <div class="co-stat">-90% Cost</div>
+        </div>
+        <div class="co-tags">
+          <span class="co-tag">ร้านอาหาร</span>
+          <span class="co-tag">โรงแรม</span>
+          <span class="co-tag">ค้าปลีก</span>
+          <span class="co-tag">นักพัฒนา</span>
+          <span class="co-tag green">LINE Chatbot + API</span>
+        </div>
+      </div>
+
+      <!-- EasySlip -->
+      <div class="company-card">
+        <div class="co-num">COMPETITOR #04</div>
+        <div class="co-name">EasySlip</div>
+        <div class="co-thai">บริษัท อีซี่สลิป จำกัด</div>
+        <a href="https://easyslip.com" class="co-website" target="_blank">easyslip.com ↗</a>
+        <div class="co-meta">
+          <div class="co-meta-row">
+            <span class="label">เลขทะเบียน</span>
+            <span class="val">0465566000530</span>
+          </div>
+          <div class="co-meta-row">
+            <span class="label">ทุนจดทะเบียน</span>
+            <span class="val">1,000,000 บาท</span>
+          </div>
+          <div class="co-meta-row">
+            <span class="label">สถานะ</span>
+            <span class="val" style="color:var(--ok)">ยังดำเนินกิจการอยู่</span>
+          </div>
+          <div class="co-meta-row">
+            <span class="label">Pricing</span>
+            <span class="val">9 tiers, ฿99 – ฿40,000</span>
+          </div>
+          <div class="co-meta-row">
+            <span class="label">Free Tier</span>
+            <span class="val">7-day trial</span>
+          </div>
+        </div>
+        <div class="co-stat-row">
+          <div class="co-stat">60+ Partners</div>
+          <div class="co-stat">4.2M Slips Verified</div>
+          <div class="co-stat">1.2M Fake Detected</div>
+        </div>
+        <div class="co-tags">
+          <span class="co-tag">@ai-easy LINE Bot</span>
+          <span class="co-tag green">WordPress Plugin</span>
+          <span class="co-tag green">WooCommerce Plugin</span>
+          <span class="co-tag">API</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 2: SEO & TRAFFIC -->
+  <section class="block" id="seo">
+    <div class="eyebrow">Section 02</div>
+    <h2><span class="num">02</span>SEO &amp; <span class="hl">Traffic</span></h2>
+    <p class="section-intro">ข้อมูล Ahrefs — Domain Rating, Organic Keywords, Organic Traffic Thailand — เปรียบเทียบความแข็งแกร่ง SEO ของแต่ละ player</p>
+
+    <div class="info-box">
+      Thunder Solution มี <b>Organic Keywords สูงสุด (542 keywords)</b> และ <b>Top 3 Rankings มากที่สุด (143 keywords)</b> แม้ว่า Domain Rating จะต่ำสุด (31) — แสดงให้เห็น SEO strategy ที่มีประสิทธิภาพสูง EasySlip มี Traffic สูงสุด (4,249) แต่มี keywords น้อยมาก (77) — Traffic มาจาก branded search
+    </div>
+
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th class="brand-col">SlipOK<span class="sub">slipok.com</span></th>
+            <th class="brand-col">Thunder<span class="sub">thunder.in.th</span></th>
+            <th class="brand-col">EasySlip<span class="sub">easyslip.com</span></th>
+            <th class="brand-col">Slip2Go<span class="sub">slip2go.com</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label">Domain Rating</td>
+            <td><span class="best">46</span></td>
+            <td><span class="num">31</span></td>
+            <td><span class="num">36</span></td>
+            <td><span class="num">37</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">Ahrefs Rank</td>
+            <td><span class="best">941,648</span></td>
+            <td><span class="num">3,571,393</span></td>
+            <td><span class="num">2,177,985</span></td>
+            <td><span class="num">1,991,363</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">Organic Keywords</td>
+            <td><span class="num">416</span></td>
+            <td><span class="best">542</span></td>
+            <td><span class="num">77</span></td>
+            <td><span class="num">44</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">Top 3 Keywords</td>
+            <td><span class="num">101</span></td>
+            <td><span class="best">143</span></td>
+            <td><span class="num">11</span></td>
+            <td><span class="num">4</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">Organic Traffic (TH)</td>
+            <td><span class="num">4,127</span></td>
+            <td><span class="num">3,824</span></td>
+            <td><span class="best">4,249</span></td>
+            <td><span class="num">860</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">Traffic Value (USD)</td>
+            <td><span class="best">$424.08</span></td>
+            <td><span class="num">$291.94</span></td>
+            <td><span class="num">$64.50</span></td>
+            <td><span class="num">$103.46</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">Paid Keywords</td>
+            <td><span class="num">5</span></td>
+            <td><span class="best">21</span></td>
+            <td><span class="num">3</span></td>
+            <td><span class="num">10</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">Paid Traffic</td>
+            <td><span class="num">34</span></td>
+            <td><span class="best">147</span></td>
+            <td><span class="num">50</span></td>
+            <td><span class="num">86</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SECTION 3: PRICING -->
+  <section class="block" id="pricing">
+    <div class="eyebrow">Section 03</div>
+    <h2><span class="num">03</span>Pricing <span class="hl">Comparison</span></h2>
+    <p class="section-intro">เปรียบเทียบราคาแต่ละ tier ของทุก provider — Thunder Solution มีราคาต่ำสุดที่ scale ใหญ่ (฿0.093/slip) และมี tiers มากที่สุด (12 ระดับ)</p>
+
+    <div class="pricing-grid">
+
+      <!-- SlipOK -->
+      <div class="pricing-card">
+        <div class="pricing-card-header">
+          <div class="brand-name">SlipOK</div>
+          <div class="brand-url">slipok.com — 8 tiers</div>
+        </div>
+        <table class="pricing-table">
+          <thead>
+            <tr>
+              <th>Plan</th>
+              <th>ราคา/เดือน</th>
+              <th>Slips/เดือน</th>
+              <th>ราคา/slip</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Free</td><td>฿0</td><td>100</td><td class="priciest">฿1.00*</td></tr>
+            <tr><td>Starter</td><td>฿210</td><td>500</td><td>฿0.42</td></tr>
+            <tr><td>Medium</td><td>฿360</td><td>1,000</td><td>฿0.36</td></tr>
+            <tr><td>Large</td><td>฿600</td><td>2,000</td><td>฿0.30</td></tr>
+            <tr><td>Enterprise</td><td>฿3,690</td><td>15,000</td><td>฿0.26</td></tr>
+            <tr><td>Premium</td><td>฿7,020</td><td>30,000</td><td>฿0.23</td></tr>
+            <tr><td>Premium+</td><td>฿11,160</td><td>60,000</td><td>฿0.19</td></tr>
+            <tr><td>Max</td><td>฿17,280</td><td>120,000</td><td class="cheapest">฿0.14</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Thunder -->
+      <div class="pricing-card">
+        <div class="pricing-card-header">
+          <div class="brand-name">Thunder Solution</div>
+          <div class="brand-url">thunder.in.th — 12 tiers</div>
+        </div>
+        <table class="pricing-table">
+          <thead>
+            <tr>
+              <th>Plan</th>
+              <th>ราคา</th>
+              <th>Slips</th>
+              <th>ราคา/slip</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Tester</td><td>Free</td><td>150 (15 วัน)</td><td>—</td></tr>
+            <tr><td>Start</td><td>฿99</td><td>400</td><td>฿0.248</td></tr>
+            <tr><td>Basic</td><td>฿199</td><td>1,000</td><td>฿0.199</td></tr>
+            <tr><td>Starter</td><td>฿349</td><td>2,500</td><td>฿0.140</td></tr>
+            <tr><td>Beginner</td><td>฿599</td><td>4,500</td><td>฿0.133</td></tr>
+            <tr><td>Silver</td><td>฿799</td><td>6,000</td><td>฿0.133</td></tr>
+            <tr><td>Gold</td><td>฿1,599</td><td>14,000</td><td>฿0.114</td></tr>
+            <tr><td>Diamond</td><td>฿2,499</td><td>22,500</td><td>฿0.111</td></tr>
+            <tr><td>Premium-1</td><td>฿3,000</td><td>27,000</td><td>฿0.111</td></tr>
+            <tr><td>Premium-2</td><td>฿5,000</td><td>50,000</td><td>฿0.100</td></tr>
+            <tr><td>Premium-3</td><td>฿10,000</td><td>105,000</td><td>฿0.095</td></tr>
+            <tr><td>Premium-4</td><td>฿14,000</td><td>150,000</td><td class="cheapest">฿0.093</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- EasySlip -->
+      <div class="pricing-card">
+        <div class="pricing-card-header">
+          <div class="brand-name">EasySlip</div>
+          <div class="brand-url">easyslip.com — 9 tiers (4 shown)</div>
+        </div>
+        <table class="pricing-table">
+          <thead>
+            <tr>
+              <th>Plan</th>
+              <th>ราคา/เดือน</th>
+              <th>Slips/เดือน</th>
+              <th>ราคา/slip</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Start</td><td>฿99</td><td>250</td><td class="priciest">฿0.396</td></tr>
+            <tr><td>Basic</td><td>฿350</td><td>1,000</td><td>฿0.350</td></tr>
+            <tr><td>Gold</td><td>฿3,500</td><td>17,500</td><td>฿0.200</td></tr>
+            <tr><td>Premium-3</td><td>฿40,000</td><td>320,000</td><td class="cheapest">฿0.125</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Check-Slip -->
+      <div class="pricing-card">
+        <div class="pricing-card-header">
+          <div class="brand-name">Check-Slip</div>
+          <div class="brand-url">check-slip.com — 6 tiers</div>
+        </div>
+        <table class="pricing-table">
+          <thead>
+            <tr>
+              <th>Plan</th>
+              <th>ราคา/เดือน</th>
+              <th>Slips/เดือน</th>
+              <th>ราคา/slip</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Trial</td><td>฿99</td><td>150</td><td class="priciest">฿0.66</td></tr>
+            <tr><td>Starter</td><td>฿199</td><td>300</td><td>฿0.66</td></tr>
+            <tr><td>Small</td><td>฿499</td><td>1,000</td><td>฿0.50</td></tr>
+            <tr><td>Medium</td><td>฿999</td><td>2,500</td><td>฿0.40</td></tr>
+            <tr><td>Large</td><td>฿1,999</td><td>7,500</td><td>฿0.27</td></tr>
+            <tr><td>Premium</td><td>฿4,999</td><td>50,000</td><td class="cheapest">฿0.10</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 4: OTHER COMPETITORS -->
+  <section class="block" id="others">
+    <div class="eyebrow">Section 04</div>
+    <h2><span class="num">04</span>Other <span class="hl">Players</span></h2>
+    <p class="section-intro">ผู้เล่นรายย่อยและบริการเฉพาะทางในตลาด — บางรายมี traffic น้อยมาก บางรายเป็น niche developer tools</p>
+
+    <div class="other-grid">
+      <div class="other-card">
+        <div class="o-name">Check-Slip</div>
+        <span class="o-url">check-slip.com</span>
+        <div class="o-desc">LINE OA Bot + API, 50 free slips, 7-day trial. ไม่มี organic traffic นัยสำคัญ pricing ค่อนข้างแพงที่ tier ต่ำ (฿0.66/slip)</div>
+      </div>
+      <div class="other-card">
+        <div class="o-name">RDCW Slip Verify</div>
+        <span class="o-url">slip.rdcw.co.th</span>
+        <div class="o-desc">API-only, prepaid และ postpaid model, มุ่งเน้น developer market, มี TypeScript SDK, minimal traffic — เหมาะกับ dev แต่ไม่ใช่ SME</div>
+      </div>
+      <div class="other-card">
+        <div class="o-name">OpenSlipVerify</div>
+        <span class="o-url">openslipverify.com</span>
+        <div class="o-desc">ข้อมูลจำกัดมาก — ยังไม่มีรายละเอียด pricing หรือ traffic ชัดเจน เป็น niche player</div>
+      </div>
+      <div class="other-card">
+        <div class="o-name">KBank Slip API</div>
+        <span class="o-url">apiportal.kasikornbank.com</span>
+        <div class="o-desc">Direct bank API จาก KBank — verification ตรงจากธนาคาร ต้องมีบัญชี KBank มุ่งเน้น enterprise ที่ต้องการความน่าเชื่อถือสูงสุด</div>
+      </div>
+      <div class="other-card">
+        <div class="o-name">Page365</div>
+        <span class="o-url">page365.net</span>
+        <div class="o-desc">Slip verification เป็น feature ใน e-commerce platform ใหญ่ — ไม่ใช่ standalone service แต่มี SlipOK เป็น partner อย่างเป็นทางการ</div>
+      </div>
+      <div class="other-card">
+        <div class="o-name">Commerzy</div>
+        <span class="o-url">commerzy.com</span>
+        <div class="o-desc">Slip verification ผ่าน KBank API integration — built-in ใน e-commerce solution ไม่ใช่ standalone API service</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: SWOT -->
+  <section class="block" id="swot">
+    <div class="eyebrow">Section 05</div>
+    <h2><span class="num">05</span>SWOT <span class="hl">Analysis</span></h2>
+    <p class="section-intro">วิเคราะห์จุดแข็ง-จุดอ่อน-โอกาส-ภัยคุกคาม ของ 4 ผู้เล่นหลัก</p>
+
+    <div class="swot-grid">
+
+      <!-- SlipOK SWOT -->
+      <div class="swot-card">
+        <div class="swot-card-header">
+          <div class="swot-icon">💎</div>
+          <div>
+            <div class="swot-name">SlipOK</div>
+            <div class="swot-url">slipok.com · DR 46 · #1 Brand</div>
+          </div>
+        </div>
+        <div class="swot-body">
+          <div class="swot-quadrant">
+            <div class="swot-quadrant-label s">Strengths — จุดแข็ง</div>
+            <ul class="swot-list s">
+              <li>Highest Domain Rating (46) ในตลาด</li>
+              <li>Organic traffic แข็งแกร่ง (4,127/เดือน)</li>
+              <li>AIS Partnership — ฟรี 3 เดือนสำหรับลูกค้า AIS</li>
+              <li>Brand awareness สูงสุดในตลาด most established</li>
+              <li>Page365 integration — เข้าถึง e-commerce platform ใหญ่</li>
+            </ul>
+          </div>
+          <div class="swot-quadrant">
+            <div class="swot-quadrant-label w">Weaknesses — จุดอ่อน</div>
+            <ul class="swot-list w">
+              <li>ราคาต่อ slip แพงกว่า Thunder ที่ scale ใหญ่</li>
+              <li>Fewer keywords (416) กว่า Thunder (542)</li>
+            </ul>
+          </div>
+          <div class="swot-quadrant">
+            <div class="swot-quadrant-label o">Opportunities — โอกาส</div>
+            <ul class="swot-list o">
+              <li>Enterprise market ที่ต้องการ brand trust</li>
+              <li>ขยาย bank partnerships ให้มากขึ้น</li>
+            </ul>
+          </div>
+          <div class="swot-quadrant">
+            <div class="swot-quadrant-label t">Threats — ภัยคุกคาม</div>
+            <ul class="swot-list t">
+              <li>Thunder ตัด pricing แข่งขัน aggressive</li>
+              <li>New entrants ที่มี developer-first approach</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Thunder SWOT -->
+      <div class="swot-card">
+        <div class="swot-card-header">
+          <div class="swot-icon">⚡</div>
+          <div>
+            <div class="swot-name">Thunder</div>
+            <div class="swot-url">thunder.in.th · 542 Keywords · 12 Tiers</div>
+          </div>
+        </div>
+        <div class="swot-body">
+          <div class="swot-quadrant">
+            <div class="swot-quadrant-label s">Strengths — จุดแข็ง</div>
+            <ul class="swot-list s">
+              <li>Keywords มากสุด (542) และ Top 3 rankings มากสุด (143)</li>
+              <li>ราคาต่ำสุดที่ scale ใหญ่ — ฿0.093/slip</li>
+              <li>12 tiers ยืดหยุ่นมากที่สุด</li>
+              <li>Accuracy claim 99.98%, 3,000+ businesses</li>
+              <li>Paid traffic สูงสุด (147) — ลงทุน SEM จริงจัง</li>
+            </ul>
+          </div>
+          <div class="swot-quadrant">
+            <div class="swot-quadrant-label w">Weaknesses — จุดอ่อน</div>
+            <ul class="swot-list w">
+              <li>Domain Rating ต่ำสุด (31)</li>
+              <li>ที่ตั้งในขอนแก่น — อาจดูน่าเชื่อถือน้อยกว่า Bangkok</li>
+            </ul>
+          </div>
+          <div class="swot-quadrant">
+            <div class="swot-quadrant-label o">Opportunities — โอกาส</div>
+            <ul class="swot-list o">
+              <li>SEO leadership ต่อยอดจาก keyword base ที่แข็งแกร่ง</li>
+              <li>Developer market ด้วย API-first approach</li>
+            </ul>
+          </div>
+          <div class="swot-quadrant">
+            <div class="swot-quadrant-label t">Threats — ภัยคุกคาม</div>
+            <ul class="swot-list t">
+              <li>SlipOK brand dominance ใน awareness</li>
+              <li>New entrant ที่มี DR สูงกว่าและ price ที่ต่ำกว่า</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- EasySlip SWOT -->
+      <div class="swot-card">
+        <div class="swot-card-header">
+          <div class="swot-icon">✅</div>
+          <div>
+            <div class="swot-name">EasySlip</div>
+            <div class="swot-url">easyslip.com · 4.2M Verified · WP Plugin</div>
+          </div>
+        </div>
+        <div class="swot-body">
+          <div class="swot-quadrant">
+            <div class="swot-quadrant-label s">Strengths — จุดแข็ง</div>
+            <ul class="swot-list s">
+              <li>Highest organic traffic (4,249) ในตลาด</li>
+              <li>WordPress & WooCommerce Plugin — unique differentiator</li>
+              <li>4.2M+ slips verified, 1.2M fake detected — social proof</li>
+              <li>60+ partners แสดง ecosystem แข็งแกร่ง</li>
+            </ul>
+          </div>
+          <div class="swot-quadrant">
+            <div class="swot-quadrant-label w">Weaknesses — จุดอ่อน</div>
+            <ul class="swot-list w">
+              <li>Fewest keywords (77) — SEO fragile</li>
+              <li>ราคาสูงที่ tier ต่ำ (฿0.396/slip vs Thunder ฿0.248)</li>
+              <li>Traffic มาจาก branded search เป็นหลัก — risky</li>
+            </ul>
+          </div>
+          <div class="swot-quadrant">
+            <div class="swot-quadrant-label o">Opportunities — โอกาส</div>
+            <ul class="swot-list o">
+              <li>WordPress ecosystem กว้างมาก ใน Thailand</li>
+              <li>Plugin marketplace distribution</li>
+            </ul>
+          </div>
+          <div class="swot-quadrant">
+            <div class="swot-quadrant-label t">Threats — ภัยคุกคาม</div>
+            <ul class="swot-list t">
+              <li>API-first competitors ที่ราคาถูกกว่ามาก</li>
+              <li>หากใครทำ Shopify plugin ได้ จะแย่ง WP market share</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slip2Go SWOT -->
+      <div class="swot-card">
+        <div class="swot-card-header">
+          <div class="swot-icon">🔗</div>
+          <div>
+            <div class="swot-name">Slip2Go</div>
+            <div class="swot-url">slip2go.com · Multi-channel · E-Catalog</div>
+          </div>
+        </div>
+        <div class="swot-body">
+          <div class="swot-quadrant">
+            <div class="swot-quadrant-label s">Strengths — จุดแข็ง</div>
+            <ul class="swot-list s">
+              <li>Multi-channel ครบ — LINE, LINE OA, LINE Group, FB Page, API</li>
+              <li>E-Catalog feature — unique ไม่มีใครทำ</li>
+              <li>ราคา competitive, มีส่วนลด long-term plans (5-10%)</li>
+            </ul>
+          </div>
+          <div class="swot-quadrant">
+            <div class="swot-quadrant-label w">Weaknesses — จุดอ่อน</div>
+            <ul class="swot-list w">
+              <li>Lowest organic traffic (860) — SEO อ่อนมาก</li>
+              <li>Top 3 keywords แค่ 4 คำ — ไม่มี SEO presence</li>
+              <li>Brand recognition ต่ำสุดในกลุ่ม 4 หลัก</li>
+            </ul>
+          </div>
+          <div class="swot-quadrant">
+            <div class="swot-quadrant-label o">Opportunities — โอกาส</div>
+            <ul class="swot-list o">
+              <li>Social commerce market ที่กำลังโต (TikTok Shop, IG)</li>
+              <li>Multi-channel approach ตอบโจทย์ omni-channel sellers</li>
+            </ul>
+          </div>
+          <div class="swot-quadrant">
+            <div class="swot-quadrant-label t">Threats — ภัยคุกคาม</div>
+            <ul class="swot-list t">
+              <li>Visibility ต่ำมาก ยากจะแข่งกับ SlipOK brand</li>
+              <li>หากคู่แข่งทำ multi-channel ได้ — Slip2Go หมด USP</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 6: GAP ANALYSIS -->
+  <section class="block" id="gaps">
+    <div class="eyebrow">Section 06</div>
+    <h2><span class="num">06</span>Gap Analysis — <span class="hl">How to Win</span></h2>
+    <p class="section-intro">14 โอกาส ที่ไม่มีผู้เล่นรายใดทำได้ดีพอ — สิ่งที่แบรนด์ใหม่ต้องทำเพื่อชนะตลาด</p>
+
+    <div class="gap-grid">
+
+      <div class="gap-card">
+        <div class="gap-card-badge critical">CRITICAL</div>
+        <div class="gap-card-num">GAP 01</div>
+        <div class="gap-card-title">Aggressive Pricing</div>
+        <div class="gap-card-desc">Thunder ถูกสุด ฿0.093/slip — ตั้งเป้า <b style="color:var(--fire-3)">฿0.08-0.09/slip</b> ที่ scale ใหญ่ เพื่อดึง customer ออกจาก Thunder และ SlipOK</div>
+      </div>
+
+      <div class="gap-card">
+        <div class="gap-card-badge critical">CRITICAL</div>
+        <div class="gap-card-num">GAP 02</div>
+        <div class="gap-card-title">Bigger Free Tier</div>
+        <div class="gap-card-desc">ทุก player ให้ฟรีแค่ 100-150 slips — เสนอ <b style="color:var(--fire-3)">200+ slips ฟรี</b> เพื่อให้คนทดลองใช้ได้จริงก่อนตัดสินใจซื้อ</div>
+      </div>
+
+      <div class="gap-card">
+        <div class="gap-card-badge critical">CRITICAL</div>
+        <div class="gap-card-num">GAP 03</div>
+        <div class="gap-card-title">Developer Experience ที่ดีกว่า</div>
+        <div class="gap-card-desc">ไม่มีใครมี OpenAPI docs ครบ + SDK official (TypeScript, Python, PHP, Go) + Postman collection — ทำให้ developer experience เป็น first-class citizen</div>
+      </div>
+
+      <div class="gap-card">
+        <div class="gap-card-badge high">HIGH</div>
+        <div class="gap-card-num">GAP 04</div>
+        <div class="gap-card-title">Marketplace Integration (NOBODY HAS)</div>
+        <div class="gap-card-desc"><b style="color:var(--fire-3)">ไม่มีใครในตลาดมี</b> Shopee / Lazada / TikTok Shop integration — marketplace sellers ใน Thailand กว่า 1M+ คน รอ solution นี้อยู่</div>
+      </div>
+
+      <div class="gap-card">
+        <div class="gap-card-badge high">HIGH</div>
+        <div class="gap-card-num">GAP 05</div>
+        <div class="gap-card-title">Multi-Platform ครบ</div>
+        <div class="gap-card-desc">เพิ่ม Discord + Telegram integration นอกเหนือจาก LINE — กลุ่ม crypto, gaming, community เล่น Discord/Telegram ไม่ใช่ LINE</div>
+      </div>
+
+      <div class="gap-card">
+        <div class="gap-card-badge high">HIGH</div>
+        <div class="gap-card-num">GAP 06</div>
+        <div class="gap-card-title">Real-time Analytics Dashboard</div>
+        <div class="gap-card-desc">Live dashboard แสดง fraud patterns, monthly reports, anomaly detection — current players มีแค่ basic usage stats ไม่ใช่ intelligence</div>
+      </div>
+
+      <div class="gap-card">
+        <div class="gap-card-badge high">HIGH</div>
+        <div class="gap-card-num">GAP 07</div>
+        <div class="gap-card-title">WordPress + Shopify Plugin</div>
+        <div class="gap-card-desc">EasySlip มีแค่ WordPress plugin — เพิ่ม <b style="color:var(--fire-3)">Shopify plugin</b> จะเข้าถึง global e-commerce market ได้ทันที</div>
+      </div>
+
+      <div class="gap-card">
+        <div class="gap-card-badge high">HIGH</div>
+        <div class="gap-card-num">GAP 08</div>
+        <div class="gap-card-title">Webhook / Event-driven API</div>
+        <div class="gap-card-desc">Real-time webhook notifications เมื่อ slip verified — ไม่ต้อง polling แบบ current players ลด latency, ลด API calls, modern architecture</div>
+      </div>
+
+      <div class="gap-card">
+        <div class="gap-card-badge medium">MEDIUM</div>
+        <div class="gap-card-num">GAP 09</div>
+        <div class="gap-card-title">Accuracy SLA Guarantee</div>
+        <div class="gap-card-desc">Thunder claim 99.98% แต่ไม่มี SLA — offer <b style="color:var(--fire-3)">99.99% SLA with compensation</b> หากไม่ถึง สร้าง trust ระดับ enterprise</div>
+      </div>
+
+      <div class="gap-card">
+        <div class="gap-card-badge medium">MEDIUM</div>
+        <div class="gap-card-num">GAP 10</div>
+        <div class="gap-card-title">SEO Content Strategy</div>
+        <div class="gap-card-desc">Thunder มี 542 keywords แต่ยัง achieve ได้อีกมาก — target 1,000+ keywords ด้วย content marketing: คู่มือตรวจสลิป, วิธีป้องกัน fraud, API guides</div>
+      </div>
+
+      <div class="gap-card">
+        <div class="gap-card-badge medium">MEDIUM</div>
+        <div class="gap-card-num">GAP 11</div>
+        <div class="gap-card-title">Official Open Source SDKs</div>
+        <div class="gap-card-desc">All competitors มีแค่ community SDK — ทำ official SDK ที่ maintained ดี มี type safety, test coverage, changelog ชัดเจน</div>
+      </div>
+
+      <div class="gap-card">
+        <div class="gap-card-badge medium">MEDIUM</div>
+        <div class="gap-card-num">GAP 12</div>
+        <div class="gap-card-title">Multi-bank Direct Connect</div>
+        <div class="gap-card-desc">Direct API connection กับ ธนาคารหลักทุกแห่งใน Thailand — ไม่ใช่แค่ QR scanning แต่ verify ตรงกับ bank record เพิ่มความแม่นยำ</div>
+      </div>
+
+      <div class="gap-card">
+        <div class="gap-card-badge medium">MEDIUM</div>
+        <div class="gap-card-num">GAP 13</div>
+        <div class="gap-card-title">Batch Processing (Enterprise)</div>
+        <div class="gap-card-desc">Upload CSV/Excel ของ slips หลายพันใบพร้อมกัน — enterprise feature ที่ accountants, auditors, large merchants ต้องการแต่ยังไม่มีใครทำ</div>
+      </div>
+
+      <div class="gap-card">
+        <div class="gap-card-badge medium">MEDIUM</div>
+        <div class="gap-card-num">GAP 14</div>
+        <div class="gap-card-title">White-label Solution</div>
+        <div class="gap-card-desc">ให้ agencies และ SaaS providers resell ภายใต้ brand ของตัวเอง — เพิ่ม distribution channel โดยไม่ต้องเพิ่ม sales team</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 7: MARKET SIZE -->
+  <section class="block" id="market">
+    <div class="eyebrow">Section 07</div>
+    <h2><span class="num">07</span>Market Size <span class="hl">Estimate</span></h2>
+    <p class="section-intro">ประมาณการขนาดตลาดบริการ Slip Verification ในประเทศไทย — ยังมีพื้นที่อีกมากที่ยังไม่ถูก serve</p>
+
+    <div class="market-stat-grid">
+      <div class="market-stat">
+        <div class="stat-value">3M+</div>
+        <div class="stat-label">Active Sellers</div>
+        <div class="stat-desc">online sellers ที่ active ในไทย — ส่วนใหญ่ยังไม่ใช้ slip verification</div>
+      </div>
+      <div class="market-stat">
+        <div class="stat-value">40%+</div>
+        <div class="stat-label">YoY Growth</div>
+        <div class="stat-desc">PromptPay transactions โตต่อเนื่องมากกว่า 40% ต่อปี</div>
+      </div>
+      <div class="market-stat">
+        <div class="stat-value">฿200-500M</div>
+        <div class="stat-label">Market Size</div>
+        <div class="stat-desc">ประมาณการขนาดตลาด slip verification ต่อปีในไทย</div>
+      </div>
+      <div class="market-stat">
+        <div class="stat-value">50-100K</div>
+        <div class="stat-label">Served Now</div>
+        <div class="stat-desc">จำนวนธุรกิจที่ current leaders serve รวมกัน — ยังเป็นเพียงส่วนน้อยของตลาด</div>
+      </div>
+      <div class="market-stat">
+        <div class="stat-value">95%+</div>
+        <div class="stat-label">Untapped</div>
+        <div class="stat-desc">ตลาด SME และ micro-sellers ที่ยังไม่ถูก serve — massive opportunity</div>
+      </div>
+    </div>
+
+    <div class="info-box" style="margin-top:32px">
+      <b>Key Insight:</b> ตลาดนี้ยังอยู่ในช่วงเริ่มต้น — current players serve ได้แค่ ~2-3% ของ addressable market ทั้งหมด การเติบโตของ PromptPay และ e-commerce ใน Thailand หมายความว่า <b>ตลาดจะโตก็ต่อเมื่อมี player ที่ education ตลาดได้ดีพอ</b> — นี่คือ real opportunity สำหรับ brand ใหม่ที่มี developer-first + affordable + multi-platform approach
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        Compiled by <span>Boom Oracle</span> &mdash; May 2026 &mdash; <a href="https://kanawut.com" style="color:var(--fire-3);text-decoration:none">kanawut.com</a>
+      </div>
+      <a href="index.html" class="footer-back">← Back to Boom Tools</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
