@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scraper Command Center — Super Admin</title>
+  <script src="auth.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&family=Fira+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #020617;
+      --surface:   #0F172A;
+      --surface-2: #1E293B;
+      --border:    #1E293B;
+      --border-2:  #334155;
+      --green:     #22C55E;
+      --green-dim: #16A34A;
+      --green-bg:  rgba(34,197,94,.08);
+      --yellow:    #EAB308;
+      --yellow-bg: rgba(234,179,8,.08);
+      --blue:      #3B82F6;
+      --blue-bg:   rgba(59,130,246,.08);
+      --red:       #EF4444;
+      --red-bg:    rgba(239,68,68,.08);
+      --text:      #F1F5F9;
+      --muted:     #94A3B8;
+      --muted-2:   #64748B;
+      --mono:      'Fira Code', monospace;
+      --sans:      'Fira Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border-2);
+      padding: 0 32px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .header-left { display: flex; flex-direction: column; gap: 1px; }
+
+    .header-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -.3px;
+    }
+
+    .header-sub {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .header-right { display: flex; align-items: center; gap: 12px; }
+
+    .live-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--green-bg);
+      border: 1px solid rgba(34,197,94,.25);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--green);
+      font-family: var(--mono);
+    }
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: .4; }
+    }
+
+    .timestamp {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted-2);
+    }
+
+    /* ── Layout ── */
+    .main { max-width: 1400px; margin: 0 auto; padding: 32px 24px 64px; }
+
+    .section { margin-bottom: 40px; }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted-2);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border-2);
+    }
+
+    /* ── KPI Row ── */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .kpi-card {
+      background: var(--surface);
+      border: 1px solid var(--border-2);
+      border-radius: 12px;
+      padding: 20px 24px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .2s;
+    }
+
+    .kpi-card:hover { border-color: var(--green-dim); }
+
+    .kpi-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--green), transparent);
+    }
+
+    .kpi-icon {
+      font-size: 22px;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .kpi-label {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 500;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .kpi-value {
+      font-family: var(--mono);
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .kpi-sub {
+      font-size: 11px;
+      color: var(--muted-2);
+      margin-top: 6px;
+      font-family: var(--mono);
+    }
+
+    /* ── Status Table ── */
+    .table-wrapper {
+      background: var(--surface);
+      border: 1px solid var(--border-2);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .table-header {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border-2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .table-header-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .table-meta {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted-2);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead th {
+      padding: 10px 16px;
+      text-align: left;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--muted-2);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: rgba(255,255,255,.02);
+      border-bottom: 1px solid var(--border-2);
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background .15s;
+    }
+
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(255,255,255,.02); }
+
+    td {
+      padding: 11px 16px;
+      font-size: 13px;
+      vertical-align: middle;
+    }
+
+    .td-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted-2);
+      width: 36px;
+    }
+
+    .td-scraper {
+      font-weight: 600;
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    .td-source {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .td-records {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--green);
+      font-weight: 500;
+    }
+
+    .td-time {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted-2);
+      white-space: nowrap;
+    }
+
+    .td-size {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--blue);
+    }
+
+    /* ── Badges ── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      font-family: var(--mono);
+      white-space: nowrap;
+    }
+
+    .badge-green {
+      background: var(--green-bg);
+      color: var(--green);
+      border: 1px solid rgba(34,197,94,.2);
+    }
+
+    .badge-yellow {
+      background: var(--yellow-bg);
+      color: var(--yellow);
+      border: 1px solid rgba(234,179,8,.2);
+    }
+
+    .badge-blue {
+      background: var(--blue-bg);
+      color: var(--blue);
+      border: 1px solid rgba(59,130,246,.2);
+    }
+
+    /* ── Pipeline Flow ── */
+    .pipeline {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .pipe-stage {
+      flex: 1;
+      min-width: 180px;
+      background: var(--surface);
+      border: 1px solid var(--border-2);
+      border-radius: 0;
+      padding: 20px 18px;
+      position: relative;
+    }
+
+    .pipe-stage:first-child { border-radius: 12px 0 0 12px; }
+    .pipe-stage:last-child  { border-radius: 0 12px 12px 0; border-right: 1px solid var(--border-2); }
+
+    .pipe-stage + .pipe-stage { border-left: none; }
+
+    .pipe-arrow {
+      display: flex;
+      align-items: center;
+      padding: 0 2px;
+      color: var(--green);
+      font-size: 20px;
+      z-index: 1;
+      flex-shrink: 0;
+      align-self: center;
+    }
+
+    .pipe-num {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--green);
+      font-weight: 600;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+    }
+
+    .pipe-icon { font-size: 24px; margin-bottom: 8px; }
+
+    .pipe-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .pipe-desc {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .pipe-tag {
+      display: inline-block;
+      margin-top: 8px;
+      font-family: var(--mono);
+      font-size: 10px;
+      background: var(--surface-2);
+      border: 1px solid var(--border-2);
+      padding: 2px 8px;
+      border-radius: 4px;
+      color: var(--muted);
+    }
+
+    /* ── Detail Cards ── */
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .detail-card {
+      background: var(--surface);
+      border: 1px solid var(--border-2);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .detail-card-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+      transition: background .15s;
+    }
+
+    .detail-card-header:hover { background: rgba(255,255,255,.02); }
+
+    .detail-card-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .detail-card-toggle {
+      font-size: 11px;
+      color: var(--muted-2);
+      transition: transform .2s;
+    }
+
+    .detail-card-body {
+      padding: 16px 18px;
+    }
+
+    .kv-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .kv-row:last-child { margin-bottom: 0; }
+
+    .kv-key {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted-2);
+      font-weight: 500;
+      min-width: 90px;
+      padding-top: 1px;
+      letter-spacing: .3px;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .kv-val {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text);
+      word-break: break-all;
+      line-height: 1.5;
+    }
+
+    .kv-val code {
+      background: var(--surface-2);
+      border: 1px solid var(--border-2);
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-size: 10px;
+      color: var(--green);
+    }
+
+    .chip-list { display: flex; flex-wrap: wrap; gap: 4px; }
+
+    .chip {
+      background: var(--surface-2);
+      border: 1px solid var(--border-2);
+      border-radius: 4px;
+      padding: 1px 7px;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    /* ── Progress Bars ── */
+    .progress-wrap { margin-top: 12px; }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted-2);
+    }
+
+    .progress-bar {
+      height: 4px;
+      background: var(--surface-2);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 2px;
+      background: var(--green);
+      transition: width 1s ease;
+    }
+
+    .progress-fill.blue  { background: var(--blue); }
+    .progress-fill.yellow { background: var(--yellow); }
+
+    /* ── Quick Actions ── */
+    .actions-grid {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      background: var(--surface);
+      border: 1px solid var(--border-2);
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      cursor: default;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: border-color .2s, background .2s;
+      position: relative;
+    }
+
+    .action-btn:hover { border-color: var(--green-dim); background: var(--green-bg); color: var(--green); }
+
+    .action-btn .ref-tag {
+      font-family: var(--mono);
+      font-size: 9px;
+      background: var(--surface-2);
+      border: 1px solid var(--border-2);
+      color: var(--muted-2);
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border-2);
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--muted-2);
+      font-family: var(--mono);
+    }
+
+    .footer a { color: var(--green); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    /* ── Utility ── */
+    .green { color: var(--green); }
+    .muted { color: var(--muted-2); }
+
+    .db-bar-wrap { display: flex; align-items: center; gap: 8px; }
+    .db-bar-track {
+      flex: 1;
+      height: 3px;
+      background: var(--surface-2);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .db-bar-fill {
+      height: 100%;
+      background: var(--blue);
+      border-radius: 2px;
+    }
+
+    @media (max-width: 1100px) {
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+      .detail-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 700px) {
+      .kpi-grid { grid-template-columns: 1fr; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .pipeline { flex-direction: column; }
+      .pipe-stage:first-child { border-radius: 12px 12px 0 0; }
+      .pipe-stage:last-child { border-radius: 0 0 12px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header class="header">
+  <div class="header-left">
+    <div class="header-title">🎛️ Scraper Command Center — Super Admin</div>
+    <div class="header-sub">homes.kanawut.com — Data Pipeline Management</div>
+  </div>
+  <div class="header-right">
+    <a href="scraper-explorer.html" style="background:var(--green);color:#020617;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;">📊 Data Explorer</a>
+    <div class="live-badge"><span class="live-dot"></span>LIVE</div>
+    <div class="timestamp">22 Apr 2026 — 15:31 ICT</div>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- ── KPI Overview ── -->
+  <section class="section">
+    <div class="section-title">Overview</div>
+    <div class="kpi-grid">
+
+      <div class="kpi-card">
+        <span class="kpi-icon">🤖</span>
+        <div class="kpi-label">Total Scrapers</div>
+        <div class="kpi-value">17</div>
+        <div class="kpi-sub">11 NPA + home.co.th + FB + 4 new sources</div>
+      </div>
+
+      <div class="kpi-card">
+        <span class="kpi-icon">🏠</span>
+        <div class="kpi-label">Total Records</div>
+        <div class="kpi-value">73,133+</div>
+        <div class="kpi-sub">66,148 NPA + 6,760 home.co.th + 225 new sources</div>
+      </div>
+
+      <div class="kpi-card">
+        <span class="kpi-icon">🕐</span>
+        <div class="kpi-label">Last Run</div>
+        <div class="kpi-value" style="font-size:18px;">22 เม.ย.</div>
+        <div class="kpi-sub">2026 — most scrapers 02:46–02:52</div>
+      </div>
+
+      <div class="kpi-card">
+        <span class="kpi-icon">💾</span>
+        <div class="kpi-label">Database Size</div>
+        <div class="kpi-value">~460MB</div>
+        <div class="kpi-sub">SQLite raw + Neon PostgreSQL</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Scraper Status Table ── -->
+  <section class="section">
+    <div class="section-title">Scraper Status</div>
+    <div class="table-wrapper">
+      <div class="table-header">
+        <div class="table-header-title">All Scrapers — 17 total</div>
+        <div class="table-meta">15 active · 1 ready · 1 RSS · 0 errors</div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Scraper</th>
+            <th>Source</th>
+            <th>Records</th>
+            <th>DB Size</th>
+            <th>Last Run</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- NPA Scrapers -->
+          <tr>
+            <td class="td-num">01</td>
+            <td class="td-scraper">BAM</td>
+            <td class="td-source">bam.co.th</td>
+            <td class="td-records">~25,000</td>
+            <td>
+              <div class="db-bar-wrap">
+                <span class="td-size">93.9 MB</span>
+                <div class="db-bar-track"><div class="db-bar-fill" style="width:56%"></div></div>
+              </div>
+            </td>
+            <td class="td-time">22 เม.ย. 02:52</td>
+            <td><span class="badge badge-green">✅ Active</span></td>
+          </tr>
+          <tr>
+            <td class="td-num">02</td>
+            <td class="td-scraper">KBank</td>
+            <td class="td-source">kbank.com</td>
+            <td class="td-records">~15,000</td>
+            <td>
+              <div class="db-bar-wrap">
+                <span class="td-size">49.9 MB</span>
+                <div class="db-bar-track"><div class="db-bar-fill" style="width:30%"></div></div>
+              </div>
+            </td>
+            <td class="td-time">22 เม.ย. 02:52</td>
+            <td><span class="badge badge-green">✅ Active</span></td>
+          </tr>
+          <tr>
+            <td class="td-num">03</td>
+            <td class="td-scraper">GHB</td>
+            <td class="td-source">ghbank.co.th</td>
+            <td class="td-records">~5,000</td>
+            <td>
+              <div class="db-bar-wrap">
+                <span class="td-size">17.7 MB</span>
+                <div class="db-bar-track"><div class="db-bar-fill" style="width:11%"></div></div>
+              </div>
+            </td>
+            <td class="td-time">22 เม.ย. 02:52</td>
+            <td><span class="badge badge-green">✅ Active</span></td>
+          </tr>
+          <tr>
+            <td class="td-num">04</td>
+            <td class="td-scraper">Krungthai</td>
+            <td class="td-source">ktb.co.th</td>
+            <td class="td-records">~3,000</td>
+            <td>
+              <div class="db-bar-wrap">
+                <span class="td-size">4.1 MB</span>
+                <div class="db-bar-track"><div class="db-bar-fill" style="width:2.5%"></div></div>
+              </div>
+            </td>
+            <td class="td-time">22 เม.ย. 02:52</td>
+            <td><span class="badge badge-green">✅ Active</span></td>
+          </tr>
+          <tr>
+            <td class="td-num">05</td>
+            <td class="td-scraper">Krungsri</td>
+            <td class="td-source">krungsri.com</td>
+            <td class="td-records">~2,000</td>
+            <td>
+              <div class="db-bar-wrap">
+                <span class="td-size">5.8 MB</span>
+                <div class="db-bar-track"><div class="db-bar-fill" style="width:3.5%"></div></div>
+              </div>
+            </td>
+            <td class="td-time">22 เม.ย. 02:52</td>
+            <td><span class="badge badge-green">✅ Active</span></td>
+          </tr>
+          <tr>
+            <td class="td-num">06</td>
+            <td class="td-scraper">GSB</td>
+            <td class="td-source">gsb.or.th</td>
+            <td class="td-records">~2,500</td>
+            <td>
+              <div class="db-bar-wrap">
+                <span class="td-size">6.3 MB</span>
+                <div class="db-bar-track"><div class="db-bar-fill" style="width:3.8%"></div></div>
+              </div>
+            </td>
+            <td class="td-time">22 เม.ย. 02:52</td>
+            <td><span class="badge badge-green">✅ Active</span></td>
+          </tr>
+          <tr>
+            <td class="td-num">07</td>
+            <td class="td-scraper">SAM</td>
+            <td class="td-source">sam.or.th</td>
+            <td class="td-records">~1,500</td>
+            <td>
+              <div class="db-bar-wrap">
+                <span class="td-size">3.4 MB</span>
+                <div class="db-bar-track"><div class="db-bar-fill" style="width:2%"></div></div>
+              </div>
+            </td>
+            <td class="td-time">22 เม.ย. 02:52</td>
+            <td><span class="badge badge-green">✅ Active</span></td>
+          </tr>
+          <tr>
+            <td class="td-num">08</td>
+            <td class="td-scraper">SCB</td>
+            <td class="td-source">scb.co.th</td>
+            <td class="td-records">~2,000</td>
+            <td>
+              <div class="db-bar-wrap">
+                <span class="td-size">4.8 MB</span>
+                <div class="db-bar-track"><div class="db-bar-fill" style="width:2.9%"></div></div>
+              </div>
+            </td>
+            <td class="td-time">22 เม.ย. 02:46</td>
+            <td><span class="badge badge-green">✅ Active</span></td>
+          </tr>
+          <tr>
+            <td class="td-num">09</td>
+            <td class="td-scraper">KKPFG</td>
+            <td class="td-source">kkpfg.com</td>
+            <td class="td-records">~500</td>
+            <td>
+              <div class="db-bar-wrap">
+                <span class="td-size">1.7 MB</span>
+                <div class="db-bar-track"><div class="db-bar-fill" style="width:1%"></div></div>
+              </div>
+            </td>
+            <td class="td-time">22 เม.ย. 02:46</td>
+            <td><span class="badge badge-green">✅ Active</span></td>
+          </tr>
+          <tr>
+            <td class="td-num">10</td>
+            <td class="td-scraper">SWPAMC</td>
+            <td class="td-source">swpamc.com</td>
+            <td class="td-records">~1,500</td>
+            <td>
+              <div class="db-bar-wrap">
+                <span class="td-size">3.8 MB</span>
+                <div class="db-bar-track"><div class="db-bar-fill" style="width:2.3%"></div></div>
+              </div>
+            </td>
+            <td class="td-time">22 เม.ย. 02:52</td>
+            <td><span class="badge badge-green">✅ Active</span></td>
+          </tr>
+          <tr>
+            <td class="td-num">11</td>
+            <td class="td-scraper">LivingInsider</td>
+            <td class="td-source">livinginsider.com</td>
+            <td class="td-records">~8,000</td>
+            <td>
+              <div class="db-bar-wrap">
+                <span class="td-size">108.2 MB</span>
+                <div class="db-bar-track"><div class="db-bar-fill" style="width:65%"></div></div>
+              </div>
+            </td>
+            <td class="td-time">22 เม.ย. 02:51</td>
+            <td><span class="badge badge-green">✅ Active</span></td>
+          </tr>
+          <!-- home.co.th -->
+          <tr>
+            <td class="td-num">12</td>
+            <td class="td-scraper">home.co.th</td>
+            <td class="td-source">home.co.th</td>
+            <td class="td-records">6,760</td>
+            <td>
+              <div class="db-bar-wrap">
+                <span class="td-size">167 MB</span>
+                <div class="db-bar-track"><div class="db-bar-fill" style="width:100%; background: var(--green)"></div></div>
+              </div>
+            </td>
+            <td class="td-time">23 เม.ย. 15:31</td>
+            <td><span class="badge badge-blue">✅ Complete</span></td>
+          </tr>
+          <!-- Facebook -->
+          <tr>
+            <td class="td-num">13</td>
+            <td class="td-scraper">Facebook</td>
+            <td class="td-source">facebook.com</td>
+            <td class="td-records" style="color:var(--muted-2);">0</td>
+            <td class="td-size" style="color:var(--muted-2);">—</td>
+            <td class="td-time">—</td>
+            <td><span class="badge badge-yellow">⏳ Ready (script)</span></td>
+          </tr>
+          <!-- New Sources -->
+          <tr>
+            <td class="td-num">14</td>
+            <td class="td-scraper">ThinkOfLiving</td>
+            <td class="td-source">thinkofliving.com</td>
+            <td class="td-records">84</td>
+            <td>
+              <div class="db-bar-wrap">
+                <span class="td-size">0.1 MB</span>
+                <div class="db-bar-track"><div class="db-bar-fill" style="width:1%; background:var(--green)"></div></div>
+              </div>
+            </td>
+            <td class="td-time">23 เม.ย. 17:10</td>
+            <td><span class="badge badge-green">✅ Active</span></td>
+          </tr>
+          <tr>
+            <td class="td-num">15</td>
+            <td class="td-scraper">ReviewYourLiving</td>
+            <td class="td-source">reviewyourliving.com</td>
+            <td class="td-records">76 + 9 RSS</td>
+            <td>
+              <div class="db-bar-wrap">
+                <span class="td-size">0.1 MB</span>
+                <div class="db-bar-track"><div class="db-bar-fill" style="width:1%; background:var(--green)"></div></div>
+              </div>
+            </td>
+            <td class="td-time">23 เม.ย. 19:40</td>
+            <td><span class="badge badge-green">✅ Active</span></td>
+          </tr>
+          <tr>
+            <td class="td-num">16</td>
+            <td class="td-scraper">TerraBKK</td>
+            <td class="td-source">terrabkk.com</td>
+            <td class="td-records">44</td>
+            <td>
+              <div class="db-bar-wrap">
+                <span class="td-size">0.0 MB</span>
+                <div class="db-bar-track"><div class="db-bar-fill" style="width:1%; background:var(--green)"></div></div>
+              </div>
+            </td>
+            <td class="td-time">23 เม.ย. 17:48</td>
+            <td><span class="badge badge-green">✅ Active</span></td>
+          </tr>
+          <tr>
+            <td class="td-num">17</td>
+            <td class="td-scraper">PropertyScout</td>
+            <td class="td-source">propertyscout.co.th</td>
+            <td class="td-records">21</td>
+            <td>
+              <div class="db-bar-wrap">
+                <span class="td-size">0.0 MB</span>
+                <div class="db-bar-track"><div class="db-bar-fill" style="width:1%; background:var(--green)"></div></div>
+              </div>
+            </td>
+            <td class="td-time">23 เม.ย. 18:37</td>
+            <td><span class="badge badge-green">✅ Active</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── Data Size Distribution ── -->
+  <section class="section">
+    <div class="section-title">Storage Distribution</div>
+    <div style="background:var(--surface);border:1px solid var(--border-2);border-radius:12px;padding:20px 24px;">
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;">
+        <div>
+          <div style="font-size:12px;font-weight:600;color:var(--text);margin-bottom:14px;">SQLite DB Sizes (460MB total)</div>
+          <div class="progress-wrap">
+            <div class="progress-label"><span>LivingInsider</span><span style="color:var(--blue)">108.2 MB</span></div>
+            <div class="progress-bar"><div class="progress-fill blue" style="width:100%"></div></div>
+
+            <div class="progress-label"><span>home.co.th</span><span style="color:var(--green)">167 MB</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+
+            <div class="progress-label"><span>BAM</span><span style="color:var(--blue)">93.9 MB</span></div>
+            <div class="progress-bar"><div class="progress-fill blue" style="width:86%"></div></div>
+
+            <div class="progress-label"><span>KBank</span><span style="color:var(--blue)">49.9 MB</span></div>
+            <div class="progress-bar"><div class="progress-fill blue" style="width:46%"></div></div>
+
+            <div class="progress-label"><span>GHB</span><span style="color:var(--blue)">17.7 MB</span></div>
+            <div class="progress-bar"><div class="progress-fill blue" style="width:16%"></div></div>
+
+            <div class="progress-label"><span>Others (7 scrapers)</span><span style="color:var(--muted-2)">~23.9 MB</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:22%;background:var(--muted-2)"></div></div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:600;color:var(--text);margin-bottom:14px;">Record Distribution</div>
+          <div class="progress-wrap">
+            <div class="progress-label"><span>BAM</span><span style="color:var(--green)">~25,000</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+
+            <div class="progress-label"><span>KBank</span><span style="color:var(--green)">~15,000</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div>
+
+            <div class="progress-label"><span>LivingInsider</span><span style="color:var(--blue)">~8,000</span></div>
+            <div class="progress-bar"><div class="progress-fill blue" style="width:32%"></div></div>
+
+            <div class="progress-label"><span>home.co.th</span><span style="color:var(--green)">6,760</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:27%"></div></div>
+
+            <div class="progress-label"><span>GHB</span><span style="color:var(--blue)">~5,000</span></div>
+            <div class="progress-bar"><div class="progress-fill blue" style="width:20%"></div></div>
+
+            <div class="progress-label"><span>Others (7 scrapers)</span><span style="color:var(--muted-2)">~11,148</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:45%;background:var(--muted-2)"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Pipeline Flow ── -->
+  <section class="section">
+    <div class="section-title">Data Pipeline Flow</div>
+    <div class="pipeline">
+
+      <div class="pipe-stage">
+        <div class="pipe-num">STAGE 01</div>
+        <div class="pipe-icon">🤖</div>
+        <div class="pipe-title">Scrapers</div>
+        <div class="pipe-desc">13 scrapers<br>11 NPA banks + home.co.th + Facebook</div>
+        <span class="pipe-tag">crawler_server.py :5002</span>
+      </div>
+
+      <div class="pipe-arrow">→</div>
+
+      <div class="pipe-stage">
+        <div class="pipe-num">STAGE 02</div>
+        <div class="pipe-icon">🗄️</div>
+        <div class="pipe-title">Raw SQLite DBs</div>
+        <div class="pipe-desc">~460 MB total<br>Per-scraper .db files</div>
+        <span class="pipe-tag">backup/NPA-Property-Platform/</span>
+      </div>
+
+      <div class="pipe-arrow">→</div>
+
+      <div class="pipe-stage">
+        <div class="pipe-num">STAGE 03</div>
+        <div class="pipe-icon">⚙️</div>
+        <div class="pipe-title">Clean / Normalize</div>
+        <div class="pipe-desc">Deduplicate, validate,<br>normalize field formats</div>
+        <span class="pipe-tag">import-npa.py</span>
+      </div>
+
+      <div class="pipe-arrow">→</div>
+
+      <div class="pipe-stage">
+        <div class="pipe-num">STAGE 04</div>
+        <div class="pipe-icon">🐘</div>
+        <div class="pipe-title">Neon PostgreSQL</div>
+        <div class="pipe-desc">66,148 NPA properties<br>Central database</div>
+        <span class="pipe-tag">Neon — serverless PG</span>
+      </div>
+
+      <div class="pipe-arrow">→</div>
+
+      <div class="pipe-stage">
+        <div class="pipe-num">STAGE 05</div>
+        <div class="pipe-icon">🌐</div>
+        <div class="pipe-title">homes.kanawut.com</div>
+        <div class="pipe-desc">Live property search<br>portal (production)</div>
+        <span class="pipe-tag">Next.js — live</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Detail Cards ── -->
+  <section class="section">
+    <div class="section-title">Scraper Details</div>
+    <div class="detail-grid">
+
+      <!-- NPA Bank Scrapers -->
+      <div class="detail-card">
+        <div class="detail-card-header" onclick="toggleCard(this)">
+          <div class="detail-card-title">
+            <span>🏦</span>
+            NPA Bank Scrapers (11)
+          </div>
+          <span class="detail-card-toggle">▼</span>
+        </div>
+        <div class="detail-card-body">
+          <div class="kv-row">
+            <span class="kv-key">Location</span>
+            <span class="kv-val"><code>backup/NPA-Property-Platform/</code></span>
+          </div>
+          <div class="kv-row">
+            <span class="kv-key">Server</span>
+            <span class="kv-val"><code>crawler_server.py</code> on port <code>5002</code></span>
+          </div>
+          <div class="kv-row">
+            <span class="kv-key">Trigger</span>
+            <span class="kv-val"><code>POST /api/crawl/{bank}</code></span>
+          </div>
+          <div class="kv-row">
+            <span class="kv-key">Config</span>
+            <span class="kv-val"><code>{"update_existing": true, "stale_days": 7}</code></span>
+          </div>
+          <div class="kv-row">
+            <span class="kv-key">Crawlers</span>
+            <div>
+              <div class="chip-list">
+                <span class="chip">bam_crawler.py</span>
+                <span class="chip">kbank_crawler.py</span>
+                <span class="chip">ghb_crawler.py</span>
+                <span class="chip">ktb_crawler.py</span>
+                <span class="chip">krungsri_crawler.py</span>
+                <span class="chip">gsb_crawler.py</span>
+                <span class="chip">sam_crawler.py</span>
+                <span class="chip">scb_crawler.py</span>
+                <span class="chip">kkpfg_crawler.py</span>
+                <span class="chip">swpamc_crawler.py</span>
+                <span class="chip">livinginsider_crawler.py</span>
+              </div>
+            </div>
+          </div>
+          <div class="progress-wrap" style="margin-top:14px;">
+            <div class="progress-label"><span>Active scrapers</span><span class="green">11 / 11</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- home.co.th Scraper -->
+      <div class="detail-card">
+        <div class="detail-card-header" onclick="toggleCard(this)">
+          <div class="detail-card-title">
+            <span>🏠</span>
+            home.co.th Scraper
+          </div>
+          <span class="detail-card-toggle">▼</span>
+        </div>
+        <div class="detail-card-body">
+          <div class="kv-row">
+            <span class="kv-key">Script</span>
+            <span class="kv-val"><code>boom-tools/scripts/home-coth-url-scanner.js</code></span>
+          </div>
+          <div class="kv-row">
+            <span class="kv-key">Method</span>
+            <span class="kv-val">Puppeteer brute-force scan topic IDs <code>55000–62000</code></span>
+          </div>
+          <div class="kv-row">
+            <span class="kv-key">Data</span>
+            <span class="kv-val">6,760 projects in JSON</span>
+          </div>
+          <div class="kv-row">
+            <span class="kv-key">Resume</span>
+            <span class="kv-val"><code>--scrape</code> flag to continue from last position</span>
+          </div>
+          <div class="kv-row">
+            <span class="kv-key">Tracking</span>
+            <span class="kv-val"><code>scan-tracking.json</code> — no duplicates</span>
+          </div>
+          <div class="kv-row">
+            <span class="kv-key">Last Run</span>
+            <span class="kv-val green">23 เม.ย. 2026 — 15:31</span>
+          </div>
+          <div class="progress-wrap" style="margin-top:14px;">
+            <div class="progress-label"><span>Scan coverage (IDs 55000–62000)</span><span class="green">100%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Facebook Scraper -->
+      <div class="detail-card">
+        <div class="detail-card-header" onclick="toggleCard(this)">
+          <div class="detail-card-title">
+            <span>📘</span>
+            Facebook Scraper
+          </div>
+          <span class="detail-card-toggle">▼</span>
+        </div>
+        <div class="detail-card-body">
+          <div class="kv-row">
+            <span class="kv-key">Script</span>
+            <span class="kv-val"><code>boom-tools/scripts/fb-scraper.js</code></span>
+          </div>
+          <div class="kv-row">
+            <span class="kv-key">Method</span>
+            <span class="kv-val">Puppeteer <code>headless=false</code> (requires real browser session)</span>
+          </div>
+          <div class="kv-row">
+            <span class="kv-key">Records</span>
+            <span class="kv-val" style="color:var(--muted-2)">0 — not run yet</span>
+          </div>
+          <div class="kv-row">
+            <span class="kv-key">Status</span>
+            <span class="kv-val"><span class="badge badge-yellow">⏳ Script ready — awaiting run</span></span>
+          </div>
+          <div class="kv-row">
+            <span class="kv-key">Note</span>
+            <span class="kv-val" style="color:var(--muted)">Requires Facebook login session cookie. Run manually — headless mode not supported by FB anti-bot.</span>
+          </div>
+          <div class="progress-wrap" style="margin-top:14px;">
+            <div class="progress-label"><span>Readiness</span><span style="color:var(--yellow)">Script only</span></div>
+            <div class="progress-bar"><div class="progress-fill yellow" style="width:30%"></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── URL Tracker (Crawlab-inspired) ── -->
+  <section class="section">
+    <div class="section-title">URL Tracker</div>
+    <div class="table-wrapper">
+      <div class="table-header">
+        <div class="table-header-title">Tracked Sources — Crawl History</div>
+        <div class="table-meta"><input type="text" id="urlSearch" placeholder="Search URLs..." style="background:var(--surface-2);border:1px solid var(--border-2);color:var(--text);padding:4px 10px;border-radius:6px;font-size:12px;font-family:var(--mono);width:200px;"></div>
+      </div>
+      <table id="urlTable">
+        <thead>
+          <tr>
+            <th>Source</th>
+            <th>URLs Tracked</th>
+            <th>Scraped</th>
+            <th>Pending</th>
+            <th>Last Crawl</th>
+            <th>Next Crawl</th>
+            <th>Schedule</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-scraper">bam.co.th</td>
+            <td class="td-records">~25,000 pages</td>
+            <td><span class="badge badge-green">25,000</span></td>
+            <td><span class="badge badge-yellow">~500 stale</span></td>
+            <td class="td-time">22 เม.ย. 02:52</td>
+            <td class="td-time" style="color:var(--yellow)">29 เม.ย.</td>
+            <td><span style="font-family:var(--mono);font-size:11px;color:var(--muted)">Weekly</span></td>
+          </tr>
+          <tr>
+            <td class="td-scraper">kbank.com</td>
+            <td class="td-records">~15,000 pages</td>
+            <td><span class="badge badge-green">15,000</span></td>
+            <td><span class="badge badge-yellow">~300 stale</span></td>
+            <td class="td-time">22 เม.ย. 02:52</td>
+            <td class="td-time" style="color:var(--yellow)">29 เม.ย.</td>
+            <td><span style="font-family:var(--mono);font-size:11px;color:var(--muted)">Weekly</span></td>
+          </tr>
+          <tr>
+            <td class="td-scraper">home.co.th</td>
+            <td class="td-records">7,000 topic IDs</td>
+            <td><span class="badge badge-green">6,760</span></td>
+            <td><span class="badge badge-blue">0 new</span></td>
+            <td class="td-time">23 เม.ย. 15:31</td>
+            <td class="td-time" style="color:var(--muted-2)">Manual</td>
+            <td><span style="font-family:var(--mono);font-size:11px;color:var(--muted)">On-demand</span></td>
+          </tr>
+          <tr>
+            <td class="td-scraper">ghbank.co.th</td>
+            <td class="td-records">~5,000 pages</td>
+            <td><span class="badge badge-green">5,000</span></td>
+            <td><span class="badge badge-yellow">~100 stale</span></td>
+            <td class="td-time">22 เม.ย. 02:52</td>
+            <td class="td-time" style="color:var(--yellow)">29 เม.ย.</td>
+            <td><span style="font-family:var(--mono);font-size:11px;color:var(--muted)">Weekly</span></td>
+          </tr>
+          <tr>
+            <td class="td-scraper">livinginsider.com</td>
+            <td class="td-records">~8,000 pages</td>
+            <td><span class="badge badge-green">8,000</span></td>
+            <td><span class="badge badge-yellow">~200 stale</span></td>
+            <td class="td-time">22 เม.ย. 02:51</td>
+            <td class="td-time" style="color:var(--yellow)">29 เม.ย.</td>
+            <td><span style="font-family:var(--mono);font-size:11px;color:var(--muted)">Weekly</span></td>
+          </tr>
+          <tr>
+            <td class="td-scraper">facebook.com</td>
+            <td class="td-records">—</td>
+            <td><span class="badge badge-yellow">0</span></td>
+            <td><span class="badge badge-yellow">Pending</span></td>
+            <td class="td-time">—</td>
+            <td class="td-time" style="color:var(--muted-2)">TBD</td>
+            <td><span style="font-family:var(--mono);font-size:11px;color:var(--muted)">Manual</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── AI Pipeline Management ── -->
+  <section class="section">
+    <div class="section-title">AI Pipeline — Crawlab Custom</div>
+    <div style="background:var(--surface);border:1px solid var(--border-2);border-radius:12px;padding:24px;">
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;">
+
+        <div style="text-align:center;padding:16px 12px;border-right:2px dashed var(--border-2);">
+          <div style="font-size:28px;margin-bottom:8px;">🕷️</div>
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;">1. Scrape</div>
+          <div style="font-size:11px;color:var(--muted);">Track every URL<br>When scraped / What found</div>
+          <div style="margin-top:10px;"><span class="badge badge-green" style="font-size:10px;">72,908 records</span></div>
+        </div>
+
+        <div style="text-align:center;padding:16px 12px;border-right:2px dashed var(--border-2);">
+          <div style="font-size:28px;margin-bottom:8px;">🧹</div>
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;">2. Clean</div>
+          <div style="font-size:11px;color:var(--muted);">Remove duplicates<br>Normalize fields</div>
+          <div style="margin-top:10px;"><span class="badge badge-green" style="font-size:10px;">66,148 cleaned</span></div>
+        </div>
+
+        <div style="text-align:center;padding:16px 12px;border-right:2px dashed var(--border-2);">
+          <div style="font-size:28px;margin-bottom:8px;">🤖</div>
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;">3. AI Enrich</div>
+          <div style="font-size:11px;color:var(--muted);">Category detection<br>Price extraction / Geocoding</div>
+          <div style="margin-top:10px;"><span class="badge badge-blue" style="font-size:10px;">In progress</span></div>
+        </div>
+
+        <div style="text-align:center;padding:16px 12px;border-right:2px dashed var(--border-2);">
+          <div style="font-size:28px;margin-bottom:8px;">📝</div>
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;">4. Summarize</div>
+          <div style="font-size:11px;color:var(--muted);">AI-generated descriptions<br>SEO content / Highlights</div>
+          <div style="margin-top:10px;"><span class="badge badge-yellow" style="font-size:10px;">5 articles done</span></div>
+        </div>
+
+        <div style="text-align:center;padding:16px 12px;">
+          <div style="font-size:28px;margin-bottom:8px;">🌐</div>
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;">5. Present</div>
+          <div style="font-size:11px;color:var(--muted);">homes.kanawut.com<br>kanawut.com/projects</div>
+          <div style="margin-top:10px;"><span class="badge badge-green" style="font-size:10px;">LIVE</span></div>
+        </div>
+
+      </div>
+
+      <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border-2);">
+        <div style="font-size:11px;font-weight:600;color:var(--muted-2);letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px;">Pipeline Progress</div>
+        <div class="progress-wrap">
+          <div class="progress-label"><span>Overall completion</span><span class="green">Stage 3/5 — AI Enrichment</span></div>
+          <div class="progress-bar" style="height:6px;"><div class="progress-fill" style="width:60%"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Schedule Manager ── -->
+  <section class="section">
+    <div class="section-title">Schedule Manager</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+
+      <div style="background:var(--surface);border:1px solid var(--border-2);border-radius:12px;padding:18px 20px;">
+        <div style="font-size:11px;color:var(--muted-2);font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:12px;">NPA Banks (11)</div>
+        <div class="kv-row"><span class="kv-key">Frequency</span><span class="kv-val green">Weekly (Every Monday 02:00)</span></div>
+        <div class="kv-row"><span class="kv-key">Stale After</span><span class="kv-val">7 days</span></div>
+        <div class="kv-row"><span class="kv-key">Last Run</span><span class="kv-val">22 เม.ย. 02:46-02:52</span></div>
+        <div class="kv-row"><span class="kv-key">Next Run</span><span class="kv-val" style="color:var(--yellow)">28 เม.ย. 02:00</span></div>
+        <div class="kv-row"><span class="kv-key">Command</span><span class="kv-val"><code style="font-size:10px;">POST /api/crawl/all</code></span></div>
+      </div>
+
+      <div style="background:var(--surface);border:1px solid var(--border-2);border-radius:12px;padding:18px 20px;">
+        <div style="font-size:11px;color:var(--muted-2);font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:12px;">home.co.th</div>
+        <div class="kv-row"><span class="kv-key">Frequency</span><span class="kv-val" style="color:var(--muted)">On-demand (manual)</span></div>
+        <div class="kv-row"><span class="kv-key">Stale After</span><span class="kv-val">30 days</span></div>
+        <div class="kv-row"><span class="kv-key">Last Run</span><span class="kv-val green">23 เม.ย. (COMPLETE)</span></div>
+        <div class="kv-row"><span class="kv-key">Next Run</span><span class="kv-val" style="color:var(--muted-2)">Manual trigger</span></div>
+        <div class="kv-row"><span class="kv-key">Command</span><span class="kv-val"><code style="font-size:10px;">node scanner.js --scrape</code></span></div>
+      </div>
+
+      <div style="background:var(--surface);border:1px solid var(--border-2);border-radius:12px;padding:18px 20px;">
+        <div style="font-size:11px;color:var(--muted-2);font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:12px;">AI Processing</div>
+        <div class="kv-row"><span class="kv-key">Clean + Import</span><span class="kv-val green">After each crawl</span></div>
+        <div class="kv-row"><span class="kv-key">AI Enrich</span><span class="kv-val" style="color:var(--blue)">Batch — 100/run</span></div>
+        <div class="kv-row"><span class="kv-key">SEO Generate</span><span class="kv-val" style="color:var(--yellow)">5 done / 6,760 total</span></div>
+        <div class="kv-row"><span class="kv-key">Priority</span><span class="kv-val">New listings first</span></div>
+        <div class="kv-row"><span class="kv-key">Model</span><span class="kv-val"><code style="font-size:10px;">Claude / GPT-4o</code></span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Quick Actions ── -->
+  <section class="section">
+    <div class="section-title">Quick Actions <a href="scraper-explorer.html" style="font-size:12px;color:var(--green);text-decoration:none;font-weight:400;text-transform:none;letter-spacing:0;margin-left:8px;">→ Open Data Explorer</a></div>
+    <div class="actions-grid">
+      <div class="action-btn">
+        🔄 Re-run All NPA Crawlers
+        <span class="ref-tag">POST /api/crawl/all</span>
+      </div>
+      <div class="action-btn">
+        🏠 Re-scan home.co.th
+        <span class="ref-tag">node home-coth-url-scanner.js --scrape</span>
+      </div>
+      <div class="action-btn">
+        📊 Import to Neon PostgreSQL
+        <span class="ref-tag">python import-npa.py</span>
+      </div>
+      <div class="action-btn">
+        🤖 Run AI Enrichment
+        <span class="ref-tag">batch process 100 records</span>
+      </div>
+      <div class="action-btn">
+        📝 Generate SEO Articles
+        <span class="ref-tag">python generate-seo-articles.py</span>
+      </div>
+      <div class="action-btn">
+        🔍 Check Data Quality
+        <span class="ref-tag">audit scripts</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── System Info ── -->
+  <section class="section">
+    <div class="section-title">System</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+
+      <div style="background:var(--surface);border:1px solid var(--border-2);border-radius:12px;padding:18px 20px;">
+        <div style="font-size:11px;color:var(--muted-2);font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:12px;">Infrastructure</div>
+        <div class="kv-row"><span class="kv-key">DB Engine</span><span class="kv-val">Neon PostgreSQL (serverless)</span></div>
+        <div class="kv-row"><span class="kv-key">Raw Store</span><span class="kv-val">SQLite per scraper (~460MB)</span></div>
+        <div class="kv-row"><span class="kv-key">Frontend</span><span class="kv-val">Next.js — homes.kanawut.com</span></div>
+        <div class="kv-row"><span class="kv-key">Scraper Host</span><span class="kv-val">crawler_server.py :5002</span></div>
+      </div>
+
+      <div style="background:var(--surface);border:1px solid var(--border-2);border-radius:12px;padding:18px 20px;">
+        <div style="font-size:11px;color:var(--muted-2);font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:12px;">Data Health</div>
+        <div class="kv-row"><span class="kv-key">NPA Records</span><span class="kv-val green">66,148</span></div>
+        <div class="kv-row"><span class="kv-key">home.co.th</span><span class="kv-val green">6,760</span></div>
+        <div class="kv-row"><span class="kv-key">Stale Threshold</span><span class="kv-val">7 days</span></div>
+        <div class="kv-row"><span class="kv-key">Dedupe</span><span class="kv-val green">Active (import-npa.py)</span></div>
+      </div>
+
+      <div style="background:var(--surface);border:1px solid var(--border-2);border-radius:12px;padding:18px 20px;">
+        <div style="font-size:11px;color:var(--muted-2);font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:12px;">Pipeline Scripts</div>
+        <div class="kv-row"><span class="kv-key">NPA Import</span><span class="kv-val"><code>import-npa.py</code></span></div>
+        <div class="kv-row"><span class="kv-key">home.co.th</span><span class="kv-val"><code>home-coth-url-scanner.js</code></span></div>
+        <div class="kv-row"><span class="kv-key">Facebook</span><span class="kv-val"><code>fb-scraper.js</code></span></div>
+        <div class="kv-row"><span class="kv-key">Crawl API</span><span class="kv-val"><code>crawler_server.py</code></span></div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ── Footer ── -->
+<footer class="footer">
+  <div>Super Admin Dashboard — Boom Oracle | <span style="color:var(--green)">homes.kanawut.com</span></div>
+  <div style="display:flex;gap:20px;align-items:center;">
+    <a href="https://kanawut.com">← Back to kanawut.com</a>
+    <span>2026 © Boom Oracle</span>
+  </div>
+</footer>
+
+<script>
+  function toggleCard(header) {
+    const arrow = header.querySelector('.detail-card-toggle');
+    const body  = header.nextElementSibling;
+    const open  = body.style.display !== 'none';
+    body.style.display = open ? 'none' : 'block';
+    arrow.textContent  = open ? '▶' : '▼';
+  }
+
+  // URL search filter
+  const urlSearch = document.getElementById('urlSearch');
+  if (urlSearch) {
+    urlSearch.addEventListener('input', () => {
+      const q = urlSearch.value.toLowerCase();
+      const rows = document.querySelectorAll('#urlTable tbody tr');
+      rows.forEach(r => {
+        r.style.display = r.textContent.toLowerCase().includes(q) ? '' : 'none';
+      });
+    });
+  }
+
+  // Animate progress bars on load
+  document.addEventListener('DOMContentLoaded', () => {
+    const fills = document.querySelectorAll('.progress-fill, .db-bar-fill');
+    fills.forEach(el => {
+      const target = el.style.width;
+      el.style.width = '0%';
+      requestAnimationFrame(() => {
+        setTimeout(() => { el.style.width = target; }, 120);
+      });
+    });
+
+    // Live clock
+    const ts = document.querySelector('.timestamp');
+    if (ts) {
+      setInterval(() => {
+        const now = new Date();
+        ts.textContent = now.toLocaleString('en-GB', {
+          day: '2-digit', month: 'short', year: 'numeric',
+          hour: '2-digit', minute: '2-digit', second: '2-digit',
+          timeZone: 'Asia/Bangkok'
+        }) + ' ICT';
+      }, 1000);
+    }
+  });
+</script>
+
+</body>
+</html>

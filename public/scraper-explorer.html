@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scraper Data Explorer</title>
+<script src="auth.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#020617;--surface:#0F172A;--surface2:#1E293B;--border:#1E293B;--border2:#334155;
+  --green:#22C55E;--blue:#3B82F6;--yellow:#EAB308;--red:#EF4444;--purple:#8B5CF6;--cyan:#06B6D4;
+  --text:#F1F5F9;--muted:#94A3B8;--muted2:#64748B;
+  --mono:'Courier New',monospace;--sans:-apple-system,'Segoe UI',sans-serif;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;min-height:100vh}
+
+.header{background:var(--surface);border-bottom:1px solid var(--border2);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.header h1{font-size:16px;font-weight:700}
+.header a{color:var(--green);text-decoration:none;font-size:12px}
+
+.main{max-width:1400px;margin:0 auto;padding:20px}
+
+/* Sidebar + Content */
+.layout{display:grid;grid-template-columns:240px 1fr;gap:20px;min-height:80vh}
+.sidebar{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:12px;position:sticky;top:80px;height:fit-content}
+.sidebar h3{font-size:11px;color:var(--muted2);text-transform:uppercase;letter-spacing:.5px;padding:8px 10px 6px;font-weight:600}
+.scraper-btn{display:block;width:100%;text-align:left;background:none;border:none;color:var(--muted);padding:10px 12px;border-radius:8px;cursor:pointer;font-size:13px;font-family:inherit;transition:all .15s}
+.scraper-btn:hover{background:var(--surface2);color:var(--text)}
+.scraper-btn.active{background:var(--green);background:rgba(34,197,94,0.12);color:var(--green);font-weight:600}
+.scraper-btn .count{float:right;font-size:11px;color:var(--muted2)}
+
+.content{min-width:0}
+.section-title{font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px}
+
+/* Stats bar */
+.stats-bar{display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.stat-chip{background:var(--surface);border:1px solid var(--border2);border-radius:8px;padding:8px 14px;font-size:12px}
+.stat-chip strong{color:var(--green);font-size:14px}
+
+/* Data table */
+.data-table{width:100%;border-collapse:collapse;font-size:12px;background:var(--surface);border:1px solid var(--border2);border-radius:12px;overflow:hidden}
+.data-table th{background:var(--surface2);padding:10px 12px;text-align:left;color:var(--muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.3px;position:sticky;top:60px}
+.data-table td{padding:8px 12px;border-top:1px solid var(--border);max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.data-table tr:hover{background:rgba(59,130,246,0.04)}
+.data-table a{color:var(--blue);text-decoration:none;font-size:11px;font-family:var(--mono)}
+.data-table a:hover{text-decoration:underline}
+
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600}
+.badge-green{background:rgba(34,197,94,0.12);color:var(--green)}
+.badge-blue{background:rgba(59,130,246,0.12);color:var(--blue)}
+.badge-yellow{background:rgba(234,179,8,0.12);color:var(--yellow)}
+.badge-purple{background:rgba(139,92,246,0.12);color:var(--purple)}
+
+.img-thumb{width:40px;height:30px;object-fit:cover;border-radius:4px;border:1px solid var(--border)}
+
+#search{width:100%;padding:8px 12px;background:var(--surface2);border:1px solid var(--border2);color:var(--text);border-radius:8px;font-size:13px;font-family:inherit;outline:none;margin-bottom:12px}
+#search:focus{border-color:var(--green)}
+
+.empty{text-align:center;padding:60px 20px;color:var(--muted2)}
+
+@media(max-width:800px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:static;display:flex;flex-wrap:wrap;gap:6px;padding:8px}
+  .sidebar h3{display:none}
+  .scraper-btn{width:auto;padding:6px 12px;font-size:12px}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <h1>Scraper Data Explorer</h1>
+  <div style="display:flex;gap:16px;align-items:center">
+    <a href="admin-dashboard.html">← Command Center</a>
+    <a href="index.html">← kanawut.com</a>
+  </div>
+</header>
+
+<div class="main">
+  <div class="layout">
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <h3>Puppeteer Scrapers</h3>
+      <h3>RSS Feeds</h3>
+      <div class="empty" style="padding:20px;font-size:12px">Loading...</div>
+    </div>
+
+    <!-- Content -->
+    <div class="content" id="content">
+      <div class="empty">เลือก Scraper จากเมนูด้านซ้าย</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Scraper data sources
+const SCRAPERS = {
+  'home-coth': { name: 'home.co.th (6,760)', file: '/data/projects-enriched.json', type: 'puppeteer', icon: '🏠' },
+  'thinkofliving': { name: 'ThinkOfLiving', file: '/data/scraper/thinkofliving-data.json', type: 'puppeteer', icon: '🏢' },
+  'reviewyourliving': { name: 'ReviewYourLiving', file: '/data/scraper/reviewyourliving-data.json', type: 'puppeteer', icon: '📝' },
+  'terrabkk': { name: 'TerraBKK', file: '/data/scraper/terrabkk-data.json', type: 'puppeteer', icon: '🌆' },
+  'propertyscout': { name: 'PropertyScout', file: '/data/scraper/propertyscout-data.json', type: 'puppeteer', icon: '🔍' },
+  'rss-ryl': { name: 'RYL (RSS)', file: '/data/scraper/rss-ryl-data.json', type: 'rss', icon: '📡' },
+  'rss-banidea': { name: 'BanIdea (RSS)', file: '/data/scraper/rss-banidea-data.json', type: 'rss', icon: '📡' },
+};
+
+// NPA scrapers — now with real data files
+const NPA_SCRAPERS_MAP = {
+  'npa-bam': {name:'BAM (15,891)', file:'/data/scraper/npa-bam-data.json', icon:'🏦'},
+  'npa-kbank': {name:'KBank (14,303)', file:'/data/scraper/npa-kbank-data.json', icon:'🏦'},
+  'npa-ghb': {name:'GHB (25,163)', file:'/data/scraper/npa-ghb-data.json', icon:'🏦'},
+  'npa-krungthai': {name:'Krungthai (2,957)', file:'/data/scraper/npa-krungthai-data.json', icon:'🏦'},
+  'npa-krungsri': {name:'Krungsri (1,723)', file:'/data/scraper/npa-krungsri-data.json', icon:'🏦'},
+  'npa-gsb': {name:'GSB (6,135)', file:'/data/scraper/npa-gsb-data.json', icon:'🏦'},
+  'npa-sam': {name:'SAM (4,874)', file:'/data/scraper/npa-sam-data.json', icon:'🏦'},
+  'npa-scb': {name:'SCB (3,845)', file:'/data/scraper/npa-scb-data.json', icon:'🏦'},
+  'npa-kkpfg': {name:'KKPFG (1,791)', file:'/data/scraper/npa-kkpfg-data.json', icon:'🏦'},
+  'npa-swpamc': {name:'SWPAMC (1,655)', file:'/data/scraper/npa-swpamc-data.json', icon:'🏦'},
+  'npa-livinginsider': {name:'LivingInsider (20,775)', file:'/data/scraper/npa-livinginsider-data.json', icon:'🏦'},
+};
+// Merge NPA into SCRAPERS for unified loading
+Object.entries(NPA_SCRAPERS_MAP).forEach(([key, val]) => {
+  SCRAPERS[key] = {...val, type:'npa'};
+});
+
+let currentScraper = null;
+let allData = {};
+
+// Build sidebar
+function buildSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  let html = '<h3>Puppeteer Scrapers</h3>';
+  Object.entries(SCRAPERS).filter(([,s]) => s.type === 'puppeteer').forEach(([key, s]) => {
+    const count = allData[key] ? allData[key].length : '...';
+    html += `<button class="scraper-btn" data-key="${key}" onclick="selectScraper('${key}')">${s.icon} ${s.name} <span class="count">${count}</span></button>`;
+  });
+  html += '<h3>RSS Feeds</h3>';
+  Object.entries(SCRAPERS).filter(([,s]) => s.type === 'rss').forEach(([key, s]) => {
+    const count = allData[key] ? allData[key].length : '...';
+    html += `<button class="scraper-btn" data-key="${key}" onclick="selectScraper('${key}')">${s.icon} ${s.name} <span class="count">${count}</span></button>`;
+  });
+  html += '<h3>NPA Banks</h3>';
+  Object.entries(SCRAPERS).filter(([,s]) => s.type === 'npa').forEach(([key, s]) => {
+    const count = allData[key] ? allData[key].length : '...';
+    html += `<button class="scraper-btn" data-key="${key}" onclick="selectScraper('${key}')">${s.icon} ${s.name} <span class="count">${count}</span></button>`;
+  });
+  sidebar.innerHTML = html;
+}
+
+// Load scraper data
+async function loadScraper(key) {
+  if (allData[key]) return allData[key];
+  const config = SCRAPERS[key];
+  try {
+    const resp = await fetch(config.file);
+    if (!resp.ok) return [];
+    const data = await resp.json();
+    allData[key] = data.projects || data.items || [];
+    allData['_raw_' + key] = { total: data.total || allData[key].length };
+    return allData[key];
+  } catch(e) {
+    return [];
+  }
+}
+
+// Select and display scraper
+async function selectScraper(key) {
+  currentScraper = key;
+  const config = SCRAPERS[key];
+
+  // Update sidebar active state
+  document.querySelectorAll('.scraper-btn').forEach(b => b.classList.remove('active'));
+  const btn = document.querySelector(`[data-key="${key}"]`);
+  if (btn) btn.classList.add('active');
+
+  const content = document.getElementById('content');
+  content.innerHTML = '<div class="empty">Loading data...</div>';
+
+  const items = await loadScraper(key);
+
+  // Update count in sidebar
+  if (btn) btn.querySelector('.count').textContent = items.length;
+
+  if (items.length === 0) {
+    content.innerHTML = '<div class="empty">ไม่มีข้อมูล — ยังไม่ได้ scrape หรือไฟล์ยังไม่ได้ deploy</div>';
+    return;
+  }
+
+  // Stats
+  const withUrl = items.filter(i => i.url || i.sourceUrl || (typeof i.source === 'string' && i.source.startsWith('http'))).length;
+  const withImg = items.filter(i => (i.images && i.images.length > 0) || i.imageCount > 0 || i.image).length;
+  const withPrice = items.filter(i => i.price || i.priceRange).length;
+
+  // Detect if NPA data (has asset_type, province fields)
+  const isNPA = items.length > 0 && (items[0].asset_type || items[0].asset_id);
+  // Get total from raw data if available
+  const rawData = allData['_raw_' + currentScraper];
+  const totalRecords = rawData ? rawData.total : items.length;
+  const showingNote = totalRecords > items.length ? ` <span style="font-size:11px;color:var(--muted2)">(แสดง ${items.length} จาก ${totalRecords.toLocaleString()})</span>` : '';
+
+  let html = `
+    <div class="section-title">${config.icon} ${config.name}${showingNote}</div>
+    <div class="stats-bar">
+      <div class="stat-chip"><strong>${totalRecords.toLocaleString()}</strong> รายการทั้งหมด</div>
+      <div class="stat-chip"><strong>${withUrl}</strong> URLs</div>
+      <div class="stat-chip"><strong>${withImg}</strong> รูปภาพ</div>
+      <div class="stat-chip"><strong>${withPrice}</strong> ราคา</div>
+    </div>
+    <input type="text" id="search" placeholder="ค้นหา..." oninput="filterTable()">`;
+
+  if (isNPA) {
+    // NPA-specific table
+    html += `<table class="data-table" id="dataTable">
+      <thead><tr>
+        <th>#</th><th>รหัส</th><th>ประเภท</th><th>จังหวัด</th><th>อำเภอ</th><th>ตำบล</th><th>ที่ตั้ง</th><th>สถานะ</th>
+      </tr></thead><tbody>`;
+    items.forEach((item, i) => {
+      const assetType = item.asset_type || item.property_type || '';
+      html += `<tr>
+        <td style="color:var(--muted2)">${i+1}</td>
+        <td style="font-family:var(--mono);font-size:11px">${item.asset_no || item.asset_id || item.id || ''}</td>
+        <td><span class="badge badge-${assetType.includes('คอนโด')?'blue':assetType.includes('บ้าน')||assetType.includes('เฮ้าส์')?'green':'yellow'}">${assetType||'-'}</span></td>
+        <td style="font-size:12px">${item.province||'-'}</td>
+        <td style="font-size:11px">${item.district||'-'}</td>
+        <td style="font-size:11px">${item.sub_district||'-'}</td>
+        <td style="font-size:11px" title="${(item.property_location||'').replace(/"/g,'&quot;')}">${(item.property_location||'').substring(0,40)}${(item.property_location||'').length>40?'...':''}</td>
+        <td><span class="badge badge-green" style="font-size:9px">${item.asset_state||'Active'}</span></td>
+      </tr>`;
+    });
+  } else {
+    // Standard table
+    html += `<table class="data-table" id="dataTable">
+      <thead><tr>
+        <th>#</th><th>ชื่อ</th><th>ประเภท</th><th>ราคา</th><th>พื้นที่</th><th>รูป</th><th>URL</th><th>วันที่</th>
+      </tr></thead><tbody>`;
+    items.forEach((item, i) => {
+      const title = item.title || '';
+      const type = item.type || '';
+      const price = item.price || (item.priceRange ? item.priceRange.display : '') || '';
+      const location = item.province || item.location || '';
+      let url = item.url || item.sourceUrl || '';
+      if (!url && typeof item.source === 'string' && item.source.startsWith('http')) url = item.source;
+      const date = item.scrapedAt ? new Date(item.scrapedAt).toLocaleDateString('th-TH', {day:'2-digit',month:'short'}) : (item.pubDate ? new Date(item.pubDate).toLocaleDateString('th-TH',{day:'2-digit',month:'short'}) : '');
+      const firstImg = (item.images && item.images[0]) || item.image || '';
+
+      html += `<tr>
+        <td style="color:var(--muted2)">${i+1}</td>
+        <td title="${title.replace(/"/g,'&quot;')}">${title.substring(0,50)}${title.length>50?'...':''}</td>
+        <td><span class="badge badge-${type==='คอนโด'?'blue':type==='บ้านเดี่ยว'?'green':type==='ทาวน์โฮม'?'purple':'yellow'}">${type||'-'}</span></td>
+        <td style="color:var(--green);font-size:11px">${price||'-'}</td>
+        <td style="font-size:11px">${location||'-'}</td>
+        <td>${firstImg ? '<img src="'+firstImg+'" class="img-thumb" onerror="this.style.display=\'none\'">' : '<span style="color:var(--muted2)">-</span>'}</td>
+        <td>${url ? '<a href="'+url+'" target="_blank">'+(()=>{try{return new URL(url).hostname.replace('www.','').substring(0,20)}catch(e){return url.substring(0,25)}})()+'</a>' : '-'}</td>
+      <td style="color:var(--muted2);font-size:11px">${date}</td>
+    </tr>`;
+    });
+  }
+
+  html += '</tbody></table>';
+  content.innerHTML = html;
+}
+
+function showNPA(idx) {
+  const npa = NPA_SCRAPERS[idx];
+  document.querySelectorAll('.scraper-btn').forEach(b => b.classList.remove('active'));
+  const content = document.getElementById('content');
+  content.innerHTML = `
+    <div class="section-title">🏦 ${npa.name} — NPA Bank Scraper</div>
+    <div class="stats-bar">
+      <div class="stat-chip"><strong>${npa.records}</strong> records</div>
+      <div class="stat-chip"><strong>${npa.db}</strong> SQLite DB</div>
+      <div class="stat-chip">Source: <strong>${npa.source}</strong></div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:24px;margin-top:12px">
+      <h3 style="font-size:14px;margin-bottom:12px;color:var(--text)">Scraper Details</h3>
+      <table class="data-table">
+        <tbody>
+          <tr><td style="color:var(--muted);width:150px">Source Website</td><td><a href="https://${npa.source}" target="_blank" style="color:var(--blue)">${npa.source}</a></td></tr>
+          <tr><td style="color:var(--muted)">Records</td><td>${npa.records}</td></tr>
+          <tr><td style="color:var(--muted)">Database Size</td><td>${npa.db}</td></tr>
+          <tr><td style="color:var(--muted)">Storage</td><td>SQLite (.db file) → Neon PostgreSQL</td></tr>
+          <tr><td style="color:var(--muted)">Crawler Script</td><td><code style="color:var(--green);font-size:12px">backup/NPA-Property-Platform/crawlers/${npa.name.toLowerCase()}_crawler.py</code></td></tr>
+          <tr><td style="color:var(--muted)">Server</td><td><code style="color:var(--green);font-size:12px">crawler_server.py :5002</code></td></tr>
+          <tr><td style="color:var(--muted)">API Trigger</td><td><code style="color:var(--green);font-size:12px">POST /api/crawl/${npa.name.toLowerCase()}</code></td></tr>
+          <tr><td style="color:var(--muted)">Last Run</td><td>22 เม.ย. 2026 02:46-02:52</td></tr>
+          <tr><td style="color:var(--muted)">Schedule</td><td>Weekly (Every Monday 02:00)</td></tr>
+          <tr><td style="color:var(--muted)">Status</td><td><span class="badge badge-green">Active</span></td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:16px;padding:12px;background:var(--surface2);border-radius:8px;font-size:12px;color:var(--muted)">
+        💡 NPA data อยู่ใน SQLite databases — ดูข้อมูลจริงได้ที่ <a href="https://homes.kanawut.com" target="_blank" style="color:var(--blue)">homes.kanawut.com</a> (66,148 NPA properties รวมจากทุกธนาคาร)
+      </div>
+    </div>`;
+}
+
+function filterTable() {
+  const q = document.getElementById('search').value.toLowerCase();
+  const rows = document.querySelectorAll('#dataTable tbody tr');
+  rows.forEach(r => {
+    r.style.display = r.textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+}
+
+// Init
+buildSidebar();
+
+// Auto-load home.co.th first
+loadScraper('home-coth').then(() => {
+  buildSidebar();
+});
+</script>
+
+</body>
+</html>

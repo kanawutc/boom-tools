@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>/wormhole — Federated query proxy across oracle nodes | Skill Detail</title>
+<script src="auth.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Noto Sans Thai','Inter',sans-serif;background:#0a0a14;color:#d0d0d8;line-height:1.7}.hero{background:linear-gradient(135deg,#0a0a14,#1a1a3a,#0a0a14);padding:40px 20px;text-align:center;border-bottom:1px solid #1a1a3a}.hero .cmd{font-family:'JetBrains Mono',monospace;font-size:2.5rem;font-weight:800;color:#a78bfa}.hero .tag{display:inline-block;background:#1a2a4a;color:#60a5fa;padding:3px 12px;border-radius:8px;font-size:0.75rem;font-weight:600;margin:8px 4px}.hero p{color:#8080a0;font-size:0.95rem;margin-top:8px;max-width:600px;display:inline-block}.container{max-width:900px;margin:0 auto;padding:30px 20px}h2{font-size:1.3rem;font-weight:700;color:#a78bfa;border-left:4px solid #7c3aed;padding-left:12px;margin:28px 0 12px}p{color:#a0a0b8;font-size:0.9rem;margin-bottom:10px}.card{background:#0f0f1f;border:1px solid #1a1a3a;border-radius:12px;padding:18px;margin:10px 0}.code-block{font-family:'JetBrains Mono',monospace;background:#0a0a18;border:1px solid #1a1a3a;border-radius:8px;padding:14px;font-size:0.82rem;color:#c4b5fd;overflow-x:auto;margin:10px 0}.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}.mode-card{background:#0f0f1f;border:1px solid #1a1a3a;border-radius:10px;padding:14px}.mode-card h4{color:#a78bfa;font-size:0.9rem;margin-bottom:4px}.mode-card p{font-size:0.82rem;color:#8080a0}.step{display:flex;gap:12px;margin:10px 0;align-items:flex-start}.step-num{background:#7c3aed;color:white;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;flex-shrink:0}.step-content h4{color:#d0d0d8;font-size:0.9rem}.step-content p{font-size:0.82rem;color:#8080a0;margin:0}.footer{text-align:center;padding:24px;color:#3a3a5a;font-size:0.72rem;border-top:1px solid #1a1a2a;margin-top:30px}.footer a{color:#a78bfa;text-decoration:none}@media(max-width:768px){.mode-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="hero">
+<div class="cmd">/wormhole</div>
+<div><span class="tag">Communication</span></div>
+<p>Federated query proxy — ask questions across oracle nodes without moving data</p>
+</div>
+<div class="container">
+<h2>Description</h2>
+<div class="card"><p>Send a query through the Oracle federation without physically moving data or entering a remote session. Wormhole routes your question to one or more remote oracle nodes, collects their responses via maw-js federation channels, and aggregates the answers locally. Data stays on each node — only the answer travels.</p></div>
+<h2>Usage</h2>
+<div class="code-block">/wormhole "query"
+/wormhole --node pimpims-imac "what projects are active?"</div>
+<h2>Modes</h2>
+<div class="mode-grid">
+<div class="mode-card"><h4>Default (broadcast)</h4><p>Send query to all online federation nodes, aggregate responses</p></div>
+<div class="mode-card"><h4>--node &lt;target&gt;</h4><p>Direct query to a specific oracle node only</p></div>
+<div class="mode-card"><h4>--timeout &lt;s&gt;</h4><p>Set response timeout (default 30s)</p></div>
+<div class="mode-card"><h4>--raw</h4><p>Return raw JSON responses without aggregation</p></div>
+</div>
+<h2>วิธีทำงาน</h2>
+<div class="step"><div class="step-num">1</div><div class="step-content"><h4>Encode query as federation message via maw-js</h4></div></div>
+<div class="step"><div class="step-num">2</div><div class="step-content"><h4>Route to target node(s) through federation channels</h4></div></div>
+<div class="step"><div class="step-num">3</div><div class="step-content"><h4>Remote oracle processes query locally</h4></div></div>
+<div class="step"><div class="step-num">4</div><div class="step-content"><h4>Response travels back through wormhole</h4></div></div>
+<div class="step"><div class="step-num">5</div><div class="step-content"><h4>Aggregate and display answers with node attribution</h4></div></div>
+<h2>Output</h2>
+<div class="card"><p>Aggregated responses from oracle nodes, each labeled with source node name and response time</p></div>
+<h2>ใช้เมื่อไหร่?</h2>
+<div class="card"><p>ต้องการถามข้อมูลจาก oracle อื่น โดยไม่ต้องเข้า SSH session, cross-oracle research, หรือ broadcast question ทั้ง federation</p></div>
+<h2>ใช้เมื่อไหร่ไม่ได้?</h2>
+<div class="card"><p>ถ้าต้องการทำงานบน remote machine โดยตรง (รัน commands, edit files) ใช้ /warp แทน — wormhole เป็น query-only</p></div>
+<h2>Related Skills</h2>
+<div class="mode-grid">
+<div class="mode-card"><h4>/warp</h4><p><a href="skill-warp.html" style="color:#a78bfa;text-decoration:none">ดูรายละเอียด →</a></p></div>
+<div class="mode-card"><h4>/fleet</h4><p><a href="skill-fleet.html" style="color:#a78bfa;text-decoration:none">ดูรายละเอียด →</a></p></div>
+<div class="mode-card"><h4>/work-with</h4><p><a href="skill-work-with.html" style="color:#a78bfa;text-decoration:none">ดูรายละเอียด →</a></p></div>
+</div>
+</div>
+<div class="footer">/wormhole Skill Detail | Boom Oracle | April 2026<br><a href="skill-dashboard.html">← กลับ Skill Dashboard</a> | <a href="index.html">Boom Tools</a></div>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Insights — 6,760 โครงการบ้าน</title>
+<script src="auth.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#020617;--surface:#0F172A;--surface2:#1E293B;--border:#1E293B;--border2:#334155;
+  --green:#22C55E;--blue:#3B82F6;--yellow:#EAB308;--red:#EF4444;--purple:#8B5CF6;--cyan:#06B6D4;
+  --text:#F1F5F9;--muted:#94A3B8;--muted2:#64748B;
+  --mono:'monospace';--sans:-apple-system,'Segoe UI',sans-serif;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;min-height:100vh}
+
+.header{background:var(--surface);border-bottom:1px solid var(--border2);padding:20px 32px;display:flex;align-items:center;justify-content:space-between}
+.header h1{font-size:18px;font-weight:700}
+.header-sub{font-size:12px;color:var(--muted)}
+
+.main{max-width:1400px;margin:0 auto;padding:24px 20px 60px}
+.section{margin-bottom:32px}
+.section-title{font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px}
+
+.kpi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.kpi{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:18px;text-align:center}
+.kpi-val{font-size:1.8rem;font-weight:800;color:var(--green)}
+.kpi-label{font-size:11px;color:var(--muted);margin-top:4px}
+.kpi-sub{font-size:10px;color:var(--muted2);margin-top:2px}
+
+.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.chart-card{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:20px}
+.chart-title{font-size:13px;font-weight:600;margin-bottom:12px}
+
+.table-card{background:var(--surface);border:1px solid var(--border2);border-radius:12px;overflow:hidden}
+.table-card table{width:100%;border-collapse:collapse;font-size:12px}
+.table-card th{background:var(--surface2);padding:10px 14px;text-align:left;color:var(--muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+.table-card td{padding:8px 14px;border-top:1px solid var(--border)}
+.table-card tr:hover{background:rgba(59,130,246,0.05)}
+
+.bar{height:6px;background:var(--surface2);border-radius:3px;overflow:hidden;margin-top:4px}
+.bar-fill{height:100%;border-radius:3px;transition:width .6s}
+
+#loader{text-align:center;padding:100px 20px;color:var(--muted)}
+
+@media(max-width:900px){
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .chart-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <div>
+    <h1>Data Insights — โครงการบ้าน</h1>
+    <div class="header-sub">วิเคราะห์ข้อมูล 6,760 โครงการจาก home.co.th</div>
+  </div>
+  <a href="index.html" style="color:var(--green);text-decoration:none;font-size:12px">← kanawut.com</a>
+</header>
+
+<main class="main">
+  <div id="loader">กำลังโหลดข้อมูล...</div>
+  <div id="content" style="display:none">
+
+    <!-- KPIs -->
+    <section class="section">
+      <div class="section-title">Overview</div>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="kpi-val" id="kpi-total">-</div><div class="kpi-label">โครงการทั้งหมด</div></div>
+        <div class="kpi"><div class="kpi-val" id="kpi-provinces" style="color:var(--blue)">-</div><div class="kpi-label">จังหวัด</div></div>
+        <div class="kpi"><div class="kpi-val" id="kpi-developers" style="color:var(--purple)">-</div><div class="kpi-label">ผู้พัฒนา</div></div>
+        <div class="kpi"><div class="kpi-val" id="kpi-types" style="color:var(--yellow)">-</div><div class="kpi-label">ประเภท</div></div>
+        <div class="kpi"><div class="kpi-val" id="kpi-with-images" style="color:var(--cyan)">-</div><div class="kpi-label">มีรูปภาพ</div><div class="kpi-sub" id="kpi-images-pct"></div></div>
+      </div>
+    </section>
+
+    <!-- Charts -->
+    <section class="section">
+      <div class="section-title">Charts</div>
+      <div class="chart-grid">
+        <div class="chart-card">
+          <div class="chart-title">ประเภทโครงการ</div>
+          <canvas id="chart-types" height="250"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">Top 10 จังหวัด</div>
+          <canvas id="chart-provinces" height="250"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">Top 10 ผู้พัฒนา</div>
+          <canvas id="chart-developers" height="250"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">Coverage</div>
+          <canvas id="chart-coverage" height="250"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Top Provinces Table -->
+    <section class="section">
+      <div class="section-title">Top Provinces</div>
+      <div class="table-card">
+        <table>
+          <thead><tr><th>#</th><th>จังหวัด</th><th>จำนวน</th><th>สัดส่วน</th><th></th></tr></thead>
+          <tbody id="province-table"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Top Developers Table -->
+    <section class="section">
+      <div class="section-title">Top Developers</div>
+      <div class="table-card">
+        <table>
+          <thead><tr><th>#</th><th>ผู้พัฒนา</th><th>จำนวน</th><th>สัดส่วน</th><th></th></tr></thead>
+          <tbody id="developer-table"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script>
+const COLORS = ['#22C55E','#3B82F6','#8B5CF6','#EAB308','#06B6D4','#EF4444','#F97316','#EC4899','#14B8A6','#6366F1'];
+
+async function loadInsights() {
+  try {
+    let resp = await fetch('/data/projects-enriched.json');
+    if (!resp.ok) resp = await fetch('/data/projects-clean.json');
+    const data = await resp.json();
+    const projects = data.projects || [];
+    const total = projects.length;
+
+    // Compute stats
+    const types = {}, provinces = {}, developers = {};
+    let withImages = 0, withProvince = 0, withDev = 0, withPrice = 0;
+
+    projects.forEach(p => {
+      types[p.type || 'อื่นๆ'] = (types[p.type || 'อื่นๆ'] || 0) + 1;
+      const prov = p.province || p.location || '';
+      if (prov) { provinces[prov] = (provinces[prov] || 0) + 1; withProvince++; }
+      if (p.developer) { developers[p.developer] = (developers[p.developer] || 0) + 1; withDev++; }
+      if ((p.imageCount || 0) > 0 || (p.images && p.images.length > 0)) withImages++;
+      if (p.priceRange || p.price) withPrice++;
+    });
+
+    // KPIs
+    document.getElementById('kpi-total').textContent = total.toLocaleString();
+    document.getElementById('kpi-provinces').textContent = Object.keys(provinces).length;
+    document.getElementById('kpi-developers').textContent = Object.keys(developers).length;
+    document.getElementById('kpi-types').textContent = Object.keys(types).length;
+    document.getElementById('kpi-with-images').textContent = withImages.toLocaleString();
+    document.getElementById('kpi-images-pct').textContent = (withImages/total*100).toFixed(1) + '%';
+
+    // Type chart
+    const typeEntries = Object.entries(types).sort((a,b) => b[1]-a[1]);
+    new Chart(document.getElementById('chart-types'), {
+      type: 'doughnut',
+      data: {
+        labels: typeEntries.map(e => e[0]),
+        datasets: [{data: typeEntries.map(e => e[1]), backgroundColor: COLORS}]
+      },
+      options: {responsive:true, plugins:{legend:{position:'right',labels:{color:'#94A3B8',font:{size:11}}}}}
+    });
+
+    // Province chart
+    const provEntries = Object.entries(provinces).sort((a,b) => b[1]-a[1]).slice(0,10);
+    new Chart(document.getElementById('chart-provinces'), {
+      type: 'bar',
+      data: {
+        labels: provEntries.map(e => e[0]),
+        datasets: [{label:'โครงการ', data: provEntries.map(e => e[1]), backgroundColor: '#3B82F6'}]
+      },
+      options: {responsive:true, indexAxis:'y', plugins:{legend:{display:false}}, scales:{x:{ticks:{color:'#64748B'}},y:{ticks:{color:'#94A3B8'}}}}
+    });
+
+    // Developer chart
+    const devEntries = Object.entries(developers).sort((a,b) => b[1]-a[1]).slice(0,10);
+    new Chart(document.getElementById('chart-developers'), {
+      type: 'bar',
+      data: {
+        labels: devEntries.map(e => e[0]),
+        datasets: [{label:'โครงการ', data: devEntries.map(e => e[1]), backgroundColor: '#8B5CF6'}]
+      },
+      options: {responsive:true, indexAxis:'y', plugins:{legend:{display:false}}, scales:{x:{ticks:{color:'#64748B'}},y:{ticks:{color:'#94A3B8'}}}}
+    });
+
+    // Coverage chart
+    new Chart(document.getElementById('chart-coverage'), {
+      type: 'bar',
+      data: {
+        labels: ['จังหวัด','ผู้พัฒนา','ราคา','รูปภาพ'],
+        datasets: [{
+          label: 'Coverage %',
+          data: [
+            (withProvince/total*100).toFixed(1),
+            (withDev/total*100).toFixed(1),
+            (withPrice/total*100).toFixed(1),
+            (withImages/total*100).toFixed(1)
+          ],
+          backgroundColor: ['#3B82F6','#8B5CF6','#EAB308','#06B6D4']
+        }]
+      },
+      options: {responsive:true, plugins:{legend:{display:false}}, scales:{x:{ticks:{color:'#94A3B8'}},y:{max:100,ticks:{color:'#64748B',callback:v=>v+'%'}}}}
+    });
+
+    // Province table
+    const maxProv = provEntries[0] ? provEntries[0][1] : 1;
+    document.getElementById('province-table').innerHTML = Object.entries(provinces)
+      .sort((a,b) => b[1]-a[1]).slice(0,20)
+      .map((e,i) => `<tr>
+        <td style="color:var(--muted2)">${i+1}</td>
+        <td style="font-weight:600">${e[0]}</td>
+        <td>${e[1].toLocaleString()}</td>
+        <td style="color:var(--muted)">${(e[1]/total*100).toFixed(1)}%</td>
+        <td style="width:200px"><div class="bar"><div class="bar-fill" style="width:${(e[1]/maxProv*100).toFixed(0)}%;background:var(--blue)"></div></div></td>
+      </tr>`).join('');
+
+    // Developer table
+    const maxDev = devEntries[0] ? devEntries[0][1] : 1;
+    document.getElementById('developer-table').innerHTML = Object.entries(developers)
+      .sort((a,b) => b[1]-a[1]).slice(0,15)
+      .map((e,i) => `<tr>
+        <td style="color:var(--muted2)">${i+1}</td>
+        <td style="font-weight:600">${e[0]}</td>
+        <td>${e[1].toLocaleString()}</td>
+        <td style="color:var(--muted)">${(e[1]/total*100).toFixed(1)}%</td>
+        <td style="width:200px"><div class="bar"><div class="bar-fill" style="width:${(e[1]/maxDev*100).toFixed(0)}%;background:var(--purple)"></div></div></td>
+      </tr>`).join('');
+
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+  } catch(e) {
+    document.getElementById('loader').innerHTML = '<div style="color:#EF4444">Error: ' + e.message + '</div>';
+  }
+}
+loadInsights();
+</script>
+</body>
+</html>

@@ -1,1 +1,7 @@
 .vercel
+
+# Large data files
+scripts/home-coth-data/all-projects-v2.json
+scripts/home-coth-data/all-projects-full.json
+scripts/**/*.json
+scripts/home-coth-data/all-projects-full.json

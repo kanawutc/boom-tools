@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>คู่มือเปิดบริษัทที่ญี่ปุ่น สำหรับชาวต่างชาติ (2026)</title>
+<script src="auth.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a1a;--surface:#101028;--surface2:#161636;--border:#222244;
+  --red:#DC2626;--white:#F1F5F9;--accent:#E11D48;--accent2:#FB7185;
+  --muted:#94A3B8;--muted2:#64748B;
+}
+body{font-family:'Noto Sans Thai',-apple-system,sans-serif;background:var(--bg);color:var(--white);line-height:1.8;font-size:15px}
+
+.hero{background:linear-gradient(135deg,#1a0a2e 0%,#0d0d20 50%,#1a0515 100%);padding:60px 24px 40px;text-align:center;border-bottom:1px solid var(--border)}
+.hero h1{font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:800;background:linear-gradient(135deg,#fff,#FB7185);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{color:var(--muted);margin-top:8px;font-size:0.9rem}
+.hero-badge{display:inline-block;background:var(--accent);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;margin-top:12px}
+
+.container{max-width:900px;margin:0 auto;padding:32px 20px 80px}
+
+.section{margin-bottom:40px}
+.section-title{font-size:1.2rem;font-weight:700;color:var(--accent2);margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--border);display:flex;align-items:center;gap:10px}
+.section-title span{font-size:1.4rem}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:16px}
+.card h3{font-size:1rem;font-weight:700;color:var(--accent2);margin-bottom:10px}
+.card p,.card li{color:var(--muted);font-size:0.9rem;line-height:1.8}
+.card ul{padding-left:20px}
+.card li{margin-bottom:4px}
+
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.compare-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center}
+.compare-card.highlight{border-color:var(--accent)}
+.compare-card h3{color:var(--accent2);margin-bottom:8px}
+.compare-card .price{font-size:1.5rem;font-weight:800;color:var(--white);margin:8px 0}
+.compare-card .desc{font-size:0.8rem;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;font-size:0.85rem;margin:12px 0}
+th{background:var(--surface2);padding:10px 14px;text-align:left;color:var(--muted);font-weight:600;font-size:0.8rem;text-transform:uppercase;letter-spacing:.3px}
+td{padding:10px 14px;border-top:1px solid var(--border);color:var(--muted)}
+tr:hover{background:rgba(225,29,72,0.03)}
+
+.warning{background:rgba(220,38,38,0.08);border:1px solid rgba(220,38,38,0.3);border-radius:10px;padding:16px 20px;margin:16px 0;font-size:0.88rem;color:#FCA5A5}
+.warning strong{color:#EF4444}
+
+.info{background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.3);border-radius:10px;padding:16px 20px;margin:16px 0;font-size:0.88rem;color:#93C5FD}
+
+.timeline{position:relative;padding-left:30px}
+.timeline::before{content:'';position:absolute;left:10px;top:0;bottom:0;width:2px;background:var(--border)}
+.timeline-item{position:relative;margin-bottom:20px}
+.timeline-item::before{content:'';position:absolute;left:-24px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.timeline-item h4{font-size:0.9rem;color:var(--accent2);margin-bottom:4px}
+.timeline-item p{font-size:0.85rem;color:var(--muted)}
+
+.sources{margin-top:40px;padding:16px 20px;background:var(--surface);border-radius:10px;font-size:0.78rem;color:var(--muted2)}
+.sources a{color:var(--accent2);text-decoration:none}
+.sources a:hover{text-decoration:underline}
+
+footer{text-align:center;padding:24px;font-size:0.75rem;color:var(--muted2);border-top:1px solid var(--border)}
+footer a{color:var(--accent2);text-decoration:none}
+
+@media(max-width:700px){
+  .compare-grid{grid-template-columns:1fr}
+  .hero{padding:40px 16px 30px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>คู่มือเปิดบริษัทที่ญี่ปุ่น</h1>
+  <div class="hero-sub">สำหรับชาวต่างชาติ — ข้อกำหนดและกฎหมายล่าสุด</div>
+  <div class="hero-badge">อัปเดต 2026</div>
+</div>
+
+<div class="container">
+
+  <!-- 1. ประเภทบริษัท -->
+  <section class="section">
+    <div class="section-title"><span>🏢</span> ประเภทบริษัทที่จดทะเบียนได้</div>
+
+    <div class="compare-grid">
+      <div class="compare-card highlight">
+        <h3>株式会社 (Kabushiki Kaisha / KK)</h3>
+        <div class="price">¥192,000–222,000</div>
+        <div class="desc">ค่าจดทะเบียน (e-filing)</div>
+        <div style="text-align:left;margin-top:14px;font-size:0.82rem;color:var(--muted);line-height:1.8">
+          <strong style="color:var(--accent2)">บริษัทจำกัด (มหาชน)</strong><br>
+          • เทียบเท่า Corporation/Ltd.<br>
+          • น่าเชื่อถือสูงสุดในญี่ปุ่น<br>
+          • ออกหุ้นได้ ระดมทุนได้<br>
+          • ต้อง Notarize ข้อบังคับ<br>
+          • เหมาะกับธุรกิจขนาดกลาง-ใหญ่
+        </div>
+      </div>
+      <div class="compare-card">
+        <h3>合同会社 (Godo Kaisha / GK)</h3>
+        <div class="price">¥62,000–102,000</div>
+        <div class="desc">ค่าจดทะเบียน (e-filing)</div>
+        <div style="text-align:left;margin-top:14px;font-size:0.82rem;color:var(--muted);line-height:1.8">
+          <strong style="color:var(--accent2)">บริษัทจำกัด (LLC)</strong><br>
+          • เทียบเท่า LLC ของสหรัฐ<br>
+          • ค่าใช้จ่ายต่ำ ยืดหยุ่นสูง<br>
+          • ไม่ต้อง Notarize<br>
+          • ออกหุ้นไม่ได้<br>
+          • เหมาะกับ Startup/ธุรกิจเล็ก
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>เปรียบเทียบ KK vs GK อย่างละเอียด</h3>
+      <table>
+        <thead><tr><th>หัวข้อ</th><th>KK (株式会社)</th><th>GK (合同会社)</th></tr></thead>
+        <tbody>
+          <tr><td>มีมาตั้งแต่</td><td>ค.ศ. 1873</td><td>ค.ศ. 2006</td></tr>
+          <tr><td>เทียบเท่า</td><td>Corporation / Ltd.</td><td>LLC (สหรัฐ)</td></tr>
+          <tr><td>ค่าจดทะเบียน</td><td>¥150,000 (ขั้นต่ำ)</td><td>¥60,000 (ขั้นต่ำ)</td></tr>
+          <tr><td>ค่า Notary</td><td>¥30,000–50,000</td><td>ไม่ต้อง</td></tr>
+          <tr><td>ระยะเวลาจดทะเบียน</td><td>2–3 สัปดาห์</td><td>1–2 สัปดาห์</td></tr>
+          <tr><td>ออกหุ้นได้</td><td style="color:#22C55E">ได้ — ระดมทุนได้</td><td style="color:#EF4444">ไม่ได้</td></tr>
+          <tr><td>จดทะเบียนตลาดหลักทรัพย์</td><td style="color:#22C55E">ได้</td><td style="color:#EF4444">ไม่ได้</td></tr>
+          <tr><td>ความน่าเชื่อถือ</td><td style="color:#22C55E">สูง — ธนาคาร/นักลงทุนชอบ</td><td>ปานกลาง</td></tr>
+          <tr><td>ต่างชาติถือ 100%</td><td style="color:#22C55E">ได้</td><td style="color:#22C55E">ได้</td></tr>
+          <tr><td>ต้องมี Local Resident</td><td>ไม่ต้อง (ตั้งแต่ 2015)</td><td>ไม่ต้อง (ตั้งแต่ 2015)</td></tr>
+          <tr><td>น้ำหนัก Immigration</td><td style="color:#22C55E">สูงกว่า — ช่วยเรื่องวีซ่า</td><td>ปกติ</td></tr>
+          <tr><td>เหมาะกับ</td><td>ธุรกิจกลาง-ใหญ่ ระดมทุน</td><td>Startup ธุรกิจเล็ก Freelance</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>สาขาบริษัทต่างชาติ (Branch Office / 外国会社)</h3>
+      <ul>
+        <li>ค่าจดทะเบียน: ¥97,000–127,000</li>
+        <li>เหมาะกับบริษัทต่างชาติที่มีอยู่แล้วและต้องการ presence ในญี่ปุ่น</li>
+        <li>ต้องมีตัวแทนในญี่ปุ่นอย่างน้อย 1 คนที่มีที่อยู่ในประเทศ</li>
+        <li><strong>ข้อดี:</strong> ไม่ต้องตั้งนิติบุคคลใหม่ กำไร/ขาดทุนรวมกับบริษัทแม่</li>
+        <li><strong>ข้อเสีย:</strong> บริษัทแม่รับผิดชอบหนี้สินทั้งหมด ไม่มี limited liability</li>
+        <li><strong>กฎหมาย:</strong> ต้องจดทะเบียนก่อนทำธุรกรรมต่อเนื่องในญี่ปุ่น (Companies Act Art. 818)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 2. ข้อกำหนด Business Manager Visa -->
+  <section class="section">
+    <div class="section-title"><span>🛂</span> วีซ่านักธุรกิจ (Business Manager Visa)</div>
+
+    <div class="warning">
+      <strong>⚠️ เปลี่ยนแปลงใหญ่! ตุลาคม 2025</strong><br>
+      รัฐบาลญี่ปุ่นเพิ่มเกณฑ์ Business Manager Visa อย่างมาก เพื่อคัดกรองนักลงทุนต่างชาติที่จริงจัง
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>ข้อกำหนด</th><th>ก่อน ต.ค. 2025</th><th>หลัง ต.ค. 2025 (ปัจจุบัน)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>ทุนจดทะเบียนขั้นต่ำ</strong></td><td>¥5,000,000 (~1.2 ล้านบาท)</td><td style="color:#EF4444;font-weight:700">¥30,000,000 (~7.2 ล้านบาท)</td></tr>
+        <tr><td><strong>พนักงานประจำ</strong></td><td>ไม่บังคับ</td><td style="color:#EF4444;font-weight:700">ต้องจ้างอย่างน้อย 1 คน</td></tr>
+        <tr><td><strong>ภาษาญี่ปุ่น</strong></td><td>ไม่บังคับ</td><td style="color:#EF4444;font-weight:700">CEFR B2 (≈JLPT N2) — ผู้สมัครหรือพนักงาน</td></tr>
+        <tr><td><strong>ประสบการณ์</strong></td><td>ไม่ระบุ</td><td style="color:#EF4444;font-weight:700">3+ ปีบริหาร หรือ ป.โท/ป.เอก สาขาบริหาร</td></tr>
+        <tr><td><strong>แผนธุรกิจ</strong></td><td>พื้นฐาน</td><td style="color:#EF4444;font-weight:700">ต้องผ่าน 行政書士/税理士/中小企業診断士</td></tr>
+        <tr><td><strong>สำนักงาน</strong></td><td>Virtual OK</td><td style="color:#EF4444;font-weight:700">ต้องเป็นสำนักงานจริง (Home Office ไม่ได้)</td></tr>
+        <tr><td><strong>แหล่งเงินทุน</strong></td><td>ไม่ตรวจ</td><td style="color:#EF4444;font-weight:700">ต้องพิสูจน์แหล่งที่มา ความถูกกฎหมาย เส้นทางโอน</td></tr>
+      </tbody>
+    </table>
+
+    <div class="card">
+      <h3>รายละเอียดเพิ่มเติม — Business Manager Visa</h3>
+      <ul>
+        <li><strong>ทุน ¥30 ล้าน:</strong> เพิ่มขึ้น 600% จากเดิม — ต้องแสดงที่มาของเงิน ต้นทาง และเส้นทางการโอน โครงสร้างแบบ "ยืมชื่อ" (name-only) จะถูกปฏิเสธ</li>
+        <li><strong>ภาษาญี่ปุ่น (CEFR B2):</strong> กำหนดตามมาตรฐาน CEFR ไม่ใช่ JLPT โดยตรง — BJT ≥400 อาจใช้อ้างอิงได้ แต่ต้องมีหลักฐานการใช้ภาษาจริง (อีเมล, รายงาน, บันทึกการประชุม) ผู้สมัครหรือพนักงานประจำคนใดคนหนึ่งต้องผ่าน</li>
+        <li><strong>พนักงาน:</strong> ต้องจ้างจริง — มีสัญญาจ้าง ระบบเงินเดือน ลงทะเบียนประกันสังคม</li>
+        <li><strong>แผนธุรกิจ:</strong> ต้องผ่านการตรวจสอบจากผู้เชี่ยวชาญ ได้แก่ 行政書士 (Administrative Scrivener), 税理士 (Tax Accountant), หรือ 中小企業診断士 (SME Consultant)</li>
+        <li><strong>ประกาศ:</strong> 10 ตุลาคม 2025 | <strong>มีผลบังคับ:</strong> 16 ตุลาคม 2025</li>
+      </ul>
+    </div>
+
+    <div class="warning">
+      <strong>⚠️ ช่วงเปลี่ยนผ่าน (Transitional Period):</strong><br>
+      ผู้ถือวีซ่า Business Manager หรือ Highly Skilled Professional (i)(c) อยู่แล้ว ที่ยังไม่เข้าเกณฑ์ใหม่ — ถ้ายื่นต่ออายุระหว่าง 16 ต.ค. 2025 ถึง 16 ต.ค. 2028 สำนักงานตรวจคนเข้าเมืองจะพิจารณาจากสถานการณ์ธุรกิจและแนวโน้มที่จะเข้าเกณฑ์ใหม่ได้ (<em>ยังไม่มีการประกาศอย่างเป็นทางการ เป็นรายงานจากสื่อ</em>)
+    </div>
+
+    <div class="info">
+      💡 <strong>ทางเลือกสำหรับผู้ที่ไม่ต้องการ Business Manager Visa:</strong>
+      <ul style="margin-top:8px;padding-left:18px;">
+        <li>ถ้ามีวีซ่าอื่นอยู่แล้ว (เช่น Spouse, Permanent Resident) — จดทะเบียนได้ด้วยทุนขั้นต่ำ ¥1</li>
+        <li>จ้างคนญี่ปุ่นเป็น Representative Director — ตัวเองไม่ต้องมีวีซ่าธุรกิจ</li>
+        <li>ธนาคารแนะนำทุนขั้นต่ำ ¥3-5 ล้านเยน เพื่อความน่าเชื่อถือในการเปิดบัญชี</li>
+        <li>ตั้งแต่ มี.ค. 2015 ต่างชาติจดทะเบียนได้โดยไม่ต้องมี "Local Resident" แต่ต้องมีที่อยู่ในญี่ปุ่น</li>
+        <li>ทั้ง KK และ GK รองรับ 100% foreign ownership ไม่มีข้อจำกัดสัญชาติ</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3. ขั้นตอนจดทะเบียน -->
+  <section class="section">
+    <div class="section-title"><span>📋</span> ขั้นตอนจดทะเบียนบริษัท</div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4>1. เตรียมข้อมูลบริษัท</h4>
+        <p>กำหนดชื่อบริษัท ประเภทธุรกิจ ที่อยู่สำนักงาน ทุนจดทะเบียน ผู้ถือหุ้น/กรรมการ</p>
+      </div>
+      <div class="timeline-item">
+        <h4>2. สั่งทำตราประทับ (Hanko / 判子)</h4>
+        <p>ต้องมีตราประทับบริษัท 3 ดวง: ตราจดทะเบียน (Jitsuin), ตราธนาคาร (Ginko-in), ตราทั่วไป (Kaku-in) — ค่าใช้จ่าย ¥10,000–20,000</p>
+      </div>
+      <div class="timeline-item">
+        <h4>3. ร่างข้อบังคับบริษัท (Articles of Incorporation / 定款)</h4>
+        <p>กำหนดวัตถุประสงค์ ปีงบประมาณ โครงสร้างการบริหาร</p>
+      </div>
+      <div class="timeline-item">
+        <h4>4. รับรองข้อบังคับ (เฉพาะ KK)</h4>
+        <p>ยื่นต่อ Notary Office — ค่าใช้จ่าย ¥50,000 ใช้เวลา 48 ชม. (ตั้งแต่ มี.ค. 2025 ทุกสำนักงานทั่วประเทศ)</p>
+      </div>
+      <div class="timeline-item">
+        <h4>5. ฝากเงินทุนจดทะเบียน</h4>
+        <p>โอนเงินทุนเข้าบัญชีส่วนตัวของกรรมการ (ยังเปิดบัญชีบริษัทไม่ได้จนกว่าจะจดทะเบียนเสร็จ)</p>
+      </div>
+      <div class="timeline-item">
+        <h4>6. ยื่นจดทะเบียนที่สำนักงานนิติกรรม (Legal Affairs Bureau / 法務局)</h4>
+        <p>ยื่นเอกสารทั้งหมด — ใช้เวลา 3–5 วัน (online + e-filing = 72 ชม.)</p>
+      </div>
+      <div class="timeline-item">
+        <h4>7. เปิดบัญชีธนาคารบริษัท</h4>
+        <p>ยื่นที่ธนาคาร — ใช้เวลา 1–4 สัปดาห์ ธนาคารจะตรวจสอบทุนและแผนธุรกิจ</p>
+      </div>
+      <div class="timeline-item">
+        <h4>8. แจ้งหน่วยงานภาษีและประกันสังคม</h4>
+        <p>ยื่นแบบแจ้งเริ่มกิจการต่อสรรพากร (Tax Office), สำนักงานประกันสังคม, กองทุนแรงงาน</p>
+      </div>
+    </div>
+
+    <div class="info">
+      💡 <strong>อัปเดต กุมภาพันธ์ 2026:</strong> สามารถเลือกวันเสาร์-อาทิตย์ วันหยุดราชการ หรือ 1 มกราคม เป็นวันก่อตั้งบริษัทได้แล้ว (ก่อนหน้านี้ต้องเป็นวันทำการเท่านั้น)
+    </div>
+  </section>
+
+  <!-- 4. ค่าใช้จ่าย -->
+  <section class="section">
+    <div class="section-title"><span>💰</span> สรุปค่าใช้จ่าย (ปีแรก)</div>
+
+    <table>
+      <thead>
+        <tr><th>รายการ</th><th>KK (株式会社)</th><th>GK (合同会社)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>ค่าจดทะเบียนรัฐ</td><td>¥182,000–222,000</td><td>¥62,000–102,000</td></tr>
+        <tr><td>ค่า Notary (รับรองข้อบังคับ)</td><td>¥50,000</td><td>ไม่ต้อง</td></tr>
+        <tr><td>ตราประทับ (Hanko)</td><td>¥10,000–20,000</td><td>¥10,000–20,000</td></tr>
+        <tr><td>ค่าบัญชี/ภาษี (ต่อปี)</td><td>¥300,000–800,000</td><td>¥300,000–800,000</td></tr>
+        <tr><td>ค่าเช่าสำนักงาน (ต่อปี)</td><td>¥120,000–3,600,000</td><td>¥120,000–3,600,000</td></tr>
+        <tr><td>ค่าที่ปรึกษา/ทนาย</td><td>¥50,000–300,000</td><td>¥50,000–300,000</td></tr>
+        <tr style="font-weight:700"><td><strong>รวมปีแรก (ประมาณ)</strong></td><td style="color:var(--accent2)">¥700,000–1,700,000+</td><td style="color:var(--accent2)">¥460,000–1,300,000+</td></tr>
+        <tr><td><em>เทียบเป็นบาท (โดยประมาณ)</em></td><td><em>~170,000–410,000 บาท</em></td><td><em>~110,000–315,000 บาท</em></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 5. ภาษี -->
+  <section class="section">
+    <div class="section-title"><span>🧾</span> อัตราภาษีนิติบุคคล</div>
+
+    <div class="card">
+      <h3>1. ภาษีนิติบุคคลแห่งชาติ (National Corporate Tax)</h3>
+      <table>
+        <thead><tr><th>รายได้ต่อปี</th><th>SME (ทุน ≤¥100M)</th><th>บริษัทใหญ่ (ทุน >¥100M)</th></tr></thead>
+        <tbody>
+          <tr><td>ไม่เกิน ¥4,000,000</td><td>15.00%</td><td>23.20%</td></tr>
+          <tr><td>¥4,000,000 – ¥8,000,000</td><td>15.00%</td><td>23.20%</td></tr>
+          <tr><td>เกิน ¥8,000,000</td><td>23.20%</td><td>23.20%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>2. ภาษีท้องถิ่น (Local Taxes) — ตัวอย่างโตเกียว</h3>
+      <table>
+        <thead><tr><th>ประเภท</th><th>ไม่เกิน ¥4M</th><th>¥4-8M</th><th>เกิน ¥8M</th></tr></thead>
+        <tbody>
+          <tr><td>Local Corporate Tax</td><td>1.55%</td><td>1.55%</td><td>2.39%</td></tr>
+          <tr><td>Inhabitant Tax (จังหวัด)</td><td>0.15%</td><td>0.15%</td><td>0.23%</td></tr>
+          <tr><td>Inhabitant Tax (เทศบาล)</td><td>0.90%</td><td>0.90%</td><td>1.39%</td></tr>
+          <tr><td>Enterprise Tax</td><td>3.50%</td><td>5.30%</td><td>7.00%</td></tr>
+          <tr><td>Special Enterprise Tax</td><td>1.30%</td><td>1.96%</td><td>2.59%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>3. Per Capita Levy (ภาษีรายหัว — จ่ายทุกปีไม่ว่าจะกำไรหรือไม่)</h3>
+      <table>
+        <thead><tr><th>ทุนจดทะเบียน</th><th>พนักงาน ≤50 คน</th><th>พนักงาน >50 คน</th></tr></thead>
+        <tbody>
+          <tr><td>≤ ¥10M</td><td>¥70,000</td><td>¥140,000</td></tr>
+          <tr><td>¥10M – ¥100M</td><td>¥180,000</td><td>¥200,000</td></tr>
+          <tr><td>¥100M – ¥1B</td><td>¥290,000</td><td>¥530,000</td></tr>
+          <tr><td>> ¥5B</td><td>¥1,210,000</td><td>¥3,800,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="warning">
+      <strong>⚠️ ใหม่ 2026:</strong> เก็บ Special Defense Surtax 4% บนภาษีนิติบุคคล เริ่ม 1 เม.ย. 2026 — ทำให้ effective tax rate เพิ่มจาก ~30.6% เป็น ~31.5%
+    </div>
+
+    <div class="card">
+      <h3>4. อัตราภาษีรวม (Effective Combined Rate)</h3>
+      <table>
+        <thead><tr><th>รายได้</th><th>SME Rate (รวมทุกอย่าง)</th><th>หมายเหตุ</th></tr></thead>
+        <tbody>
+          <tr><td>ไม่เกิน ¥4M</td><td style="color:var(--accent2);font-weight:700">~22.4%</td><td>อัตราต่ำสุด สำหรับ startup</td></tr>
+          <tr><td>¥4M – ¥8M</td><td style="color:var(--accent2);font-weight:700">~24.9%</td><td>ยังอยู่ในเกณฑ์ SME</td></tr>
+          <tr><td>เกิน ¥8M</td><td style="color:var(--accent2);font-weight:700">~36.8%</td><td>เต็มอัตรา + defense surtax</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>5. ภาษีและค่าใช้จ่ายอื่น</h3>
+      <ul>
+        <li><strong>Consumption Tax (VAT):</strong> 10% (อาหาร 8%) — ยกเว้น 2 ปีแรก ถ้ารายได้ ≤¥10M และทุน ≤¥10M</li>
+        <li><strong>ประกันสังคม (นายจ้าง):</strong> ~15-16% ของเงินเดือนพนักงาน (สุขภาพ + บำนาญ + ว่างงาน + อุบัติเหตุ)</li>
+        <li><strong>Withholding Tax:</strong> เงินเดือน 5-45%, เงินปันผล 20.42%, ค่าสิทธิ 20.42%</li>
+        <li><strong>Fixed Asset Tax:</strong> 1.4% ของมูลค่าทรัพย์สิน (ถ้ามีอสังหาฯ)</li>
+        <li><strong>Stamp Tax:</strong> ¥200–¥600,000 ตามมูลค่าสัญญา</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 6. กฎหมายสำคัญ -->
+  <section class="section">
+    <div class="section-title"><span>⚖️</span> กฎหมายและข้อจำกัดสำคัญ</div>
+
+    <div class="card">
+      <h3>สิ่งที่ต่างชาติทำได้</h3>
+      <ul>
+        <li>ถือหุ้น 100% ได้ — ไม่ต้องมี partner ญี่ปุ่น</li>
+        <li>เป็นกรรมการผู้จัดการได้ (ถ้ามีวีซ่าที่ถูกต้อง)</li>
+        <li>ใช้ Virtual Office ได้ (ยกเว้นถ้าขอ Business Manager Visa)</li>
+        <li>เลือกวันก่อตั้งเป็นวันหยุดได้ (ตั้งแต่ ก.พ. 2026)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>ข้อจำกัดและข้อควรระวัง</h3>
+      <ul>
+        <li><strong>ธุรกิจที่ต้องมีใบอนุญาต:</strong> ร้านอาหาร, บริการท่องเที่ยว, อสังหาริมทรัพย์, การเงิน, สุขภาพ — ต้องขอ license เพิ่มเติม</li>
+        <li><strong>อุตสาหกรรมที่ถูกจำกัด:</strong> ความมั่นคงชาติ, โครงสร้างพื้นฐาน, เทคโนโลยีขั้นสูง — ต้องแจ้งล่วงหน้าตาม Foreign Exchange and Foreign Trade Act</li>
+        <li><strong>ตัวแทนในญี่ปุ่น:</strong> บริษัทต่างชาติที่ทำธุรกิจต่อเนื่องในญี่ปุ่น ต้องมีตัวแทนที่มีที่อยู่ในญี่ปุ่นอย่างน้อย 1 คน</li>
+        <li><strong>ไม่จดทะเบียน = ผิดกฎหมาย:</strong> บริษัทต่างชาติต้องจดทะเบียนก่อนทำธุรกรรมต่อเนื่องในญี่ปุ่น</li>
+      </ul>
+    </div>
+
+    <div class="warning">
+      <strong>⚠️ บทลงโทษ:</strong> ไม่ปฏิบัติตามข้อกำหนดการยื่นงบการเงิน ภาษี หรือรายงานประจำปี อาจถูกปรับ ถูกดำเนินคดี หรือถูกระงับกิจการ
+    </div>
+  </section>
+
+  <!-- 7. เอกสารที่ต้องเตรียม -->
+  <section class="section">
+    <div class="section-title"><span>📄</span> เอกสารที่ต้องเตรียม</div>
+
+    <div class="card">
+      <h3>สำหรับจดทะเบียนบริษัท</h3>
+      <ul>
+        <li>ข้อบังคับบริษัท (Articles of Incorporation / 定款)</li>
+        <li>หลักฐานการฝากเงินทุน (Capital deposit certificate)</li>
+        <li>ใบสมัครจดทะเบียน (Registration application form)</li>
+        <li>ตราประทับบริษัท (Company seal / Hanko)</li>
+        <li>หนังสือรับรองที่อยู่สำนักงาน</li>
+        <li>สำเนาบัตรประจำตัว/พาสปอร์ตกรรมการ</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>สำหรับ Business Manager Visa (เพิ่มเติม)</h3>
+      <ul>
+        <li>แผนธุรกิจโดยละเอียด (ผ่านการตรวจสอบ)</li>
+        <li>หลักฐานทุน ¥30,000,000</li>
+        <li>หลักฐานสำนักงานจริง (Physical office lease)</li>
+        <li>ผลสอบ JLPT N2 ขึ้นไป</li>
+        <li>หลักฐานประสบการณ์บริหาร 3+ ปี หรือวุฒิปริญญาโท</li>
+        <li>สัญญาจ้างพนักงานอย่างน้อย 1 คน</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Sources -->
+  <div class="sources">
+    <strong>แหล่งข้อมูล:</strong><br>
+    • <a href="https://office-ishinagi.com/en/2025/10/10/business-manager-visa-reform-japan-2025/">Ishinagi Office - Business Manager Visa Reform 2025 (ละเอียดที่สุด)</a><br>
+    • <a href="https://kpmg.com/xx/en/our-insights/gms-flash-alert/flash-alert-2025-195.html">KPMG - Japan Business Manager Visa Reforms</a><br>
+    • <a href="https://www.morganlewis.com/pubs/2025/09/japanese-government-to-tighten-requirements-for-business-manager-work-permit">Morgan Lewis - Tighten Requirements Analysis</a><br>
+    • <a href="https://www.jetro.go.jp/en/invest/setting_up/section3/page3.html">JETRO - Corporate Tax Breakdown (Official)</a><br>
+    • <a href="https://www.ey.com/en_jp/technical/ey-japan-tax-library/tax-alerts/2026/tax-alerts-02-17">EY Japan - 2026 Tax Reform Highlights</a><br>
+    • <a href="https://taxsummaries.pwc.com/japan/corporate/taxes-on-corporate-income">PwC - Japan Corporate Tax Summary</a><br>
+    • <a href="https://scalingyourcompany.com/setting-up-a-company-in-japan/">Scaling Your Company - Setup Guide (2026)</a><br>
+    • <a href="https://mailmate.jp/blog/cost-of-starting-a-business-in-japan">MailMate - Cost Breakdown (2026)</a><br>
+    • <a href="https://www.moj.go.jp/EN/MINJI/m_minji07_00002.html">Ministry of Justice - Foreign Company Registration</a><br>
+    • <a href="https://www.sarkaroffice.com/kabushiki-vs-godo.html">Sarkar Office - KK vs GK Comparison</a><br>
+    <br>
+    <em>หมายเหตุ: ข้อมูลนี้เป็นข้อมูลทั่วไป ไม่ใช่คำแนะนำทางกฎหมาย ควรปรึกษาทนายความหรือที่ปรึกษาเฉพาะทางก่อนดำเนินการจริง</em><br>
+    <em>อัตราแลกเปลี่ยน: ¥1 ≈ 0.24 บาท (โดยประมาณ)</em>
+  </div>
+
+</div>
+
+<footer>
+  Boom Tools &copy; 2026 — Powered by <a href="index.html">Boom Oracle</a>
+</footer>
+
+</body>
+</html>

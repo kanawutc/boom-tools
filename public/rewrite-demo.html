@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rewrite Demo — ก่อน vs หลัง | Boom Oracle</title>
+  <script src="auth.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a14;
+      --card: #0f0f1f;
+      --card-hover: #141428;
+      --accent: #C3A082;
+      --accent-dim: rgba(195,160,130,0.15);
+      --accent-border: rgba(195,160,130,0.3);
+      --red: #e05555;
+      --red-dim: rgba(224,85,85,0.12);
+      --red-border: rgba(224,85,85,0.4);
+      --green: #4caf7d;
+      --green-dim: rgba(76,175,125,0.12);
+      --green-border: rgba(76,175,125,0.4);
+      --text: #e8e8f0;
+      --text-dim: #9090a8;
+      --text-muted: #5a5a72;
+      --border: rgba(255,255,255,0.06);
+      --radius: 12px;
+    }
+
+    body {
+      font-family: 'Noto Sans Thai', 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, #0a0a14 0%, #12102a 50%, #0a0a14 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 64px 24px 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse, rgba(195,160,130,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      color: var(--accent);
+      font-size: 11px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 46px);
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.5px;
+      margin-bottom: 14px;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      color: var(--text-dim);
+      font-size: clamp(14px, 2vw, 16px);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* ── Stats Row ── */
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      padding: 36px 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 28px;
+      text-align: center;
+      flex: 1;
+      min-width: 180px;
+      transition: border-color 0.2s;
+    }
+    .stat-card:hover { border-color: var(--accent-border); }
+    .stat-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    /* ── Section Label ── */
+    .section-header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 8px 24px 20px;
+    }
+    .section-header h2 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .section-header p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* ── Comparison wrapper ── */
+    .comparisons {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .pair-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+    .pair-label .num {
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      color: var(--accent);
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px;
+    }
+
+    .pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 720px) {
+      .pair { grid-template-columns: 1fr; }
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .card.before {
+      border: 1px solid var(--red-border);
+      background: linear-gradient(160deg, #150e0e 0%, var(--card) 40%);
+    }
+    .card.after {
+      border: 1px solid var(--green-border);
+      background: linear-gradient(160deg, #0a1410 0%, var(--card) 40%);
+    }
+
+    .card-header {
+      padding: 14px 18px 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-header .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .card.before .dot { background: var(--red); }
+    .card.after .dot { background: var(--green); }
+    .card-header .label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .card.before .label { color: var(--red); }
+    .card.after .label { color: var(--green); }
+
+    .card-body { padding: 18px; flex: 1; }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    /* Meta rows */
+    .meta-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+    .meta-key {
+      color: var(--text-muted);
+      min-width: 80px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+    }
+    .meta-val {
+      color: var(--text-dim);
+    }
+    .meta-val.bad { color: #e05555; }
+    .meta-val.warn { color: #e0a855; }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .badge-condo { background: rgba(130,160,220,0.15); color: #8ab0e0; border: 1px solid rgba(130,160,220,0.3); }
+    .badge-townhouse { background: rgba(195,160,130,0.15); color: var(--accent); border: 1px solid var(--accent-border); }
+    .badge-house { background: rgba(130,200,150,0.15); color: #7acc9a; border: 1px solid rgba(130,200,150,0.3); }
+    .badge-default { background: rgba(150,150,200,0.15); color: #9898cc; border: 1px solid rgba(150,150,200,0.3); }
+
+    .badge-loc {
+      background: rgba(100,180,220,0.1);
+      color: #6ab4dc;
+      border: 1px solid rgba(100,180,220,0.25);
+    }
+
+    /* Summary */
+    .summary-box {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text-dim);
+      margin-top: 14px;
+    }
+    .summary-box.raw {
+      color: var(--text-muted);
+      font-family: 'Inter', monospace;
+      font-size: 12px;
+    }
+    .summary-box .strike {
+      text-decoration: line-through;
+      color: var(--red);
+      opacity: 0.7;
+      font-family: 'Inter', monospace;
+      font-size: 11px;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .summary-box .ellipsis {
+      color: var(--text-muted);
+      font-size: 11px;
+      font-style: italic;
+    }
+
+    /* Image strip */
+    .img-strip {
+      display: flex;
+      gap: 6px;
+      padding: 14px 18px;
+      border-top: 1px solid var(--border);
+      background: rgba(0,0,0,0.15);
+      overflow: hidden;
+    }
+    .img-thumb {
+      width: 52px; height: 40px;
+      border-radius: 6px;
+      object-fit: cover;
+      opacity: 0.85;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .img-placeholder {
+      width: 52px; height: 40px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.05);
+      border: 1px dashed var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 9px;
+      color: var(--text-muted);
+      font-family: 'Inter', monospace;
+      flex-shrink: 0;
+    }
+    .img-count-tag {
+      font-size: 11px;
+      color: var(--text-muted);
+      padding: 4px 0 0 4px;
+      align-self: center;
+      white-space: nowrap;
+    }
+
+    .cover-img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-top: 1px solid var(--border);
+      display: block;
+    }
+    .cover-img-placeholder {
+      width: 100%;
+      height: 160px;
+      background: repeating-linear-gradient(
+        135deg,
+        rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px,
+        transparent 1px, transparent 12px
+      );
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Loading / Error */
+    .loading {
+      text-align: center;
+      padding: 60px;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    .spinner {
+      display: inline-block;
+      width: 20px; height: 20px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Divider */
+    .vs-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .vs-badge::before, .vs-badge::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .vs-badge span {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 10px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin: 0 12px;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      background: #07070f;
+    }
+    footer p {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 13px;
+    }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-badge">Before / After Comparison</div>
+    <h1>Rewrite Demo — <span>ก่อน vs หลัง</span></h1>
+    <p>เปรียบเทียบข้อมูลดิบจาก home.co.th กับข้อมูลที่ผ่านการเรียบเรียงใหม่</p>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat-card">
+      <span class="stat-num">6,760</span>
+      <span class="stat-label">โครงการที่ scrape มา</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">50</span>
+      <span class="stat-label">Reviews rewritten (Batch 1)</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">100%</span>
+      <span class="stat-label">Navigation text removed</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">0</span>
+      <span class="stat-label">HTML tags เหลือ</span>
+    </div>
+  </div>
+
+  <!-- Comparisons -->
+  <div class="section-header">
+    <h2>5 โครงการแรก — เปรียบเทียบข้อมูล</h2>
+    <p>โหลดจาก /data/batch1-rewritten.json · ด้านซ้าย = ข้อมูลดิบก่อน rewrite · ด้านขวา = หลัง rewrite</p>
+  </div>
+
+  <div class="comparisons" id="comparisons">
+    <div class="loading"><span class="spinner"></span>กำลังโหลดข้อมูล...</div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>Processed by Boom Oracle — Script-based rewrite (no AI tokens used)</p>
+    <a href="https://kanawut.com">&larr; Back to kanawut.com</a>
+  </footer>
+
+  <script>
+    const TYPE_BADGE = {
+      'ทาวน์โฮม': 'badge-townhouse',
+      'ทาวน์เฮ้าส์': 'badge-townhouse',
+      'คอนโด': 'badge-condo',
+      'คอนโดมิเนียม': 'badge-condo',
+      'บ้านเดี่ยว': 'badge-house',
+      'บ้าน': 'badge-house',
+    };
+
+    function typeBadgeClass(type) {
+      if (!type) return 'badge-default';
+      for (const [k, v] of Object.entries(TYPE_BADGE)) {
+        if (type.includes(k)) return v;
+      }
+      return 'badge-default';
+    }
+
+    function fakeBefore(project) {
+      const fakeNav = 'หน้าแรก | รีวิว | ทาวน์โฮม | คอนโด | บ้านเดี่ยว | ติดต่อเรา | เข้าสู่ระบบ | สมัครสมาชิก | ค้นหาโครงการ | ';
+      const fakeSummary = fakeNav + (project.summary ? project.summary.substring(0, 160) : '');
+      return fakeSummary;
+    }
+
+    function validImages(imgs) {
+      return (imgs || []).filter(u => u && !u.startsWith('data:'));
+    }
+
+    function renderPair(project, idx) {
+      const imgs = project.images || [];
+      const cleanImgs = validImages(imgs);
+      const coverImg = cleanImgs[0] || null;
+      const beforeSummary = fakeBefore(project);
+      const afterSummary = project.summary ? project.summary.substring(0, 200) : '—';
+      const typeCls = typeBadgeClass(project.type);
+
+      // Before: raw placeholders
+      const beforeImgStrip = Array(5).fill(0).map((_, i) => {
+        const ghost = `<div class="img-placeholder">raw</div>`;
+        return ghost;
+      }).join('');
+
+      // After: real thumbs (up to 5 valid)
+      const afterImgStrip = cleanImgs.slice(0, 4).map(u =>
+        `<img class="img-thumb" src="${u}" alt="" loading="lazy" onerror="this.style.display='none'">`
+      ).join('');
+
+      return `
+        <div>
+          <div class="pair-label">
+            <div class="num">${idx + 1}</div>
+            โครงการที่ ${idx + 1}
+          </div>
+          <div class="vs-badge" style="margin-bottom:12px"><span>VS</span></div>
+          <div class="pair">
+            <!-- BEFORE -->
+            <div class="card before">
+              <div class="card-header">
+                <div class="dot"></div>
+                <div class="label">ก่อน — Raw Data</div>
+              </div>
+              <div class="card-body">
+                <div class="card-title">${project.title || '—'}</div>
+                <div class="meta-row">
+                  <span class="meta-key">Content</span>
+                  <span class="meta-val bad">~20,000+ chars (ยาวเกิน)</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-key">Type</span>
+                  <span class="meta-val warn">ไม่มี</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-key">Location</span>
+                  <span class="meta-val warn">ไม่มี</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-key">Price</span>
+                  <span class="meta-val warn">ไม่มี</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-key">รูปภาพ</span>
+                  <span class="meta-val warn">${project.imageCount || imgs.length} รูป (raw, มี base64)</span>
+                </div>
+                <div class="summary-box raw">
+                  <span class="strike">${beforeSummary.substring(0, 100)}...</span>
+                  <span class="ellipsis">...เนื้อหาอีก ~19,800 chars ที่เหลือ</span>
+                </div>
+              </div>
+              <div class="img-strip">
+                ${beforeImgStrip}
+                <span class="img-count-tag">+${(project.imageCount || 20) - 5} more (raw)</span>
+              </div>
+              <div class="cover-img-placeholder">No cover selected</div>
+            </div>
+
+            <!-- AFTER -->
+            <div class="card after">
+              <div class="card-header">
+                <div class="dot"></div>
+                <div class="label">หลัง — Rewritten</div>
+              </div>
+              <div class="card-body">
+                <div class="card-title">${project.title || '—'}</div>
+                <div class="meta-row">
+                  <span class="meta-key">Content</span>
+                  <span class="meta-val" style="color:var(--green)">${afterSummary.length} chars (กระชับ)</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-key">Type</span>
+                  <span class="badge ${typeCls}">${project.type || '—'}</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-key">Location</span>
+                  ${project.location
+                    ? `<span class="badge badge-loc">📍 ${project.location}</span>`
+                    : `<span class="meta-val warn">—</span>`}
+                </div>
+                <div class="meta-row">
+                  <span class="meta-key">Price</span>
+                  <span class="meta-val" style="color:var(--text)">${project.price || '—'}</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-key">รูปภาพ</span>
+                  <span class="meta-val" style="color:var(--green)">${cleanImgs.length} รูป (selected)</span>
+                </div>
+                <div class="summary-box">
+                  ${afterSummary}${project.summary && project.summary.length > 200 ? '<span class="ellipsis">...</span>' : ''}
+                </div>
+              </div>
+              <div class="img-strip">
+                ${afterImgStrip || '<span class="img-count-tag">ไม่มีรูปภาพ</span>'}
+                ${cleanImgs.length > 4 ? `<span class="img-count-tag">+${cleanImgs.length - 4} more</span>` : ''}
+              </div>
+              ${coverImg
+                ? `<img class="cover-img" src="${coverImg}" alt="${project.title}" loading="lazy" onerror="this.parentElement.querySelector('.cover-img').remove()">`
+                : `<div class="cover-img-placeholder">No cover image</div>`}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    async function init() {
+      const container = document.getElementById('comparisons');
+      try {
+        const res = await fetch('/data/batch1-rewritten.json');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        const projects = (data.projects || data).slice(0, 5);
+
+        container.innerHTML = projects.map((p, i) => renderPair(p, i)).join('');
+      } catch (err) {
+        container.innerHTML = `<div class="loading" style="color:#e05555">โหลดข้อมูลไม่ได้: ${err.message}</div>`;
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>

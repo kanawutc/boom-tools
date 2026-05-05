@@ -1,0 +1,763 @@
+{
+  "source": "ThinkOfLiving",
+  "scrapedAt": "2026-04-23T17:10:15.897Z",
+  "total": 84,
+  "items": [
+    {
+      "title": "The Infinity : ดิ อินฟินิตี้",
+      "price": "ราคาเริ่มต้น  null ล้านบาท",
+      "location": "สีลม",
+      "image": "https://sg1-cdn.pgimgs.com/projectnet-project/57921/ZPPHO.102007167.R800X800.jpg",
+      "url": "https://www.thinkofliving.com/project/%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94/240/",
+      "scrapedAt": "2026-04-23T17:09:16.770Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "IDEO Ramkamhaeng Lamsali Station : ไอดีโอ รามคำแหง-ลำสาลี สเตชั่น",
+      "price": "ราคาเริ่มต้น  2190000",
+      "location": "หัวหมาก",
+      "image": "",
+      "url": "https://www.thinkofliving.com/project/%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94/7200/",
+      "scrapedAt": "2026-04-23T17:09:16.770Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "The City Ramintra-Wongwaen : เดอะ ซิตี้ รามอินทรา-วงแหวน",
+      "price": "ราคาเริ่มต้น  15990000",
+      "location": "สามวาตะวันตก",
+      "image": "https://sg1-cdn.pgimgs.com/projectnet-project/181951/ZPPHO.138230708.R800X800.jpg",
+      "url": "https://www.thinkofliving.com/project/%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7/10039/",
+      "scrapedAt": "2026-04-23T17:09:16.770Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "The Standard Residences Hua Hin : เดอะ สแตนดาร์ด เรสซิเด้นซ์ หัวหิน",
+      "price": "ราคาเริ่มต้น  null ล้านบาท",
+      "location": "หนองแก",
+      "image": "https://sg1-cdn.pgimgs.com/projectnet-project/205550/ZPPHO.148320454.R800X800.jpg",
+      "url": "https://www.thinkofliving.com/project/%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94/12009/",
+      "scrapedAt": "2026-04-23T17:09:16.770Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "Anchan Mountain Breeze : อัญชัญ เมาเท่น บรีซ",
+      "price": "ราคาเริ่มต้น  null ล้านบาท",
+      "location": "เทพกระษัตรี",
+      "image": "https://sg1-cdn.pgimgs.com/projectnet-project/194054/ZPPHO.151974448.R800X800.jpg",
+      "url": "https://www.thinkofliving.com/project/%E0%B8%A7%E0%B8%B4%E0%B8%A5%E0%B8%A5%E0%B9%88%E0%B8%B2/10802/",
+      "scrapedAt": "2026-04-23T17:09:16.770Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "The Standard Residences Phuket Bangtao : เดอะ แสตนดาร์ด เรสซิเดนซ์ ภูเก็ต บางเทา",
+      "price": "ราคาเริ่มต้น  null ล้านบาท",
+      "location": "เชิงทะเล",
+      "image": "https://sg1-cdn.pgimgs.com/projectnet-project/201193/ZPPHO.147147201.R800X800.png",
+      "url": "https://www.thinkofliving.com/project/%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94/11541/",
+      "scrapedAt": "2026-04-23T17:09:16.770Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "Botanica Louvre : โบทานิกา ลูฟวร์",
+      "price": "ราคาเริ่มต้น  null ล้านบาท",
+      "location": "ศรีสุนทร",
+      "image": "https://sg1-cdn.pgimgs.com/projectnet-project/214323/ZPPHO.150520338.R800X800.png",
+      "url": "https://www.thinkofliving.com/project/%E0%B8%A7%E0%B8%B4%E0%B8%A5%E0%B8%A5%E0%B9%88%E0%B8%B2/12876/",
+      "scrapedAt": "2026-04-23T17:09:16.770Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "Adler Baan Chan : แอดเลอร์ บ้านจันทน์",
+      "price": "ราคาเริ่มต้น  null ล้านบาท",
+      "location": "วัดพระยาไกร",
+      "image": "https://sg1-cdn.pgimgs.com/projectnet-project/210739/ZPPHO.149945656.R800X800.jpg",
+      "url": "https://www.thinkofliving.com/project/%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7/12648/",
+      "scrapedAt": "2026-04-23T17:09:16.770Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "Adler by Carbon 2 : แอดเลอร์ บาย คาร์บอน 2",
+      "price": "ราคาเริ่มต้น  null ล้านบาท",
+      "location": "วัดพระยาไกร",
+      "image": "https://sg1-cdn.pgimgs.com/projectnet-project/210614/ZPPHO.149946428.R800X800.jpg",
+      "url": "https://www.thinkofliving.com/project/%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94/12628/",
+      "scrapedAt": "2026-04-23T17:09:16.770Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "The Base Downtown Khon Kaen : เดอะ เบส ดาวน์ทาวน์ ขอนแก่น",
+      "price": "ราคาเริ่มต้น  null ล้านบาท",
+      "location": "ในเมือง",
+      "image": "https://sg1-cdn.pgimgs.com/projectnet-project/59640/ZPPHO.139872026.R800X800.jpg",
+      "url": "https://www.thinkofliving.com/project/%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94/3896/",
+      "scrapedAt": "2026-04-23T17:09:16.770Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "A Space Mega 2 : เอ สเปซ เมกา 2",
+      "price": "ราคาเริ่มต้น  null ล้านบาท",
+      "location": "บางแก้ว",
+      "image": "https://sg1-cdn.pgimgs.com/projectnet-project/69729/ZPPHO.145784155.R800X800.jpg",
+      "url": "https://www.thinkofliving.com/project/%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94/6718/",
+      "scrapedAt": "2026-04-23T17:09:16.770Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "Origin Plug & Play Ramkhamhaeng Triple Station : ออริจิ้น ปลั๊ก แอนด์ เพลย์ รามคำแหง ทริปเปิ้ล สเตชั่น",
+      "price": "ราคาเริ่มต้น  null ล้านบาท",
+      "location": "หัวหมาก",
+      "image": "https://sg1-cdn.pgimgs.com/projectnet-project/188893/ZPPHO.141179546.R800X800.jpg",
+      "url": "https://www.thinkofliving.com/project/%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94/10377/",
+      "scrapedAt": "2026-04-23T17:09:16.770Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "The Muve Ram 22  : เดอะ มูฟ ราม 22",
+      "price": "ราคาเริ่มต้น  1590000",
+      "location": "หัวหมาก",
+      "image": "https://sg1-cdn.pgimgs.com/projectnet-project/158491/ZPPHO.129447505.R800X800.jpg",
+      "url": "https://www.thinkofliving.com/project/%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94/8098/",
+      "scrapedAt": "2026-04-23T17:09:16.770Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "Platinum Bay : แพลทินัม เบย์",
+      "price": "ราคาเริ่มต้น  3300000",
+      "location": "กมลา",
+      "image": "https://sg1-cdn.pgimgs.com/projectnet-project/74861/ZPPHO.109054672.R800X800.jpg",
+      "url": "https://www.thinkofliving.com/project/%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94/6876/",
+      "scrapedAt": "2026-04-23T17:09:16.770Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "Sea Heaven : ซี เฮเว่น",
+      "price": "ราคาเริ่มต้น  null ล้านบาท",
+      "location": "สาคู",
+      "image": "https://sg1-cdn.pgimgs.com/projectnet-project/185900/ZPPHO.144347956.R800X800.jpg",
+      "url": "https://www.thinkofliving.com/project/%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94/10229/",
+      "scrapedAt": "2026-04-23T17:09:16.770Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "Tait Sathorn 12 : เทตต์ สาทร ทเวลฟ์",
+      "price": "ราคาเริ่มต้น  7600000",
+      "location": "สีลม",
+      "image": "https://sg1-cdn.pgimgs.com/projectnet-project/69600/ZPPHO.145039137.R800X800.jpg",
+      "url": "https://www.thinkofliving.com/project/%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94/6704/",
+      "scrapedAt": "2026-04-23T17:09:16.770Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "Altitude Forest Ratchada : อัลติจูด ฟอเรสต์ รัชดา",
+      "price": "ราคาเริ่มต้น  null ล้านบาท",
+      "location": "สามเสนนอก",
+      "image": "https://sg1-cdn.pgimgs.com/projectnet-project/183273/ZPPHO.144804058.R800X800.jpg",
+      "url": "https://www.thinkofliving.com/project/%E0%B8%97%E0%B8%B2%E0%B8%A7%E0%B8%99%E0%B9%8C%E0%B9%80%E0%B8%AE%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B9%8C/10144/",
+      "scrapedAt": "2026-04-23T17:09:16.770Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "Prukpirom New Ratchaphruek : พฤกษ์ภิรมย์ ราชพฤกษ์-ตัดใหม่",
+      "price": "ราคาเริ่มต้น  25000000",
+      "location": "ลาดหลุมแก้ว",
+      "image": "https://sg1-cdn.pgimgs.com/projectnet-project/217917/ZPPHO.151080731.R800X800.png",
+      "url": "https://www.thinkofliving.com/project/%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7/13018/",
+      "scrapedAt": "2026-04-23T17:09:16.770Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "The Tree Victory Monument : คอนโด เดอะทรี อนุสาวรีย์",
+      "price": "ราคาเริ่มต้น  3590000",
+      "location": "สามเสนใน",
+      "image": "https://sg1-cdn.pgimgs.com/projectnet-project/128733/ZPPHO.112559308.R800X800.jpg",
+      "url": "https://www.thinkofliving.com/project/%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94/7231/",
+      "scrapedAt": "2026-04-23T17:09:16.770Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "The Address Siam-Ratchathewi : ดิ แอดเดรส สยาม-ราชเทวี",
+      "price": "ราคาเริ่มต้น  2350000",
+      "location": "ถนนเพชรบุรี",
+      "image": "https://sg1-cdn.pgimgs.com/projectnet-project/75205/ZPPHO.154002424.R800X800.jpg",
+      "url": "https://www.thinkofliving.com/project/%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94/6882/",
+      "scrapedAt": "2026-04-23T17:09:16.770Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "ข่าวอสังหาWDC ยกทัพนวัตกรรมกระเบื้องพรีเมียม โชว์เทรนด์วัสดุเพื่อคุณภาพชีวิตสู่งานสถาปนิก’69โดย Chan",
+      "price": "",
+      "location": "",
+      "image": "https://img.iproperty.com.my/thinkofliving/720x400-crop/wp-content/uploads/1/2026/04/22162845/WDC-%E0%B8%A2%E0%B8%81%E0%B8%97%E0%B8%B1%E0%B8%9E%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%95%E0%B8%81%E0%B8%A3%E0%B8%A3%E0%B8%A1%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%9E%E0%B8%A3%E0%B8%B5%E0%B9%80%E0%B8%A1%E0%B8%B5%E0%B8%A2%E0%B8%A1-%E0%B9%82%E0%B8%8A%E0%B8%A7%E0%B9%8C%E0%B9%80%E0%B8%97%E0%B8%A3%E0%B8%99%E0%B8%94%E0%B9%8C%E0%B8%A7%E0%B8%B1%E0%B8%AA%E0%B8%94%E0%B8%B8%E0%B9%80%E0%B8%9E%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%84%E0%B8%B8%E0%B8%93%E0%B8%A0%E0%B8%B2%E0%B8%9E%E0%B8%8A%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%95%E0%B8%AA%E0%B8%B9%E0%B9%88%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%9B%E0%B8%99%E0%B8%B4%E0%B8%81%E2%80%9969.png",
+      "url": "https://www.thinkofliving.com/%E0%B8%82%E0%B9%88%E0%B8%B2%E0%B8%A7/wdc-%E0%B8%A2%E0%B8%81%E0%B8%97%E0%B8%B1%E0%B8%9E%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%95%E0%B8%81%E0%B8%A3%E0%B8%A3%E0%B8%A1%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%9E%E0%B8%A3%E0%B8%B5%E0%B9%80%E0%B8%A1%E0%B8%B5%E0%B8%A2%E0%B8%A1-%E0%B9%82%E0%B8%8A%E0%B8%A7%E0%B9%8C%E0%B9%80%E0%B8%97%E0%B8%A3%E0%B8%99%E0%B8%94%E0%B9%8C%E0%B8%A7%E0%B8%B1%E0%B8%AA%E0%B8%94%E0%B8%B8%E0%B9%80%E0%B8%9E%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%84%E0%B8%B8%E0%B8%93%E0%B8%A0%E0%B8%B2%E0%B8%9E%E0%B8%8A%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%95%E0%B8%AA%E0%B8%B9%E0%B9%88%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%9B%E0%B8%99%E0%B8%B4%E0%B8%81-69-1102379/",
+      "scrapedAt": "2026-04-23T17:09:16.770Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "ข่าวอสังหาAPHome THE CITY สาทร – สุขสวัสดิ์ 3 ข้อเสนอสุดพิเศษ รับส่วนลดสูงสุด 3 ล้าน  บ้านเดี่ยวหรู ",
+      "price": "",
+      "location": "",
+      "image": "https://img.iproperty.com.my/thinkofliving/720x400-crop/wp-content/uploads/1/2026/04/22140238/1-side.jpg",
+      "url": "https://www.thinkofliving.com/%E0%B8%82%E0%B9%88%E0%B8%B2%E0%B8%A7/ap-home-the-city-%E0%B8%AA%E0%B8%B2%E0%B8%97%E0%B8%A3-%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%AA%E0%B8%94%E0%B8%B4%E0%B9%8C-3-%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B9%80%E0%B8%AA%E0%B8%99%E0%B8%AD%E0%B8%AA%E0%B8%B8%E0%B8%94%E0%B8%9E%E0%B8%B4%E0%B9%80%E0%B8%A8%E0%B8%A9-%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%A5%E0%B8%94%E0%B8%AA%E0%B8%B9%E0%B8%87%E0%B8%AA%E0%B8%B8%E0%B8%94-3-%E0%B8%A5%E0%B9%89%E0%B8%B2%E0%B8%99-%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7%E0%B8%AB%E0%B8%A3%E0%B8%B9-416-%E0%B8%95%E0%B8%A3-%E0%B8%A1-%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89-central-%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A3%E0%B8%B2%E0%B8%A1-3-iconsiam-asiatique-1102291/",
+      "scrapedAt": "2026-04-23T17:09:16.770Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "รีวิวทำเลรวมคอนโดราชพฤกษ์ มือหนึ่ง – มือสอง – เช่า อัปเดตปี 2026โดย pornpaweed",
+      "price": "",
+      "location": "",
+      "image": "https://img.iproperty.com.my/thinkofliving/720x400-crop/wp-content/uploads/1/2026/04/22154359/%E0%B8%9B%E0%B8%81%E0%B8%9A%E0%B8%97%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1_.jpg",
+      "url": "https://www.thinkofliving.com/%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B8%97%E0%B8%B3%E0%B9%80%E0%B8%A5/%E0%B8%A3%E0%B8%A7%E0%B8%A1%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%9E%E0%B8%A4%E0%B8%81%E0%B8%A9%E0%B9%8C-%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AB%E0%B8%99%E0%B8%B6%E0%B9%88%E0%B8%87-%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B9%80%E0%B8%8A%E0%B9%88%E0%B8%B2-%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B9%80%E0%B8%94%E0%B8%95%E0%B8%9B%E0%B8%B5-2026-1102087/",
+      "scrapedAt": "2026-04-23T17:09:16.770Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "รีวิวโครงการSupalai Prime Villa Chaengwattana (ศุภาลัย ไพร์ม วิลล่า แจ้งวัฒนะ) บ้านเดี่ยวใกล้ Centra",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/article/supalai-prime-villa-chaengwattana-%E0%B8%A8%E0%B8%B8%E0%B8%A0%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2-%E0%B9%84%E0%B8%9E%E0%B8%A3%E0%B9%8C%E0%B8%A1-%E0%B8%A7%E0%B8%B4%E0%B8%A5%E0%B8%A5%E0%B9%88%E0%B8%B2-%E0%B9%81%E0%B8%88%E0%B9%89%E0%B8%87%E0%B8%A7%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B0-%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89-central-%E0%B9%81%E0%B8%88%E0%B9%89%E0%B8%87%E0%B8%A7%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B0-%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%99%E0%B8%B2%E0%B8%99%E0%B8%B2%E0%B8%8A%E0%B8%B2%E0%B8%95%E0%B8%B4-isb-%E0%B9%80%E0%B8%9E%E0%B8%B5%E0%B8%A2%E0%B8%87-900-%E0%B9%80%E0%B8%A1%E0%B8%95%E0%B8%A3-%E0%B8%88%E0%B8%B2%E0%B8%81-supalai-1100555-%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3/",
+      "scrapedAt": "2026-04-23T17:09:16.770Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "รีวิวโครงการXT 10 Ekkamai (เอ็กซ์ที เทน เอกมัย) คอนโด High Rise ใจกลางซอยเอกมัย ใกล้ Donki Mall สามา",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/article/xt-10-ekkamai-%E0%B9%80%E0%B8%AD%E0%B9%87%E0%B8%81%E0%B8%8B%E0%B9%8C%E0%B8%97%E0%B8%B5-%E0%B9%80%E0%B8%97%E0%B8%99-%E0%B9%80%E0%B8%AD%E0%B8%81%E0%B8%A1%E0%B8%B1%E0%B8%A2-%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94-high-rise-%E0%B9%83%E0%B8%88%E0%B8%81%E0%B8%A5%E0%B8%B2%E0%B8%87%E0%B8%8B%E0%B8%AD%E0%B8%A2%E0%B9%80%E0%B8%AD%E0%B8%81%E0%B8%A1%E0%B8%B1%E0%B8%A2-%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89-donki-mall-%E0%B8%AA%E0%B8%B2%E0%B8%A1%E0%B8%B2%E0%B8%A3%E0%B8%96%E0%B9%80%E0%B8%A5%E0%B8%B5%E0%B9%89%E0%B8%A2%E0%B8%87%E0%B8%AA%E0%B8%B1%E0%B8%95%E0%B8%A7%E0%B9%8C%E0%B9%84%E0%B8%94%E0%B9%89-%E0%B8%88%E0%B8%B2%E0%B8%81-%E0%B9%81%E0%B8%AA%E0%B8%99%E0%B8%AA%E0%B8%B4%E0%B8%A3%E0%B8%B4-1101998-%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3/",
+      "scrapedAt": "2026-04-23T17:09:16.770Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "รีวิวโครงการ รีวิว GOOD DAY สุขุมวิท 93 คอนโด Low Rise แบรนด์ใหม่ ใกล้ BTS บางจาก ให้เฟอร์ครบ เริ่ม ",
+      "price": "",
+      "location": "",
+      "image": "https://img.iproperty.com.my/thinkofliving/168x96-crop/wp-content/uploads/1/2026/02/27134036/GOOD-DAY-%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%B8%E0%B8%A1%E0%B8%A7%E0%B8%B4%E0%B8%97-93-00-Facilities-611.jpg",
+      "url": "https://www.thinkofliving.com/%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94/%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7-good-day-%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%B8%E0%B8%A1%E0%B8%A7%E0%B8%B4%E0%B8%97-93-%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94-low-rise-%E0%B9%81%E0%B8%9A%E0%B8%A3%E0%B8%99%E0%B8%94%E0%B9%8C%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88-%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89-bts-%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%88%E0%B8%B2%E0%B8%81-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B9%80%E0%B8%9F%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%84%E0%B8%A3%E0%B8%9A-%E0%B9%80%E0%B8%A3%E0%B8%B4%E0%B9%88%E0%B8%A1-1-79-%E0%B8%A5%E0%B9%89%E0%B8%B2%E0%B8%99-%E0%B8%88%E0%B8%B2%E0%B8%81-ap-993594-%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "รีวิวโครงการ รีวิว COBE Kaset – Sripatum (COBE เกษตร – ศรีปทุม) คอนโดติด BTS บางบัวและถนนพหลโยธิน ตร",
+      "price": "",
+      "location": "",
+      "image": "https://img.iproperty.com.my/thinkofliving/168x96-crop/wp-content/uploads/1/2026/03/13142605/cobe-kaset-sripathum-%E0%B8%9B%E0%B8%811.jpg",
+      "url": "https://www.thinkofliving.com/%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94/%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7-cobe-kaset-sripatum-cobe-%E0%B9%80%E0%B8%81%E0%B8%A9%E0%B8%95%E0%B8%A3-%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%9B%E0%B8%97%E0%B8%B8%E0%B8%A1-%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94%E0%B8%95%E0%B8%B4%E0%B8%94-bts-%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%9A%E0%B8%B1%E0%B8%A7%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%96%E0%B8%99%E0%B8%99%E0%B8%9E%E0%B8%AB%E0%B8%A5%E0%B9%82%E0%B8%A2%E0%B8%98%E0%B8%B4%E0%B8%99-%E0%B8%95%E0%B8%A3%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A1%E0%B8%A1-%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%9B%E0%B8%97%E0%B8%B8%E0%B8%A1-%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%A1-%E0%B9%80%E0%B8%81%E0%B8%A9%E0%B8%95%E0%B8%A3-%E0%B8%88%E0%B8%B2%E0%B8%81-sc-asset-908773-%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "รีวิวโครงการ รีวิว Chapter One More Kaset คอนโด Low Rise ใกล้ ม.เกษตรฯ และ BTS ให้ส่วนกลาง 5 ชั้น ที",
+      "price": "",
+      "location": "",
+      "image": "https://img.iproperty.com.my/thinkofliving/168x96-crop/wp-content/uploads/1/2026/03/20180429/Chapter-One-More-Kaset-00-981.jpg",
+      "url": "https://www.thinkofliving.com/%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94/%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7-chapter-one-more-kaset-%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94-low-rise-%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89-%E0%B8%A1-%E0%B9%80%E0%B8%81%E0%B8%A9%E0%B8%95%E0%B8%A3%E0%B8%AF-%E0%B9%81%E0%B8%A5%E0%B8%B0-bts-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%81%E0%B8%A5%E0%B8%B2%E0%B8%87-5-%E0%B8%8A%E0%B8%B1%E0%B9%89%E0%B8%99-%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%88%E0%B8%AD%E0%B8%94%E0%B8%A3%E0%B8%96%E0%B9%80%E0%B8%A2%E0%B8%AD%E0%B8%B0-48-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B9%80%E0%B8%9F%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%AF%E0%B8%84%E0%B8%A3%E0%B8%9A-%E0%B8%88%E0%B8%B2%E0%B8%81-%E0%B8%9E%E0%B8%A4%E0%B8%81%E0%B8%A9%E0%B8%B2-964923-%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "รีวิวโครงการรีวิว The Panora Estuaria (เดอะ พาโนรา เอสทัวเรีย) คอนโด Low Rise ทำเลพัทยา ติดทะเล ใกล้",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/article/%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7-the-panora-estuaria-%E0%B9%80%E0%B8%94%E0%B8%AD%E0%B8%B0-%E0%B8%9E%E0%B8%B2%E0%B9%82%E0%B8%99%E0%B8%A3%E0%B8%B2-%E0%B9%80%E0%B8%AD%E0%B8%AA%E0%B8%97%E0%B8%B1%E0%B8%A7%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2-%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94-low-rise-%E0%B8%97%E0%B8%B3%E0%B9%80%E0%B8%A5%E0%B8%9E%E0%B8%B1%E0%B8%97%E0%B8%A2%E0%B8%B2-%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%A5-%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%A1%E0%B8%AD%E0%B9%80%E0%B8%95%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B9%80%E0%B8%A7%E0%B8%A2%E0%B9%8C-900-%E0%B9%80%E0%B8%A1%E0%B8%95%E0%B8%A3-%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%81%E0%B8%A5%E0%B8%B2%E0%B8%87%E0%B9%80%E0%B8%A2%E0%B8%AD%E0%B8%B0%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B8%E0%B8%94%E0%B9%83%E0%B8%99%E0%B8%A2%E0%B9%88%E0%B8%B2%E0%B8%99-%E0%B8%88%E0%B8%B2%E0%B8%81-mida-asset-1097571-%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "รีวิวโครงการรีวิว LOVE Charoen Nakhon (เลิฟ เจริญนคร) คอนโด High Rise 44 ชั้น วิวแม่น้ำเจ้าพระยา เลี",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%A7%E0%B8%B4%E0%B8%94%E0%B8%B5%E0%B9%82%E0%B8%AD/%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7-love-charoen-nakhon-%E0%B9%80%E0%B8%A5%E0%B8%B4%E0%B8%9F-%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%99%E0%B8%84%E0%B8%A3-%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94-high-rise-44-%E0%B8%8A%E0%B8%B1%E0%B9%89%E0%B8%99-%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B9%80%E0%B8%88%E0%B9%89%E0%B8%B2%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A2%E0%B8%B2-%E0%B9%80%E0%B8%A5%E0%B8%B5%E0%B9%89%E0%B8%A2%E0%B8%87%E0%B8%AA%E0%B8%B1%E0%B8%95%E0%B8%A7%E0%B9%8C%E0%B9%84%E0%B8%94%E0%B9%89-%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89-iconsiam-%E0%B8%88%E0%B8%B2%E0%B8%81-sansiri-1087880/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "รีวิวโครงการรีวิว Chapter One More Kaset คอนโด Low Rise ใกล้ ม.เกษตรฯ และ BTS ให้ส่วนกลาง 5 ชั้น ที่",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94/%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7-chapter-one-more-kaset-%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94-low-rise-%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89-%E0%B8%A1-%E0%B9%80%E0%B8%81%E0%B8%A9%E0%B8%95%E0%B8%A3%E0%B8%AF-%E0%B9%81%E0%B8%A5%E0%B8%B0-bts-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%81%E0%B8%A5%E0%B8%B2%E0%B8%87-5-%E0%B8%8A%E0%B8%B1%E0%B9%89%E0%B8%99-%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%88%E0%B8%AD%E0%B8%94%E0%B8%A3%E0%B8%96%E0%B9%80%E0%B8%A2%E0%B8%AD%E0%B8%B0-48-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B9%80%E0%B8%9F%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%AF%E0%B8%84%E0%B8%A3%E0%B8%9A-%E0%B8%88%E0%B8%B2%E0%B8%81-%E0%B8%9E%E0%B8%A4%E0%B8%81%E0%B8%A9%E0%B8%B2-964923-%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "รีวิวโครงการรีวิว GOOD DAY สุขุมวิท 93 คอนโด Low Rise แบรนด์ใหม่ ใกล้ BTS บางจาก ให้เฟอร์ครบ เริ่ม 1",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94/%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7-good-day-%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%B8%E0%B8%A1%E0%B8%A7%E0%B8%B4%E0%B8%97-93-%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94-low-rise-%E0%B9%81%E0%B8%9A%E0%B8%A3%E0%B8%99%E0%B8%94%E0%B9%8C%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88-%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89-bts-%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%88%E0%B8%B2%E0%B8%81-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B9%80%E0%B8%9F%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%84%E0%B8%A3%E0%B8%9A-%E0%B9%80%E0%B8%A3%E0%B8%B4%E0%B9%88%E0%B8%A1-1-79-%E0%B8%A5%E0%B9%89%E0%B8%B2%E0%B8%99-%E0%B8%88%E0%B8%B2%E0%B8%81-ap-993594-%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "รีวิวโครงการรีวิว COBE Kaset – Sripatum (COBE เกษตร – ศรีปทุม) คอนโดติด BTS บางบัวและถนนพหลโยธิน ตรง",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94/%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7-cobe-kaset-sripatum-cobe-%E0%B9%80%E0%B8%81%E0%B8%A9%E0%B8%95%E0%B8%A3-%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%9B%E0%B8%97%E0%B8%B8%E0%B8%A1-%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94%E0%B8%95%E0%B8%B4%E0%B8%94-bts-%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%9A%E0%B8%B1%E0%B8%A7%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%96%E0%B8%99%E0%B8%99%E0%B8%9E%E0%B8%AB%E0%B8%A5%E0%B9%82%E0%B8%A2%E0%B8%98%E0%B8%B4%E0%B8%99-%E0%B8%95%E0%B8%A3%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A1%E0%B8%A1-%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%9B%E0%B8%97%E0%B8%B8%E0%B8%A1-%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%A1-%E0%B9%80%E0%B8%81%E0%B8%A9%E0%B8%95%E0%B8%A3-%E0%B8%88%E0%B8%B2%E0%B8%81-sc-asset-908773-%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "ย่านพระราม 9เพชรบุรี - พระราม 927 คอนโด9 บ้าน1 ทาวน์โฮม",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/list/%E0%B8%97%E0%B8%B3%E0%B9%80%E0%B8%A5-%E0%B8%A2%E0%B9%88%E0%B8%B2%E0%B8%99/%E0%B9%80%E0%B8%9E%E0%B8%8A%E0%B8%A3%E0%B8%9A%E0%B8%B8%E0%B8%A3%E0%B8%B5-%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A3%E0%B8%B2%E0%B8%A1-9/%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A3%E0%B8%B2%E0%B8%A1-9/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "ย่านรามอินทรา - สุวินทวงศ์23 คอนโด61 บ้าน19 ทาวน์โฮม",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/list/%E0%B8%97%E0%B8%B3%E0%B9%80%E0%B8%A5-%E0%B8%A2%E0%B9%88%E0%B8%B2%E0%B8%99/%E0%B8%A3%E0%B8%B2%E0%B8%A1%E0%B8%AD%E0%B8%B4%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%B2-%E0%B8%AA%E0%B8%B8%E0%B8%A7%E0%B8%B4%E0%B8%99%E0%B8%97%E0%B8%A7%E0%B8%87%E0%B8%A8%E0%B9%8C/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "ย่านบางนา - ศรีนครินทร์51 คอนโด82 บ้าน33 ทาวน์โฮม",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/list/%E0%B8%97%E0%B8%B3%E0%B9%80%E0%B8%A5-%E0%B8%A2%E0%B9%88%E0%B8%B2%E0%B8%99/%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%99%E0%B8%B2-%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%99%E0%B8%84%E0%B8%A3%E0%B8%B4%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B9%8C/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "ย่านราชพฤกษ์6 คอนโด81 บ้าน23 ทาวน์โฮม",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/list/%E0%B8%97%E0%B8%B3%E0%B9%80%E0%B8%A5-%E0%B8%A2%E0%B9%88%E0%B8%B2%E0%B8%99/%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%9E%E0%B8%A4%E0%B8%81%E0%B8%A9%E0%B9%8C-2/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "ถนนถนนลาดพร้าว52 คอนโด14 บ้าน23 ทาวน์โฮม",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/list/%E0%B8%96%E0%B8%99%E0%B8%99/%E0%B8%96%E0%B8%99%E0%B8%99%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A7/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "สถานีรถไฟฟ้าสวนจตุจักร (BL13)MRT (สายสีน้ำเงิน)4 คอนโด",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/list/%E0%B8%A3%E0%B8%96%E0%B9%84%E0%B8%9F%E0%B8%9F%E0%B9%89%E0%B8%B2/mrt-%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%B5%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B9%80%E0%B8%87%E0%B8%B4%E0%B8%99/%E0%B8%AA%E0%B8%A7%E0%B8%99%E0%B8%88%E0%B8%95%E0%B8%B8%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%A3-bl13/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "ย่านวิภาวดี - ดอนเมือง12 คอนโด24 บ้าน22 ทาวน์โฮม",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/list/%E0%B8%97%E0%B8%B3%E0%B9%80%E0%B8%A5-%E0%B8%A2%E0%B9%88%E0%B8%B2%E0%B8%99/%E0%B8%A7%E0%B8%B4%E0%B8%A0%E0%B8%B2%E0%B8%A7%E0%B8%94%E0%B8%B5-%E0%B8%94%E0%B8%AD%E0%B8%99%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "ย่านรังสิต - ปทุมธานี41 คอนโด92 บ้าน51 ทาวน์โฮม",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/list/%E0%B8%97%E0%B8%B3%E0%B9%80%E0%B8%A5-%E0%B8%A2%E0%B9%88%E0%B8%B2%E0%B8%99/%E0%B8%A3%E0%B8%B1%E0%B8%87%E0%B8%AA%E0%B8%B4%E0%B8%95-%E0%B8%9B%E0%B8%97%E0%B8%B8%E0%B8%A1%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "สถานีรถไฟฟ้าอารีย์ (N5)BTS (สายสีเขียวอ่อน)19 คอนโด3 บ้าน",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/list/%E0%B8%A3%E0%B8%96%E0%B9%84%E0%B8%9F%E0%B8%9F%E0%B9%89%E0%B8%B2/bts-%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%B5%E0%B9%80%E0%B8%82%E0%B8%B5%E0%B8%A2%E0%B8%A7%E0%B8%AD%E0%B9%88%E0%B8%AD%E0%B8%99/%E0%B8%AD%E0%B8%B2%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B9%8C-n5/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "สถานีรถไฟฟ้าอ่อนนุช (E9)BTS (สายสีเขียวอ่อน)30 คอนโด2 บ้าน4 ทาวน์โฮม",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/list/%E0%B8%A3%E0%B8%96%E0%B9%84%E0%B8%9F%E0%B8%9F%E0%B9%89%E0%B8%B2/bts-%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%B5%E0%B9%80%E0%B8%82%E0%B8%B5%E0%B8%A2%E0%B8%A7%E0%B8%AD%E0%B9%88%E0%B8%AD%E0%B8%99/%E0%B8%AD%E0%B9%88%E0%B8%AD%E0%B8%99%E0%B8%99%E0%B8%B8%E0%B8%8A-e9/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "ถนนถนนบางนา-ตราด29 คอนโด54 บ้าน12 ทาวน์โฮม",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/list/%E0%B8%96%E0%B8%99%E0%B8%99/%E0%B8%96%E0%B8%99%E0%B8%99%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%99%E0%B8%B2-%E0%B8%95%E0%B8%A3%E0%B8%B2%E0%B8%94/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "สถานีรถไฟฟ้าอโศก (E4)BTS (สายสีเขียวอ่อน)18 คอนโด",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/list/%E0%B8%A3%E0%B8%96%E0%B9%84%E0%B8%9F%E0%B8%9F%E0%B9%89%E0%B8%B2/bts-%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%B5%E0%B9%80%E0%B8%82%E0%B8%B5%E0%B8%A2%E0%B8%A7%E0%B8%AD%E0%B9%88%E0%B8%AD%E0%B8%99/%E0%B8%AD%E0%B9%82%E0%B8%A8%E0%B8%81-e4/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "รวมโครงการบ้าน ทาวน์โฮม คอนโด เปิดตัวใหม่ปี 2568",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%84%E0%B8%B9%E0%B9%88%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%82%E0%B8%B2%E0%B8%A2/%E0%B8%A3%E0%B8%A7%E0%B8%A1%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99-%E0%B8%97%E0%B8%B2%E0%B8%A7%E0%B8%99%E0%B9%8C%E0%B9%82%E0%B8%AE%E0%B8%A1-%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88%E0%B8%9B%E0%B8%B5-2568-924127/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "รวม 12 โครงการบ้านใกล้ Central Westville ในงบไม่เกิน 10 ล้านบาท",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%84%E0%B8%B9%E0%B9%88%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%82%E0%B8%B2%E0%B8%A2/%E0%B8%A3%E0%B8%A7%E0%B8%A1-12-%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89-central-westville-%E0%B9%83%E0%B8%99%E0%B8%87%E0%B8%9A%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B9%80%E0%B8%81%E0%B8%B4%E0%B8%99-10-%E0%B8%A5%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%9A%E0%B8%B2%E0%B8%97-921703/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "รวม 16 โครงการ บ้านราคา 100 ล้าน++ ในโซนกรุงเทพ",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%84%E0%B8%B9%E0%B9%88%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%82%E0%B8%B2%E0%B8%A2/%E0%B8%A3%E0%B8%A7%E0%B8%A1-16-%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3-%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%A3%E0%B8%B2%E0%B8%84%E0%B8%B2-100-%E0%B8%A5%E0%B9%89%E0%B8%B2%E0%B8%99-%E0%B9%83%E0%B8%99%E0%B9%82%E0%B8%8B%E0%B8%99%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E-924270/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "รวม 6 คอนโดมิเนียมมือหนึ่ง ใกล้ห้างเปิดใหม่ The Emsphere ระยะไม่เกิน 2 กิโลเมตร",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/article/%E0%B8%A3%E0%B8%A7%E0%B8%A1-6-%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94%E0%B8%A1%E0%B8%B4%E0%B9%80%E0%B8%99%E0%B8%B5%E0%B8%A2%E0%B8%A1%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%AB%E0%B8%99%E0%B8%B6%E0%B9%88%E0%B8%87-%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88-the-emsphere-%E0%B8%A3%E0%B8%B0%E0%B8%A2%E0%B8%B0%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B9%80%E0%B8%81%E0%B8%B4%E0%B8%99-2-%E0%B8%81%E0%B8%B4%E0%B9%82%E0%B8%A5%E0%B9%80%E0%B8%A1%E0%B8%95%E0%B8%A3-919037/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "อัปเดต 8 โครงการคอนโดพร้อมอยู่ ใกล้โรงพยาบาลศิริราช ปี 2026โดย Pintuma.p",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%A7%E0%B8%B4%E0%B8%94%E0%B8%B5%E0%B9%82%E0%B8%AD/%E0%B8%AD%E0%B8%B1%E0%B8%9B%E0%B9%80%E0%B8%94%E0%B8%95-8-%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%AD%E0%B8%A2%E0%B8%B9%E0%B9%88-%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B8%9E%E0%B8%A2%E0%B8%B2%E0%B8%9A%E0%B8%B2%E0%B8%A5%E0%B8%A8%E0%B8%B4%E0%B8%A3%E0%B8%B4%E0%B8%A3%E0%B8%B2%E0%B8%8A-%E0%B8%9B%E0%B8%B5-2026-636869/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "รีวิว LOVE Charoen Nakhon (เลิฟ เจริญนคร) คอนโด High Rise 44 ชั้น วิวแม่น้ำเจ้าพระยา เลี้ยงสัตว์ได้ ",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%A7%E0%B8%B4%E0%B8%94%E0%B8%B5%E0%B9%82%E0%B8%AD/%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7-love-charoen-nakhon-%E0%B9%80%E0%B8%A5%E0%B8%B4%E0%B8%9F-%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%99%E0%B8%84%E0%B8%A3-%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94-high-rise-44-%E0%B8%8A%E0%B8%B1%E0%B9%89%E0%B8%99-%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B9%80%E0%B8%88%E0%B9%89%E0%B8%B2%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A2%E0%B8%B2-%E0%B9%80%E0%B8%A5%E0%B8%B5%E0%B9%89%E0%B8%A2%E0%B8%87%E0%B8%AA%E0%B8%B1%E0%B8%95%E0%B8%A7%E0%B9%8C%E0%B9%84%E0%B8%94%E0%B9%89-%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89-iconsiam-%E0%B8%88%E0%B8%B2%E0%B8%81-sansiri-1087880/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "10 นาทีถึงสาทร! ไม่ต้องข้ามแม่น้ำ เริ่ม 1.79 ล้าน! | Scape เจริญกรุง – พระราม 3โดย tanes.sripiean",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%A7%E0%B8%B4%E0%B8%94%E0%B8%B5%E0%B9%82%E0%B8%AD/10-%E0%B8%99%E0%B8%B2%E0%B8%97%E0%B8%B5%E0%B8%96%E0%B8%B6%E0%B8%87%E0%B8%AA%E0%B8%B2%E0%B8%97%E0%B8%A3-%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%95%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A1%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%99%E0%B9%89%E0%B8%B3-%E0%B9%80%E0%B8%A3%E0%B8%B4%E0%B9%88%E0%B8%A1-1-79-%E0%B8%A5%E0%B9%89%E0%B8%B2%E0%B8%99-scape-%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87-%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A3%E0%B8%B2%E0%B8%A1-3-1088852/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "พรีวิวโครงการเจาะลึก ‘วันเวลา ณ เจ้าพระยา’ Riverfront Condo ล็อตพิเศษ ต่อตารางเมตร 1 แสน* เริ่ม 3.89",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94/%E0%B9%80%E0%B8%88%E0%B8%B2%E0%B8%B0%E0%B8%A5%E0%B8%B6%E0%B8%81-%E0%B8%A7%E0%B8%B1%E0%B8%99%E0%B9%80%E0%B8%A7%E0%B8%A5%E0%B8%B2-%E0%B8%93-%E0%B9%80%E0%B8%88%E0%B9%89%E0%B8%B2%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A2%E0%B8%B2-riverfront-condo-%E0%B8%A5%E0%B9%87%E0%B8%AD%E0%B8%95%E0%B8%9E%E0%B8%B4%E0%B9%80%E0%B8%A8%E0%B8%A9-%E0%B8%95%E0%B9%88%E0%B8%AD%E0%B8%95%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%87%E0%B9%80%E0%B8%A1%E0%B8%95%E0%B8%A3-1-%E0%B9%81%E0%B8%AA%E0%B8%99-%E0%B9%80%E0%B8%A3%E0%B8%B4%E0%B9%88%E0%B8%A1-3-89-%E0%B8%A5%E0%B8%9A-%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B9%80%E0%B8%9F%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%AF-%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89-mrt-%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B9%88%E0%B8%B2%E0%B8%99-%E0%B9%83%E0%B8%99%E0%B8%AD%E0%B8%99%E0%B8%B2%E0%B8%84%E0%B8%95-907121-%E0%B8%9E%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "พรีวิวโครงการNUE Mega Plus Bangna คอนโด High Rise โครงการใหม่ติดถนนบางนา-ตราด และห้าง Mega Bangna พร",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94/nue-mega-plus-bangna-%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94-high-rise-%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%96%E0%B8%99%E0%B8%99%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%99%E0%B8%B2-%E0%B8%95%E0%B8%A3%E0%B8%B2%E0%B8%94-%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87-mega-bangna-%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B8%AB%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%99%E0%B9%89%E0%B8%B2%E0%B8%81%E0%B8%A7%E0%B9%89%E0%B8%B2%E0%B8%87-%E0%B8%88%E0%B8%B2%E0%B8%81-noble-preview-776542-%E0%B8%9E%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "พรีวิวโครงการNue Epic Asok – Rama9 เทียบคู่แข่ง น่าซื้อไหม?โดย phanuwat.pholsuai",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%A7%E0%B8%B4%E0%B8%94%E0%B8%B5%E0%B9%82%E0%B8%AD/nue-epic-asok-rama-9-%E0%B9%80%E0%B8%97%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B8%84%E0%B8%B9%E0%B9%88%E0%B9%81%E0%B8%82%E0%B9%88%E0%B8%87-%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B9%84%E0%B8%AB%E0%B8%A1-998725/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "Point of viewSnapshot @Kave Wonderlandโดย Chanon B.",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94/snapshot-kave-wonderland-1087751-point-of-view/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "Point of viewSnapshot @Nue Riverest ราษฎร์บูรณะโดย Chanon B.",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94/snapshot-nue-riverest-%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%E0%B8%9A%E0%B8%B9%E0%B8%A3%E0%B8%93%E0%B8%B0-1074139-point-of-view/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "Point of viewSnapshot @Veera Grand Pattayaโดย Chanon B.",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94-%E0%B8%95%E0%B8%B2%E0%B8%81%E0%B8%AD%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%A8/snapshot-veera-grand-pattaya-1058252-point-of-view/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "ข่าวอสังหา𝟮𝟱 เม.ย.นี้ เปิดชมตึกจริงอาคาร C ครั้งแรก  “วันเวลา ณ เจ้าพระยา” 𝑹𝒊𝒗𝒆𝒓𝒇𝒓𝒐𝒏𝒕 𝑪",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%82%E0%B9%88%E0%B8%B2%E0%B8%A7/%F0%9D%9F%AE%F0%9D%9F%B1-%E0%B9%80%E0%B8%A1-%E0%B8%A2-%E0%B8%99%E0%B8%B5%E0%B9%89-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%8A%E0%B8%A1%E0%B8%95%E0%B8%B6%E0%B8%81%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%87%E0%B8%AD%E0%B8%B2%E0%B8%84%E0%B8%B2%E0%B8%A3-c-%E0%B8%84%E0%B8%A3%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%81%E0%B8%A3%E0%B8%81-%E0%B8%A7%E0%B8%B1%E0%B8%99%E0%B9%80%E0%B8%A7%E0%B8%A5%E0%B8%B2-%E0%B8%93-%E0%B9%80%E0%B8%88%E0%B9%89%E0%B8%B2%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A2%E0%B8%B2-%F0%9D%91%B9%F0%9D%92%8A%F0%9D%92%97%F0%9D%92%86%F0%9D%92%93%F0%9D%92%87%F0%9D%92%93%F0%9D%92%90%F0%9D%92%8F%F0%9D%92%95-%F0%9D%91%AA%F0%9D%92%90%F0%9D%92%8F%F0%9D%92%85%F0%9D%92%90-%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%A3%E0%B8%96%E0%B9%84%E0%B8%9F%E0%B8%9F%E0%B9%89%E0%B8%B2-1101568/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "ซื้อ-ขายเลือกคอนโดให้ตรงนิสัย ไม่ต้องเดาด้วย MBTIโดย June TNK",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%84%E0%B8%B9%E0%B9%88%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%82%E0%B8%B2%E0%B8%A2/%E0%B9%80%E0%B8%A5%E0%B8%B7%E0%B8%AD%E0%B8%81%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B8%95%E0%B8%A3%E0%B8%87%E0%B8%99%E0%B8%B4%E0%B8%AA%E0%B8%B1%E0%B8%A2-%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%95%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%94%E0%B8%B2%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-mbti-1098958/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "ข่าวอสังหา𝐎𝐖𝐍 𝐎𝐍𝐄, 𝐆𝐄𝐓 𝐎𝐍𝐄 ซื้อคอนโด 𝐎𝐍𝐄𝟗𝐅𝐈𝐕𝐄 𝐀𝐬𝐨𝐤𝐞–𝐑𝐚𝐦𝐚 𝟗 วันนี้ รับท",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%82%E0%B9%88%E0%B8%B2%E0%B8%A7/%F0%9D%90%8E%F0%9D%90%96%F0%9D%90%8D-%F0%9D%90%8E%F0%9D%90%8D%F0%9D%90%84-%F0%9D%90%86%F0%9D%90%84%F0%9D%90%93-%F0%9D%90%8E%F0%9D%90%8D%F0%9D%90%84-%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94-%F0%9D%90%8E%F0%9D%90%8D%F0%9D%90%84-%F0%9D%9F%97-%F0%9D%90%85%F0%9D%90%88%F0%9D%90%95%F0%9D%90%84-%F0%9D%90%80%F0%9D%90%AC%F0%9D%90%A8%F0%9D%90%A4%F0%9D%90%9E-%F0%9D%90%91%F0%9D%90%9A%F0%9D%90%A6%F0%9D%90%9A-%F0%9D%9F%97-%E0%B8%A7%E0%B8%B1%E0%B8%99%E0%B8%99%E0%B8%B5%E0%B9%89-%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%97%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%B5-%E0%B8%A3%E0%B8%96%E0%B8%A2%E0%B8%99%E0%B8%95%E0%B9%8C%E0%B9%84%E0%B8%9F%E0%B8%9F%E0%B9%89%E0%B8%B2-byd-seal-5-dm-i-%E0%B8%AB%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%97%E0%B8%AD%E0%B8%87%E0%B8%84%E0%B8%B3%E0%B8%AA%E0%B8%B9%E0%B8%87%E0%B8%AA%E0%B8%B8%E0%B8%94-5-%E0%B8%9A%E0%B8%B2%E0%B8%97-19-22-%E0%B8%A1%E0%B8%B5%E0%B8%99%E0%B8%B2%E0%B8%84%E0%B8%A1-2569-%E0%B8%99%E0%B8%B5%E0%B9%89%E0%B9%80%E0%B8%97%E0%B9%88%E0%B8%B2%E0%B8%99%E0%B8%B1%E0%B9%89%E0%B8%99-1095375/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "รีวิวโครงการรีวิวทำเล MUNIQ CHAROEN KRUNG (มิวนีค เจริญกรุง) คอนโด High Rise ติดถนนเจริญกรุง ตรงข้าม",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/article/%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B8%97%E0%B8%B3%E0%B9%80%E0%B8%A5-muniq-charoen-krung-%E0%B8%A1%E0%B8%B4%E0%B8%A7%E0%B8%99%E0%B8%B5%E0%B8%84-%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87-%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%94-high-rise-%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%96%E0%B8%99%E0%B8%99%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87-%E0%B8%95%E0%B8%A3%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%A3-%E0%B8%99%E0%B8%B2%E0%B8%99%E0%B8%B2%E0%B8%8A%E0%B8%B2%E0%B8%95%E0%B8%B4-shrewsbury-%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%97%E0%B8%B1%E0%B9%89%E0%B8%87-bts-%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%97%E0%B8%B2%E0%B8%87%E0%B8%94%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B9%80%E0%B8%9E%E0%B8%B5%E0%B8%A2%E0%B8%87-1-%E0%B8%81%E0%B8%A1-%E0%B8%88%E0%B8%B2%E0%B8%81-major-development-1093813-%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3/",
+      "scrapedAt": "2026-04-23T17:09:24.265Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "รีวิวโครงการ รีวิว The Reserve Villas Sukhumvit 89/1 บ้านแฝดและบ้านเดี่ยวหรู 3.5 ชั้น พร้อมลิฟต์และส",
+      "price": "",
+      "location": "",
+      "image": "https://img.iproperty.com.my/thinkofliving/168x96-crop/wp-content/uploads/1/2026/02/20193556/The-Reserve-Villas-Sukhumvit-89-1-01-2091.jpg",
+      "url": "https://www.thinkofliving.com/%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%A7%E0%B8%B4%E0%B8%94%E0%B8%B5%E0%B9%82%E0%B8%AD/%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7-the-reserve-villas-sukhumvit-89-1-%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B9%81%E0%B8%9D%E0%B8%94%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7%E0%B8%AB%E0%B8%A3%E0%B8%B9-3-5-%E0%B8%8A%E0%B8%B1%E0%B9%89%E0%B8%99-%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%A5%E0%B8%B4%E0%B8%9F%E0%B8%95%E0%B9%8C%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%AA%E0%B8%A3%E0%B8%B0%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%95%E0%B8%B1%E0%B8%A7-%E0%B8%9A%E0%B8%99%E0%B8%97%E0%B8%B3%E0%B9%80%E0%B8%A5%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%96%E0%B8%99%E0%B8%99%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%B8%E0%B8%A1%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B9%80%E0%B8%9E%E0%B8%B5%E0%B8%A2%E0%B8%87-400-%E0%B9%80%E0%B8%A1%E0%B8%95%E0%B8%A3-%E0%B9%80%E0%B8%9E%E0%B8%B5%E0%B8%A2%E0%B8%87-26-%E0%B8%A2%E0%B8%B9%E0%B8%99%E0%B8%B4%E0%B8%95-%E0%B8%88%E0%B8%B2%E0%B8%81-pruksa-1088990/",
+      "scrapedAt": "2026-04-23T17:10:12.786Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "รีวิวโครงการ Snapshot @ESSENTIA Rama 2",
+      "price": "",
+      "location": "",
+      "image": "https://img.iproperty.com.my/thinkofliving/168x96-crop/wp-content/uploads/1/2026/02/26104202/%E0%B8%9B%E0%B8%81-Essentia-copy.jpg",
+      "url": "https://www.thinkofliving.com/%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99/snapshot-essentia-rama-2-1091890-%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3/",
+      "scrapedAt": "2026-04-23T17:10:12.786Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "Point of view Snapshot @Narasiri Borommaratchachonnani",
+      "price": "",
+      "location": "",
+      "image": "https://img.iproperty.com.my/thinkofliving/168x96-crop/wp-content/uploads/1/2026/02/19135121/%E0%B8%9B%E0%B8%81-narasiri-copy.jpg",
+      "url": "https://www.thinkofliving.com/%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99/snapshot-narasiri-borommaratchachonnani-1090243-point-of-view/",
+      "scrapedAt": "2026-04-23T17:10:12.786Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "รีวิวโครงการเทียบ 2 บ้านเดี่ยวโซนรังสิต ใกล้ห้างและทางด่วน Bangkok Boulevard Pause วิภาวดี-พหลฯ / ศุ",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/article/%E0%B9%80%E0%B8%97%E0%B8%B5%E0%B8%A2%E0%B8%9A-2-%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7%E0%B9%82%E0%B8%8B%E0%B8%99%E0%B8%A3%E0%B8%B1%E0%B8%87%E0%B8%AA%E0%B8%B4%E0%B8%95-%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AB%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%97%E0%B8%B2%E0%B8%87%E0%B8%94%E0%B9%88%E0%B8%A7%E0%B8%99-bangkok-boulevard-pause-%E0%B8%A7%E0%B8%B4%E0%B8%A0%E0%B8%B2%E0%B8%A7%E0%B8%94%E0%B8%B5-%E0%B8%9E%E0%B8%AB%E0%B8%A5%E0%B8%AF-%E0%B8%A8%E0%B8%B8%E0%B8%A0%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2-%E0%B8%9E%E0%B8%A3%E0%B8%B5%E0%B8%A1%E0%B8%B2-%E0%B8%A7%E0%B8%B4%E0%B8%A5%E0%B8%A5%E0%B9%88%E0%B8%B2-%E0%B8%A3%E0%B8%B1%E0%B8%87%E0%B8%AA%E0%B8%B4%E0%B8%95-%E0%B8%84%E0%B8%A5%E0%B8%AD%E0%B8%87-3-1100280-%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3/",
+      "scrapedAt": "2026-04-23T17:10:12.786Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "รีวิวโครงการศุภาลัย พรีโม่ อมตะ – บายพาส โครงการทาวน์โฮม บ้านแฝดและบ้านเดี่ยว ใกล้มอเตอร์เวย์ M7 และ",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/article/%E0%B8%A8%E0%B8%B8%E0%B8%A0%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2-%E0%B8%9E%E0%B8%A3%E0%B8%B5%E0%B9%82%E0%B8%A1%E0%B9%88-%E0%B8%AD%E0%B8%A1%E0%B8%95%E0%B8%B0-%E0%B8%9A%E0%B8%B2%E0%B8%A2%E0%B8%9E%E0%B8%B2%E0%B8%AA-%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%97%E0%B8%B2%E0%B8%A7%E0%B8%99%E0%B9%8C%E0%B9%82%E0%B8%AE%E0%B8%A1-%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B9%81%E0%B8%9D%E0%B8%94%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7-%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%A1%E0%B8%AD%E0%B9%80%E0%B8%95%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B9%80%E0%B8%A7%E0%B8%A2%E0%B9%8C-m-7-%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%99%E0%B8%B4%E0%B8%84%E0%B8%A1%E0%B8%AD%E0%B8%A1%E0%B8%95%E0%B8%B0%E0%B8%99%E0%B8%84%E0%B8%A3-%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B9%80%E0%B8%A5%E0%B8%B7%E0%B8%AD%E0%B8%81%E0%B8%96%E0%B8%B6%E0%B8%87-5-%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99-%E0%B8%88%E0%B8%B2%E0%B8%81-%E0%B8%A8%E0%B8%B8%E0%B8%A0%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2-1100541-%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3/",
+      "scrapedAt": "2026-04-23T17:10:12.786Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "รีวิวโครงการSnapshot @Habitat Mahidolโดย Chanon B.",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99/snapshot-habitat-mahidol-1096918-%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3/",
+      "scrapedAt": "2026-04-23T17:10:12.786Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "รีวิวโครงการMonét Quinn Rama 3 (โมเน่ต์ ควินน์ พระราม 3) บ้านเดี่ยว 3 ชั้น ใจกลางพระราม 3 ใกล้ทางด่ว",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/article/mon%C3%A9t-quinn-rama-3-%E0%B9%82%E0%B8%A1%E0%B9%80%E0%B8%99%E0%B9%88%E0%B8%95%E0%B9%8C-%E0%B8%84%E0%B8%A7%E0%B8%B4%E0%B8%99%E0%B8%99%E0%B9%8C-%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A3%E0%B8%B2%E0%B8%A1-3-%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7-3-%E0%B8%8A%E0%B8%B1%E0%B9%89%E0%B8%99-%E0%B9%83%E0%B8%88%E0%B8%81%E0%B8%A5%E0%B8%B2%E0%B8%87%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A3%E0%B8%B2%E0%B8%A1-3-%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%97%E0%B8%B2%E0%B8%87%E0%B8%94%E0%B9%88%E0%B8%A7%E0%B8%99-2-%E0%B8%AA%E0%B8%B2%E0%B8%A2-%E0%B8%88%E0%B8%B2%E0%B8%81-maison-development-1096892-%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3/",
+      "scrapedAt": "2026-04-23T17:10:12.786Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "รีวิวโครงการHabitat Mahidol (ฮาบิแทท มหิดล) บ้านเดี่ยวใกล้สนามบินเชียงใหม่ ติด Community Mall เน้นคว",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%A7%E0%B8%B4%E0%B8%94%E0%B8%B5%E0%B9%82%E0%B8%AD/habitat-mahidol-%E0%B8%AE%E0%B8%B2%E0%B8%9A%E0%B8%B4%E0%B9%81%E0%B8%97%E0%B8%97-%E0%B8%A1%E0%B8%AB%E0%B8%B4%E0%B8%94%E0%B8%A5-%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%AA%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B8%9A%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88-%E0%B8%95%E0%B8%B4%E0%B8%94-community-mall-%E0%B9%80%E0%B8%99%E0%B9%89%E0%B8%99%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%80%E0%B8%9E%E0%B8%B5%E0%B8%A2%E0%B8%87-29-%E0%B8%A2%E0%B8%B9%E0%B8%99%E0%B8%B4%E0%B8%95-%E0%B8%88%E0%B8%B2%E0%B8%81-ornsirin-1088571/",
+      "scrapedAt": "2026-04-23T17:10:12.786Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "คิดเรื่องอยู่ EP.863 บ้านเดี่ยวใกล้ Central พระราม 2 ที่สุด! ห่างแค่ 1 กม. | Grandio Rama 2 – Taksin",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%A7%E0%B8%B4%E0%B8%94%E0%B8%B5%E0%B9%82%E0%B8%AD/%E0%B8%84%E0%B8%B4%E0%B8%94%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%AD%E0%B8%A2%E0%B8%B9%E0%B9%88-ep-863-%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89-central-%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A3%E0%B8%B2%E0%B8%A1-2-%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B8%E0%B8%94-%E0%B8%AB%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%84%E0%B9%88-1-%E0%B8%81%E0%B8%A1-grandio-rama-2-taksin-1093308/",
+      "scrapedAt": "2026-04-23T17:10:12.786Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "บ้านเดี่ยว สไตล์ Thai Modern Tropical ส่วนกลางใหญ่ 1ใน 4 ของที่ดินโครงการ! | Essentia พระราม 2โดย To",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%A7%E0%B8%B4%E0%B8%94%E0%B8%B5%E0%B9%82%E0%B8%AD/%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7-%E0%B8%AA%E0%B9%84%E0%B8%95%E0%B8%A5%E0%B9%8C-thai-modern-tropical-%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%81%E0%B8%A5%E0%B8%B2%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%8D%E0%B9%88-1-%E0%B9%83%E0%B8%99-4-%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%94%E0%B8%B4%E0%B8%99%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3-essentia-%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A3%E0%B8%B2%E0%B8%A1-2-1092058/",
+      "scrapedAt": "2026-04-23T17:10:12.786Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "รีวิว The Reserve Villas Sukhumvit 89/1 บ้านแฝดและบ้านเดี่ยวหรู 3.5 ชั้น พร้อมลิฟต์และสระส่วนตัว บนท",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%A7%E0%B8%B4%E0%B8%94%E0%B8%B5%E0%B9%82%E0%B8%AD/%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7-the-reserve-villas-sukhumvit-89-1-%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B9%81%E0%B8%9D%E0%B8%94%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7%E0%B8%AB%E0%B8%A3%E0%B8%B9-3-5-%E0%B8%8A%E0%B8%B1%E0%B9%89%E0%B8%99-%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%A5%E0%B8%B4%E0%B8%9F%E0%B8%95%E0%B9%8C%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%AA%E0%B8%A3%E0%B8%B0%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%95%E0%B8%B1%E0%B8%A7-%E0%B8%9A%E0%B8%99%E0%B8%97%E0%B8%B3%E0%B9%80%E0%B8%A5%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%96%E0%B8%99%E0%B8%99%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%B8%E0%B8%A1%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B9%80%E0%B8%9E%E0%B8%B5%E0%B8%A2%E0%B8%87-400-%E0%B9%80%E0%B8%A1%E0%B8%95%E0%B8%A3-%E0%B9%80%E0%B8%9E%E0%B8%B5%E0%B8%A2%E0%B8%87-26-%E0%B8%A2%E0%B8%B9%E0%B8%99%E0%B8%B4%E0%B8%95-%E0%B8%88%E0%B8%B2%E0%B8%81-pruksa-1088990/",
+      "scrapedAt": "2026-04-23T17:10:12.786Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "พรีวิวโครงการOak House Sukhumvit 101/1 (โอ๊คเฮ้าส์ สุขุมวิท 101/1) ทาวน์โฮมและบ้านแฝด ใจกลางสุขุมวิท",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99/oak-house-sukhumvit-101-1-%E0%B9%82%E0%B8%AD%E0%B9%8A%E0%B8%84%E0%B9%80%E0%B8%AE%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B9%8C-%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%B8%E0%B8%A1%E0%B8%A7%E0%B8%B4%E0%B8%97-101-1-%E0%B8%97%E0%B8%B2%E0%B8%A7%E0%B8%99%E0%B9%8C%E0%B9%82%E0%B8%AE%E0%B8%A1%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B9%81%E0%B8%9D%E0%B8%94-%E0%B9%83%E0%B8%88%E0%B8%81%E0%B8%A5%E0%B8%B2%E0%B8%87%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%B8%E0%B8%A1%E0%B8%A7%E0%B8%B4%E0%B8%97-101-1-%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89-bts-%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A1%E0%B8%AA%E0%B8%B8%E0%B8%82-%E0%B8%88%E0%B8%B2%E0%B8%81-1469-%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B9%80%E0%B8%A7%E0%B8%B4%E0%B8%A3%E0%B9%8C%E0%B8%94%E0%B8%AA-%E0%B8%84%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%9B%E0%B8%AD%E0%B9%80%E0%B8%A3%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%99-%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94-preview-984627-%E0%B8%9E%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3/",
+      "scrapedAt": "2026-04-23T17:10:12.786Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "พรีวิวโครงการSupalai Grand Essence Arun Amarin (ศุภาลัย แกรนด์ เอสเซ้นส์ อรุณอมรินทร์) บ้านแฝดและทาว",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99/supalai-grand-essence-arun-amarin-%E0%B8%A8%E0%B8%B8%E0%B8%A0%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2-%E0%B9%81%E0%B8%81%E0%B8%A3%E0%B8%99%E0%B8%94%E0%B9%8C-%E0%B9%80%E0%B8%AD%E0%B8%AA%E0%B9%80%E0%B8%8B%E0%B9%89%E0%B8%99%E0%B8%AA%E0%B9%8C-%E0%B8%AD%E0%B8%A3%E0%B8%B8%E0%B8%93%E0%B8%AD%E0%B8%A1%E0%B8%A3%E0%B8%B4%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B9%8C-%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B9%81%E0%B8%9D%E0%B8%94%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%97%E0%B8%B2%E0%B8%A7%E0%B8%99%E0%B9%8C%E0%B9%82%E0%B8%AE%E0%B8%A1-3-5-%E0%B8%8A%E0%B8%B1%E0%B9%89%E0%B8%99-%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%96%E0%B8%99%E0%B8%99%E0%B8%AD%E0%B8%A3%E0%B8%B8%E0%B8%93%E0%B8%AD%E0%B8%A1%E0%B8%A3%E0%B8%B4%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B9%8C-%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89-mrt-%E0%B8%AD%E0%B8%B4%E0%B8%AA%E0%B8%A3%E0%B8%A0%E0%B8%B2%E0%B8%9E-%E0%B9%80%E0%B8%A3%E0%B8%B4%E0%B9%88%E0%B8%A1-22-9-%E0%B8%A5%E0%B9%89%E0%B8%B2%E0%B8%99-%E0%B8%88%E0%B8%B2%E0%B8%81-supalai-preview-984629-%E0%B8%9E%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3/",
+      "scrapedAt": "2026-04-23T17:10:12.786Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "พรีวิวโครงการSupalai Park Ville Sukhumvit-Nongmon (ศุภาลัย พาร์ควิลล์ สุขุมวิท-หนองมน) บ้านเดี่ยวโคร",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99/supalai-park-ville-sukhumvit-nongmon-%E0%B8%A8%E0%B8%B8%E0%B8%A0%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2-%E0%B8%9E%E0%B8%B2%E0%B8%A3%E0%B9%8C%E0%B8%84%E0%B8%A7%E0%B8%B4%E0%B8%A5%E0%B8%A5%E0%B9%8C-%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%B8%E0%B8%A1%E0%B8%A7%E0%B8%B4%E0%B8%97-%E0%B8%AB%E0%B8%99%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%99-%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88%E0%B8%9A%E0%B8%99%E0%B8%97%E0%B8%B3%E0%B9%80%E0%B8%A5%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%96%E0%B8%99%E0%B8%99%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%B8%E0%B8%A1%E0%B8%A7%E0%B8%B4%E0%B8%97-%E0%B8%88-%E0%B8%8A%E0%B8%A5%E0%B8%9A%E0%B8%B8%E0%B8%A3%E0%B8%B5-%E0%B8%88%E0%B8%B2%E0%B8%81-%E0%B8%A8%E0%B8%B8%E0%B8%A0%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2-preview-979994-%E0%B8%9E%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3/",
+      "scrapedAt": "2026-04-23T17:10:12.786Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "Point of viewSnapshot @The Reserve Villas Sukhumvit 89/1โดย Chanon B.",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99/snapshot-the-reserve-villas-sukhumvit-89-1-1100149-point-of-view/",
+      "scrapedAt": "2026-04-23T17:10:12.786Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "Point of viewSnapshot @Narasiri Borommaratchachonnaniโดย Chanon B.",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99/snapshot-narasiri-borommaratchachonnani-1090243-point-of-view/",
+      "scrapedAt": "2026-04-23T17:10:12.786Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "Point of viewSnapshot @แกรนด์ บางกอก บูเลอวาร์ด ณ อุทยานโดย Chanon B.",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99/snapshot-%E0%B9%81%E0%B8%81%E0%B8%A3%E0%B8%99%E0%B8%94%E0%B9%8C-%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%81%E0%B8%AD%E0%B8%81-%E0%B8%9A%E0%B8%B9%E0%B9%80%E0%B8%A5%E0%B8%AD%E0%B8%A7%E0%B8%B2%E0%B8%A3%E0%B9%8C%E0%B8%94-%E0%B8%93-%E0%B8%AD%E0%B8%B8%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%99-1086968-point-of-view/",
+      "scrapedAt": "2026-04-23T17:10:12.786Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "รีวิวโครงการTHANA Habitat ราชพฤกษ์ เวสต์วิลล์ บ้านเดี่ยวและบ้านแฝด ใกล้ Central Westville และ  The W",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/article/thana-habitat-%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%9E%E0%B8%A4%E0%B8%81%E0%B8%A9%E0%B9%8C-%E0%B9%80%E0%B8%A7%E0%B8%AA%E0%B8%95%E0%B9%8C%E0%B8%A7%E0%B8%B4%E0%B8%A5%E0%B8%A5%E0%B9%8C-%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B9%81%E0%B8%9D%E0%B8%94-%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89-central-westville-%E0%B9%81%E0%B8%A5%E0%B8%B0-the-walk-%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%9E%E0%B8%A4%E0%B8%81%E0%B8%A9%E0%B9%8C-%E0%B8%88%E0%B8%B2%E0%B8%81-%E0%B8%98%E0%B8%99%E0%B8%B2%E0%B8%AA%E0%B8%B4%E0%B8%A3%E0%B8%B4-1100691-%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3/",
+      "scrapedAt": "2026-04-23T17:10:12.786Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "ข่าวอสังหาPROUD ผนึก Euro Creations เปิดยูนิตพิเศษ “VI ARI – IL MONDO COLLECTION”  เสริมเฟอร์ฯหรู ตก",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%82%E0%B9%88%E0%B8%B2%E0%B8%A7/proud-%E0%B8%9C%E0%B8%99%E0%B8%B6%E0%B8%81-euro-creations-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%A2%E0%B8%B9%E0%B8%99%E0%B8%B4%E0%B8%95%E0%B8%9E%E0%B8%B4%E0%B9%80%E0%B8%A8%E0%B8%A9-vi-ari-il-mondo-collection-%E0%B9%80%E0%B8%AA%E0%B8%A3%E0%B8%B4%E0%B8%A1%E0%B9%80%E0%B8%9F%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%AF%E0%B8%AB%E0%B8%A3%E0%B8%B9-%E0%B8%95%E0%B8%81%E0%B9%81%E0%B8%95%E0%B9%88%E0%B8%87%E0%B8%84%E0%B8%A3%E0%B8%9A-%E0%B9%80%E0%B8%AD%E0%B8%81%E0%B8%AA%E0%B8%B4%E0%B8%97%E0%B8%98%E0%B8%B4%E0%B9%8C%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%8A%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%95%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B9%82%E0%B8%A5%E0%B8%81%E0%B9%83%E0%B8%88%E0%B8%81%E0%B8%A5%E0%B8%B2%E0%B8%87%E0%B8%AD%E0%B8%B2%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B9%8C-1100293/",
+      "scrapedAt": "2026-04-23T17:10:12.786Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "ข่าวอสังหา𝗛𝗢𝗠𝗘 𝗥𝗨𝗡 หวดเดียว ได้ครบสูงสุด 𝟰,𝟬𝟬𝟬,𝟬𝟬𝟬** บ. ได้ทั้งบ้าน..ได้ทั้งโปร คุ้มตั",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%82%E0%B9%88%E0%B8%B2%E0%B8%A7/%F0%9D%97%9B%F0%9D%97%A2%F0%9D%97%A0%F0%9D%97%98-%F0%9D%97%A5%F0%9D%97%A8%F0%9D%97%A1-%E0%B8%AB%E0%B8%A7%E0%B8%94%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B8%A2%E0%B8%A7-%E0%B9%84%E0%B8%94%E0%B9%89%E0%B8%84%E0%B8%A3%E0%B8%9A%E0%B8%AA%E0%B8%B9%E0%B8%87%E0%B8%AA%E0%B8%B8%E0%B8%94-%F0%9D%9F%B0-%F0%9D%9F%AC%F0%9D%9F%AC%F0%9D%9F%AC-%F0%9D%9F%AC%F0%9D%9F%AC%F0%9D%9F%AC-%E0%B8%9A-%E0%B9%84%E0%B8%94%E0%B9%89%E0%B8%97%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99-%E0%B9%84%E0%B8%94%E0%B9%89%E0%B8%97%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%82%E0%B8%9B%E0%B8%A3-%E0%B8%84%E0%B8%B8%E0%B9%89%E0%B8%A1%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%81%E0%B8%95%E0%B9%88%E0%B8%A7%E0%B8%B1%E0%B8%99%E0%B9%81%E0%B8%A3%E0%B8%81%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%88%E0%B8%AD%E0%B8%87-1099215/",
+      "scrapedAt": "2026-04-23T17:10:12.786Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "ข่าวอสังหา𝗧𝗛𝗘 𝗢𝗡𝗘 𝗦𝗶𝗴𝗻𝗮𝘁𝘂𝗿𝗲 บางนา – พระราม 9​ วิลล่า 3 ชั้น หน้ากว้างพร้อมลิฟต์​ ลดสู",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%82%E0%B9%88%E0%B8%B2%E0%B8%A7/%F0%9D%97%A7%F0%9D%97%9B%F0%9D%97%98-%F0%9D%97%A2%F0%9D%97%A1%F0%9D%97%98-%F0%9D%97%A6%F0%9D%97%B6%F0%9D%97%B4%F0%9D%97%BB%F0%9D%97%AE%F0%9D%98%81%F0%9D%98%82%F0%9D%97%BF%F0%9D%97%B2-%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%99%E0%B8%B2-%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A3%E0%B8%B2%E0%B8%A1-9-%E0%B8%A7%E0%B8%B4%E0%B8%A5%E0%B8%A5%E0%B9%88%E0%B8%B2-3-%E0%B8%8A%E0%B8%B1%E0%B9%89%E0%B8%99-%E0%B8%AB%E0%B8%99%E0%B9%89%E0%B8%B2%E0%B8%81%E0%B8%A7%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%A5%E0%B8%B4%E0%B8%9F%E0%B8%95%E0%B9%8C-%E0%B8%A5%E0%B8%94%E0%B8%AA%E0%B8%B9%E0%B8%87%E0%B8%AA%E0%B8%B8%E0%B8%94-13-%E0%B8%A5%E0%B9%89%E0%B8%B2%E0%B8%99-%E0%B8%A3%E0%B8%B2%E0%B8%84%E0%B8%B2%E0%B8%9E%E0%B8%B4%E0%B9%80%E0%B8%A8%E0%B8%A9-22-9-%E0%B8%A5%E0%B9%89%E0%B8%B2%E0%B8%99-%E0%B9%80%E0%B8%89%E0%B8%9E%E0%B8%B2%E0%B8%B0-28-29-%E0%B8%A1%E0%B8%B5-%E0%B8%84-%E0%B8%99%E0%B8%B5%E0%B9%89-1097239/",
+      "scrapedAt": "2026-04-23T17:10:12.786Z",
+      "source": "thinkofliving"
+    },
+    {
+      "title": "ข่าวอสังหา𝗧𝗛𝗘 𝗢𝗡𝗘 𝗹𝗶𝗳𝗲 𝗯𝗮𝗻𝗴𝗻𝗮 พบกั มีนา มีดีล 𝟮𝟭 – 𝟮𝟮 มี.ค. นี้​ กับบ้านแฝดราคาพ",
+      "price": "",
+      "location": "",
+      "image": "",
+      "url": "https://www.thinkofliving.com/%E0%B8%82%E0%B9%88%E0%B8%B2%E0%B8%A7/%F0%9D%97%A7%F0%9D%97%9B%F0%9D%97%98-%F0%9D%97%A2%F0%9D%97%A1%F0%9D%97%98-%F0%9D%97%B9%F0%9D%97%B6%F0%9D%97%B3%F0%9D%97%B2-%F0%9D%97%AF%F0%9D%97%AE%F0%9D%97%BB%F0%9D%97%B4%F0%9D%97%BB%F0%9D%97%AE-%E0%B8%9E%E0%B8%9A%E0%B8%81%E0%B8%B1-%E0%B8%A1%E0%B8%B5%E0%B8%99%E0%B8%B2-%E0%B8%A1%E0%B8%B5%E0%B8%94%E0%B8%B5%E0%B8%A5-%F0%9D%9F%AE%F0%9D%9F%AD-%F0%9D%9F%AE%F0%9D%9F%AE-%E0%B8%A1%E0%B8%B5-%E0%B8%84-%E0%B8%99%E0%B8%B5%E0%B9%89-%E0%B8%81%E0%B8%B1%E0%B8%9A%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B9%81%E0%B8%9D%E0%B8%94%E0%B8%A3%E0%B8%B2%E0%B8%84%E0%B8%B2%E0%B8%9E%E0%B8%B4%E0%B9%80%E0%B8%A8%E0%B8%A9-%E0%B9%80%E0%B8%9E%E0%B8%B5%E0%B8%A2%E0%B8%87-6-59-%E0%B8%A5%E0%B8%9A-%E0%B8%A7%E0%B8%B1%E0%B8%99%E0%B8%88%E0%B8%AD%E0%B8%87%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%A5%E0%B8%94-on-top-%E0%B8%97%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%B5-50-000-%E0%B8%9A%E0%B8%B2%E0%B8%97-1096558/",
+      "scrapedAt": "2026-04-23T17:10:12.786Z",
+      "source": "thinkofliving"
+    }
+  ]
+}

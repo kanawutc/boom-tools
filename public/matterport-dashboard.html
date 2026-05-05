@@ -1,0 +1,3148 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matterport Calculator Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           DESIGN SYSTEM - Dark Mode Financial Dashboard
+           ============================================ */
+        :root {
+            /* Colors */
+            --bg-primary: #020617;
+            --bg-secondary: #0F172A;
+            --bg-tertiary: #1E293B;
+            --bg-card: rgba(30, 41, 59, 0.8);
+            --bg-input: rgba(15, 23, 42, 0.9);
+            --bg-hover: rgba(51, 65, 85, 0.5);
+
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --text-tertiary: #64748B;
+
+            --accent-primary: #22C55E;
+            --accent-warning: #F59E0B;
+            --accent-danger: #EF4444;
+            --accent-info: #3B82F6;
+            --accent-purple: #8B5CF6;
+
+            --border-subtle: rgba(148, 163, 184, 0.1);
+            --border-medium: rgba(148, 163, 184, 0.2);
+            --border-strong: rgba(148, 163, 184, 0.3);
+
+            /* Spacing */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+
+            /* Typography */
+            --font-heading: 'Fira Code', monospace;
+            --font-body: 'Fira Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ============================================
+           LAYOUT - 3 Column Dashboard
+           ============================================ */
+        .dashboard {
+            display: grid;
+            grid-template-rows: auto auto 1fr;
+            grid-template-columns: 280px 1fr 360px;
+            min-height: 100vh;
+            gap: var(--space-4);
+            padding: var(--space-4);
+        }
+
+        /* Main panels row - make them equal height */
+        .left-panel,
+        .center-panel,
+        .right-panel {
+            align-self: stretch;
+        }
+
+        /* Header */
+        .dashboard-header {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-2) var(--space-3);
+            background: var(--bg-card);
+            border-radius: 8px;
+            border: 1px solid var(--border-subtle);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .logo h1 {
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .logo svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .scenario-tabs {
+            display: flex;
+            gap: var(--space-1);
+        }
+
+        .scenario-tab {
+            padding: var(--space-1) var(--space-2);
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-input);
+            color: var(--text-secondary);
+        }
+
+        .scenario-tab:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .scenario-tab.active {
+            background: var(--accent-info);
+            border-color: var(--accent-info);
+            color: white;
+        }
+
+        /* KPI Cards Row */
+        .kpi-row {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-4);
+        }
+
+        .kpi-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: var(--space-4);
+            border: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .kpi-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-input);
+        }
+
+        .kpi-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .kpi-icon.profit { background: rgba(34, 197, 94, 0.15); }
+        .kpi-icon.profit svg { color: var(--accent-primary); }
+        .kpi-icon.warning { background: rgba(245, 158, 11, 0.15); }
+        .kpi-icon.warning svg { color: var(--accent-warning); }
+        .kpi-icon.loss { background: rgba(239, 68, 68, 0.15); }
+        .kpi-icon.loss svg { color: var(--accent-danger); }
+        .kpi-icon.info { background: rgba(59, 130, 246, 0.15); }
+        .kpi-icon.info svg { color: var(--accent-info); }
+
+        .kpi-content {
+            flex: 1;
+        }
+
+        .kpi-label {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            margin-bottom: var(--space-1);
+        }
+
+        .kpi-value {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .kpi-sub {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+        }
+
+        /* Panels */
+        .panel {
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-subtle);
+            overflow: hidden;
+        }
+
+        .panel-header {
+            padding: var(--space-4);
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .panel-header h3 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .panel-header svg {
+            width: 18px;
+            height: 18px;
+            color: var(--accent-info);
+        }
+
+        .panel-content {
+            padding: var(--space-4);
+        }
+
+        /* Left Panel - Inputs */
+        .left-panel {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+            min-height: 0;
+        }
+
+        .left-panel.panel {
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        .left-panel .panel-content {
+            flex: 1;
+            overflow-y: auto;
+            min-height: 0;
+        }
+
+        .left-panel .panel-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .left-panel .panel-content::-webkit-scrollbar-track {
+            background: var(--bg-input);
+        }
+
+        .left-panel .panel-content::-webkit-scrollbar-thumb {
+            background: var(--border-medium);
+            border-radius: 3px;
+        }
+
+        /* Input Groups */
+        .input-group {
+            margin-bottom: var(--space-4);
+        }
+
+        .input-group-label {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            margin-bottom: var(--space-2);
+        }
+
+        .input-group-label svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .input-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-3);
+            background: var(--bg-input);
+            border-radius: 8px;
+            margin-bottom: var(--space-2);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .input-item:hover {
+            background: var(--bg-hover);
+            border-color: var(--border-medium);
+        }
+
+        .input-item-left {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .input-item-left svg {
+            width: 16px;
+            height: 16px;
+            color: var(--text-tertiary);
+        }
+
+        .input-item-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .input-item-value {
+            font-family: var(--font-heading);
+            font-size: 0.875rem;
+            color: var(--text-primary);
+        }
+
+        .input-item-unit {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            margin-left: var(--space-1);
+        }
+
+        .input-edit-icon {
+            width: 14px;
+            height: 14px;
+            color: var(--text-tertiary);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .input-item:hover .input-edit-icon {
+            opacity: 1;
+        }
+
+        /* Center Panel - Visualizations */
+        .center-panel {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-subtle);
+            padding: var(--space-4);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-4);
+        }
+
+        .timeline-title {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .timeline-title svg {
+            width: 18px;
+            height: 18px;
+            color: var(--accent-info);
+        }
+
+        .timeline-bar {
+            height: 48px;
+            background: var(--bg-input);
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            margin: var(--space-4) 0;
+        }
+
+        .timeline-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-danger) 0%, var(--accent-warning) 50%, var(--accent-primary) 100%);
+            border-radius: 24px;
+            transition: width 0.5s ease;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 4px;
+            height: 140%;
+            background: linear-gradient(180deg, transparent, var(--accent-warning), transparent);
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.8);
+            z-index: 10;
+        }
+
+        .timeline-marker::before {
+            content: 'BE';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-warning);
+            color: var(--bg-primary);
+            font-size: 0.625rem;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .timeline-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+        }
+
+        /* Monthly Grid - Dynamic columns via inline style */
+        .timeline-grid {
+            display: grid;
+            gap: var(--space-2);
+            margin-top: var(--space-4);
+        }
+
+        .timeline-grid.auto-fit {
+            grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+        }
+
+        .timeline-grid.fixed-columns {
+            grid-template-columns: repeat(12, 1fr);
+        }
+
+        .timeline-month {
+            background: var(--bg-input);
+            border-radius: 8px;
+            padding: var(--space-2);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid var(--border-subtle);
+            min-width: 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            aspect-ratio: 1;
+        }
+
+        .timeline-month:hover {
+            transform: translateY(-2px);
+            background: var(--bg-hover);
+        }
+
+        .timeline-month.break-even {
+            background: rgba(245, 158, 11, 0.3);
+            border-color: var(--accent-warning);
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+        }
+
+        .timeline-month.break-even .timeline-month-num {
+            color: var(--accent-warning);
+            font-weight: 700;
+        }
+
+        .timeline-month.profitable {
+            background: rgba(34, 197, 94, 0.15);
+            border-color: var(--accent-primary);
+        }
+
+        .timeline-month.loss {
+            background: rgba(239, 68, 68, 0.15);
+            border-color: var(--accent-danger);
+        }
+
+        .timeline-month-num {
+            font-size: 0.625rem;
+            color: var(--text-tertiary);
+            margin-bottom: var(--space-1);
+        }
+
+        .timeline-month-profit {
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .timeline-month-profit.positive {
+            color: var(--accent-primary);
+        }
+
+        .timeline-month-profit.negative {
+            color: var(--accent-danger);
+        }
+
+        /* Mini Stats Row */
+        .mini-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-3);
+            margin-top: var(--space-4);
+        }
+
+        .mini-stat {
+            text-align: center;
+        }
+
+        .mini-stat-label {
+            font-size: 0.625rem;
+            color: var(--text-tertiary);
+            margin-bottom: var(--space-1);
+        }
+
+        .mini-stat-value {
+            font-family: var(--font-heading);
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        /* Cost Breakdown Chart */
+        .cost-chart {
+            margin-top: var(--space-4);
+        }
+
+        /* Cost & Scenario Layout */
+        .cost-scenario-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: var(--space-4);
+        }
+
+        @media (max-width: 768px) {
+            .cost-scenario-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cost-breakdown-compact {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .cost-chart-mini {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+
+        .cost-bar-item-mini {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .cost-bar-label-mini {
+            width: 55px;
+            font-size: 0.65rem;
+            color: var(--text-tertiary);
+        }
+
+        .cost-bar-track-mini {
+            flex: 1;
+            height: 6px;
+            background: var(--bg-input);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .cost-bar-fill-mini {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .cost-bar-value-mini {
+            width: 45px;
+            text-align: right;
+            font-family: var(--font-heading);
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+        }
+
+        .cost-total-mini {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-2) var(--space-3);
+            background: var(--bg-input);
+            border-radius: 6px;
+        }
+
+        .cost-total-mini .cost-label {
+            font-size: 0.65rem;
+            color: var(--text-tertiary);
+        }
+
+        .cost-total-mini .cost-value {
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent-info);
+        }
+
+        /* Scenario Price Table */
+        .scenario-price-table {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .scenario-price-table table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.7rem;
+        }
+
+        .scenario-price-table th,
+        .scenario-price-table td {
+            padding: var(--space-1) var(--space-2);
+            text-align: center;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .scenario-price-table th {
+            color: var(--text-tertiary);
+            font-weight: 500;
+        }
+
+        .scenario-price-table td {
+            color: var(--text-secondary);
+        }
+
+        .scenario-price-table tbody tr.base-row {
+            background: rgba(59, 130, 246, 0.15);
+        }
+
+        .scenario-price-table tbody tr.base-row td {
+            color: var(--accent-info);
+            font-weight: 600;
+        }
+
+        .scenario-price-table .profit-positive {
+            color: var(--accent-primary);
+        }
+
+        .scenario-price-table .profit-negative {
+            color: var(--accent-danger);
+        }
+
+        .scenario-price-table .profit-zero {
+            color: var(--accent-warning);
+        }
+
+        .scenario-price-table .scenario-price {
+            font-weight: 500;
+        }
+
+        /* ROI Months Grid */
+        .roi-months-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: var(--space-2);
+        }
+
+        @media (max-width: 600px) {
+            .roi-months-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .roi-month-card {
+            padding: var(--space-2);
+            background: var(--bg-input);
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid var(--border-subtle);
+            transition: all 0.2s ease;
+        }
+
+        .roi-month-card:hover {
+            border-color: var(--border-medium);
+            background: var(--bg-hover);
+        }
+
+        .roi-month-card.break-even {
+            background: rgba(245, 158, 11, 0.15);
+            border-color: var(--accent-warning);
+        }
+
+        .roi-month-card.profitable {
+            background: rgba(34, 197, 94, 0.1);
+            border-color: var(--accent-primary);
+        }
+
+        .roi-month-label {
+            font-size: 0.6rem;
+            color: var(--text-tertiary);
+            margin-bottom: var(--space-1);
+        }
+
+        .roi-month-value {
+            font-family: var(--font-heading);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .roi-month-value.positive {
+            color: var(--accent-primary);
+        }
+
+        .roi-month-value.negative {
+            color: var(--accent-danger);
+        }
+
+        .roi-month-cumulative {
+            font-size: 0.55rem;
+            color: var(--text-tertiary);
+            margin-top: 2px;
+        }
+
+        /* ROI Breakdown */
+        .roi-breakdown-title {
+            font-size: 0.7rem;
+            color: var(--accent-info);
+            margin-bottom: var(--space-2);
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+        }
+
+        .roi-breakdown-formula {
+            font-family: var(--font-heading);
+            font-size: 0.65rem;
+            color: var(--accent-warning);
+            background: var(--bg-secondary);
+            padding: var(--space-2);
+            border-radius: 4px;
+            margin-bottom: var(--space-2);
+            word-break: break-all;
+        }
+
+        .roi-breakdown-row {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--space-1) 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .roi-breakdown-row:last-child {
+            border-bottom: none;
+        }
+
+        .roi-breakdown-label {
+            color: var(--text-secondary);
+        }
+
+        .roi-breakdown-value {
+            font-family: var(--font-heading);
+            color: var(--text-primary);
+        }
+
+        .roi-breakdown-value.highlight {
+            color: var(--accent-primary);
+        }
+
+        .roi-breakdown-value.negative {
+            color: var(--accent-danger);
+        }
+
+        .cost-bar-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--space-3);
+        }
+
+        .cost-bar-label {
+            width: 80px;
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+        }
+
+        .cost-bar-track {
+            flex: 1;
+            height: 8px;
+            background: var(--bg-input);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 0 var(--space-3);
+        }
+
+        .cost-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .cost-bar-value {
+            width: 60px;
+            text-align: right;
+            font-family: var(--font-heading);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .cost-bar-pct-mini {
+            width: 55px;
+            text-align: right;
+            font-size: 0.65rem;
+            color: var(--text-tertiary);
+        }
+
+        /* Right Panel - Details */
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+            min-height: 0;
+            overflow-y: auto;
+        }
+
+        .right-panel .panel {
+            border-radius: 8px;
+        }
+
+        .right-panel .panel-content {
+            padding: var(--space-2);
+        }
+
+        .right-panel::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .right-panel::-webkit-scrollbar-track {
+            background: var(--bg-input);
+        }
+
+        .right-panel::-webkit-scrollbar-thumb {
+            background: var(--border-medium);
+            border-radius: 3px;
+        }
+
+        /* Detail Items */
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-3) 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .detail-value {
+            font-family: var(--font-heading);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .detail-value.profit { color: var(--accent-primary); }
+        .detail-value.loss { color: var(--accent-danger); }
+        .detail-value.warning { color: var(--accent-warning); }
+
+        /* Editable distance rate text */
+        #distance-rate-text:hover {
+            background: var(--bg-hover);
+            color: var(--accent-primary);
+        }
+
+        /* Target Items (Compact Grid) */
+        .target-item {
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: 6px;
+            padding: 6px 4px;
+            text-align: center;
+            transition: all 0.2s;
+            flex: 0 0 calc(25% - 3px); /* 4 items per row, accounting for gap */
+            min-width: 0;
+        }
+
+        .target-item:hover {
+            background: var(--bg-hover);
+            border-color: var(--border-default);
+        }
+
+        .target-label {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            margin-bottom: 4px;
+            white-space: nowrap;
+        }
+
+        .target-value {
+            font-family: var(--font-heading);
+            font-size: 0.7rem;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.3;
+        }
+
+        .target-item.profit .target-value { color: var(--accent-primary); }
+        .target-item.loss .target-value { color: var(--accent-danger); }
+        .target-item.break-even .target-value { color: var(--accent-warning); }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.7rem;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 4px var(--space-2);
+            text-align: left;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .comparison-table th {
+            color: var(--text-tertiary);
+            font-weight: 500;
+        }
+
+        .comparison-table td {
+            color: var(--text-secondary);
+        }
+
+        .comparison-table tr.active {
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .editable-price {
+            cursor: pointer;
+            position: relative;
+            padding-right: 16px;
+        }
+
+        .editable-price:hover {
+            color: var(--accent-primary);
+        }
+
+        .editable-price:hover::after {
+            content: '✎';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.6rem;
+            opacity: 0.6;
+        }
+
+        /* KPI price hover effect */
+        #kpi-price:hover {
+            color: var(--accent-primary);
+        }
+
+        #kpi-price:hover svg {
+            opacity: 1;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: var(--space-6);
+            width: 90%;
+            max-width: 400px;
+            border: 1px solid var(--border-medium);
+        }
+
+        .modal-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: var(--space-2);
+        }
+
+        .modal-subtitle {
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+            margin-bottom: var(--space-4);
+        }
+
+        .modal-input {
+            width: 100%;
+            padding: var(--space-3) var(--space-4);
+            background: var(--bg-input);
+            border: 1px solid var(--border-medium);
+            border-radius: 8px;
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            color: var(--text-primary);
+            outline: none;
+        }
+
+        .modal-input:focus {
+            border-color: var(--accent-info);
+        }
+
+        .modal-preview {
+            margin-top: var(--space-3);
+            padding: var(--space-3);
+            background: var(--bg-input);
+            border-radius: 8px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: var(--space-3);
+            margin-top: var(--space-4);
+        }
+
+        /* Cost Breakdown in Edit Modal */
+        .modal-breakdown {
+            margin-top: var(--space-4);
+            padding-top: var(--space-4);
+            border-top: 1px solid var(--border-subtle);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .modal-breakdown-title {
+            font-size: 0.7rem;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-3);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .modal-breakdown-formula {
+            font-family: var(--font-heading);
+            font-size: 0.75rem;
+            color: var(--accent-warning);
+            background: var(--bg-input);
+            padding: var(--space-2) var(--space-3);
+            border-radius: 6px;
+            margin-bottom: var(--space-3);
+        }
+
+        .modal-breakdown-step {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-2);
+            padding-left: var(--space-4);
+            position: relative;
+        }
+
+        .modal-breakdown-step::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-info);
+            font-weight: 600;
+        }
+
+        .modal-breakdown-result {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            padding: var(--space-3);
+            background: rgba(34, 197, 94, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            margin-top: var(--space-2);
+        }
+
+        .btn {
+            flex: 1;
+            padding: var(--space-3);
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-secondary {
+            background: var(--bg-input);
+            color: var(--text-secondary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-hover);
+        }
+
+        .btn-primary {
+            background: var(--accent-info);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2563EB;
+        }
+
+        /* Accordion */
+        .accordion {
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: var(--space-3);
+        }
+
+        .accordion-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-3) var(--space-4);
+            background: var(--bg-input);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .accordion-header:hover {
+            background: var(--bg-hover);
+        }
+
+        .accordion-title {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .accordion-title svg {
+            width: 16px;
+            height: 16px;
+            color: var(--text-tertiary);
+        }
+
+        .accordion-icon {
+            width: 16px;
+            height: 16px;
+            color: var(--text-tertiary);
+            transition: transform 0.2s ease;
+        }
+
+        .accordion.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            display: none;
+            padding: var(--space-4);
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .accordion.active .accordion-content {
+            display: block;
+        }
+
+        /* Upsell Toggles */
+        .upsell-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-1) var(--space-2);
+            background: var(--bg-input);
+            border-radius: 6px;
+            margin-bottom: var(--space-1);
+        }
+
+        .upsell-label {
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .upsell-label svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .toggle {
+            width: 36px;
+            height: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .toggle.active {
+            background: var(--accent-primary);
+        }
+
+        .toggle::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.2s ease;
+        }
+
+        .toggle.active::after {
+            transform: translateX(16px);
+        }
+
+        /* Tags for scenario badges */
+        .scenario-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            padding: 0;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 500;
+        }
+
+        .badge-normal { background: rgba(59, 130, 246, 0.2); color: var(--accent-info); }
+        .badge-pricewar { background: rgba(239, 68, 68, 0.2); color: var(--accent-danger); }
+        .badge-premium { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        .badge-volume { background: rgba(34, 197, 94, 0.2); color: var(--accent-primary); }
+
+        /* KPI Scenario Badge */
+        #kpi-scenario-badge {
+            display: inline-block;
+            font-size: 0.6rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+            margin-left: 6px;
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .dashboard {
+                grid-template-columns: 260px 1fr;
+                grid-template-rows: auto auto 1fr;
+            }
+
+            .right-panel {
+                grid-column: 1 / -1;
+                align-self: start;
+            }
+
+            .kpi-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+                padding: var(--space-3);
+            }
+
+            .kpi-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .left-panel,
+            .center-panel,
+            .right-panel {
+                align-self: start;
+            }
+
+            .scenario-tabs {
+                flex-wrap: wrap;
+            }
+
+            .timeline-grid {
+                grid-template-columns: repeat(auto-fit, minmax(40px, 1fr)) !important;
+            }
+
+            .timeline-month {
+                min-width: 40px;
+                padding: var(--space-1);
+            }
+
+            .mini-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Utility */
+        .text-green { color: var(--accent-primary); }
+        .text-amber { color: var(--accent-warning); }
+        .text-red { color: var(--accent-danger); }
+        .text-blue { color: var(--accent-info); }
+
+        .bg-green { background: var(--accent-primary); }
+        .bg-amber { background: var(--accent-warning); }
+        .bg-red { background: var(--accent-danger); }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M15 10l5 5-5 5M9.5 4.165C10.667 3.5 12.167 3 14 3c4 0 7 2 7 6v2c0 4-3 6-7 6-1.833 0-3.333-.5-4.5-1.165M9.5 19.835C8.333 20.5 6.833 21 5 21c-4 0-7-2-7-6v-2c0-4 3-6 7-6 1.833 0 3.333.5 4.5 1.165" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <h1>Matterport Calculator</h1>
+                <a href="matterport-competitors.html" style="display:inline-flex;align-items:center;gap:6px;color:#94A3B8;text-decoration:none;font-size:0.8rem;padding:6px 12px;border:1px solid rgba(148,163,184,0.2);border-radius:6px;">← กลับหน้าเปรียบเทียบ</a>
+            </div>
+            <div class="scenario-tabs">
+                <button class="scenario-tab active" data-scenario="normal">
+                    <span class="scenario-badge badge-normal">📊</span> Normal
+                </button>
+                <button class="scenario-tab" data-scenario="price-war">
+                    <span class="scenario-badge badge-pricewar">⚔️</span> Price War
+                </button>
+                <button class="scenario-tab" data-scenario="premium">
+                    <span class="scenario-badge badge-premium">💎</span> Premium
+                </button>
+                <button class="scenario-tab" data-scenario="volume">
+                    <span class="scenario-badge badge-volume">📦</span> Volume
+                </button>
+            </div>
+        </header>
+
+        <!-- KPI Cards -->
+        <div class="kpi-row">
+            <div class="kpi-card">
+                <div class="kpi-icon profit">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="kpi-content">
+                    <div class="kpi-label">
+                        ราคาขาย
+                        <span id="kpi-scenario-badge" style="font-size: 0.6rem; padding: 2px 6px; border-radius: 4px; margin-left: 6px; background: rgba(59, 130, 246, 0.2); color: var(--accent-primary);">Normal</span>
+                    </div>
+                    <div class="kpi-value" id="kpi-price" style="cursor: pointer; position: relative;" onclick="openModal('sellingPrice', 'ราคาขายต่องาน')" title="คลิกเพื่อแก้ไข">
+                        2,000฿
+                        <svg xmlns="http://www.w3.org/2000/svg" style="position: absolute; right: -16px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; opacity: 0.5;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                        </svg>
+                    </div>
+                    <div class="kpi-sub">ต่องาน (ฐาน) <span id="kpi-reset-btn" style="color: var(--accent-primary); cursor: pointer; margin-left: 4px;" onclick="resetCurrentScenarioPrice()" title="รีเซ็ตราคา">↻ Reset</span></div>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon" id="kpi-profit-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="kpi-content">
+                    <div class="kpi-label">กำไร/งาน</div>
+                    <div class="kpi-value" id="kpi-profit">900฿</div>
+                    <div class="kpi-sub" id="kpi-margin">Margin 45% <span style="opacity: 0.5;">(กำไร÷ราคาขาย)</span></div>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon info">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="kpi-content">
+                    <div class="kpi-label">Break-even</div>
+                    <div class="kpi-value" id="kpi-be">0.8 เดือน</div>
+                    <div class="kpi-sub" id="kpi-be-jobs">334 งาน <span style="opacity: 0.5;">(7.6เดือน × 44งาน)</span></div>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon warning">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="kpi-content">
+                    <div class="kpi-label">ROI ปีที่ 1</div>
+                    <div class="kpi-value" id="kpi-roi">180%</div>
+                    <div class="kpi-sub" id="kpi-payback">คืนทุน 7.6 เดือน</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Left Panel - Inputs -->
+        <div class="left-panel panel">
+            <div class="panel-header">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+                <h3>พารามิเตอร์ (คลิกแก้ไข)</h3>
+            </div>
+            <div class="panel-content">
+                <!-- Selling Price -->
+                <div class="input-group">
+                    <div class="input-group-label">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        ราคาขาย
+                    </div>
+                    <div class="input-item" onclick="openModal('sellingPrice', 'ราคาขายต่องาน')">
+                        <div class="input-item-left">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span class="input-item-label">ราคาขาย/งาน</span>
+                        </div>
+                        <span class="input-item-value" id="param-sellingPrice">2,000</span>
+                        <span class="input-item-unit">฿</span>
+                        <svg class="input-edit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="input-item" onclick="openModal('jobsPerMonth', 'งานต่อเดือน')">
+                        <div class="input-item-left">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span class="input-item-label">งาน/เดือน</span>
+                        </div>
+                        <span class="input-item-value" id="param-jobsPerMonth">44</span>
+                        <span class="input-item-unit">งาน</span>
+                        <svg class="input-edit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Labor Group -->
+                <div class="input-group">
+                    <div class="input-group-label">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        แรงงาน
+                    </div>
+                    <div class="input-item" onclick="openModal('salary', 'เงินเดือนช่าง')">
+                        <div class="input-item-left">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span class="input-item-label">เงินเดือนช่าง</span>
+                        </div>
+                        <span class="input-item-value" id="param-salary">15,000</span>
+                        <span class="input-item-unit">฿</span>
+                        <svg class="input-edit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="input-item" onclick="openModal('adminSalary', 'เงินเดือน Admin')">
+                        <div class="input-item-left">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span class="input-item-label">เงินเดือน Admin</span>
+                        </div>
+                        <span class="input-item-value" id="param-adminSalary">12,000</span>
+                        <span class="input-item-unit">฿</span>
+                        <svg class="input-edit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Equipment Group -->
+                <div class="input-group">
+                    <div class="input-group-label">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        อุปกรณ์
+                    </div>
+                    <div class="input-item" onclick="openModal('cameraPrice', 'ราคากล้อง')">
+                        <div class="input-item-left">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="12" cy="13" r="3"/>
+                            </svg>
+                            <span class="input-item-label">ราคากล้อง</span>
+                        </div>
+                        <span class="input-item-value" id="param-cameraPrice">50,000</span>
+                        <span class="input-item-unit">฿</span>
+                        <svg class="input-edit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="input-item" onclick="openModal('cloudYearly', 'ค่า Cloud/ปี')">
+                        <div class="input-item-left">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span class="input-item-label">ค่า Cloud/ปี</span>
+                        </div>
+                        <span class="input-item-value" id="param-cloudYearly">1,200</span>
+                        <span class="input-item-unit">฿</span>
+                        <svg class="input-edit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Travel Group -->
+                <div class="input-group">
+                    <div class="input-group-label">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path d="M13 9V3.5L18.5 9M13 9v9m0-9h8m-8 0l-8 8-4-4-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        เดินทาง
+                    </div>
+                    <div class="input-item" onclick="openModal('fuelRate', 'อัตราน้ำมัน')">
+                        <div class="input-item-left">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span class="input-item-label">อัตราน้ำมัน</span>
+                        </div>
+                        <span class="input-item-value" id="param-fuelRate">3</span>
+                        <span class="input-item-unit">฿/กม.</span>
+                        <svg class="input-edit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="input-item" onclick="openModal('distance', 'ระยะทาง')">
+                        <div class="input-item-left">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span class="input-item-label">ระยะทาง</span>
+                        </div>
+                        <span class="input-item-value" id="param-distance">20</span>
+                        <span class="input-item-unit">กม.</span>
+                        <svg class="input-edit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="input-item" onclick="openModal('distanceSurchargeRate', 'อัตราค่าเพิ่มระยะทาง')">
+                        <div class="input-item-left">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span class="input-item-label">ค่าเพิ่มระยะทาง</span>
+                        </div>
+                        <span class="input-item-value" id="param-distanceSurchargeRate">10</span>
+                        <span class="input-item-unit">฿/กม.</span>
+                        <svg class="input-edit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div style="font-size: 0.625rem; color: var(--text-tertiary); padding: var(--space-2) var(--space-3); background: var(--bg-input); border-radius: 6px; margin-top: var(--space-1);">
+                        💡 0-20กม. ฟรี | 21-80กม. +10฿/กม. | 80กม.+ +15฿/กม.
+                    </div>
+                </div>
+
+                <!-- Upsells -->
+                <div class="input-group">
+                    <div class="input-group-label">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Upsell Services
+                    </div>
+                    <div class="upsell-item">
+                        <div class="upsell-label" onclick="openModal('upsell-matterTag', 'MatterTag')" style="flex: 1; cursor: pointer;">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>MatterTag </span>
+                            <span id="upsell-price-matterTag" style="color: var(--accent-warning); font-weight: 500;">(+200฿)</span>
+                        </div>
+                        <div class="toggle" id="toggle-matterTag" onclick="event.stopPropagation(); toggleUpsell('matterTag')"></div>
+                    </div>
+                    <div class="upsell-item">
+                        <div class="upsell-label" onclick="openModal('upsell-floorPlan', 'Floor Plan')" style="flex: 1; cursor: pointer;">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Floor Plan </span>
+                            <span id="upsell-price-floorPlan" style="color: var(--accent-warning); font-weight: 500;">(+500฿)</span>
+                        </div>
+                        <div class="toggle" id="toggle-floorPlan" onclick="event.stopPropagation(); toggleUpsell('floorPlan')"></div>
+                    </div>
+                    <div class="upsell-item">
+                        <div class="upsell-label" onclick="openModal('upsell-video1min', 'Video 1 นาที')" style="flex: 1; cursor: pointer;">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Video 1 นาที </span>
+                            <span id="upsell-price-video1min" style="color: var(--accent-warning); font-weight: 500;">(+300฿)</span>
+                        </div>
+                        <div class="toggle" id="toggle-video1min" onclick="event.stopPropagation(); toggleUpsell('video1min')"></div>
+                    </div>
+                    <div class="upsell-item">
+                        <div class="upsell-label" onclick="openModal('upsell-hdrPhoto', 'HDR Photo')" style="flex: 1; cursor: pointer;">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>HDR Photo </span>
+                            <span id="upsell-price-hdrPhoto" style="color: var(--accent-warning); font-weight: 500;">(+100฿)</span>
+                        </div>
+                        <div class="toggle" id="toggle-hdrPhoto" onclick="event.stopPropagation(); toggleUpsell('hdrPhoto')"></div>
+                    </div>
+                    <!-- Upsell Summary -->
+                    <div style="margin-top: var(--space-2); padding: var(--space-2); background: var(--bg-input); border-radius: 6px; border: 1px solid var(--border-subtle);">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 0.625rem; color: var(--text-tertiary);">Upsell รวม</span>
+                            <span style="font-family: var(--font-heading); font-size: 0.75rem; color: var(--accent-warning); font-weight: 600;" id="upsell-total">+0฿</span>
+                        </div>
+                        <div style="font-size: 0.625rem; color: var(--text-tertiary); margin-top: var(--space-1);" id="upsell-items">ไม่มี Upsell ที่เลือก</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Panel - Visualizations -->
+        <div class="center-panel">
+            <!-- Timeline Section -->
+            <div class="timeline-section">
+                <div class="timeline-header">
+                    <div class="timeline-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Timeline คืนทุน + กำไรสะสม
+                    </div>
+                    <div style="font-size: 0.75rem; color: var(--text-tertiary);">
+                        ราคาขาย: <span id="timeline-price" class="text-blue">2,000฿</span>
+                    </div>
+                </div>
+
+                <div class="timeline-grid" id="timeline-grid">
+                    <!-- Generated by JS -->
+                </div>
+
+                <div class="mini-stats" id="mini-stats">
+                    <!-- Generated by JS -->
+                </div>
+            </div>
+
+            <!-- ROI Analysis -->
+            <div class="panel">
+                <div class="panel-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h3>ROI Analysis (5 ปี)</h3>
+                    <button onclick="toggleROIBreakdown()" style="margin-left: auto; background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 4px;" title="ดูสูตรคำนวณ">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width: 18px; height: 18px;">
+                            <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="panel-content" style="padding: var(--space-3);">
+                    <!-- ROI Calculation Breakdown (Hidden by default) -->
+                    <div id="roi-breakdown" style="display: none; margin-bottom: var(--space-3); padding: var(--space-3); background: var(--bg-input); border-radius: 8px; font-size: 0.75rem;">
+                        <!-- Generated by JS -->
+                    </div>
+
+                    <!-- ROI Months Grid -->
+                    <div class="roi-months-grid" id="roi-months-grid">
+                        <!-- Generated by JS -->
+                    </div>
+
+                    <!-- Summary Row -->
+                    <div style="display: flex; gap: var(--space-3); margin-top: var(--space-3);">
+                        <div style="flex: 1; padding: var(--space-2); background: var(--bg-input); border-radius: 6px; text-align: center;">
+                            <div style="font-size: 0.6rem; color: var(--text-tertiary);">Payback</div>
+                            <div style="font-family: var(--font-heading); font-size: 0.9rem; font-weight: 600; color: var(--accent-warning);" id="payback-period">1 เดือน</div>
+                        </div>
+                        <div style="flex: 1; padding: var(--space-2); background: var(--bg-input); border-radius: 6px; text-align: center;">
+                            <div style="font-size: 0.6rem; color: var(--text-tertiary);">NPV (5 ปี)</div>
+                            <div style="font-family: var(--font-heading); font-size: 0.9rem; font-weight: 600; color: var(--accent-primary);" id="npv">+2,138,820฿</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cost Breakdown & Scenario Table -->
+            <div class="panel">
+                <div class="panel-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h3>ต้นทุน & สถานการณ์ราคาขาย</h3>
+                </div>
+                <div class="panel-content">
+                    <div class="cost-scenario-layout">
+                        <!-- Cost Breakdown - Compact -->
+                        <div class="cost-breakdown-compact">
+                            <div class="cost-chart-mini" id="cost-chart">
+                                <!-- Generated by JS -->
+                            </div>
+                            <div class="cost-total-mini">
+                                <span class="cost-label">ต้นทุนรวม/งาน</span>
+                                <span class="cost-value" id="total-cost-display">1,100฿</span>
+                            </div>
+                        </div>
+
+                        <!-- Scenario Price Table -->
+                        <div class="scenario-price-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ราคาขาย</th>
+                                        <th>ต้นทุนรวม</th>
+                                        <th>กำไร</th>
+                                        <th>Margin</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="price-scenario-tbody">
+                                    <!-- Generated by JS -->
+                                </tbody>
+                            </table>
+                            <div style="font-size: 0.625rem; color: var(--text-tertiary); margin-top: var(--space-2); padding: var(--space-2); background: var(--bg-input); border-radius: 6px;">
+                                💡 คำนวณจากพารามิเตอร์เดียวกัน (คลิกแก้ไขที่ Left Panel)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel - Details -->
+        <div class="right-panel">
+            <!-- Targets -->
+            <div class="panel">
+                <div class="panel-header" style="padding: var(--space-2) var(--space-3);">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width: 16px; height: 16px;">
+                        <circle cx="12" cy="12" r="10"/>
+                        <circle cx="12" cy="12" r="6"/>
+                        <circle cx="12" cy="12" r="2"/>
+                    </svg>
+                    <h3 style="font-size: 0.8rem;">เป้าหมาย (กำไร/เดือน)</h3>
+                </div>
+                <div class="panel-content" style="padding: var(--space-3) var(--space-2); display: flex; flex-wrap: wrap; gap: 4px;">
+                    <div class="target-item" id="target-30">
+                        <div class="target-label">30</div>
+                        <div class="target-value"></div>
+                    </div>
+                    <div class="target-item" id="target-40">
+                        <div class="target-label">40</div>
+                        <div class="target-value"></div>
+                    </div>
+                    <div class="target-item" id="target-50">
+                        <div class="target-label">50</div>
+                        <div class="target-value"></div>
+                    </div>
+                    <div class="target-item" id="target-60">
+                        <div class="target-label">60</div>
+                        <div class="target-value"></div>
+                    </div>
+                    <div class="target-item" id="target-70">
+                        <div class="target-label">70</div>
+                        <div class="target-value"></div>
+                    </div>
+                    <div class="target-item" id="target-80">
+                        <div class="target-label">80</div>
+                        <div class="target-value"></div>
+                    </div>
+                    <div class="target-item" id="target-90">
+                        <div class="target-label">90</div>
+                        <div class="target-value"></div>
+                    </div>
+                    <div class="target-item" id="target-100">
+                        <div class="target-label">100</div>
+                        <div class="target-value"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Capacity + Distance -->
+            <div class="panel">
+                <div class="panel-header" style="padding: var(--space-2) var(--space-3);">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width: 16px; height: 16px;">
+                        <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h3 style="font-size: 0.8rem;">ความจุ (1 เครื่อง)</h3>
+                </div>
+                <div class="panel-content" style="padding: var(--space-2);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--text-secondary);">
+                        <span><span class="detail-value" id="capacity-daily">2</span> งาน/วัน</span>
+                        <span>•</span>
+                        <span><span class="detail-value" id="capacity-monthly">44</span> งาน/เดือน</span>
+                        <span>•</span>
+                        <span><span class="detail-value" id="capacity-yearly">528</span> งาน/ปี</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Distance Pricing -->
+            <div class="panel">
+                <div class="panel-header" style="padding: var(--space-2) var(--space-3);">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width: 16px; height: 16px;">
+                        <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h3 style="font-size: 0.8rem;">Distance Pricing</h3>
+                </div>
+                <div class="panel-content" style="padding: var(--space-2);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem;">
+                        <span style="color: var(--text-secondary);">ระยะทาง <span class="detail-value" id="distance-display">20 กม.</span></span>
+                        <span style="color: var(--text-secondary);">ค่าเพิ่ม <span class="detail-value" id="distance-surcharge">+0฿</span></span>
+                        <span style="color: var(--text-secondary);">รวม <span class="detail-value text-green" id="price-with-distance">2,000฿</span></span>
+                    </div>
+                    <div id="distance-rate-text" style="font-size: 0.65rem; color: var(--text-tertiary); text-align: center; margin-top: 4px; cursor: pointer; padding: 4px; border-radius: 4px;" onclick="openModal('distanceSurchargeRate', 'อัตราค่าเพิ่มระยะทาง')" title="คลิกเพื่อแก้ไขอัตรา">
+                        0-20กม. ฟรี | 21-80กม. +10฿/กม. | 80กม.+ +15฿/กม.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison -->
+            <div class="panel">
+                <div class="panel-header" style="padding: var(--space-2) var(--space-3);">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width: 16px; height: 16px;">
+                        <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h3 style="font-size: 0.8rem;">เปรียบเทียบ Scenario</h3>
+                </div>
+                <div class="panel-content" style="padding: 0;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--border-subtle);">
+                        <span style="font-size: 0.65rem; color: var(--text-tertiary);">คลิกที่แถวเพื่อแก้ไขราคา</span>
+                        <button onclick="resetAllScenarioPrices()" style="background: none; border: 1px solid var(--border-subtle); color: var(--text-secondary); cursor: pointer; font-size: 0.65rem; padding: 2px 8px; border-radius: 4px;" title="รีเซ็ตราคาทั้งหมด">
+                            ↻ Reset All
+                        </button>
+                    </div>
+                    <table class="comparison-table" id="comparison-table" style="font-size: 0.7rem;">
+                        <thead>
+                            <tr>
+                                <th>Scenario</th>
+                                <th>ราคา</th>
+                                <th>Margin</th>
+                                <th>BE</th>
+                            </tr>
+                        </thead>
+                        <tbody id="comparison-tbody">
+                            <!-- Generated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <div class="modal-title" id="modal-title">แก้ไขค่า</div>
+            <div class="modal-subtitle" id="modal-subtitle"></div>
+            <input type="number" class="modal-input" id="modal-input" placeholder="กรอกค่าใหม่">
+            <div class="modal-preview" id="modal-preview"></div>
+            <div class="modal-breakdown" id="modal-breakdown"></div>
+            <div class="modal-buttons">
+                <button class="btn btn-secondary" onclick="closeModal()">ยกเลิก</button>
+                <button class="btn btn-primary" onclick="saveModal()">ตกลง</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // DATA & CONFIG
+        // ============================================
+
+        const FIXED_COSTS_PER_MONTH = 33000;
+        const WORKING_DAYS = 22;
+        const JOBS_PER_DAY = 2;
+
+        const defaultData = {
+            sellingPrice: 2000,
+            distance: 20,
+            distanceSurchargeRate: 10, // ฿/กม. for distance > 20km
+            jobsPerMonth: 44,
+            params: {
+                salary: 15000,
+                cameraPrice: 50000,
+                cloudYearly: 1200,
+                adminSalary: 12000,
+                fuelRate: 3
+            },
+            costs: {
+                labor: 450,
+                cloud: 100,
+                equipment: 150,
+                travel: 150,
+                admin: 100,
+                buffer: 150
+            },
+            upsells: {
+                matterTag: false,
+                floorPlan: false,
+                video1min: false,
+                hdrPhoto: false
+            },
+            upsellPrices: {
+                matterTag: 200,
+                floorPlan: 500,
+                video1min: 300,
+                hdrPhoto: 100
+            }
+        };
+
+        // Store original prices for reset functionality
+        const originalScenarioPrices = {
+            normal: 2000,
+            'price-war': 1610,
+            premium: 3500,
+            volume: 1500
+        };
+
+        const scenarios = {
+            normal: {
+                name: 'Normal',
+                sellingPrice: 2000,
+                distance: 20,
+                jobsPerMonth: 44,
+                params: { salary: 15000, cameraPrice: 50000, cloudYearly: 1200, adminSalary: 12000, fuelRate: 3 },
+                costs: { labor: 450, cloud: 100, equipment: 150, travel: 150, admin: 100, buffer: 150 },
+                upsellPrices: { matterTag: 200, floorPlan: 500, video1min: 300, hdrPhoto: 100 }
+            },
+            'price-war': {
+                name: 'Price War',
+                sellingPrice: 1610,
+                distance: 20,
+                jobsPerMonth: 44,
+                params: { salary: 15000, cameraPrice: 50000, cloudYearly: 1200, adminSalary: 12000, fuelRate: 3 },
+                costs: { labor: 450, cloud: 100, equipment: 150, travel: 150, admin: 100, buffer: 150 },
+                upsellPrices: { matterTag: 150, floorPlan: 400, video1min: 250, hdrPhoto: 80 }
+            },
+            premium: {
+                name: 'Premium',
+                sellingPrice: 3500,
+                distance: 20,
+                jobsPerMonth: 44,
+                params: { salary: 18000, cameraPrice: 80000, cloudYearly: 1500, adminSalary: 15000, fuelRate: 3 },
+                costs: { labor: 550, cloud: 150, equipment: 250, travel: 150, admin: 150, buffer: 208 },
+                upsellPrices: { matterTag: 300, floorPlan: 800, video1min: 500, hdrPhoto: 200 }
+            },
+            volume: {
+                name: 'Volume',
+                sellingPrice: 1500,
+                distance: 20,
+                jobsPerMonth: 60,
+                params: { salary: 12000, cameraPrice: 40000, cloudYearly: 1000, adminSalary: 10000, fuelRate: 3 },
+                costs: { labor: 350, cloud: 100, equipment: 150, travel: 150, admin: 100, buffer: 146 },
+                upsellPrices: { matterTag: 150, floorPlan: 350, video1min: 200, hdrPhoto: 80 }
+            }
+        };
+
+        let data = JSON.parse(JSON.stringify(defaultData));
+        let currentScenario = 'normal';
+        let currentEditKey = null;
+
+        // ============================================
+        // FORMATTER
+        // ============================================
+        function formatNumber(num) {
+            return Math.round(num).toLocaleString('th-TH');
+        }
+
+        // ============================================
+        // CALCULATIONS
+        // ============================================
+        function getUpsellTotal() {
+            let total = 0;
+            for (const [key, enabled] of Object.entries(data.upsells)) {
+                if (enabled) total += data.upsellPrices[key] || 0;
+            }
+            return total;
+        }
+
+        function getEffectiveSellingPrice() {
+            return data.sellingPrice + getUpsellTotal();
+        }
+
+        function getTotalCost() {
+            return Object.values(data.costs).reduce((a, b) => a + b, 0);
+        }
+
+        function getProfit() {
+            return getEffectiveSellingPrice() - getTotalCost();
+        }
+
+        function getMargin() {
+            const effectivePrice = getEffectiveSellingPrice();
+            if (effectivePrice === 0) return 0;
+            return Math.round((getProfit() / effectivePrice) * 100);
+        }
+
+        function getJobsPerMonth() {
+            return data.jobsPerMonth;
+        }
+
+        function getJobsPerYear() {
+            return getJobsPerMonth() * 12;
+        }
+
+        function getBreakEvenJobs() {
+            const monthlyProfit = (getJobsPerMonth() * getProfit()) - FIXED_COSTS_PER_MONTH;
+            const breakEvenMonths = data.params.cameraPrice / monthlyProfit;
+            return Math.ceil(breakEvenMonths * getJobsPerMonth());
+        }
+
+        function getBreakEvenMonths() {
+            const monthlyProfit = (getJobsPerMonth() * getProfit()) - FIXED_COSTS_PER_MONTH;
+            return Math.round((data.params.cameraPrice / monthlyProfit) * 10) / 10;
+        }
+
+        function getProfitAfterMonths(months) {
+            const jobsPerMonth = getJobsPerMonth();
+            const revenue = jobsPerMonth * getEffectiveSellingPrice() * months;
+            const variableCost = jobsPerMonth * getTotalCost() * months;
+            const fixedCost = FIXED_COSTS_PER_MONTH * months;
+            const cameraCost = data.params.cameraPrice;
+            return revenue - variableCost - fixedCost - cameraCost;
+        }
+
+        function getROIYear1() {
+            const yearlyProfit = (getProfit() * getJobsPerMonth() * 12) - (FIXED_COSTS_PER_MONTH * 12);
+            const cumulativeProfit = yearlyProfit - data.params.cameraPrice;
+            return Math.round((cumulativeProfit / data.params.cameraPrice) * 100);
+        }
+
+        function getROIYear2() {
+            const yearlyProfit = (getProfit() * getJobsPerMonth() * 12) - (FIXED_COSTS_PER_MONTH * 12);
+            const cumulativeProfit = (yearlyProfit * 2) - data.params.cameraPrice;
+            return Math.round((cumulativeProfit / data.params.cameraPrice) * 100);
+        }
+
+        function getNPV() {
+            const discountRate = 0.12;
+            const years = 5;
+            const jobsPerYear = getJobsPerYear();
+            const annualCashFlow = (jobsPerYear * getEffectiveSellingPrice()) - (jobsPerYear * getTotalCost()) - (FIXED_COSTS_PER_MONTH * 12);
+            const initialInvestment = data.params.cameraPrice;
+
+            let npv = -initialInvestment;
+            for (let i = 1; i <= years; i++) {
+                npv += annualCashFlow / Math.pow(1 + discountRate, i);
+            }
+            return Math.round(npv);
+        }
+
+        function getTargetProfit(jobsPerMonth) {
+            const revenue = jobsPerMonth * getEffectiveSellingPrice();
+            const variableCost = jobsPerMonth * getTotalCost();
+            const fixedCost = FIXED_COSTS_PER_MONTH;
+            return revenue - variableCost - fixedCost;
+        }
+
+        function getDistanceSurcharge() {
+            const distance = data.distance || 20;
+            const FREE_KM = 20;
+            const LONG_DISTANCE = 80;
+            const NORMAL_RATE = data.distanceSurchargeRate || 10;
+            const LONG_RATE = Math.round(NORMAL_RATE * 1.5); // 1.5x for long distance
+
+            if (distance <= FREE_KM) return 0;
+
+            if (distance > LONG_DISTANCE) {
+                const longExtra = distance - LONG_DISTANCE;
+                const normalExtra = LONG_DISTANCE - FREE_KM;
+                return (normalExtra * NORMAL_RATE) + (longExtra * LONG_RATE);
+            }
+            return (distance - FREE_KM) * NORMAL_RATE;
+        }
+
+        function getDistanceRates() {
+            const NORMAL_RATE = data.distanceSurchargeRate || 10;
+            const LONG_RATE = Math.round(NORMAL_RATE * 1.5);
+            return { normal: NORMAL_RATE, long: LONG_RATE };
+        }
+
+        function getPriceWithDistance() {
+            return getEffectiveSellingPrice() + getDistanceSurcharge();
+        }
+
+        function recalculateCostsFromParams() {
+            const p = data.params;
+            data.costs.labor = Math.round((p.salary / 22 / 8 * 3.5 * 1.5) / 50) * 50;
+            data.costs.equipment = Math.round(p.cameraPrice / 300 / 50) * 50;
+            data.costs.cloud = Math.round(p.cloudYearly / 12 / 50) * 50;
+            data.costs.admin = Math.round((p.adminSalary / 176 * 0.75 * 2) / 50) * 50;
+            data.costs.travel = Math.round((100 + 20 * p.fuelRate) / 50) * 50;
+            const directCosts = data.costs.labor + data.costs.cloud + data.costs.equipment + data.costs.travel + data.costs.admin;
+            data.costs.buffer = Math.round((directCosts / 1.2) * 0.2);
+        }
+
+        // ============================================
+        // UI UPDATES
+        // ============================================
+        function updateAll() {
+            updateKPIs();
+            updateTimeline();
+            updateCostChart();
+            updateROI();
+            updateComparison();
+            updateTargets();
+            updateCapacity();
+            updateDistance();
+            updateUpsellDisplay();
+            updateUpsellLabels();
+            // Sync to competitors page via localStorage
+            try {
+                localStorage.setItem('matterport_calc_data', JSON.stringify({
+                    sellingPrice: data.sellingPrice,
+                    cost: getTotalCost(),
+                    profit: getProfit(),
+                    margin: getMargin(),
+                    jobsPerMonth: getJobsPerMonth(),
+                    platformCost: data.params.subscriptionMonthly || 0,
+                    ts: Date.now()
+                }));
+            } catch(e) {}
+        }
+
+        function updateKPIs() {
+            const profit = getProfit();
+            const margin = getMargin();
+            const beMonths = getBreakEvenMonths();
+            const beJobs = getBreakEvenJobs();
+            const roi1 = getROIYear1();
+            const upsellTotal = getUpsellTotal();
+            const effectivePrice = getEffectiveSellingPrice();
+            const jobsPerMonth = getJobsPerMonth();
+
+            // Show price with upsell breakdown
+            let priceDisplay = formatNumber(data.sellingPrice) + '฿';
+            if (upsellTotal > 0) {
+                priceDisplay += ' <span style="font-size: 0.75rem; color: var(--accent-warning);">+' + formatNumber(upsellTotal) + '฿</span>';
+            }
+            document.getElementById('kpi-price').innerHTML = priceDisplay;
+            document.getElementById('kpi-profit').textContent = (profit >= 0 ? '+' : '') + formatNumber(profit) + '฿';
+            document.getElementById('kpi-margin').innerHTML = 'Margin ' + margin + '% <span style="opacity: 0.5;">(' + formatNumber(profit) + '÷' + formatNumber(effectivePrice) + ')</span>';
+            document.getElementById('kpi-be').textContent = beMonths + ' เดือน';
+            document.getElementById('kpi-be-jobs').innerHTML = formatNumber(beJobs) + ' งาน <span style="opacity: 0.5;">(' + beMonths + '×' + jobsPerMonth + ')</span>';
+            document.getElementById('kpi-roi').textContent = roi1 + '%';
+            document.getElementById('kpi-payback').textContent = 'คืนทุน ' + beMonths + ' เดือน';
+
+            const profitIcon = document.getElementById('kpi-profit-icon');
+            const kpiProfit = document.getElementById('kpi-profit');
+            if (profit > 0) {
+                profitIcon.className = 'kpi-icon profit';
+                kpiProfit.className = 'kpi-value text-green';
+            } else if (profit < 0) {
+                profitIcon.className = 'kpi-icon loss';
+                kpiProfit.className = 'kpi-value text-red';
+            } else {
+                profitIcon.className = 'kpi-icon warning';
+                kpiProfit.className = 'kpi-value text-amber';
+            }
+
+            // Update params display
+            document.getElementById('param-salary').textContent = formatNumber(data.params.salary);
+            document.getElementById('param-cameraPrice').textContent = formatNumber(data.params.cameraPrice);
+            document.getElementById('param-cloudYearly').textContent = formatNumber(data.params.cloudYearly);
+            document.getElementById('param-adminSalary').textContent = formatNumber(data.params.adminSalary);
+            document.getElementById('param-fuelRate').textContent = data.params.fuelRate;
+            document.getElementById('param-distance').textContent = data.distance;
+            document.getElementById('param-sellingPrice').textContent = formatNumber(data.sellingPrice);
+            document.getElementById('param-jobsPerMonth').textContent = data.jobsPerMonth;
+
+            // Update scenario badge
+            const badge = document.getElementById('kpi-scenario-badge');
+            badge.textContent = scenarios[currentScenario].name;
+            // Update badge class
+            badge.className = '';
+            if (currentScenario === 'normal') badge.classList.add('badge-normal');
+            else if (currentScenario === 'price-war') badge.classList.add('badge-pricewar');
+            else if (currentScenario === 'premium') badge.classList.add('badge-premium');
+            else if (currentScenario === 'volume') badge.classList.add('badge-volume');
+
+            // Update reset button visibility based on whether price is modified
+            const resetBtn = document.getElementById('kpi-reset-btn');
+            if (scenarios[currentScenario].sellingPrice !== originalScenarioPrices[currentScenario]) {
+                resetBtn.style.display = 'inline';
+            } else {
+                resetBtn.style.display = 'none';
+            }
+        }
+
+        function updateTimeline() {
+            const beMonths = getBreakEvenMonths();
+            // Always show 60 months timeline
+            const maxMonths = 60;
+
+            const upsellTotal = getUpsellTotal();
+            let timelinePriceText = formatNumber(data.sellingPrice) + '฿';
+            if (upsellTotal > 0) {
+                timelinePriceText += ' +<span class="text-amber">' + formatNumber(upsellTotal) + '฿</span>';
+            }
+            document.getElementById('timeline-price').innerHTML = timelinePriceText;
+
+            // Generate grid with dynamic columns
+            const grid = document.getElementById('timeline-grid');
+
+            // Set dynamic grid template columns based on maxMonths
+            if (maxMonths <= 12) {
+                grid.style.gridTemplateColumns = `repeat(${maxMonths}, 1fr)`;
+            } else if (maxMonths <= 24) {
+                grid.style.gridTemplateColumns = 'repeat(12, 1fr)';
+            } else {
+                // For longer periods, use auto-fit with minmax
+                grid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(45px, 1fr))';
+            }
+
+            let html = '';
+            const beMonthExact = Math.round(beMonths);
+            const prevProfit = getProfitAfterMonths(beMonthExact - 1);
+
+            for (let m = 1; m <= maxMonths; m++) {
+                const profit = getProfitAfterMonths(m);
+                let className = 'timeline-month';
+
+                // Mark break-even month (first month with positive or near-zero profit)
+                if (m === beMonthExact || (profit >= 0 && getProfitAfterMonths(m - 1) < 0)) {
+                    className += ' break-even';
+                } else if (profit > 0) {
+                    className += ' profitable';
+                } else if (profit < 0) {
+                    className += ' loss';
+                }
+
+                const showInterval = 1;
+                const profitText = m % showInterval === 0 ? (profit >= 0 ? '+' : '') + formatNumber(profit / 1000) + 'k' :
+                                  (m === beMonthExact ? 'BE' : '•');
+
+                html += `<div class="${className}" title="เดือนที่ ${m}: ${formatNumber(profit)}฿">
+                    <div class="timeline-month-num">${m}</div>
+                    <div class="timeline-month-profit ${profit >= 0 ? 'positive' : 'negative'}">${profitText}</div>
+                </div>`;
+            }
+            grid.innerHTML = html;
+
+            // Mini stats
+            const stats = document.getElementById('mini-stats');
+            const m1 = getProfitAfterMonths(1);
+            const m6 = getProfitAfterMonths(6);
+            const m12 = getProfitAfterMonths(12);
+            const mLast = getProfitAfterMonths(maxMonths);
+
+            html = `
+                <div class="mini-stat">
+                    <div class="mini-stat-label">เดือน 1</div>
+                    <div class="mini-stat-value ${m1 >= 0 ? 'text-green' : 'text-red'}">${(m1 >= 0 ? '+' : '')}${formatNumber(m1)}฿</div>
+                </div>
+                <div class="mini-stat">
+                    <div class="mini-stat-label">เดือน 6</div>
+                    <div class="mini-stat-value ${m6 >= 0 ? 'text-green' : 'text-red'}">${(m6 >= 0 ? '+' : '')}${formatNumber(m6)}฿</div>
+                </div>
+                <div class="mini-stat">
+                    <div class="mini-stat-label">เดือน 12</div>
+                    <div class="mini-stat-value ${m12 >= 0 ? 'text-green' : 'text-red'}">${(m12 >= 0 ? '+' : '')}${formatNumber(m12)}฿</div>
+                </div>
+                <div class="mini-stat">
+                    <div class="mini-stat-label">เดือน ${maxMonths}</div>
+                    <div class="mini-stat-value ${mLast >= 0 ? 'text-green' : 'text-red'}">${(mLast >= 0 ? '+' : '')}${formatNumber(mLast)}฿</div>
+                </div>
+            `;
+            stats.innerHTML = html;
+        }
+
+        function updateCostChart() {
+            const costs = data.costs;
+            const total = getTotalCost();
+            const items = [
+                { name: 'แรงงาน', value: costs.labor, color: '#3B82F6' },
+                { name: 'คลาวด์', value: costs.cloud, color: '#8B5CF6' },
+                { name: 'อุปกรณ์', value: costs.equipment, color: '#F59E0B' },
+                { name: 'เดินทาง', value: costs.travel, color: '#EF4444' },
+                { name: 'แอดมิน', value: costs.admin, color: '#22C55E' },
+                { name: 'บัฟเฟอร์', value: costs.buffer, color: '#64748B' }
+            ];
+
+            // Calculate percentages and find highest/lowest
+            let maxPct = 0;
+            let minPct = 100;
+            items.forEach(item => {
+                const pct = total > 0 ? ((item.value / total) * 100) : 0;
+                item.pct = pct;
+                if (pct > maxPct) maxPct = pct;
+                if (pct < minPct && pct > 0) minPct = pct;
+            });
+
+            const chart = document.getElementById('cost-chart');
+            let html = '';
+            items.forEach(item => {
+                const pct = total > 0 ? Math.round(item.pct) : 0;
+                const isHighest = item.pct === maxPct;
+                const isLowest = item.pct === minPct && item.pct > 0;
+                const rankBadge = isHighest ? '<span style="color: #22C55E; font-size: 0.6rem; margin-left: 2px;">▲ สูงสุด</span>' :
+                                  isLowest ? '<span style="color: #EF4444; font-size: 0.6rem; margin-left: 2px;">▼ ต่ำสุด</span>' : '';
+
+                html += `
+                    <div class="cost-bar-item-mini">
+                        <div class="cost-bar-label-mini">${item.name}</div>
+                        <div class="cost-bar-track-mini">
+                            <div class="cost-bar-fill-mini" style="width: ${pct}%; background: ${item.color}; ${isHighest ? 'box-shadow: 0 0 8px ' + item.color + ';' : ''}"></div>
+                        </div>
+                        <div class="cost-bar-value-mini">${formatNumber(item.value)}฿</div>
+                        <div class="cost-bar-pct-mini" style="color: ${item.color}; font-weight: ${isHighest || isLowest ? '700' : '400'};">${pct}%${rankBadge}</div>
+                    </div>
+                `;
+            });
+            chart.innerHTML = html;
+            document.getElementById('total-cost-display').textContent = formatNumber(total) + '฿';
+
+            // Also update price scenario table
+            updatePriceScenarioTable(total);
+        }
+
+        function updatePriceScenarioTable(totalCost) {
+            const basePrice = data.sellingPrice;
+            const increment = 200; // เพิ่มทีละ 200 บาท
+            const steps = [-600, -400, -200, 0, 200, 400, 600, 1000]; // offset from base
+            const tbody = document.getElementById('price-scenario-tbody');
+
+            let html = '';
+            steps.forEach(offset => {
+                const scenarioPrice = basePrice + offset;
+                if (scenarioPrice <= 0) return; // skip negative or zero prices
+
+                const profit = scenarioPrice - totalCost;
+                const margin = scenarioPrice > 0 ? Math.round((profit / scenarioPrice) * 100) : 0;
+                const isBase = offset === 0;
+
+                const profitClass = profit > 0 ? 'profit-positive' : profit < 0 ? 'profit-negative' : 'profit-zero';
+                const rowClass = isBase ? 'base-row' : '';
+
+                const offsetLabel = offset === 0 ? 'Base' : (offset > 0 ? '+' : '') + offset;
+
+                html += `
+                    <tr class="${rowClass}">
+                        <td class="scenario-price">
+                            ${offsetLabel}
+                            <div style="font-size: 0.6rem; color: var(--text-tertiary);">${formatNumber(scenarioPrice)}฿</div>
+                        </td>
+                        <td>${formatNumber(totalCost)}฿</td>
+                        <td class="${profitClass}">${profit >= 0 ? '+' : ''}${formatNumber(profit)}฿</td>
+                        <td class="${profitClass}">${margin}% <span style="opacity:0.4;font-size:0.55rem;">(${formatNumber(profit)}÷${formatNumber(scenarioPrice)})</span></td>
+                    </tr>
+                `;
+            });
+            tbody.innerHTML = html;
+        }
+
+        function toggleROIBreakdown() {
+            const breakdown = document.getElementById('roi-breakdown');
+            breakdown.style.display = breakdown.style.display === 'none' ? 'block' : 'none';
+            if (breakdown.style.display === 'block') {
+                updateROIBreakdown();
+            }
+        }
+
+        function updateROIBreakdown() {
+            const breakdown = document.getElementById('roi-breakdown');
+            const profitPerJob = getProfit();
+            const jobsPerMonth = getJobsPerMonth();
+            const initialInvestment = data.params.cameraPrice;
+            const fixedCostsMonthly = FIXED_COSTS_PER_MONTH;
+
+            const monthlyGrossProfit = profitPerJob * jobsPerMonth;
+            const yearlyGrossProfit = monthlyGrossProfit * 12;
+            const yearlyFixedCost = fixedCostsMonthly * 12;
+            const yearlyNetProfit = yearlyGrossProfit - yearlyFixedCost;
+
+            breakdown.innerHTML = `
+                <div class="roi-breakdown-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width: 14px; height: 14px;">
+                        <path d="M9 7h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    สูตรคำนวณ ROI
+                </div>
+                <div class="roi-breakdown-formula">
+                    ROI ปีที่ y = [(กำไร/งาน × งาน/เดือน × 12 × y) - (ค่าใช้จ่ายคงที่ × 12 × y) - ค่ากล้อง] ÷ ค่ากล้อง × 100
+                </div>
+
+                <div class="roi-breakdown-row">
+                    <span class="roi-breakdown-label">กำไรต่องาน</span>
+                    <span class="roi-breakdown-value">${formatNumber(profitPerJob)}฿</span>
+                </div>
+                <div class="roi-breakdown-row">
+                    <span class="roi-breakdown-label">งานต่อเดือน</span>
+                    <span class="roi-breakdown-value">${jobsPerMonth} งาน</span>
+                </div>
+                <div class="roi-breakdown-row">
+                    <span class="roi-breakdown-label">กำไรรวม/เดือน</span>
+                    <span class="roi-breakdown-value">${formatNumber(monthlyGrossProfit)}฿</span>
+                </div>
+                <div class="roi-breakdown-row">
+                    <span class="roi-breakdown-label">กำไรรวม/ปี</span>
+                    <span class="roi-breakdown-value">${formatNumber(yearlyGrossProfit)}฿</span>
+                </div>
+                <div class="roi-breakdown-row">
+                    <span class="roi-breakdown-label">ค่าใช้จ่ายคงที่/ปี</span>
+                    <span class="roi-breakdown-value negative">-${formatNumber(yearlyFixedCost)}฿</span>
+                </div>
+                <div class="roi-breakdown-row" style="margin-top: var(--space-2); padding-top: var(--space-2); border-top: 1px dashed var(--border-medium);">
+                    <span class="roi-breakdown-label">กำไรสุทธิ/ปี</span>
+                    <span class="roi-breakdown-value highlight">${formatNumber(yearlyNetProfit)}฿</span>
+                </div>
+                <div class="roi-breakdown-row">
+                    <span class="roi-breakdown-label">ค่ากล้อง (ลงทุน)</span>
+                    <span class="roi-breakdown-value negative">-${formatNumber(initialInvestment)}฿</span>
+                </div>
+                <div class="roi-breakdown-row" style="margin-top: var(--space-2); padding-top: var(--space-2); border-top: 1px dashed var(--border-medium);">
+                    <span class="roi-breakdown-label">กำไรสะสม ปีที่ 1</span>
+                    <span class="roi-breakdown-value ${yearlyNetProfit - initialInvestment >= 0 ? 'highlight' : 'negative'}">${formatNumber(yearlyNetProfit - initialInvestment)}฿</span>
+                </div>
+                <div class="roi-breakdown-row">
+                    <span class="roi-breakdown-label">ROI ปีที่ 1</span>
+                    <span class="roi-breakdown-value highlight">${Math.round(((yearlyNetProfit - initialInvestment) / initialInvestment) * 100)}%</span>
+                </div>
+
+                <div style="margin-top: var(--space-3); padding: var(--space-2); background: var(--bg-secondary); border-radius: 4px; font-size: 0.65rem; color: var(--text-tertiary);">
+                    💡 ค่าใช้จ่ายคงที่ = เงินเดือน Admin + ค่าเช่าที่/ค่าไฟ/น้ำ + ค่าการตลาด + อื่นๆ
+                </div>
+            `;
+        }
+
+        function updateROI() {
+            const beMonths = getBreakEvenMonths();
+            const npv = getNPV();
+            const monthlyProfit = getProfit() * getJobsPerMonth();
+            const initialInvestment = data.params.cameraPrice;
+            const fixedCostsMonthly = FIXED_COSTS_PER_MONTH;
+
+            // Update payback and NPV
+            document.getElementById('payback-period').textContent = beMonths + ' เดือน';
+            document.getElementById('npv').textContent = (npv >= 0 ? '+' : '') + formatNumber(npv) + '฿';
+
+            // Update breakdown if visible
+            const breakdown = document.getElementById('roi-breakdown');
+            if (breakdown.style.display === 'block') {
+                updateROIBreakdown();
+            }
+
+            // Generate ROI years grid (5 years)
+            const grid = document.getElementById('roi-months-grid');
+            let html = '';
+
+            for (let y = 1; y <= 5; y++) {
+                const months = y * 12;
+                const yearlyProfit = monthlyProfit * 12;
+                const yearlyFixedCost = fixedCostsMonthly * 12;
+                const cumulativeProfit = (yearlyProfit * y) - (yearlyFixedCost * y) - initialInvestment;
+                const roiPercent = Math.round((cumulativeProfit / initialInvestment) * 100);
+                const valueClass = cumulativeProfit >= 0 ? 'positive' : 'negative';
+                const cardClass = cumulativeProfit >= 0 ? 'profitable' : (y === 1 ? 'break-even' : '');
+
+                html += `
+                    <div class="roi-month-card ${cardClass}">
+                        <div class="roi-month-label">ปี ${y}</div>
+                        <div class="roi-month-value ${valueClass}">${roiPercent}%</div>
+                        <div class="roi-month-cumulative">${formatNumber(cumulativeProfit)}฿</div>
+                    </div>
+                `;
+            }
+            grid.innerHTML = html;
+        }
+
+        function getROIByMonth(month) {
+            const monthlyProfit = getProfit() * getJobsPerMonth();
+            const initialInvestment = data.params.cameraPrice;
+            const cumulativeProfit = (monthlyProfit * month) - (FIXED_COSTS_PER_MONTH * month) - initialInvestment;
+            return Math.round((cumulativeProfit / initialInvestment) * 100);
+        }
+
+        function updateComparison() {
+            const tbody = document.getElementById('comparison-tbody');
+            let html = '';
+
+            for (const [key, scenario] of Object.entries(scenarios)) {
+                const totalCost = Object.values(scenario.costs).reduce((a,b) => a+b, 0);
+                const profit = scenario.sellingPrice - totalCost;
+                const margin = Math.round((profit / scenario.sellingPrice) * 100);
+
+                // Calculate BE properly: camera cost + cumulative fixed costs until positive
+                const jobsPerMonth = scenario.jobsPerMonth;
+                const cameraPrice = scenario.params.cameraPrice;
+                const profitPerJob = profit;
+                let cumulativeProfit = -cameraPrice;
+                let beMonths = 0;
+
+                for (let m = 1; m <= 60; m++) {
+                    cumulativeProfit += (profitPerJob * jobsPerMonth) - FIXED_COSTS_PER_MONTH;
+                    if (cumulativeProfit >= 0) {
+                        beMonths = m;
+                        break;
+                    }
+                }
+                if (beMonths === 0) beMonths = 99; // Never breaks even
+
+                const beJobs = beMonths * jobsPerMonth;
+
+                const activeClass = key === currentScenario ? ' active' : '';
+                const isModified = scenario.sellingPrice !== originalScenarioPrices[key];
+                const resetBtn = isModified ? `<button onclick="resetScenarioPrice('${key}'); event.stopPropagation();" style="background: none; border: none; color: var(--accent-warning); cursor: pointer; font-size: 0.7rem; margin-left: 4px;" title="รีเซ็ตราคา">↻</button>` : '';
+
+                html += `
+                    <tr class="${activeClass}" style="cursor: pointer;" onclick="openScenarioPriceModal('${key}')">
+                        <td>${scenario.name}</td>
+                        <td>
+                            <span class="editable-price">${formatNumber(scenario.sellingPrice)}฿</span>
+                            ${resetBtn}
+                        </td>
+                        <td>${margin}%</td>
+                        <td>${beMonths} เดือน</td>
+                    </tr>
+                `;
+            }
+            tbody.innerHTML = html;
+        }
+
+        function updateTargets() {
+            const targets = [30, 40, 50, 60, 70, 80, 90, 100];
+
+            targets.forEach(jobs => {
+                const profit = getTargetProfit(jobs);
+                const el = document.getElementById(`target-${jobs}`);
+                const valueEl = el.querySelector('.target-value');
+
+                valueEl.textContent = (profit >= 0 ? '+' : '') + formatNumber(profit) + '฿';
+
+                // Set class based on profit
+                el.classList.remove('profit', 'loss', 'break-even');
+                if (profit > 0) {
+                    el.classList.add('profit');
+                } else if (profit < 0) {
+                    el.classList.add('loss');
+                } else {
+                    el.classList.add('break-even');
+                }
+            });
+        }
+
+        function updateCapacity() {
+            document.getElementById('capacity-daily').textContent = JOBS_PER_DAY;
+            document.getElementById('capacity-monthly').textContent = getJobsPerMonth();
+            document.getElementById('capacity-yearly').textContent = getJobsPerYear();
+        }
+
+        function updateDistance() {
+            const rates = getDistanceRates();
+            document.getElementById('distance-display').textContent = data.distance + ' กม.';
+            document.getElementById('distance-surcharge').textContent = getDistanceSurcharge() > 0 ? '+' + formatNumber(getDistanceSurcharge()) + '฿' : '+0฿';
+            document.getElementById('price-with-distance').textContent = formatNumber(getPriceWithDistance()) + '฿';
+            // Update the rate display text
+            const rateText = document.getElementById('distance-rate-text');
+            if (rateText) {
+                rateText.textContent = `0-20กม. ฟรี | 21-80กม. +${rates.normal}฿/กม. | 80กม.+ +${rates.long}฿/กม.`;
+            }
+        }
+
+        // ============================================
+        // MODAL
+        // ============================================
+        function openModal(key, title) {
+            currentEditKey = key;
+            const overlay = document.getElementById('modal-overlay');
+            const modalTitle = document.getElementById('modal-title');
+            const modalSubtitle = document.getElementById('modal-subtitle');
+            const input = document.getElementById('modal-input');
+
+            let currentValue, unit, subtitle;
+            switch(key) {
+                case 'salary':
+                    currentValue = data.params.salary;
+                    unit = '฿';
+                    subtitle = 'เงินเดือนช่างต่อเดือน';
+                    break;
+                case 'cameraPrice':
+                    currentValue = data.params.cameraPrice;
+                    unit = '฿';
+                    subtitle = 'ราคากล้อง Matterport';
+                    break;
+                case 'cloudYearly':
+                    currentValue = data.params.cloudYearly;
+                    unit = '฿';
+                    subtitle = 'ค่า Cloud hosting ต่อปี';
+                    break;
+                case 'adminSalary':
+                    currentValue = data.params.adminSalary;
+                    unit = '฿';
+                    subtitle = 'เงินเดือน Admin ต่อเดือน';
+                    break;
+                case 'fuelRate':
+                    currentValue = data.params.fuelRate;
+                    unit = '฿/กม.';
+                    subtitle = 'อัตราน้ำมันต่อกิโลเมตร';
+                    break;
+                case 'distance':
+                    currentValue = data.distance;
+                    unit = 'กม.';
+                    const rates = getDistanceRates();
+                    subtitle = `ระยะทางต่องาน (ฟรี 20 กม., 21-80 กม. +${rates.normal}฿/กม., >80 กม. +${rates.long}฿/กม.)`;
+                    break;
+                case 'distanceSurchargeRate':
+                    currentValue = data.distanceSurchargeRate;
+                    unit = '฿/กม.';
+                    subtitle = 'อัตราค่าเพิ่มระยะทาง (เริ่มต้นที่ 21-80 กม.)';
+                    break;
+                case 'sellingPrice':
+                    currentValue = data.sellingPrice;
+                    unit = '฿';
+                    subtitle = 'ราคาขายต่องาน (ไม่รวม upsell)';
+                    break;
+                case 'jobsPerMonth':
+                    currentValue = data.jobsPerMonth;
+                    unit = 'งาน';
+                    subtitle = 'จำนวนงานต่อเดือน';
+                    break;
+                case 'upsell-matterTag':
+                    currentValue = data.upsellPrices.matterTag;
+                    unit = '฿';
+                    subtitle = 'ราคา MatterTag เพิ่มต่องาน';
+                    break;
+                case 'upsell-floorPlan':
+                    currentValue = data.upsellPrices.floorPlan;
+                    unit = '฿';
+                    subtitle = 'ราคา Floor Plan เพิ่มต่องาน';
+                    break;
+                case 'upsell-video1min':
+                    currentValue = data.upsellPrices.video1min;
+                    unit = '฿';
+                    subtitle = 'ราคา Video 1 นาที เพิ่มต่องาน';
+                    break;
+                case 'upsell-hdrPhoto':
+                    currentValue = data.upsellPrices.hdrPhoto;
+                    unit = '฿';
+                    subtitle = 'ราคา HDR Photo เพิ่มต่องาน';
+                    break;
+            }
+
+            modalTitle.textContent = title;
+            modalSubtitle.textContent = subtitle;
+            input.value = currentValue;
+            updateModalPreview(currentValue, unit);
+
+            overlay.classList.add('active');
+            input.focus();
+            input.select();
+
+            input.oninput = () => updateModalPreview(parseFloat(input.value) || 0, unit);
+        }
+
+        function updateModalPreview(value, unit) {
+            const preview = document.getElementById('modal-preview');
+            const breakdown = document.getElementById('modal-breakdown');
+            let formula = '';
+            let newCost = '';
+            let breakdownHTML = '';
+
+            switch(currentEditKey) {
+                case 'salary':
+                    formula = `สูตร: (${formatNumber(value)} ÷ 22 ÷ 8 × 3.5 × 1.5) = ${formatNumber(Math.round((value / 22 / 8 * 3.5 * 1.5) / 50) * 50)}฿/งาน`;
+                    newCost = `ต้นทุนแรงงาน: ${formatNumber(Math.round((value / 22 / 8 * 3.5 * 1.5) / 50) * 50)}฿`;
+                    breakdownHTML = `
+                        <div class="modal-breakdown-title">💵 ที่มาของต้นทุน</div>
+                        <div class="modal-breakdown-formula">เงินเดือน ÷ วันทำงาน ÷ ชม./วัน × เวลาจริง × Buffer</div>
+                        <div class="modal-breakdown-step">เงินเดือน: ${formatNumber(value)}฿ ÷ 22 วัน = ${formatNumber(value / 22)}฿/วัน</div>
+                        <div class="modal-breakdown-step">${formatNumber(value / 22)}฿ ÷ 8 ชม. = ${formatNumber(value / 22 / 8)}฿/ชม.</div>
+                        <div class="modal-breakdown-step">เวลาทำงานจริง: ถ่าย 2-3 ชม. + Setup + เดินทาง = 3.5 ชม.</div>
+                        <div class="modal-breakdown-step">${formatNumber(value / 22 / 8)}฿ × 3.5 ชม. × 1.5 (Buffer) = ${formatNumber(Math.round((value / 22 / 8 * 3.5 * 1.5) / 50) * 50)}฿</div>
+                        <div class="modal-breakdown-result">ต้นทุนแรงงาน: <strong>${formatNumber(Math.round((value / 22 / 8 * 3.5 * 1.5) / 50) * 50)}฿</strong></div>
+                    `;
+                    break;
+                case 'cameraPrice':
+                    formula = `สูตร: (${formatNumber(value)} ÷ 300 งาน) = ${formatNumber(Math.round(value / 300 / 50) * 50)}฿/งาน`;
+                    newCost = `ต้นทุนอุปกรณ์: ${formatNumber(Math.round(value / 300 / 50) * 50)}฿`;
+                    breakdownHTML = `
+                        <div class="modal-breakdown-title">📷 ที่มาของต้นทุน</div>
+                        <div class="modal-breakdown-formula">ราคาอุปกรณ์ ÷ อายุการใช้งาน (จำนวนงาน)</div>
+                        <div class="modal-breakdown-step">ราคาอุปกรณ์: ${formatNumber(value)}฿</div>
+                        <div class="modal-breakdown-step">(กล้อง 3D + Tripod + Battery)</div>
+                        <div class="modal-breakdown-step">อายุการใช้งาน: ประมาณ 300 งาน</div>
+                        <div class="modal-breakdown-step">${formatNumber(value)}฿ ÷ 300 งาน = ${formatNumber(value / 300)}฿</div>
+                        <div class="modal-breakdown-step">ปัดเป็นหลักร้อน: ${formatNumber(Math.round(value / 300 / 50) * 50)}฿</div>
+                        <div class="modal-breakdown-result">ต้นทุนอุปกรณ์: <strong>${formatNumber(Math.round(value / 300 / 50) * 50)}฿</strong></div>
+                    `;
+                    break;
+                case 'cloudYearly':
+                    formula = `สูตร: (${formatNumber(value)} ÷ 12 เดือน) = ${formatNumber(Math.round(value / 12 / 50) * 50)}฿/งาน`;
+                    newCost = `ต้นทุน Cloud: ${formatNumber(Math.round(value / 12 / 50) * 50)}฿`;
+                    breakdownHTML = `
+                        <div class="modal-breakdown-title">☁️ ที่มาของต้นทุน</div>
+                        <div class="modal-breakdown-formula">Subscription ต่อปี ÷ 12 เดือน × จำนวนเดือนลูกค้าจ้าง</div>
+                        <div class="modal-breakdown-step">Subscription ต่อปี: ${formatNumber(value)}฿</div>
+                        <div class="modal-breakdown-step">ค่าใช้จ่ายต่อเดือน: ${formatNumber(value)}฿ ÷ 12 = ${formatNumber(value / 12)}฿/เดือน</div>
+                        <div class="modal-breakdown-step">ลูกค้าจ้าง 3 เดือน (มาตรฐาน)</div>
+                        <div class="modal-breakdown-step">${formatNumber(value / 12)}฿ × 3 เดือน = ${formatNumber(value / 12 * 3)}฿</div>
+                        <div class="modal-breakdown-step">ค่าใช้จ่ายต่องาน: ${formatNumber(value / 12 * 3)}฿ ÷ 3 เดือน = ${formatNumber(Math.round(value / 12 / 50) * 50)}฿</div>
+                        <div class="modal-breakdown-result">ต้นทุน Cloud: <strong>${formatNumber(Math.round(value / 12 / 50) * 50)}฿</strong></div>
+                    `;
+                    break;
+                case 'adminSalary':
+                    formula = `สูตร: (${formatNumber(value)} ÷ 176 ชม. × 0.75 × 2 งาน) = ${formatNumber(Math.round((value / 176 * 0.75 * 2) / 50) * 50)}฿/งาน`;
+                    newCost = `ต้นทุน Admin: ${formatNumber(Math.round((value / 176 * 0.75 * 2) / 50) * 50)}฿`;
+                    breakdownHTML = `
+                        <div class="modal-breakdown-title">👩‍💻 ที่มาของต้นทุน</div>
+                        <div class="modal-breakdown-formula">เงินเดือน Admin ÷ ชม./เดือน × เวลาทำงาน × Buffer</div>
+                        <div class="modal-breakdown-step">เงินเดือน Admin: ${formatNumber(value)}฿</div>
+                        <div class="modal-breakdown-step">ชม.ทำงาน/เดือน: 22 วัน × 8 ชม. = 176 ชม.</div>
+                        <div class="modal-breakdown-step">ค่าแรงต่อชม.: ${formatNumber(value)}฿ ÷ 176 = ${formatNumber(value / 176)}฿/ชม.</div>
+                        <div class="modal-breakdown-step">เวลางาน: ตอบแชท 20 นาที + Upload 25 นาที = 45 นาที (0.75 ชม.)</div>
+                        <div class="modal-breakdown-step">${formatNumber(value / 176)}฿ × 0.75 ชม. × 2 (Buffer) = ${formatNumber(Math.round((value / 176 * 0.75 * 2) / 50) * 50)}฿</div>
+                        <div class="modal-breakdown-result">ต้นทุน Admin: <strong>${formatNumber(Math.round((value / 176 * 0.75 * 2) / 50) * 50)}฿</strong></div>
+                    `;
+                    break;
+                case 'fuelRate':
+                    formula = `สูตร: (100฿ + 20 กม. × ${formatNumber(value)}) = ${formatNumber(Math.round((100 + 20 * value) / 50) * 50)}฿/งาน`;
+                    newCost = `ต้นทุนเดินทาง: ${formatNumber(Math.round((100 + 20 * value) / 50) * 50)}฿`;
+                    breakdownHTML = `
+                        <div class="modal-breakdown-title">⛽ ที่มาของต้นทุน (น้ำมัน + เวลา)</div>
+                        <div class="modal-breakdown-formula">ค่าน้ำมัน (ระยะทาง × อัตรา) + ค่าเวลาเดินทาง</div>
+                        <div style="margin-bottom: 8px; font-size: 0.75rem; color: var(--text-tertiary);">ค่าน้ำมัน:</div>
+                        <div class="modal-breakdown-step">ระยะฐาน: 20 กม. (ไป-กลับ)</div>
+                        <div class="modal-breakdown-step">อัตราน้ำมัน: ${formatNumber(value)}฿/กม.</div>
+                        <div class="modal-breakdown-step">20 กม. × ${formatNumber(value)}฿ = ${formatNumber(20 * value)}฿</div>
+                        <div style="margin: 8px 0; font-size: 0.75rem; color: var(--text-tertiary);">ค่าเวลาเดินทาง:</div>
+                        <div class="modal-breakdown-step">เวลาเดินทาง: 1 ชม. (ไป-กลับ)</div>
+                        <div class="modal-breakdown-step">Lost Productivity = 100฿/ชม.</div>
+                        <div class="modal-breakdown-step">1 ชม. × 100฿ = 100฿</div>
+                        <div class="modal-breakdown-result">ค่าน้ำมัน ${formatNumber(20 * value)}฿ + เวลา 100฿ = <strong>${formatNumber(Math.round((100 + 20 * value) / 50) * 50)}฿</strong></div>
+                    `;
+                    break;
+                case 'distance':
+                    const FREE_KM2 = 20;
+                    const LONG_DISTANCE2 = 80;
+                    const rates2 = getDistanceRates();
+                    let surchargeFormula2 = '';
+                    let surcharge2 = 0;
+
+                    if (value <= FREE_KM2) {
+                        surchargeFormula2 = `ฟรี (ภายใน ${FREE_KM2} กม.)`;
+                        surcharge2 = 0;
+                    } else if (value <= LONG_DISTANCE2) {
+                        const extraKm2 = value - FREE_KM2;
+                        surcharge2 = extraKm2 * rates2.normal;
+                        surchargeFormula2 = `(${value} - ${FREE_KM2}) × ${rates2.normal} = ${formatNumber(surcharge2)}฿`;
+                    } else {
+                        const normalExtra2 = LONG_DISTANCE2 - FREE_KM2;
+                        const longExtra2 = value - LONG_DISTANCE2;
+                        const normalCharge2 = normalExtra2 * rates2.normal;
+                        const longCharge2 = longExtra2 * rates2.long;
+                        surcharge2 = normalCharge2 + longCharge2;
+                        surchargeFormula2 = `((${LONG_DISTANCE2}-${FREE_KM2})×${rates2.normal}) + (${value}-${LONG_DISTANCE2})×${rates2.long} = ${formatNumber(surcharge2)}฿`;
+                    }
+                    formula = `สูตร: ${surchargeFormula2}`;
+                    newCost = `ราคาขาย ${formatNumber(data.sellingPrice)} + ค่าเพิ่ม ${formatNumber(surcharge2)} = ${formatNumber(data.sellingPrice + surcharge2)}฿`;
+                    break;
+                case 'distanceSurchargeRate':
+                    const newNormalRate = value;
+                    const newLongRate = Math.round(newNormalRate * 1.5);
+                    const testDistance = Math.max(data.distance, 35); // Use 35 as example if current is 20
+                    const testSurcharge = testDistance > 80
+                        ? (60 * newNormalRate) + ((testDistance - 80) * newLongRate)
+                        : (testDistance > 20 ? (testDistance - 20) * newNormalRate : 0);
+
+                    formula = `อัตราใหม่: ${newNormalRate}฿/กม. (21-80กม.) | ${newLongRate}฿/กม. (>80กม.)`;
+                    breakdownHTML = `
+                        <div class="modal-breakdown-title">📍 คำนวณอัตราค่าเพิ่มระยะทาง</div>
+                        <div class="modal-breakdown-step">ฟรี: 0-20 กม.</div>
+                        <div class="modal-breakdown-step">ปกติ (21-80 กม.): ${newNormalRate}฿/กม.</div>
+                        <div class="modal-breakdown-step">ไกล (>80 กม.): ${newLongRate}฿/กม. (1.5×)</div>
+                        <div style="margin: 8px 0; font-size: 0.75rem; color: var(--text-tertiary);">ตัวอย่างการคำนวณ (${testDistance} กม.):</div>
+                        <div class="modal-breakdown-step">ระยะทางเกินฟรี: ${testDistance - 20} กม.</div>
+                        <div class="modal-breakdown-step">ค่าเพิ่ม: ${testDistance - 20} × ${newNormalRate} = ${formatNumber(testSurcharge)}฿</div>
+                        <div class="modal-breakdown-result">ราคารวม: ${formatNumber(data.sellingPrice)} + ${formatNumber(testSurcharge)} = <strong>${formatNumber(data.sellingPrice + testSurcharge)}฿</strong></div>
+                    `;
+                    newCost = `ตัวอย่าง: ระยะทาง ${testDistance} กม. = ค่าเพิ่ม ${formatNumber(testSurcharge)}฿`;
+                    break;
+                case 'sellingPrice':
+                    const upsell = getUpsellTotal();
+                    formula = `ราคาขาย: ${formatNumber(value)}฿ + Upsell: ${formatNumber(upsell)}฿ = ${formatNumber(value + upsell)}฿`;
+                    const totalCost = getTotalCost();
+                    const profit = value + upsell - totalCost;
+                    newCost = `กำไร: ${formatNumber(profit)}฿ (ต้นทุน: ${formatNumber(totalCost)}฿)`;
+                    break;
+                case 'jobsPerMonth':
+                    formula = `งานต่อเดือน: ${formatNumber(value)} งาน = ${formatNumber(value * 12)} งาน/ปี`;
+                    const monthlyProfit = getProfit();
+                    const newMonthlyProfitTotal = monthlyProfit * value;
+                    newCost = `กำไรต่อเดือน: ${formatNumber(newMonthlyProfitTotal)}฿ (กำไรต่องาน: ${formatNumber(monthlyProfit)}฿)`;
+                    break;
+                case 'upsell-matterTag':
+                case 'upsell-floorPlan':
+                case 'upsell-video1min':
+                case 'upsell-hdrPhoto':
+                    const key = currentEditKey.replace('upsell-', '');
+                    const newTotal = getUpsellTotal() - data.upsellPrices[key] + value;
+                    const newEffectivePrice = data.sellingPrice + newTotal;
+                    formula = `Upsell ${key}: ${formatNumber(value)}฿ → Upsell รวม: ${formatNumber(newTotal)}฿`;
+                    newCost = `ราคาขายรวม: ${formatNumber(newEffectivePrice)}฿ (ราคาฐาน: ${formatNumber(data.sellingPrice)}฿)`;
+                    break;
+                default:
+                    formula = `ค่าใหม่: ${formatNumber(value)} ${unit}`;
+            }
+
+            preview.innerHTML = `<div style="margin-bottom: 8px; color: var(--text-tertiary);">${formula}</div><div style="color: var(--accent-info); font-weight: 500;">${newCost}</div>`;
+            breakdown.innerHTML = breakdownHTML;
+        }
+
+        function closeModal() {
+            document.getElementById('modal-overlay').classList.remove('active');
+            currentEditKey = null;
+        }
+
+        function saveModal() {
+            if (!currentEditKey) return;
+
+            const input = document.getElementById('modal-input');
+            const value = parseFloat(input.value);
+
+            if (isNaN(value) || value < 0) {
+                alert('กรุณากรอกค่าที่ถูกต้อง');
+                return;
+            }
+
+            switch(currentEditKey) {
+                case 'salary':
+                    data.params.salary = value;
+                    recalculateCostsFromParams();
+                    break;
+                case 'cameraPrice':
+                    data.params.cameraPrice = value;
+                    recalculateCostsFromParams();
+                    break;
+                case 'cloudYearly':
+                    data.params.cloudYearly = value;
+                    recalculateCostsFromParams();
+                    break;
+                case 'adminSalary':
+                    data.params.adminSalary = value;
+                    recalculateCostsFromParams();
+                    break;
+                case 'fuelRate':
+                    data.params.fuelRate = value;
+                    recalculateCostsFromParams();
+                    break;
+                case 'distance':
+                    data.distance = value;
+                    break;
+                case 'distanceSurchargeRate':
+                    data.distanceSurchargeRate = value;
+                    break;
+                case 'sellingPrice':
+                    data.sellingPrice = value;
+                    // Also update the current scenario's selling price
+                    scenarios[currentScenario].sellingPrice = value;
+                    break;
+                case 'jobsPerMonth':
+                    data.jobsPerMonth = value;
+                    break;
+                case 'upsell-matterTag':
+                    data.upsellPrices.matterTag = value;
+                    break;
+                case 'upsell-floorPlan':
+                    data.upsellPrices.floorPlan = value;
+                    break;
+                case 'upsell-video1min':
+                    data.upsellPrices.video1min = value;
+                    break;
+                case 'upsell-hdrPhoto':
+                    data.upsellPrices.hdrPhoto = value;
+                    break;
+                default:
+                    // Handle scenario price editing
+                    if (currentEditKey && currentEditKey.startsWith('scenario-')) {
+                        const scenarioKey = currentEditKey.replace('scenario-', '');
+                        scenarios[scenarioKey].sellingPrice = value;
+                        // If editing current scenario, also update data
+                        if (scenarioKey === currentScenario) {
+                            data.sellingPrice = value;
+                        }
+                        updateAll();
+                        closeModal();
+                        return;
+                    }
+            }
+
+            closeModal();
+            updateAll();
+        }
+
+        // Close modal on overlay click
+        document.getElementById('modal-overlay').addEventListener('click', (e) => {
+            if (e.target.id === 'modal-overlay') closeModal();
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // ============================================
+        // SCENARIO PRICE EDITING
+        // ============================================
+        function openScenarioPriceModal(scenarioKey) {
+            currentEditKey = 'scenario-' + scenarioKey;
+            const scenario = scenarios[scenarioKey];
+            const currentValue = scenario.sellingPrice;
+
+            const overlay = document.getElementById('modal-overlay');
+            const modalTitle = document.getElementById('modal-title');
+            const modalSubtitle = document.getElementById('modal-subtitle');
+            const input = document.getElementById('modal-input');
+
+            modalTitle.textContent = `แก้ไขราคา ${scenario.name}`;
+            modalSubtitle.textContent = 'ราคาขายต่องาน (ไม่รวม upsell)';
+            input.value = currentValue;
+
+            // Custom preview for scenario price
+            const preview = document.getElementById('modal-preview');
+            const breakdown = document.getElementById('modal-breakdown');
+
+            const updatePreview = (value) => {
+                const profit = value - Object.values(scenario.costs).reduce((a,b) => a+b, 0);
+                const margin = value > 0 ? Math.round((profit / value) * 100) : 0;
+                preview.innerHTML = `<strong>${formatNumber(value)}฿</strong> (กำไร: ${profit >= 0 ? '+' : ''}${formatNumber(profit)}฿, Margin: ${margin}%)`;
+
+                breakdown.innerHTML = `
+                    <div class="modal-breakdown-title">📊 ผลกระทบการเปลี่ยนราคา</div>
+                    <div class="modal-breakdown-step">ราคาขาย: ${formatNumber(value)}฿</div>
+                    <div class="modal-breakdown-step">ต้นทุนรวม: ${formatNumber(Object.values(scenario.costs).reduce((a,b) => a+b, 0))}฿</div>
+                    <div class="modal-breakdown-step">กำไรต่องาน: ${profit >= 0 ? '+' : ''}${formatNumber(profit)}฿</div>
+                    <div class="modal-breakdown-step">Margin: ${margin}%</div>
+                `;
+            };
+
+            updatePreview(currentValue);
+            input.oninput = () => updatePreview(parseFloat(input.value) || 0);
+
+            overlay.classList.add('active');
+            input.focus();
+            input.select();
+        }
+
+        function resetScenarioPrice(scenarioKey) {
+            if (scenarioKey === 'normal' || scenarioKey === currentScenario) {
+                // If resetting current scenario or normal (base), update both
+                scenarios[scenarioKey].sellingPrice = originalScenarioPrices[scenarioKey];
+                if (scenarioKey === currentScenario) {
+                    data.sellingPrice = originalScenarioPrices[scenarioKey];
+                }
+                updateAll();
+            } else {
+                // Just reset the scenario price
+                scenarios[scenarioKey].sellingPrice = originalScenarioPrices[scenarioKey];
+                updateComparison();
+            }
+        }
+
+        function resetCurrentScenarioPrice() {
+            resetScenarioPrice(currentScenario);
+        }
+
+        function resetAllScenarioPrices() {
+            for (const key of Object.keys(originalScenarioPrices)) {
+                scenarios[key].sellingPrice = originalScenarioPrices[key];
+            }
+            // Also update current data if it's a scenario
+            data.sellingPrice = scenarios[currentScenario].sellingPrice;
+            updateAll();
+        }
+
+        // ============================================
+        // SCENARIOS
+        // ============================================
+        function loadScenario(key) {
+            currentScenario = key;
+            const scenario = scenarios[key];
+
+            data.sellingPrice = scenario.sellingPrice;
+            data.distance = scenario.distance;
+            data.jobsPerMonth = scenario.jobsPerMonth;
+            data.params = { ...scenario.params };
+            data.upsellPrices = { ...scenario.upsellPrices };
+            // Recalculate costs from params instead of copying
+            data.costs = { ...scenario.costs };
+            recalculateCostsFromParams();
+
+            // Update tab UI
+            document.querySelectorAll('.scenario-tab').forEach(tab => {
+                tab.classList.remove('active');
+                if (tab.dataset.scenario === key) tab.classList.add('active');
+            });
+
+            // Update scenario badge
+            const badge = document.getElementById('kpi-scenario-badge');
+            badge.textContent = scenario.name;
+            // Update badge class
+            badge.className = '';
+            if (key === 'normal') badge.classList.add('badge-normal');
+            else if (key === 'price-war') badge.classList.add('badge-pricewar');
+            else if (key === 'premium') badge.classList.add('badge-premium');
+            else if (key === 'volume') badge.classList.add('badge-volume');
+
+            // Update reset button - show if price is modified
+            const resetBtn = document.getElementById('kpi-reset-btn');
+            if (scenario.sellingPrice !== originalScenarioPrices[key]) {
+                resetBtn.style.display = 'inline';
+            } else {
+                resetBtn.style.display = 'none';
+            }
+
+            // Reset upsells
+            data.upsells = { matterTag: false, floorPlan: false, video1min: false, hdrPhoto: false };
+            updateUpsellToggles();
+            updateUpsellLabels();
+
+            updateAll();
+        }
+
+        // Scenario tabs
+        document.querySelectorAll('.scenario-tab').forEach(tab => {
+            tab.addEventListener('click', () => loadScenario(tab.dataset.scenario));
+        });
+
+        // ============================================
+        // UPSELLS
+        // ============================================
+        function toggleUpsell(key) {
+            data.upsells[key] = !data.upsells[key];
+            updateUpsellToggles();
+            updateUpsellDisplay();
+            updateAll();
+        }
+
+        function updateUpsellToggles() {
+            document.getElementById('toggle-matterTag').classList.toggle('active', data.upsells.matterTag);
+            document.getElementById('toggle-floorPlan').classList.toggle('active', data.upsells.floorPlan);
+            document.getElementById('toggle-video1min').classList.toggle('active', data.upsells.video1min);
+            document.getElementById('toggle-hdrPhoto').classList.toggle('active', data.upsells.hdrPhoto);
+        }
+
+        function updateUpsellDisplay() {
+            const total = getUpsellTotal();
+            const items = [];
+
+            if (data.upsells.matterTag) items.push(`MatterTag ${formatNumber(data.upsellPrices.matterTag)}฿`);
+            if (data.upsells.floorPlan) items.push(`Floor Plan ${formatNumber(data.upsellPrices.floorPlan)}฿`);
+            if (data.upsells.video1min) items.push(`Video ${formatNumber(data.upsellPrices.video1min)}฿`);
+            if (data.upsells.hdrPhoto) items.push(`HDR Photo ${formatNumber(data.upsellPrices.hdrPhoto)}฿`);
+
+            document.getElementById('upsell-total').textContent = (total > 0 ? '+' : '') + formatNumber(total) + '฿';
+            document.getElementById('upsell-items').textContent = items.length > 0 ? items.join(' + ') : 'ไม่มี Upsell ที่เลือก';
+        }
+
+        function updateUpsellLabels() {
+            document.getElementById('upsell-price-matterTag').textContent = `(+${formatNumber(data.upsellPrices.matterTag)}฿)`;
+            document.getElementById('upsell-price-floorPlan').textContent = `(+${formatNumber(data.upsellPrices.floorPlan)}฿)`;
+            document.getElementById('upsell-price-video1min').textContent = `(+${formatNumber(data.upsellPrices.video1min)}฿)`;
+            document.getElementById('upsell-price-hdrPhoto').textContent = `(+${formatNumber(data.upsellPrices.hdrPhoto)}฿)`;
+        }
+
+        // ============================================
+        // INIT — sync from Mini Calculator if available
+        // ============================================
+        (function syncFromMini() {
+            try {
+                const mini = localStorage.getItem('matterport_mini_data');
+                if (mini) {
+                    const d = JSON.parse(mini);
+
+                    // 1. Update data.params
+                    if (d.salary) data.params.salary = d.salary;
+                    data.params.adminSalary = 0;
+                    if (d.equipment) data.params.cameraPrice = d.equipment;
+                    if (d.sellingPrice) data.sellingPrice = d.sellingPrice;
+                    if (d.jobs) data.jobsPerMonth = d.jobs;
+
+                    // 2. Update all scenarios
+                    ['normal','price-war','premium','volume'].forEach(function(key) {
+                        if (scenarios[key]) {
+                            if (d.salary) scenarios[key].params.salary = d.salary;
+                            scenarios[key].params.adminSalary = 0;
+                            if (d.equipment) scenarios[key].params.cameraPrice = d.equipment;
+                            if (d.jobs) scenarios[key].jobsPerMonth = d.jobs;
+                        }
+                    });
+                    if (d.sellingPrice) scenarios.normal.sellingPrice = d.sellingPrice;
+
+                    // 3. Recalculate costs from new params
+                    recalculateCostsFromParams();
+
+                    // 4. Update DOM displays
+                    var fn = function(n) { return n.toLocaleString(); };
+                    var el;
+                    el = document.getElementById('param-salary'); if (el && d.salary) el.textContent = fn(d.salary);
+                    el = document.getElementById('param-adminSalary'); if (el) el.textContent = '0';
+                    el = document.getElementById('param-cameraPrice'); if (el && d.equipment) el.textContent = fn(d.equipment);
+                }
+            } catch(e) {}
+        })();
+        updateAll();
+    </script>
+</body>
+</html>

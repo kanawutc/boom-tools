@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>/skills-list — List all Oracle skills with profile tier and status | Skill Detail</title>
+<script src="auth.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Noto Sans Thai','Inter',sans-serif;background:#0a0a14;color:#d0d0d8;line-height:1.7}.hero{background:linear-gradient(135deg,#0a0a14,#1a1a3a,#0a0a14);padding:40px 20px;text-align:center;border-bottom:1px solid #1a1a3a}.hero .cmd{font-family:'JetBrains Mono',monospace;font-size:2.5rem;font-weight:800;color:#a78bfa}.hero .tag{display:inline-block;background:#1a2a4a;color:#60a5fa;padding:3px 12px;border-radius:8px;font-size:0.75rem;font-weight:600;margin:8px 4px}.hero p{color:#8080a0;font-size:0.95rem;margin-top:8px;max-width:600px;display:inline-block}.container{max-width:900px;margin:0 auto;padding:30px 20px}h2{font-size:1.3rem;font-weight:700;color:#a78bfa;border-left:4px solid #7c3aed;padding-left:12px;margin:28px 0 12px}p{color:#a0a0b8;font-size:0.9rem;margin-bottom:10px}.card{background:#0f0f1f;border:1px solid #1a1a3a;border-radius:12px;padding:18px;margin:10px 0}.code-block{font-family:'JetBrains Mono',monospace;background:#0a0a18;border:1px solid #1a1a3a;border-radius:8px;padding:14px;font-size:0.82rem;color:#c4b5fd;overflow-x:auto;margin:10px 0}.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}.mode-card{background:#0f0f1f;border:1px solid #1a1a3a;border-radius:10px;padding:14px}.mode-card h4{color:#a78bfa;font-size:0.9rem;margin-bottom:4px}.mode-card p{font-size:0.82rem;color:#8080a0}.step{display:flex;gap:12px;margin:10px 0;align-items:flex-start}.step-num{background:#7c3aed;color:white;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;flex-shrink:0}.step-content h4{color:#d0d0d8;font-size:0.9rem}.step-content p{font-size:0.82rem;color:#8080a0;margin:0}.footer{text-align:center;padding:24px;color:#3a3a5a;font-size:0.72rem;border-top:1px solid #1a1a2a;margin-top:30px}.footer a{color:#a78bfa;text-decoration:none}@media(max-width:768px){.mode-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="hero">
+<div class="cmd">/skills-list</div>
+<div><span class="tag">Utility</span></div>
+<p>List all Oracle skills with profile tier, type, and script status</p>
+</div>
+<div class="container">
+<h2>Description</h2>
+<div class="card"><p>Generate a complete, structured inventory of all skills installed in the current oracle. Shows skill name, version, profile tier (core/specialist/community), type (navigation/communication/research/utility), script status (backed by script or pure prompt), and last used date. Essential for understanding oracle capability surface at a glance.</p></div>
+<h2>Usage</h2>
+<div class="code-block">/skills-list
+/skills-list --verbose</div>
+<h2>Modes</h2>
+<div class="mode-grid">
+<div class="mode-card"><h4>Default</h4><p>Compact table: name, tier, type, script status</p></div>
+<div class="mode-card"><h4>--verbose</h4><p>Full detail: version, description, trigger keywords, last used</p></div>
+<div class="mode-card"><h4>--filter &lt;tier&gt;</h4><p>Show only core / specialist / community skills</p></div>
+<div class="mode-card"><h4>--missing</h4><p>Show skills available in arra-oracle-v3 but not installed locally</p></div>
+</div>
+<h2>วิธีทำงาน</h2>
+<div class="step"><div class="step-num">1</div><div class="step-content"><h4>Scan .claude/skills/ directory for installed skills</h4></div></div>
+<div class="step"><div class="step-num">2</div><div class="step-content"><h4>Read each skill's metadata (tier, type, version)</h4></div></div>
+<div class="step"><div class="step-num">3</div><div class="step-content"><h4>Check for backing scripts in scripts/ directory</h4></div></div>
+<div class="step"><div class="step-num">4</div><div class="step-content"><h4>Cross-reference with profile tier definitions</h4></div></div>
+<div class="step"><div class="step-num">5</div><div class="step-content"><h4>Render table sorted by tier then alphabetically</h4></div></div>
+<h2>Output</h2>
+<div class="card"><p>Skills inventory table: name, tier, category, script (yes/no), version, description summary</p></div>
+<h2>ใช้เมื่อไหร่?</h2>
+<div class="card"><p>ต้องการรู้ว่า oracle มี skill อะไรบ้าง, onboard oracle ใหม่, audit skill coverage, หรือ plan skill installation</p></div>
+<h2>ใช้เมื่อไหร่ไม่ได้?</h2>
+<div class="card"><p>ไม่ใช่ skill runner — /skills-list แค่แสดง inventory ถ้าต้องการ install skills ใหม่ ใช้ /oracle หรือ /bampenpien</p></div>
+<h2>Related Skills</h2>
+<div class="mode-grid">
+<div class="mode-card"><h4>/oracle</h4><p><a href="skill-oracle.html" style="color:#a78bfa;text-decoration:none">ดูรายละเอียด →</a></p></div>
+<div class="mode-card"><h4>/harden</h4><p><a href="skill-harden.html" style="color:#a78bfa;text-decoration:none">ดูรายละเอียด →</a></p></div>
+<div class="mode-card"><h4>/about-oracle</h4><p><a href="skill-about-oracle.html" style="color:#a78bfa;text-decoration:none">ดูรายละเอียด →</a></p></div>
+</div>
+</div>
+<div class="footer">/skills-list Skill Detail | Boom Oracle | April 2026<br><a href="skill-dashboard.html">← กลับ Skill Dashboard</a> | <a href="index.html">Boom Tools</a></div>
+</body>
+</html>

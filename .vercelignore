@@ -1,0 +1,8 @@
+scripts/
+node_modules/
+home-coth-data/
+*.json
+!vercel.json
+!package.json
+!public/data/*.json
+!public/data/**/*.json

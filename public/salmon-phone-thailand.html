@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salmon Phone — Thailand Competitor Analysis</title>
+    <script>
+    // Inline auth — same SHA-256 gate as all Boom Tools
+    const _H='e40ae2f84c9319b323d3ce59a7f932a7d61e9388fb3534fad15343ed6155a114';
+    const _K='boom_tools_auth';
+    (function(){
+      var s=localStorage.getItem(_K);
+      if(s){try{var d=JSON.parse(s);if(d.hash===_H&&(Date.now()-d.ts)<604800000)return;}catch(e){} localStorage.removeItem(_K);}
+      document.addEventListener('DOMContentLoaded',function(){
+        document.body.style.display='none';
+        var o=document.createElement('div');
+        o.style.cssText='position:fixed;inset:0;z-index:99999;background:#020617;display:flex;align-items:center;justify-content:center;font-family:sans-serif;';
+        o.innerHTML='<div style="background:#1E293B;border:1px solid #334155;border-radius:16px;padding:40px;text-align:center;max-width:360px;width:90%"><h1 style="color:#22C55E;font-size:1.6rem;margin-bottom:8px">Boom Tools</h1><p style="color:#94A3B8;font-size:0.88rem;margin-bottom:20px">กรุณาใส่รหัสผ่าน</p><input id="pw" type="password" placeholder="Password" style="width:100%;padding:12px;border-radius:8px;border:1px solid #334155;background:#0F172A;color:#F8FAFC;font-size:1rem;text-align:center;outline:none;margin-bottom:12px"><br><button id="go" style="width:100%;padding:12px;background:#22C55E;color:#020617;border:none;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer">เข้าสู่ระบบ</button><div id="err" style="color:#EF4444;font-size:0.82rem;margin-top:8px"></div></div>';
+        document.body.appendChild(o);
+        document.body.style.display='';
+        var inp=document.getElementById('pw'),btn=document.getElementById('go');
+        inp.focus();
+        function chk(){
+          var v=inp.value;if(!v)return;
+          crypto.subtle.digest('SHA-256',new TextEncoder().encode(v)).then(function(buf){
+            var h=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0')}).join('');
+            if(h===_H){localStorage.setItem(_K,JSON.stringify({hash:_H,ts:Date.now()}));o.remove();}
+            else{document.getElementById('err').textContent='รหัสผ่านไม่ถูกต้อง';inp.style.borderColor='#EF4444';}
+          });
+        }
+        btn.onclick=chk;
+        inp.onkeydown=function(e){if(e.key==='Enter')chk();};
+      });
+    })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <style>
+        /* ============================================
+           DESIGN SYSTEM — Dark Financial Dashboard
+        ============================================ */
+        :root {
+            --bg-primary:   #020617;
+            --bg-secondary: #0F172A;
+            --bg-tertiary:  #1E293B;
+            --bg-card:      rgba(30,41,59,0.8);
+            --bg-hover:     rgba(51,65,85,0.5);
+
+            --text-primary:   #F8FAFC;
+            --text-secondary: #94A3B8;
+            --text-tertiary:  #64748B;
+
+            --accent-green:   #22C55E;
+            --accent-warning: #F59E0B;
+            --accent-danger:  #EF4444;
+            --accent-info:    #3B82F6;
+            --accent-purple:  #8B5CF6;
+            --accent-cyan:    #06B6D4;
+            --accent-orange:  #F97316;
+            --accent-pink:    #EC4899;
+
+            --border-subtle: rgba(148,163,184,0.1);
+            --border-medium: rgba(148,163,184,0.2);
+            --border-strong: rgba(148,163,184,0.3);
+
+            --font-heading: 'Fira Code', monospace;
+            --font-body:    'Fira Sans', sans-serif;
+
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+
+            --toc-width: 220px;
+        }
+
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.65;
+        }
+
+        /* ============================================
+           TOP NAV
+        ============================================ */
+        .top-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.7rem 1.25rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            backdrop-filter: blur(10px);
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-heading);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-green);
+        }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.82rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-medium);
+            transition: all 0.2s;
+        }
+        .nav-back:hover {
+            color: var(--text-primary);
+            border-color: var(--accent-green);
+            background: rgba(34,197,94,0.05);
+        }
+
+        .nav-badge {
+            font-family: var(--font-heading);
+            font-size: 0.7rem;
+            color: var(--text-tertiary);
+            padding: 0.2rem 0.6rem;
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+        }
+
+        /* ============================================
+           PAGE LAYOUT — with sticky TOC sidebar
+        ============================================ */
+        .page-shell {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        .content-shell {
+            display: grid;
+            grid-template-columns: var(--toc-width) 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        @media (max-width: 960px) {
+            .content-shell { grid-template-columns: 1fr; }
+            .toc-sidebar { display: none; }
+        }
+
+        /* ============================================
+           TOC SIDEBAR
+        ============================================ */
+        .toc-sidebar {
+            position: sticky;
+            top: 1.5rem;
+            max-height: calc(100vh - 3rem);
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+        .toc-sidebar::-webkit-scrollbar { display: none; }
+
+        .toc-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .toc-title {
+            font-family: var(--font-heading);
+            font-size: 0.68rem;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .toc-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .toc-list a {
+            display: block;
+            padding: 0.35rem 0.6rem;
+            font-size: 0.78rem;
+            color: var(--text-tertiary);
+            text-decoration: none;
+            border-radius: var(--radius-sm);
+            transition: all 0.15s;
+            border-left: 2px solid transparent;
+        }
+        .toc-list a:hover,
+        .toc-list a.active {
+            color: var(--accent-green);
+            border-left-color: var(--accent-green);
+            background: rgba(34,197,94,0.06);
+        }
+
+        .toc-list .toc-sub {
+            padding-left: 1.1rem;
+            font-size: 0.73rem;
+        }
+
+        /* ============================================
+           HERO
+        ============================================ */
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem 2.5rem;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 700px;
+            height: 450px;
+            background: radial-gradient(ellipse, rgba(249,115,22,0.07) 0%, rgba(34,197,94,0.05) 45%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-logo {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            display: block;
+            filter: drop-shadow(0 0 20px rgba(249,115,22,0.35));
+            animation: pulse-logo 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-logo {
+            0%,100% { filter: drop-shadow(0 0 20px rgba(249,115,22,0.35)); }
+            50%      { filter: drop-shadow(0 0 35px rgba(249,115,22,0.6)); }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(249,115,22,0.1);
+            border: 1px solid rgba(249,115,22,0.3);
+            color: var(--accent-orange);
+            font-family: var(--font-heading);
+            font-size: 0.72rem;
+            padding: 0.3rem 0.9rem;
+            border-radius: 20px;
+            margin-bottom: 1.25rem;
+            letter-spacing: 0.05em;
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 2.3rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 0.6rem;
+            background: linear-gradient(135deg, #F8FAFC 0%, #94A3B8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero h1 .accent {
+            background: linear-gradient(135deg, #F97316 0%, #FB923C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            max-width: 580px;
+            margin: 0 auto 0.75rem;
+            font-style: italic;
+        }
+
+        .hero-date {
+            font-family: var(--font-heading);
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            margin-bottom: 2.5rem;
+        }
+
+        /* Key stats strip */
+        .hero-stats {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            flex-wrap: wrap;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem 2rem;
+            max-width: 760px;
+            margin: 0 auto;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-stat {
+            text-align: center;
+            flex: 1;
+            min-width: 120px;
+            padding: 0 1.25rem;
+        }
+
+        .hero-stat + .hero-stat {
+            border-left: 1px solid var(--border-medium);
+        }
+
+        .hero-stat .value {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 0.3rem;
+        }
+
+        .hero-stat .label {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .stat-green  .value { color: var(--accent-green); }
+        .stat-orange .value { color: var(--accent-orange); }
+        .stat-blue   .value { color: var(--accent-info); }
+        .stat-red    .value { color: var(--accent-danger); }
+        .stat-cyan   .value { color: var(--accent-cyan); }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.6rem; }
+            .hero-stats { gap: 1rem; padding: 1rem; }
+            .hero-stat + .hero-stat { border-left: none; border-top: 1px solid var(--border-medium); }
+            .hero-stat { padding: 0.75rem 0; }
+        }
+
+        /* ============================================
+           SECTION STRUCTURE
+        ============================================ */
+        .section { margin-bottom: 2.5rem; }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .section-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .si-green   { background: rgba(34,197,94,0.15); }
+        .si-blue    { background: rgba(59,130,246,0.15); }
+        .si-purple  { background: rgba(139,92,246,0.15); }
+        .si-orange  { background: rgba(249,115,22,0.15); }
+        .si-cyan    { background: rgba(6,182,212,0.15); }
+        .si-red     { background: rgba(239,68,68,0.15); }
+        .si-warning { background: rgba(245,158,11,0.15); }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        .section-sub {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            margin-left: auto;
+        }
+
+        /* ============================================
+           CARD BASE
+        ============================================ */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .card:hover { border-color: var(--border-medium); }
+
+        /* Accent-top cards */
+        .card-top {
+            position: relative;
+            overflow: hidden;
+        }
+        .card-top::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+        }
+        .card-top.ct-green::before  { background: var(--accent-green); }
+        .card-top.ct-blue::before   { background: var(--accent-info); }
+        .card-top.ct-orange::before { background: var(--accent-orange); }
+        .card-top.ct-red::before    { background: var(--accent-danger); }
+        .card-top.ct-purple::before { background: var(--accent-purple); }
+        .card-top.ct-cyan::before   { background: var(--accent-cyan); }
+        .card-top.ct-warning::before{ background: var(--accent-warning); }
+
+        /* ============================================
+           ABOUT GRID
+        ============================================ */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        @media (max-width: 680px) {
+            .about-grid { grid-template-columns: 1fr; }
+        }
+
+        .kv-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+        }
+
+        .kv-row {
+            display: flex;
+            gap: 0.75rem;
+            font-size: 0.85rem;
+            align-items: baseline;
+        }
+
+        .kv-key {
+            font-family: var(--font-heading);
+            font-size: 0.72rem;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            min-width: 110px;
+            flex-shrink: 0;
+        }
+
+        .kv-val {
+            color: var(--text-secondary);
+            flex: 1;
+        }
+        .kv-val strong { color: var(--text-primary); }
+
+        .kv-val a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+        }
+        .kv-val a:hover { text-decoration: underline; }
+
+        /* pricing pills */
+        .pricing-pills {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .pricing-pill {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 1rem;
+            background: rgba(15,23,42,0.5);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+        }
+
+        .pp-down {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-orange);
+            min-width: 80px;
+        }
+
+        .pp-desc {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+        }
+
+        .pp-disc {
+            margin-left: auto;
+            font-family: var(--font-heading);
+            font-size: 0.8rem;
+            color: var(--accent-green);
+            white-space: nowrap;
+        }
+
+        /* ============================================
+           COMPARISON TABLES
+        ============================================ */
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .seg-label {
+            font-family: var(--font-heading);
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+            padding: 0.45rem 1rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .seg-label.sl-green  { background: rgba(34,197,94,0.08);  color: var(--accent-green); }
+        .seg-label.sl-blue   { background: rgba(59,130,246,0.08); color: #60A5FA; }
+        .seg-label.sl-orange { background: rgba(249,115,22,0.08); color: var(--accent-orange); }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.84rem;
+        }
+
+        thead tr {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-medium);
+        }
+
+        thead th {
+            padding: 0.85rem 1rem;
+            text-align: left;
+            font-family: var(--font-heading);
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            white-space: nowrap;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid var(--border-subtle);
+            transition: background 0.15s;
+        }
+
+        tbody tr:nth-child(even) { background: rgba(15,23,42,0.4); }
+        tbody tr:hover { background: var(--bg-hover); }
+        tbody tr:last-child { border-bottom: none; }
+
+        tbody td {
+            padding: 0.8rem 1rem;
+            color: var(--text-secondary);
+            vertical-align: top;
+        }
+
+        .td-company {
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+
+        .td-url {
+            font-family: var(--font-heading);
+            font-size: 0.72rem;
+            color: var(--accent-cyan);
+        }
+
+        /* Overlap badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.18rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.68rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .b-green  { background: rgba(34,197,94,0.15);  color: var(--accent-green);  border: 1px solid rgba(34,197,94,0.25); }
+        .b-red    { background: rgba(239,68,68,0.12);  color: #F87171;              border: 1px solid rgba(239,68,68,0.2); }
+        .b-orange { background: rgba(249,115,22,0.12); color: #FB923C;              border: 1px solid rgba(249,115,22,0.2); }
+        .b-blue   { background: rgba(59,130,246,0.12); color: #60A5FA;              border: 1px solid rgba(59,130,246,0.2); }
+        .b-purple { background: rgba(139,92,246,0.12); color: #A78BFA;              border: 1px solid rgba(139,92,246,0.2); }
+        .b-cyan   { background: rgba(6,182,212,0.12);  color: #22D3EE;              border: 1px solid rgba(6,182,212,0.2); }
+        .b-gray   { background: rgba(100,116,139,0.15);color: var(--text-tertiary); border: 1px solid rgba(100,116,139,0.2); }
+
+        /* ============================================
+           CHART SECTION
+        ============================================ */
+        .chart-card {
+            padding: 1.5rem;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 280px;
+        }
+
+        /* ============================================
+           SWOT 2x2
+        ============================================ */
+        .swot-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 640px) {
+            .swot-grid { grid-template-columns: 1fr; }
+        }
+
+        .swot-cell {
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            border: 1px solid;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .swot-cell::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+        }
+
+        .swot-s { background: rgba(34,197,94,0.05);  border-color: rgba(34,197,94,0.25); }
+        .swot-s::before { background: var(--accent-green); }
+
+        .swot-w { background: rgba(245,158,11,0.05); border-color: rgba(245,158,11,0.25); }
+        .swot-w::before { background: var(--accent-warning); }
+
+        .swot-o { background: rgba(59,130,246,0.05); border-color: rgba(59,130,246,0.25); }
+        .swot-o::before { background: var(--accent-info); }
+
+        .swot-t { background: rgba(239,68,68,0.05);  border-color: rgba(239,68,68,0.25); }
+        .swot-t::before { background: var(--accent-danger); }
+
+        .swot-label {
+            font-family: var(--font-heading);
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.85rem;
+        }
+
+        .swot-s .swot-label { color: var(--accent-green); }
+        .swot-w .swot-label { color: var(--accent-warning); }
+        .swot-o .swot-label { color: var(--accent-info); }
+        .swot-t .swot-label { color: var(--accent-danger); }
+
+        .swot-items {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+        }
+
+        .swot-items li {
+            display: flex;
+            gap: 0.6rem;
+            font-size: 0.83rem;
+            color: var(--text-secondary);
+            align-items: baseline;
+        }
+
+        .swot-items li::before {
+            content: '▸';
+            font-size: 0.65rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+
+        .swot-s li::before { color: var(--accent-green); }
+        .swot-w li::before { color: var(--accent-warning); }
+        .swot-o li::before { color: var(--accent-info); }
+        .swot-t li::before { color: var(--accent-danger); }
+
+        /* ============================================
+           RECOMMENDATIONS
+        ============================================ */
+        .rec-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .rec-card {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            padding: 1.1rem 1.25rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            border-left: 3px solid var(--accent-orange);
+            transition: all 0.2s;
+            backdrop-filter: blur(10px);
+        }
+
+        .rec-card:hover {
+            border-color: rgba(249,115,22,0.4);
+            border-left-color: var(--accent-orange);
+            background: rgba(249,115,22,0.03);
+            transform: translateX(3px);
+        }
+
+        .rec-num {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: rgba(249,115,22,0.3);
+            line-height: 1;
+            min-width: 36px;
+            flex-shrink: 0;
+        }
+
+        .rec-body {}
+
+        .rec-title {
+            font-weight: 600;
+            font-size: 0.92rem;
+            color: var(--text-primary);
+            margin-bottom: 0.35rem;
+        }
+
+        .rec-desc {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+        }
+
+        /* ============================================
+           SOURCES (collapsible)
+        ============================================ */
+        details {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        summary {
+            padding: 0.9rem 1.25rem;
+            cursor: pointer;
+            font-family: var(--font-heading);
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            list-style: none;
+            user-select: none;
+            transition: color 0.15s;
+        }
+        summary:hover { color: var(--text-primary); }
+
+        summary::after {
+            content: '▾';
+            margin-left: auto;
+            font-size: 0.8rem;
+        }
+
+        details[open] summary::after { content: '▴'; }
+
+        .sources-body {
+            padding: 0 1.25rem 1.25rem;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .source-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+            padding-top: 0.85rem;
+        }
+
+        .source-list li {
+            font-size: 0.78rem;
+        }
+
+        .source-list a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-family: var(--font-heading);
+            font-size: 0.72rem;
+        }
+        .source-list a:hover { text-decoration: underline; }
+
+        .source-label {
+            color: var(--text-tertiary);
+            font-size: 0.75rem;
+            display: block;
+        }
+
+        /* ============================================
+           FOOTER
+        ============================================ */
+        .page-footer {
+            text-align: center;
+            padding: 2rem 0 1rem;
+            font-family: var(--font-heading);
+            font-size: 0.7rem;
+            color: var(--text-tertiary);
+            border-top: 1px solid var(--border-subtle);
+            margin-top: 3rem;
+        }
+
+        /* ============================================
+           UTILITY
+        ============================================ */
+        .mt-05 { margin-top: 0.5rem; }
+        .mt-1  { margin-top: 1rem; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        @media (max-width: 680px) { .grid-2 { grid-template-columns: 1fr; } }
+
+        /* Scroll-reveal for sections */
+        .section { animation: fadeUp 0.4s ease both; }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-shell">
+    <!-- NAV -->
+    <nav class="top-nav">
+        <div class="nav-logo">
+            <span>🔥</span> Boom Tools
+        </div>
+        <span class="nav-badge">Competitor Intelligence</span>
+        <a href="/" class="nav-back">← Back to Tools</a>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero" id="top">
+        <span class="hero-logo">🐟</span>
+        <div class="hero-badge">COMPETITOR ANALYSIS · 2026-04-24</div>
+        <h1>Salmon Phone —<br><span class="accent">Thailand Market</span></h1>
+        <p class="hero-subtitle">"เทคโนโลยีที่ดีควรเข้าถึงได้ทุกคน" — Good technology should be accessible to everyone</p>
+        <p class="hero-date">Salmon Enterprise Co., Ltd. · salmonphone.com · Analysis by Boom Oracle</p>
+
+        <div class="hero-stats">
+            <div class="hero-stat stat-orange">
+                <div class="value">2</div>
+                <div class="label">Physical Branches</div>
+            </div>
+            <div class="hero-stat stat-green">
+                <div class="value">50 ฿</div>
+                <div class="label">Min Down Payment</div>
+            </div>
+            <div class="hero-stat stat-blue">
+                <div class="value">5+</div>
+                <div class="label">Direct Competitors</div>
+            </div>
+            <div class="hero-stat stat-cyan">
+                <div class="value">27%</div>
+                <div class="label">BNPL Market CAGR</div>
+            </div>
+            <div class="hero-stat stat-red">
+                <div class="value">5,000x</div>
+                <div class="label">SG Finance+ reach gap</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT SHELL -->
+    <div class="content-shell">
+
+        <!-- TOC SIDEBAR -->
+        <aside class="toc-sidebar">
+            <div class="toc-card">
+                <div class="toc-title">Table of Contents</div>
+                <ul class="toc-list">
+                    <li><a href="#about">1. About Salmon Phone</a></li>
+                    <li><a href="#seg-device" class="toc-sub">2.1 Device Installment</a></li>
+                    <li><a href="#seg-bnpl" class="toc-sub">2.2 BNPL Platforms</a></li>
+                    <li><a href="#seg-trad" class="toc-sub">2.3 Traditional Finance</a></li>
+                    <li><a href="#chart">Geographic Reach Chart</a></li>
+                    <li><a href="#swot">3. SWOT Analysis</a></li>
+                    <li><a href="#recs">4. Recommendations</a></li>
+                    <li><a href="#sources">5. Sources</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main>
+
+            <!-- SECTION 1: ABOUT -->
+            <section class="section" id="about">
+                <div class="section-header">
+                    <div class="section-icon si-orange">🐟</div>
+                    <h2 class="section-title">1. About Salmon Phone</h2>
+                    <span class="section-sub">Salmon Enterprise Co., Ltd.</span>
+                </div>
+
+                <div class="about-grid">
+                    <div class="card card-top ct-orange">
+                        <div class="kv-list">
+                            <div class="kv-row">
+                                <span class="kv-key">Company</span>
+                                <span class="kv-val"><strong>Salmon Enterprise Co., Ltd.</strong></span>
+                            </div>
+                            <div class="kv-row">
+                                <span class="kv-key">Website</span>
+                                <span class="kv-val"><a href="https://www.salmonphone.com/" target="_blank">salmonphone.com</a></span>
+                            </div>
+                            <div class="kv-row">
+                                <span class="kv-key">Product</span>
+                                <span class="kv-val">Device financing — ผ่อนชำระ iPhone และ IT products ไม่ง้อบัตรเครดิต</span>
+                            </div>
+                            <div class="kv-row">
+                                <span class="kv-key">Brands</span>
+                                <span class="kv-val">Apple (iPhone 17, iPad Air M4), Samsung Galaxy S26 Ultra, IT/mobile brands</span>
+                            </div>
+                            <div class="kv-row">
+                                <span class="kv-key">Target</span>
+                                <span class="kv-val">ไม่มีบัตรเครดิต — gig workers, นักศึกษา, รายได้รายวัน, lower-middle income</span>
+                            </div>
+                            <div class="kv-row">
+                                <span class="kv-key">Contact</span>
+                                <span class="kv-val">061-401-5044 · LINE @salmonphone</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card card-top ct-orange">
+                        <div class="kv-row" style="margin-bottom:0.85rem">
+                            <span class="kv-key">Locations</span>
+                            <span class="kv-val"></span>
+                        </div>
+                        <div class="pricing-pills" style="margin-bottom:1.1rem">
+                            <div class="pricing-pill">
+                                <span style="font-size:1.3rem">🏙️</span>
+                                <div>
+                                    <div style="font-size:0.85rem;font-weight:600;color:var(--text-primary)">Bangkok</div>
+                                    <div style="font-size:0.76rem;color:var(--text-tertiary)">The Master · Onnuch-Pattanakarn · Prawet</div>
+                                    <div style="font-size:0.73rem;color:var(--text-tertiary)">Mon–Sat 09:00–19:00</div>
+                                </div>
+                            </div>
+                            <div class="pricing-pill">
+                                <span style="font-size:1.3rem">🏖️</span>
+                                <div>
+                                    <div style="font-size:0.85rem;font-weight:600;color:var(--text-primary)">Pattaya</div>
+                                    <div style="font-size:0.76rem;color:var(--text-tertiary)">Mon–Sat 10:00–20:00</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="kv-row" style="margin-bottom:0.6rem">
+                            <span class="kv-key">Pricing</span>
+                            <span class="kv-val"></span>
+                        </div>
+                        <div class="pricing-pills">
+                            <div class="pricing-pill">
+                                <span class="pp-down">50 ฿</span>
+                                <span class="pp-desc">เปิดบัญชี / สินค้า 7,000+ บาท</span>
+                                <span class="pp-disc">ลด 500 ฿</span>
+                            </div>
+                            <div class="pricing-pill">
+                                <span class="pp-down">100 ฿</span>
+                                <span class="pp-desc">เปิดบัญชี / สินค้า 15,000+ บาท</span>
+                                <span class="pp-disc">ลด 1,000 ฿</span>
+                            </div>
+                        </div>
+                        <p style="font-size:0.73rem;color:var(--text-tertiary);margin-top:0.65rem">* อัตราดอกเบี้ยและเงื่อนไขเต็มไม่ได้เปิดเผยบนเว็บไซต์</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 2.1: Device Installment -->
+            <section class="section" id="seg-device">
+                <div class="section-header">
+                    <div class="section-icon si-green">📱</div>
+                    <h2 class="section-title">2.1 Segment: Device Installment Financing (No Credit Card)</h2>
+                    <span class="section-sub">HIGH overlap</span>
+                </div>
+
+                <div class="table-wrapper">
+                    <div class="seg-label sl-green">High-Overlap Competitors — Same Proposition</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Company</th>
+                                <th>Website</th>
+                                <th>Positioning</th>
+                                <th>Overlap</th>
+                                <th>Differentiator vs Salmon</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="td-company">UFund</div>
+                                    <div style="font-size:0.72rem;color:var(--text-tertiary)">by COM7 / Thunder Finfin</div>
+                                </td>
+                                <td><span class="td-url">ufundportal.net</span></td>
+                                <td>"ผ่อนง่ายไม่ง้อบัตร" — 0.99% interest, up to 48 months, zero down for students</td>
+                                <td><span class="badge b-red">HIGH</span></td>
+                                <td>Backed by SET-listed COM7; inside Studio7/BaNANA/U•Store; app-based; student tier</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="td-company">Ufriend</div>
+                                </td>
+                                <td><span class="td-url">ufriend.shop</span></td>
+                                <td>iPhone/iPad installments, ID card only, down from 1,290–1,990 ฿, 40+ branches</td>
+                                <td><span class="badge b-red">HIGH</span></td>
+                                <td>40+ branches vs Salmon's 2; 10-min approval; มือ 2 (used iPhone); trade-in service</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="td-company">Kashjoy</div>
+                                    <div style="font-size:0.72rem;color:var(--text-tertiary)">by KB J Capital / Jaymart</div>
+                                </td>
+                                <td><span class="td-url">jaymart.co.th</span></td>
+                                <td>Nationwide installment loans, 1,700+ dealer network, avg 18-month, min income 15,000 ฿/mo</td>
+                                <td><span class="badge b-red">HIGH</span></td>
+                                <td>Requires income proof; 2,500-dealer target; SET-listed parent (JMART)</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="td-company">SG Finance+</div>
+                                    <div style="font-size:0.72rem;color:var(--text-tertiary)">by SG Capital / Singer</div>
+                                </td>
+                                <td><span class="td-url">sgcapital.co.th</span></td>
+                                <td>Smartphone + home appliance loans, 5,000+ partners, 3-min approval, 23–25% p.a.</td>
+                                <td><span class="badge b-orange">MEDIUM</span></td>
+                                <td>5,000+ retail partners (AIS, True, IT City, Jaymart); Android focus; faster approval</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="td-company">DTAC PayThunder</div>
+                                </td>
+                                <td><span class="td-url">dtac.co.th</span></td>
+                                <td>Carrier-bundled: device + SIM from 720 ฿/mo, no credit card</td>
+                                <td><span class="badge b-orange">MEDIUM</span></td>
+                                <td>DTAC network lock; carrier-contract model; narrower device selection</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- SECTION 2.2: BNPL -->
+            <section class="section" id="seg-bnpl">
+                <div class="section-header">
+                    <div class="section-icon si-blue">💳</div>
+                    <h2 class="section-title">2.2 Segment: BNPL Platforms (Adjacent)</h2>
+                    <span class="section-sub">MEDIUM overlap</span>
+                </div>
+
+                <div class="table-wrapper">
+                    <div class="seg-label sl-blue">Buy Now Pay Later — Platform-Embedded</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Company</th>
+                                <th>Website</th>
+                                <th>Positioning</th>
+                                <th>Overlap</th>
+                                <th>Differentiator vs Salmon</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><div class="td-company">Atome</div></td>
+                                <td><span class="td-url">atometh.com</span></td>
+                                <td>Split into 3 interest-free installments at thousands of Thai merchants</td>
+                                <td><span class="badge b-orange">MEDIUM</span></td>
+                                <td>0% interest (3-split only); merchant-fee model; no physical branch; not iPhone-specialist</td>
+                            </tr>
+                            <tr>
+                                <td><div class="td-company">Shopee SpayLater</div></td>
+                                <td><span class="td-url">shopee.co.th</span></td>
+                                <td>Up to 100,000 ฿ credit, 12-month BNPL, Shopee-embedded</td>
+                                <td><span class="badge b-blue">LOW-MED</span></td>
+                                <td>Marketplace-locked; 25–70% down required; broader scope</td>
+                            </tr>
+                            <tr>
+                                <td><div class="td-company">Lazada LazPayLater</div></td>
+                                <td><span class="td-url">lazada.co.th</span></td>
+                                <td>Up to 100,000 ฿ credit, 12-month BNPL</td>
+                                <td><span class="badge b-blue">LOW-MED</span></td>
+                                <td>Platform-locked to Lazada; not phone-specialist</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="td-company">Studio7 + TrueMoney</div>
+                                </td>
+                                <td><span class="td-url">studio7thailand.com</span></td>
+                                <td>iPhone installments up to 24 months via TrueMoney Wallet (salary slip required)</td>
+                                <td><span class="badge b-orange">MEDIUM</span></td>
+                                <td>Apple Authorized Reseller; official warranty; requires salary slip (stricter eligibility)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- SECTION 2.3: Traditional -->
+            <section class="section" id="seg-trad">
+                <div class="section-header">
+                    <div class="section-icon si-purple">🏦</div>
+                    <h2 class="section-title">2.3 Segment: Traditional Finance / Hire Purchase</h2>
+                    <span class="section-sub">LOW overlap</span>
+                </div>
+
+                <div class="table-wrapper">
+                    <div class="seg-label sl-orange">Institutional Players</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Company</th>
+                                <th>Website</th>
+                                <th>Positioning</th>
+                                <th>Overlap</th>
+                                <th>Differentiator vs Salmon</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><div class="td-company">AEON Thailand</div></td>
+                                <td><span class="td-url">aeon.co.th</span></td>
+                                <td>Hire purchase for electronics and IT, nationwide branches</td>
+                                <td><span class="badge b-blue">LOW-MED</span></td>
+                                <td>Licensed financial institution; broader product scope; stricter credit assessment</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- GEOGRAPHIC REACH CHART -->
+            <section class="section" id="chart">
+                <div class="section-header">
+                    <div class="section-icon si-cyan">📊</div>
+                    <h2 class="section-title">Geographic Reach — Branch / Partner Count</h2>
+                    <span class="section-sub">Salmon vs competitors</span>
+                </div>
+
+                <div class="card chart-card card-top ct-cyan">
+                    <p style="font-size:0.8rem;color:var(--text-tertiary);margin-bottom:1.25rem">
+                        Salmon Phone's 2 branches vs. competitor distribution networks — illustrating the geographic-reach gap that is the single largest strategic vulnerability.
+                    </p>
+                    <div class="chart-container">
+                        <canvas id="reachChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SWOT -->
+            <section class="section" id="swot">
+                <div class="section-header">
+                    <div class="section-icon si-green">🧠</div>
+                    <h2 class="section-title">3. SWOT vs Thai Market</h2>
+                </div>
+
+                <div class="swot-grid">
+                    <div class="swot-cell swot-s">
+                        <div class="swot-label">S — Strengths</div>
+                        <ul class="swot-items">
+                            <li>Ultra-low entry barrier (50–100 ฿ to open) — lowest-friction onboarding in segment</li>
+                            <li>Clear Apple/iPhone focus = specialist positioning + trust signal</li>
+                            <li>2 physical branches (Bangkok + Pattaya) — face-to-face trust for low-income customers</li>
+                            <li>LINE-based support aligns with Thai consumer behavior</li>
+                        </ul>
+                    </div>
+
+                    <div class="swot-cell swot-w">
+                        <div class="swot-label">W — Weaknesses</div>
+                        <ul class="swot-items">
+                            <li>Only 2 branches — severely limited reach vs. Ufriend (40+), Jaymart (1,700+), SG Finance+ (5,000+)</li>
+                            <li>Interest rate and full terms not disclosed — reduces consumer confidence</li>
+                            <li>No app visible — purely branch + LINE based, limits scalability</li>
+                            <li>Unknown brand vs. SET-listed competitors (COM7, JMART, SG Capital)</li>
+                        </ul>
+                    </div>
+
+                    <div class="swot-cell swot-o">
+                        <div class="swot-label">O — Opportunities</div>
+                        <ul class="swot-items">
+                            <li>Thailand BNPL/device financing market growing fast — CAGR 27–29% through 2030</li>
+                            <li>Large unbanked/no-card population outside Bangkok still underserved</li>
+                            <li>Mid-tier Android financing (Samsung, Xiaomi) less crowded than iPhone specialist space</li>
+                            <li>Partnership with provincial retailers = rapid reach without capex</li>
+                        </ul>
+                    </div>
+
+                    <div class="swot-cell swot-t">
+                        <div class="swot-label">T — Threats</div>
+                        <ul class="swot-items">
+                            <li>UFund (COM7) massive retail distribution + lower rates (0.99%)</li>
+                            <li>Ufriend has 20x more branches + used-device trade-in capability</li>
+                            <li>SG Finance+ aggressively scaling: 3,200 → 67,000 units/month in 6 months (2024)</li>
+                            <li>BNPL platforms (Atome, SpayLater) commoditizing short-term at 0%</li>
+                            <li>Regulatory risk: Bank of Thailand tightening BNPL/informal lending rules</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RECOMMENDATIONS -->
+            <section class="section" id="recs">
+                <div class="section-header">
+                    <div class="section-icon si-orange">🚀</div>
+                    <h2 class="section-title">4. Strategic Recommendations</h2>
+                    <span class="section-sub">Top 5 Actions</span>
+                </div>
+
+                <div class="rec-list">
+                    <div class="rec-card">
+                        <div class="rec-num">01</div>
+                        <div class="rec-body">
+                            <div class="rec-title">Publish Transparent Pricing</div>
+                            <div class="rec-desc">อัตราดอกเบี้ยและเงื่อนไขทั้งหมดต้องปรากฏบนเว็บไซต์ Competitors like SG Finance+ advertise "23–25% p.a. on reducing balance" explicitly. Opacity at point-of-discovery drives prospects to competitors. Fix this immediately.</div>
+                        </div>
+                    </div>
+
+                    <div class="rec-card">
+                        <div class="rec-num">02</div>
+                        <div class="rec-body">
+                            <div class="rec-title">Build a Mobile App or LINE OA Flow</div>
+                            <div class="rec-desc">All major competitors (UFund, Ufriend, Kashjoy, SG Finance+) have apps with digital application and payment tracking. A LINE Mini App would match Thai behavior and cost far less than native app development.</div>
+                        </div>
+                    </div>
+
+                    <div class="rec-card">
+                        <div class="rec-num">03</div>
+                        <div class="rec-body">
+                            <div class="rec-title">Expand via Franchise / Agent Model</div>
+                            <div class="rec-desc">Salmon cannot outspend COM7 or Jaymart on branches. Recruit provincial phone shop owners as agents (similar to Jaymart's 1,700-dealer network) — commission per approved loan. Scale reach without capex.</div>
+                        </div>
+                    </div>
+
+                    <div class="rec-card">
+                        <div class="rec-num">04</div>
+                        <div class="rec-body">
+                            <div class="rec-title">Add Used / Refurbished iPhone Tier</div>
+                            <div class="rec-desc">Ufriend's มือ 2 option opens a lower price-point segment. A certified used iPhone program with 3-month warranty would attract customers who can't afford new-device down payments — differentiating from UFund (new only).</div>
+                        </div>
+                    </div>
+
+                    <div class="rec-card">
+                        <div class="rec-num">05</div>
+                        <div class="rec-body">
+                            <div class="rec-title">Focus Marketing on Pattaya + EEC Corridor</div>
+                            <div class="rec-desc">Bangkok is saturated with UFund/Ufriend branches. Pattaya, Rayong, Chonburi (EEC zone) have dense working-class populations with disposable income and lower competitor density. Double down on this geography before expanding north.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SOURCES -->
+            <section class="section" id="sources">
+                <details>
+                    <summary>📎 Sources &amp; References (14)</summary>
+                    <div class="sources-body">
+                        <ul class="source-list">
+                            <li>
+                                <span class="source-label">Salmon Phone — Official Site</span>
+                                <a href="https://www.salmonphone.com/" target="_blank">salmonphone.com</a>
+                            </li>
+                            <li>
+                                <span class="source-label">Thairath — 9 ways to buy iPhone without credit card 2024</span>
+                                <a href="https://www.thairath.co.th/shopping/electronics/1000470" target="_blank">thairath.co.th/shopping/electronics/1000470</a>
+                            </li>
+                            <li>
+                                <span class="source-label">UFund — Apple Partnership</span>
+                                <a href="https://ufundportal.net/ufund-and-apple/" target="_blank">ufundportal.net/ufund-and-apple/</a>
+                            </li>
+                            <li>
+                                <span class="source-label">UFund — BaNANA Partnership</span>
+                                <a href="https://ufundportal.net/ufund-and-banana/" target="_blank">ufundportal.net/ufund-and-banana/</a>
+                            </li>
+                            <li>
+                                <span class="source-label">Ufriend Shop — Homepage</span>
+                                <a href="https://ufriend.shop/" target="_blank">ufriend.shop</a>
+                            </li>
+                            <li>
+                                <span class="source-label">Bangkok Post — Jaymart, Singer eye larger slice of B100bn smartphone market</span>
+                                <a href="https://www.bangkokpost.com/business/general/3186579/jaymart-singer-eye-larger-slice-of-b100bn-smartphone-market" target="_blank">bangkokpost.com/…/jaymart-singer…</a>
+                            </li>
+                            <li>
+                                <span class="source-label">SG Capital — SG Finance+ Overview</span>
+                                <a href="https://www.sgcapital.co.th/en/our-businesses/sgfinance" target="_blank">sgcapital.co.th/en/our-businesses/sgfinance</a>
+                            </li>
+                            <li>
+                                <span class="source-label">Studio7 x TrueMoney Installment</span>
+                                <a href="https://instore.studio7thailand.com/truemoney-studio7/" target="_blank">instore.studio7thailand.com/truemoney-studio7/</a>
+                            </li>
+                            <li>
+                                <span class="source-label">Atome Thailand BNPL</span>
+                                <a href="https://www.atometh.com/en-th" target="_blank">atometh.com/en-th</a>
+                            </li>
+                            <li>
+                                <span class="source-label">Jaymart Finance</span>
+                                <a href="https://www.jaymart.co.th/en/businesses/finance" target="_blank">jaymart.co.th/en/businesses/finance</a>
+                            </li>
+                            <li>
+                                <span class="source-label">Kashjoy App — Google Play</span>
+                                <a href="https://play.google.com/store/apps/details?id=co.th.kbjcapital.kashjoy&hl=en_US" target="_blank">play.google.com/store/apps/details?id=co.th.kbjcapital.kashjoy</a>
+                            </li>
+                            <li>
+                                <span class="source-label">Yahoo Finance — Thailand BNPL Market Report 2026</span>
+                                <a href="https://finance.yahoo.com/news/thailand-buy-now-pay-later-113700827.html" target="_blank">finance.yahoo.com/news/thailand-buy-now-pay-later-113700827.html</a>
+                            </li>
+                            <li>
+                                <span class="source-label">BusinessWire — Thailand BNPL Market 2025–2030 ($6.6B by 2030)</span>
+                                <a href="https://www.businesswire.com/news/home/20251127179267/en/Thailand-Buy-Now-Pay-Later-Business-Report-2025-A-$6.6-Billion-Market-by-2030-Featuring-Atome-K-Pay-Later-Pace-Hoolah-Grab-PayLater-Split-Pine-Labs-Akulaku-and-Kredivo---ResearchAndMarkets.com" target="_blank">businesswire.com/news/home/20251127179267/en/Thailand-Buy-Now…</a>
+                            </li>
+                            <li>
+                                <span class="source-label">DTAC PayThunder — No Credit Card Device Installment</span>
+                                <a href="https://www.dtac.co.th/en/paythunder" target="_blank">dtac.co.th/en/paythunder</a>
+                            </li>
+                        </ul>
+                    </div>
+                </details>
+            </section>
+
+        </main>
+    </div><!-- /content-shell -->
+
+    <!-- FOOTER -->
+    <footer class="page-footer">
+        Analysis by Boom Oracle · 2026-04-24 · salmonphone.com · Boom Tools / kanawut.com
+    </footer>
+</div><!-- /page-shell -->
+
+<script>
+// ============================================
+// CHART — Geographic Reach Comparison
+// ============================================
+(function(){
+    var ctx = document.getElementById('reachChart').getContext('2d');
+
+    var companies = [
+        'SG Finance+ (Singer)',
+        'Kashjoy (Jaymart)',
+        'UFund (COM7)',
+        'Studio7',
+        'Ufriend',
+        'Salmon Phone'
+    ];
+
+    var counts = [5000, 1700, 1700, 600, 40, 2];
+
+    var colors = [
+        'rgba(239,68,68,0.75)',
+        'rgba(245,158,11,0.75)',
+        'rgba(59,130,246,0.75)',
+        'rgba(139,92,246,0.75)',
+        'rgba(6,182,212,0.75)',
+        'rgba(34,197,94,0.85)'
+    ];
+
+    var borderColors = [
+        'rgba(239,68,68,1)',
+        'rgba(245,158,11,1)',
+        'rgba(59,130,246,1)',
+        'rgba(139,92,246,1)',
+        'rgba(6,182,212,1)',
+        'rgba(34,197,94,1)'
+    ];
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: companies,
+            datasets: [{
+                label: 'Branches / Partners',
+                data: counts,
+                backgroundColor: colors,
+                borderColor: borderColors,
+                borderWidth: 1,
+                borderRadius: 4,
+                borderSkipped: false
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: '#1E293B',
+                    borderColor: 'rgba(148,163,184,0.2)',
+                    borderWidth: 1,
+                    titleColor: '#F8FAFC',
+                    bodyColor: '#94A3B8',
+                    padding: 10,
+                    callbacks: {
+                        label: function(ctx) {
+                            var val = ctx.parsed.x;
+                            return ' ' + (val >= 1000 ? val.toLocaleString() : val) + ' locations';
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    type: 'logarithmic',
+                    grid: {
+                        color: 'rgba(148,163,184,0.08)'
+                    },
+                    ticks: {
+                        color: '#64748B',
+                        font: { family: 'Fira Code', size: 11 },
+                        callback: function(val) {
+                            if ([1, 10, 100, 1000, 5000, 10000].includes(val)) return val.toLocaleString();
+                            return '';
+                        }
+                    },
+                    border: { color: 'rgba(148,163,184,0.1)' }
+                },
+                y: {
+                    grid: { display: false },
+                    ticks: {
+                        color: '#94A3B8',
+                        font: { family: 'Fira Sans', size: 12 }
+                    },
+                    border: { color: 'rgba(148,163,184,0.1)' }
+                }
+            }
+        }
+    });
+})();
+
+// ============================================
+// TOC ACTIVE HIGHLIGHT
+// ============================================
+(function(){
+    var links = document.querySelectorAll('.toc-list a');
+    var sections = [];
+    links.forEach(function(a) {
+        var id = a.getAttribute('href').slice(1);
+        var el = document.getElementById(id);
+        if(el) sections.push({ id: id, el: el, a: a });
+    });
+
+    function onScroll() {
+        var scrollY = window.scrollY + 120;
+        var active = null;
+        for (var i = 0; i < sections.length; i++) {
+            if (sections[i].el.offsetTop <= scrollY) active = sections[i];
+        }
+        links.forEach(function(a){ a.classList.remove('active'); });
+        if (active) active.a.classList.add('active');
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+})();
+</script>
+</body>
+</html>

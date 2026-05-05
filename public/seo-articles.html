@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Long-form SEO Articles — Batch 1 (5 บทความ)</title>
+<script src="auth.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Noto Sans Thai','Inter',sans-serif; background:#f5f5f5; color:#1a1a2e; }
+
+.header { background:linear-gradient(135deg,#1a1a2e,#2d3a8c); color:white; padding:30px 20px; text-align:center; }
+.header h1 { font-size:1.8rem; margin-bottom:8px; }
+.header p { opacity:0.8; font-size:0.9rem; }
+.header .stats { display:flex; gap:16px; justify-content:center; margin-top:16px; flex-wrap:wrap; }
+.header .stat { background:rgba(255,255,255,0.15); padding:8px 16px; border-radius:8px; font-size:0.82rem; }
+
+.container { max-width:900px; margin:0 auto; padding:20px; }
+
+.article-nav { background:white; border-radius:12px; padding:16px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,0.08); }
+.article-nav h3 { font-size:0.9rem; color:#6b7280; margin-bottom:10px; }
+.article-nav a { display:block; padding:8px 12px; border-radius:6px; text-decoration:none; color:#1a1a2e; font-size:0.88rem; margin:2px 0; transition:background 0.2s; }
+.article-nav a:hover { background:#f0f0f5; }
+.article-nav a .num { color:#C3A082; font-weight:700; margin-right:8px; }
+
+.article { background:white; border-radius:16px; padding:30px; margin-bottom:24px; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+.article .meta { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
+.article .badge { padding:4px 12px; border-radius:6px; font-size:0.75rem; font-weight:600; }
+.badge-type { background:#C3A082; color:white; }
+.badge-loc { background:#e8f5e9; color:#2e7d32; }
+.badge-price { background:#fff3e0; color:#e65100; }
+
+.article h1 { font-size:1.4rem; color:#1a1a2e; margin-bottom:12px; line-height:1.4; }
+.article .summary { font-size:0.9rem; color:#6b7280; margin-bottom:16px; padding:12px; background:#f8f9fa; border-radius:8px; border-left:4px solid #C3A082; }
+
+.article .seo-content h2 { font-size:1.2rem; color:#C3A082; margin:24px 0 12px; padding-bottom:6px; border-bottom:2px solid #f0f0f5; }
+.article .seo-content h3 { font-size:1rem; color:#1a1a2e; margin:18px 0 8px; }
+.article .seo-content p { font-size:0.9rem; line-height:1.8; color:#374151; margin-bottom:12px; }
+.article .seo-content ul { padding-left:20px; margin:8px 0 16px; }
+.article .seo-content li { font-size:0.88rem; line-height:1.7; color:#374151; margin:4px 0; }
+.article .seo-content table { width:100%; border-collapse:collapse; margin:12px 0; font-size:0.85rem; }
+.article .seo-content th { background:#1a1a2e; color:white; padding:10px 14px; text-align:left; }
+.article .seo-content td { padding:8px 14px; border-bottom:1px solid #f0f0f5; }
+.article .seo-content tr:hover td { background:#f8f9fa; }
+
+.gallery { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:8px; margin:16px 0; }
+.gallery img { width:100%; height:150px; object-fit:cover; border-radius:8px; cursor:pointer; transition:transform 0.2s; }
+.gallery img:hover { transform:scale(1.03); }
+
+.source-link { font-size:0.78rem; color:#6b7280; margin-top:16px; padding-top:12px; border-top:1px solid #f0f0f5; }
+.source-link a { color:#C3A082; }
+
+.footer { text-align:center; padding:30px; color:#9ca3af; font-size:0.75rem; }
+.footer a { color:#C3A082; text-decoration:none; }
+
+@media(max-width:768px) { .article { padding:16px; } .gallery { grid-template-columns:repeat(2,1fr); } }
+</style>
+</head>
+<body>
+<div class="header">
+    <h1>Long-form SEO Articles — Batch 1</h1>
+    <p>บทความรีวิวโครงการจาก home.co.th เรียบเรียงใหม่เป็น SEO content</p>
+    <div class="stats">
+        <div class="stat">5 บทความ</div>
+        <div class="stat">H2 + H3 + Table + Bullet</div>
+        <div class="stat">รูปภาพครบทุกรูป</div>
+        <div class="stat">ข้อมูลจริงจาก source</div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="article-nav" id="nav">
+        <h3>สารบัญ</h3>
+        <div id="nav-links"></div>
+    </div>
+    <div id="articles"></div>
+</div>
+
+<div class="footer">
+    <a href="rewrite-demo.html">ดูเปรียบเทียบ ก่อน/หลัง</a> ·
+    <a href="projects.html">ดูทั้ง 6,760 โครงการ</a> ·
+    <a href="index.html">กลับหน้าแรก</a><br>
+    Boom Oracle — Long-form SEO Content from home.co.th
+</div>
+
+<script>
+async function loadArticles() {
+    const resp = await fetch('/data/seo-articles-batch1.json');
+    const data = await resp.json();
+
+    // Build nav
+    const navHtml = data.articles.map(a =>
+        '<a href="#article-'+a.id+'"><span class="num">#'+a.id+'</span>'+a.title.substring(0,50)+'</a>'
+    ).join('');
+    document.getElementById('nav-links').innerHTML = navHtml;
+
+    // Build articles
+    const articlesHtml = data.articles.map(a => {
+        const realImages = a.images.filter(img => img.startsWith('https://') && !img.includes('base64'));
+        const galleryHtml = realImages.map(img => '<img loading="lazy" src="'+img+'" alt="'+a.title.substring(0,30)+'" onerror="this.style.display=\'none\'">').join('');
+
+        return '<div class="article" id="article-'+a.id+'">' +
+            '<div class="meta">' +
+            '<span class="badge badge-type">'+(a.property_type||a.type||'')+'</span>' +
+            (a.location ? '<span class="badge badge-loc">📍 '+a.location+'</span>' : '') +
+            ((a.price&&a.price!=='ไม่ระบุ') ? '<span class="badge badge-price">💰 '+a.price+'</span>' : '') +
+            (a.developer ? '<span class="badge" style="background:#e3f2fd;color:#1565c0;">🏢 '+a.developer+'</span>' : '') +
+            '</div>' +
+            '<h1>'+a.title+'</h1>' +
+            '<div class="summary">'+(a.seo?a.seo.description:(a.summary||''))+'</div>' +
+            '<div class="gallery">'+galleryHtml+'</div>' +
+            '<div class="seo-content">'+(a.content_html||a.content||'')+'</div>' +
+            '<div class="source-link">แหล่งข้อมูล: <a href="'+(a.url||a.source||'')+'" target="_blank">'+(a.url||a.source||'')+'</a></div>' +
+            '</div>';
+    }).join('');
+
+    document.getElementById('articles').innerHTML = articlesHtml;
+}
+
+loadArticles();
+</script>
+</body>
+</html>

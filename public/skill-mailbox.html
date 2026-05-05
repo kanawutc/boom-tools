@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>/mailbox — Persistent agent mailbox across sessions | Skill Detail</title>
+<script src="auth.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Noto Sans Thai','Inter',sans-serif;background:#0a0a14;color:#d0d0d8;line-height:1.7}.hero{background:linear-gradient(135deg,#0a0a14,#1a1a3a,#0a0a14);padding:40px 20px;text-align:center;border-bottom:1px solid #1a1a3a}.hero .cmd{font-family:'JetBrains Mono',monospace;font-size:2.5rem;font-weight:800;color:#a78bfa}.hero .tag{display:inline-block;background:#1a2a4a;color:#60a5fa;padding:3px 12px;border-radius:8px;font-size:0.75rem;font-weight:600;margin:8px 4px}.hero p{color:#8080a0;font-size:0.95rem;margin-top:8px;max-width:600px;display:inline-block}.container{max-width:900px;margin:0 auto;padding:30px 20px}h2{font-size:1.3rem;font-weight:700;color:#a78bfa;border-left:4px solid #7c3aed;padding-left:12px;margin:28px 0 12px}p{color:#a0a0b8;font-size:0.9rem;margin-bottom:10px}.card{background:#0f0f1f;border:1px solid #1a1a3a;border-radius:12px;padding:18px;margin:10px 0}.code-block{font-family:'JetBrains Mono',monospace;background:#0a0a18;border:1px solid #1a1a3a;border-radius:8px;padding:14px;font-size:0.82rem;color:#c4b5fd;overflow-x:auto;margin:10px 0}.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}.mode-card{background:#0f0f1f;border:1px solid #1a1a3a;border-radius:10px;padding:14px}.mode-card h4{color:#a78bfa;font-size:0.9rem;margin-bottom:4px}.mode-card p{font-size:0.82rem;color:#8080a0}.step{display:flex;gap:12px;margin:10px 0;align-items:flex-start}.step-num{background:#7c3aed;color:white;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;flex-shrink:0}.step-content h4{color:#d0d0d8;font-size:0.9rem}.step-content p{font-size:0.82rem;color:#8080a0;margin:0}.footer{text-align:center;padding:24px;color:#3a3a5a;font-size:0.72rem;border-top:1px solid #1a1a2a;margin-top:30px}.footer a{color:#a78bfa;text-decoration:none}@media(max-width:768px){.mode-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="hero">
+<div class="cmd">/mailbox</div>
+<div><span class="tag">Communication</span></div>
+<p>Persistent agent mailbox — store findings, standing orders, and context for team agents across sessions</p>
+</div>
+<div class="container">
+<h2>Description</h2>
+<div class="card"><p>A persistent asynchronous mailbox for agent-to-agent communication that survives across Claude sessions. Store findings, standing orders, context snapshots, and task results that team agents can read at their next session start. Solves the "context loss between sessions" problem in multi-oracle collaboration.</p></div>
+<h2>Usage</h2>
+<div class="code-block">/mailbox
+/mailbox scout
+/mailbox --standing-orders</div>
+<h2>Modes</h2>
+<div class="mode-grid">
+<div class="mode-card"><h4>Default (read)</h4><p>Show all pending messages in current oracle's mailbox</p></div>
+<div class="mode-card"><h4>/mailbox &lt;agent&gt;</h4><p>Read mailbox for a specific agent (e.g. /mailbox scout)</p></div>
+<div class="mode-card"><h4>--standing-orders</h4><p>Show and manage persistent standing orders for all agents</p></div>
+<div class="mode-card"><h4>--send &lt;agent&gt; "msg"</h4><p>Drop a message into another agent's mailbox</p></div>
+<div class="mode-card"><h4>--clear &lt;agent&gt;</h4><p>Clear read messages from an agent's mailbox</p></div>
+<div class="mode-card"><h4>--archive</h4><p>Move all read messages to archive, keep standing orders</p></div>
+</div>
+<h2>วิธีทำงาน</h2>
+<div class="step"><div class="step-num">1</div><div class="step-content"><h4>Read mailbox files from ψ/inbox/ directory</h4></div></div>
+<div class="step"><div class="step-num">2</div><div class="step-content"><h4>Filter by agent name or show all pending</h4></div></div>
+<div class="step"><div class="step-num">3</div><div class="step-content"><h4>Display messages with sender, timestamp, priority</h4></div></div>
+<div class="step"><div class="step-num">4</div><div class="step-content"><h4>Mark messages as read (or queue for reply)</h4></div></div>
+<div class="step"><div class="step-num">5</div><div class="step-content"><h4>Surface standing orders at top — always visible</h4></div></div>
+<h2>Output</h2>
+<div class="card"><p>Mailbox view: pending messages grouped by sender, standing orders pinned at top, archive status</p></div>
+<h2>ใช้เมื่อไหร่?</h2>
+<div class="card"><p>เมื่อ session เริ่ม (check ว่ามีงานรอ), ส่ง finding ให้ agent อื่น, set standing orders สำหรับ recurring tasks</p></div>
+<h2>ใช้เมื่อไหร่ไม่ได้?</h2>
+<div class="card"><p>ไม่ใช่ real-time chat — mailbox เป็น async เท่านั้น สำหรับ live communication ใช้ maw hey หรือ /talk-to แทน</p></div>
+<h2>Related Skills</h2>
+<div class="mode-grid">
+<div class="mode-card"><h4>/inbox</h4><p><a href="skill-inbox.html" style="color:#a78bfa;text-decoration:none">ดูรายละเอียด →</a></p></div>
+<div class="mode-card"><h4>/work-with</h4><p><a href="skill-work-with.html" style="color:#a78bfa;text-decoration:none">ดูรายละเอียด →</a></p></div>
+<div class="mode-card"><h4>/forward</h4><p><a href="skill-forward.html" style="color:#a78bfa;text-decoration:none">ดูรายละเอียด →</a></p></div>
+</div>
+</div>
+<div class="footer">/mailbox Skill Detail | Boom Oracle | April 2026<br><a href="skill-dashboard.html">← กลับ Skill Dashboard</a> | <a href="index.html">Boom Tools</a></div>
+</body>
+</html>

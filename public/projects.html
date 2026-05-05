@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>รวมโครงการบ้าน 6,760 โครงการ — จาก home.co.th</title>
+<script src="auth.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a14;--surface:#0f0f1f;--surface2:#14142a;--border:#1e1e38;
+  --accent:#C3A082;--accent2:#a8845f;--text:#e8e8f0;--muted:#6b6b8a;
+  --tag-bg:#1a1a30;--radius:10px;
+}
+body{font-family:'Noto Sans Thai','Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0d0d20 0%,#12121e 50%,#0f0e1a 100%);padding:56px 24px 40px;text-align:center;border-bottom:1px solid var(--border)}
+.hero h1{font-family:'Inter',sans-serif;font-size:clamp(1.6rem,4vw,2.6rem);font-weight:800;color:var(--text);line-height:1.2}
+.hero h1 span{color:var(--accent)}
+.hero-sub{color:var(--muted);margin-top:8px;font-size:0.9rem}
+.stats{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:28px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 20px;min-width:110px;text-align:center}
+.stat-n{font-size:1.35rem;font-weight:700;color:var(--accent)}
+.stat-l{font-size:0.72rem;color:var(--muted);margin-top:2px}
+
+/* FILTER BAR */
+.filter-bar{position:sticky;top:0;z-index:100;background:rgba(10,10,20,0.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:10px 16px}
+.filter-inner{max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.type-btns{display:flex;flex-wrap:wrap;gap:6px;flex:1}
+.tbtn{background:var(--tag-bg);border:1px solid var(--border);color:var(--muted);border-radius:20px;padding:5px 14px;font-size:0.78rem;cursor:pointer;transition:all .15s;white-space:nowrap;font-family:inherit}
+.tbtn:hover{border-color:var(--accent);color:var(--accent)}
+.tbtn.active{background:var(--accent);border-color:var(--accent);color:#0a0a14;font-weight:600}
+.search-wrap{display:flex;align-items:center;gap:6px}
+#search{background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:20px;padding:6px 14px;font-size:0.82rem;font-family:inherit;outline:none;width:180px}
+#search:focus{border-color:var(--accent)}
+#sort{background:var(--surface2);border:1px solid var(--border);color:var(--muted);border-radius:20px;padding:6px 10px;font-size:0.78rem;font-family:inherit;outline:none;cursor:pointer}
+#sort option{background:var(--surface)}
+.filter-result{font-size:0.78rem;color:var(--muted);white-space:nowrap}
+
+/* GRID */
+.grid-wrap{max-width:1400px;margin:0 auto;padding:20px 16px 60px}
+#grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;transition:transform .15s,border-color .15s;overflow:hidden}
+.card:hover{transform:translateY(-3px);border-color:var(--accent)}
+.card-img{width:100%;height:180px;object-fit:cover;display:block}
+.card-no-img{height:180px;background:#12122a;display:flex;align-items:center;justify-content:center;color:#2a2a4a;font-size:0.8rem}
+.card-body{padding:12px}
+.badges{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}
+.type-badge{background:var(--tag-bg);border:1px solid #2a2a44;color:var(--accent);font-size:0.68rem;border-radius:4px;padding:2px 7px}
+.loc-badge{color:var(--muted);font-size:0.68rem;padding:2px 4px}
+.card-title{font-size:0.88rem;font-weight:600;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--text)}
+.card-price{color:var(--accent);font-size:0.78rem;margin-top:5px}
+.card-desc{color:var(--muted);font-size:0.75rem;line-height:1.5;margin-top:5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* LOAD MORE */
+#load-trigger{grid-column:1/-1;text-align:center;padding:24px}
+#load-btn{background:var(--accent);color:#0a0a14;border:none;border-radius:8px;padding:10px 28px;font-size:0.88rem;font-family:inherit;font-weight:600;cursor:pointer;transition:background .15s}
+#load-btn:hover{background:var(--accent2)}
+
+/* LOADER */
+#loader{text-align:center;padding:60px;color:var(--muted)}
+.spin{display:inline-block;width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;margin-bottom:12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* MODAL */
+#modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:500;align-items:center;justify-content:center;padding:16px}
+.modal-box{background:var(--surface);border:1px solid var(--border);border-radius:14px;max-width:720px;width:100%;max-height:90vh;overflow-y:auto;position:relative}
+.modal-close{position:absolute;top:12px;right:14px;background:var(--tag-bg);border:1px solid var(--border);color:var(--muted);width:32px;height:32px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:color .15s}
+.modal-close:hover{color:var(--text)}
+.gallery{position:relative;background:#08081a;border-radius:14px 14px 0 0}
+#modal-gallery{width:100%;height:300px;overflow:hidden;border-radius:14px 14px 0 0;position:relative}
+#modal-gallery img{width:100%;height:300px;object-fit:cover;display:none;border-radius:14px 14px 0 0;position:absolute;top:0;left:0}
+#modal-gallery img.active{display:block}
+.no-img-modal{height:220px;background:#10101e;border-radius:14px 14px 0 0;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.85rem}
+.gallery-nav{position:absolute;top:50%;transform:translateY(-50%);width:100%;display:flex;justify-content:space-between;padding:0 10px;pointer-events:none}
+.gnav{pointer-events:all;background:rgba(0,0,0,.55);border:1px solid var(--border);color:var(--text);width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.gnav:hover{background:rgba(195,160,130,.35)}
+.gallery-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:5px}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:background .15s}
+.dot.active{background:var(--accent)}
+.modal-content{padding:20px 24px 24px}
+#modal-badges{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+#modal-title{font-size:1.15rem;font-weight:700;line-height:1.4;margin-bottom:8px}
+#modal-meta{color:var(--muted);font-size:0.82rem;margin-bottom:10px}
+#modal-price{color:var(--accent);font-size:0.9rem;margin-bottom:12px;font-weight:600}
+#modal-summary{color:#b0b0c8;font-size:0.85rem;line-height:1.7}
+.modal-footer{margin-top:18px;padding-top:14px;border-top:1px solid var(--border);display:flex;gap:10px;align-items:center}
+.modal-link{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#0a0a14;text-decoration:none;border-radius:8px;padding:8px 18px;font-size:0.82rem;font-weight:600;transition:background .15s}
+.modal-link:hover{background:var(--accent2)}
+.modal-id{color:var(--muted);font-size:0.75rem}
+
+@media(max-width:600px){
+  .filter-inner{flex-direction:column;align-items:stretch}
+  .search-wrap{justify-content:space-between}
+  #search{flex:1}
+  #modal-gallery,#modal-gallery img{height:220px}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <h1>รวมโครงการบ้าน — <span id="total-count">6,760</span> โครงการ</h1>
+  <p class="hero-sub">ข้อมูลจาก home.co.th รวมคอนโด บ้านเดี่ยว บ้านแฝด ทาวน์โฮม และบทความ</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-n">6,760</div><div class="stat-l">ทั้งหมด</div></div>
+    <div class="stat"><div class="stat-n">2,039</div><div class="stat-l">คอนโด</div></div>
+    <div class="stat"><div class="stat-n">453</div><div class="stat-l">บ้านเดี่ยว</div></div>
+    <div class="stat"><div class="stat-n">331</div><div class="stat-l">ทาวน์โฮม</div></div>
+    <div class="stat"><div class="stat-n">214</div><div class="stat-l">บ้านแฝด</div></div>
+    <div class="stat"><div class="stat-n">2,703</div><div class="stat-l">บทความ</div></div>
+  </div>
+</section>
+
+<nav class="filter-bar">
+  <div class="filter-inner">
+    <div class="type-btns" id="type-btns">
+      <button class="tbtn active" data-type="all">ทั้งหมด</button>
+      <button class="tbtn" data-type="คอนโด">คอนโด</button>
+      <button class="tbtn" data-type="บ้านเดี่ยว">บ้านเดี่ยว</button>
+      <button class="tbtn" data-type="บ้านแฝด">บ้านแฝด</button>
+      <button class="tbtn" data-type="ทาวน์โฮม">ทาวน์โฮม</button>
+      <button class="tbtn" data-type="รีวิว">รีวิว</button>
+      <button class="tbtn" data-type="บทความ">บทความ</button>
+      <button class="tbtn" data-type="รวมโครงการ">รวมโครงการ</button>
+    </div>
+    <div class="search-wrap">
+      <input type="search" id="search" placeholder="ค้นหาโครงการ..." autocomplete="off">
+      <select id="sort">
+        <option value="default">ล่าสุด</option>
+        <option value="name">ชื่อ A-Z</option>
+      </select>
+    </div>
+    <span class="filter-result" id="filter-count">กำลังโหลด...</span>
+  </div>
+</nav>
+
+<main class="grid-wrap">
+  <div id="loader">
+    <div class="spin"></div>
+    <div>กำลังโหลด 6,760 โครงการ...</div>
+  </div>
+  <div id="grid" style="display:none"></div>
+</main>
+
+<div id="modal" onclick="handleModalBg(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">&#10005;</button>
+    <div class="gallery">
+      <div id="modal-gallery"></div>
+      <div class="gallery-nav" id="gallery-nav" style="display:none">
+        <button class="gnav" onclick="galNav(-1)">&#8249;</button>
+        <button class="gnav" onclick="galNav(1)">&#8250;</button>
+      </div>
+      <div class="gallery-dots" id="gallery-dots"></div>
+    </div>
+    <div class="modal-content">
+      <div id="modal-badges"></div>
+      <div id="modal-title"></div>
+      <div id="modal-meta"></div>
+      <div id="modal-price"></div>
+      <div id="modal-summary"></div>
+      <div class="modal-footer">
+        <a id="modal-source" href="#" target="_blank" rel="noopener" class="modal-link">ดูบน home.co.th &#8599;</a>
+        <span class="modal-id" id="modal-id"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+var allProjects=[], filteredProjects=[], displayCount=24;
+var currentFilter='all', currentSort='default';
+var galIdx=0, galImages=[], searchTimer=null;
+var projectMap={};
+
+function esc(s){
+  return String(s==null?'':s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// LOAD DATA
+async function loadData(){
+  try{
+    var resp=await fetch('/data/projects-enriched.json');
+    if(!resp.ok) resp=await fetch('/data/projects-clean.json');
+    if(!resp.ok) throw new Error('HTTP '+resp.status);
+    var data=await resp.json();
+    allProjects=data.projects||data;
+    // build id map
+    for(var i=0;i<allProjects.length;i++) projectMap[allProjects[i].id]=allProjects[i];
+    var tc=document.getElementById('total-count');
+    if(tc) tc.textContent=(data.total||allProjects.length).toLocaleString();
+    document.getElementById('loader').style.display='none';
+    document.getElementById('grid').style.display='grid';
+    applyFilter();
+  }catch(e){
+    document.getElementById('loader').innerHTML='<div style="color:#e05050">โหลดข้อมูลไม่สำเร็จ: '+esc(e.message)+'</div>';
+  }
+}
+
+// FILTER + SORT
+function applyFilter(){
+  var search=(document.getElementById('search').value||'').toLowerCase().trim();
+  filteredProjects=allProjects.filter(function(p){
+    if(currentFilter!=='all' && p.type!==currentFilter) return false;
+    if(!search) return true;
+    return (p.title||'').toLowerCase().includes(search)
+      ||(p.location||'').toLowerCase().includes(search)
+      ||(p.province||'').toLowerCase().includes(search)
+      ||(p.developer||'').toLowerCase().includes(search)
+      ||(p.area||'').toLowerCase().includes(search)
+      ||(p.summary||'').toLowerCase().includes(search);
+  });
+  if(currentSort==='name'){
+    filteredProjects.sort(function(a,b){return(a.title||'').localeCompare(b.title||'','th');});
+  }
+  displayCount=24;
+  renderGrid();
+  document.getElementById('filter-count').textContent=filteredProjects.length.toLocaleString()+' โครงการ';
+}
+
+// RENDER GRID
+function renderGrid(){
+  var grid=document.getElementById('grid');
+  var items=filteredProjects.slice(0,displayCount);
+
+  if(!items.length){
+    grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:#6b6b8a"><div style="font-size:2rem;margin-bottom:12px">&#128269;</div><div>ไม่พบโครงการที่ตรงกัน</div></div>';
+    return;
+  }
+
+  var html=items.map(function(p){
+    var img=(p.images&&p.images[0])
+      ?'<img class="card-img" loading="lazy" src="'+esc(p.images[0])+'" alt="" onerror="this.style.display=\'none\';this.insertAdjacentHTML(\'afterend\',\'<div class=card-no-img>ไม่มีรูป</div>\')">'
+      :'<div class="card-no-img">ไม่มีรูป</div>';
+    var loc=p.location?'<span class="loc-badge">&#128205; '+esc(p.location)+'</span>':'';
+    var price=p.price?'<div class="card-price">เริ่ม '+esc(p.price)+'</div>':'';
+    var desc=p.summary?'<div class="card-desc">'+esc(p.summary)+'</div>':'';
+    return '<div class="card" onclick="showDetail('+p.id+')">'
+      +img
+      +'<div class="card-body">'
+      +'<div class="badges"><span class="type-badge">'+esc(p.type||'')+'</span>'+loc+'</div>'
+      +'<div class="card-title">'+esc(p.title||'')+'</div>'
+      +price+desc
+      +'</div></div>';
+  }).join('');
+
+  var remaining=filteredProjects.length-displayCount;
+  if(remaining>0){
+    html+='<div id="load-trigger" style="grid-column:1/-1;text-align:center;padding:24px">'
+      +'<button id="load-btn" onclick="loadMore()">โหลดเพิ่ม ('+remaining.toLocaleString()+' รายการ)</button>'
+      +'</div>';
+  }
+
+  grid.innerHTML=html;
+
+  // auto-load on scroll
+  var trigger=document.getElementById('load-trigger');
+  if(trigger&&'IntersectionObserver' in window){
+    var obs=new IntersectionObserver(function(entries){
+      if(entries[0].isIntersecting){obs.disconnect();loadMore();}
+    },{rootMargin:'200px'});
+    obs.observe(trigger);
+  }
+}
+
+window.loadMore=function(){displayCount+=24;renderGrid();};
+
+// MODAL
+window.showDetail=function(id){
+  var p=projectMap[id];
+  if(!p) return;
+
+  document.getElementById('modal-badges').innerHTML=
+    '<span class="type-badge" style="font-size:0.78rem;padding:3px 10px">'+esc(p.type||'')+'</span>';
+  document.getElementById('modal-title').textContent=p.title||'';
+  document.getElementById('modal-meta').textContent=p.location?'&#128205; '+p.location:'';
+  document.getElementById('modal-price').textContent=p.price?'ราคาเริ่มต้น '+p.price:'';
+  document.getElementById('modal-summary').textContent=p.summary||'ไม่มีรายละเอียด';
+  document.getElementById('modal-source').href=p.source||'#';
+  document.getElementById('modal-id').textContent='ID: '+p.id;
+
+  galImages=p.images||[];
+  galIdx=0;
+  renderGallery();
+
+  document.getElementById('modal').style.display='flex';
+  document.body.style.overflow='hidden';
+};
+
+function renderGallery(){
+  var gal=document.getElementById('modal-gallery');
+  var nav=document.getElementById('gallery-nav');
+  var dots=document.getElementById('gallery-dots');
+
+  if(!galImages.length){
+    gal.innerHTML='<div class="no-img-modal">ไม่มีรูปภาพ</div>';
+    nav.style.display='none';
+    dots.innerHTML='';
+    return;
+  }
+
+  gal.innerHTML=galImages.map(function(img,i){
+    return '<img src="'+esc(img)+'" class="'+(i===0?'active':'')+'" alt="" onerror="this.style.display=\'none\'">';
+  }).join('');
+
+  nav.style.display=galImages.length>1?'flex':'none';
+  dots.innerHTML=galImages.length>1
+    ?galImages.map(function(_,i){return'<div class="dot'+(i===0?' active':'')+'" onclick="galJump('+i+')"></div>';}).join('')
+    :'';
+}
+
+window.galNav=function(dir){galJump((galIdx+dir+galImages.length)%galImages.length);};
+window.galJump=function(idx){
+  galIdx=idx;
+  document.querySelectorAll('#modal-gallery img').forEach(function(img,i){img.classList.toggle('active',i===idx);});
+  document.querySelectorAll('.dot').forEach(function(d,i){d.classList.toggle('active',i===idx);});
+};
+
+window.closeModal=function(){
+  document.getElementById('modal').style.display='none';
+  document.body.style.overflow='';
+};
+window.handleModalBg=function(e){if(e.target===document.getElementById('modal'))closeModal();};
+
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+
+// FILTER EVENTS
+document.getElementById('type-btns').addEventListener('click',function(e){
+  var btn=e.target.closest('.tbtn');
+  if(!btn) return;
+  document.querySelectorAll('.tbtn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  currentFilter=btn.dataset.type;
+  applyFilter();
+});
+
+document.getElementById('search').addEventListener('input',function(){
+  clearTimeout(searchTimer);
+  searchTimer=setTimeout(applyFilter,250);
+});
+
+document.getElementById('sort').addEventListener('change',function(){
+  currentSort=this.value;
+  applyFilter();
+});
+
+loadData();
+})();
+</script>
+</body>
+</html>
