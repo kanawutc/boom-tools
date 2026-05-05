@@ -1154,10 +1154,10 @@
 
     <!-- Cross-Comparison Matrix -->
     <h3 style="margin-top:60px; font-size:1.4rem; color:var(--fire-3);">Cross-Comparison Matrix</h3>
-    <p style="color:var(--ink-2); margin-bottom:24px;">เปรียบเทียบ feature และ data points ทุกมิติข้ามทุกเจ้าในตารางเดียว</p>
+    <p style="color:var(--ink-2); margin-bottom:24px;">เปรียบเทียบ feature และ data points ทุกมิติข้ามทั้ง 10 เจ้าในตารางเดียว</p>
 
     <div style="overflow-x:auto; margin-bottom:40px;">
-      <table class="data-table" style="min-width:900px;">
+      <table class="data-table" style="min-width:1400px;">
         <thead>
           <tr>
             <th style="min-width:200px;">Data Point</th>
@@ -1166,105 +1166,109 @@
             <th>EasySlip</th>
             <th>Slip2Go</th>
             <th>Check-Slip</th>
+            <th>RDCW</th>
+            <th>KBank API</th>
+            <th>Page365</th>
+            <th>Commerzy</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td colspan="6" style="color:var(--fire-2); font-weight:700; background:var(--bg-3); letter-spacing:1px;">COMPANY</td></tr>
-          <tr><td>ทุนจดทะเบียน</td><td style="color:var(--gold)">1,500,000 ฿</td><td>1,000,000 ฿</td><td>1,000,000 ฿</td><td>1,000,000 ฿</td><td>—</td></tr>
-          <tr><td>มูลค่ากิจการ</td><td>2.78M ฿ (185%)</td><td style="color:var(--ok)">3.93M ฿ (393%)</td><td>3.75M ฿ (375%)</td><td>1.94M ฿ (194%)</td><td>—</td></tr>
-          <tr><td>จดทะเบียน</td><td>ก.ย. 2565</td><td>ม.ค. 2566</td><td>เม.ย. 2566</td><td>มิ.ย. 2567</td><td>—</td></tr>
-          <tr><td>อายุกิจการ</td><td style="color:var(--gold)">3 ปี 7 เดือน</td><td>2 ปี 4 เดือน</td><td>3 ปี</td><td>10 เดือน</td><td>—</td></tr>
-          <tr><td>ที่ตั้ง</td><td>กรุงเทพฯ (สีลม)</td><td>ขอนแก่น</td><td>ขอนแก่น</td><td>กรุงเทพฯ (ลาดกระบัง)</td><td>—</td></tr>
-          <tr><td>TSIC Code</td><td>58202</td><td>62022</td><td>62012</td><td>62011</td><td>—</td></tr>
+          <tr><td colspan="10" style="color:var(--fire-2); font-weight:700; background:var(--bg-3); letter-spacing:1px;">COMPANY</td></tr>
+          <tr><td>ทุนจดทะเบียน</td><td style="color:var(--gold)">1,500,000 ฿</td><td>1,000,000 ฿</td><td>1,000,000 ฿</td><td>1,000,000 ฿</td><td>—</td><td>—</td><td>N/A (ธนาคาร)</td><td>—</td><td>—</td></tr>
+          <tr><td>มูลค่ากิจการ</td><td>2.78M ฿ (185%)</td><td style="color:var(--ok)">3.93M ฿ (393%)</td><td>3.75M ฿ (375%)</td><td>1.94M ฿ (194%)</td><td>—</td><td>—</td><td>N/A (SET: KBANK)</td><td>—</td><td>—</td></tr>
+          <tr><td>จดทะเบียน</td><td>ก.ย. 2565</td><td>ม.ค. 2566</td><td>เม.ย. 2566</td><td>มิ.ย. 2567</td><td>—</td><td>—</td><td>N/A</td><td>—</td><td>—</td></tr>
+          <tr><td>อายุกิจการ</td><td style="color:var(--gold)">3 ปี 7 เดือน</td><td>2 ปี 4 เดือน</td><td>3 ปี</td><td>10 เดือน</td><td>—</td><td>—</td><td>N/A</td><td>—</td><td>—</td></tr>
+          <tr><td>ที่ตั้ง</td><td>กรุงเทพฯ (สีลม)</td><td>ขอนแก่น</td><td>ขอนแก่น</td><td>กรุงเทพฯ (ลาดกระบัง)</td><td>—</td><td>—</td><td>กรุงเทพฯ</td><td>กรุงเทพฯ</td><td>—</td></tr>
+          <tr><td>TSIC Code</td><td>58202</td><td>62022</td><td>62012</td><td>62011</td><td>—</td><td>—</td><td>ธนาคาร</td><td>E-commerce platform</td><td>E-commerce platform</td></tr>
 
-          <tr><td colspan="6" style="color:var(--fire-2); font-weight:700; background:var(--bg-3); letter-spacing:1px;">PRICING</td></tr>
-          <tr><td>จำนวน Tiers</td><td>8</td><td style="color:var(--ok)">12</td><td>9</td><td>3</td><td>6</td></tr>
-          <tr><td>Free Tier</td><td>100 slips/เดือน</td><td style="color:var(--ok)">150 slips (15 วัน)</td><td>7-day trial</td><td>100 slips (ครั้งเดียว)</td><td>50 slips</td></tr>
-          <tr><td>ราคาเริ่มต้น</td><td>฿210/เดือน</td><td style="color:var(--ok)">฿99/เดือน</td><td>฿99/เดือน</td><td>—</td><td>฿99/เดือน</td></tr>
-          <tr><td>ราคา/slip (1K slips)</td><td>฿0.36</td><td style="color:var(--ok)">฿0.199</td><td>฿0.350</td><td>—</td><td>฿0.50</td></tr>
-          <tr><td>ราคา/slip (50K slips)</td><td>฿0.19</td><td style="color:var(--ok)">฿0.100</td><td>—</td><td>—</td><td style="color:var(--ok)">฿0.10</td></tr>
-          <tr><td>ราคา/slip (ต่ำสุด)</td><td>฿0.14 (120K)</td><td style="color:var(--ok)">฿0.093 (150K)</td><td>฿0.125 (320K)</td><td>—</td><td>฿0.10 (50K)</td></tr>
-          <tr><td>แพ็คเกจสูงสุด</td><td>฿17,280/เดือน</td><td>฿14,000/เดือน</td><td style="color:var(--gold)">฿40,000/เดือน</td><td>—</td><td>฿4,999/เดือน</td></tr>
-          <tr><td>Slips สูงสุด/เดือน</td><td>120,000</td><td>150,000</td><td style="color:var(--ok)">320,000</td><td>—</td><td>50,000</td></tr>
-          <tr><td>ส่วนลดระยะยาว</td><td>—</td><td>Annual packages</td><td>—</td><td style="color:var(--ok)">5% (3 เดือน) / 10% (6 เดือน)</td><td>—</td></tr>
-          <tr><td>Overage Rate</td><td>฿1.00/slip (Free)</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td colspan="10" style="color:var(--fire-2); font-weight:700; background:var(--bg-3); letter-spacing:1px;">PRICING</td></tr>
+          <tr><td>จำนวน Tiers</td><td>8</td><td style="color:var(--ok)">12</td><td>9</td><td>3</td><td>6</td><td>Pay-as-you-go</td><td>ติดต่อธนาคาร</td><td>รวมในแพลตฟอร์ม</td><td>รวมในแพลตฟอร์ม</td></tr>
+          <tr><td>Free Tier</td><td>100 slips/เดือน</td><td style="color:var(--ok)">150 slips (15 วัน)</td><td>7-day trial</td><td>100 slips (ครั้งเดียว)</td><td>50 slips</td><td>—</td><td>Sandbox</td><td>ตามแพ็คเกจ Page365</td><td>ตามแพ็คเกจ</td></tr>
+          <tr><td>ราคาเริ่มต้น</td><td>฿210/เดือน</td><td style="color:var(--ok)">฿99/เดือน</td><td>฿99/เดือน</td><td>—</td><td>฿99/เดือน</td><td>เติมเงิน</td><td>ติดต่อธนาคาร</td><td>รวมในแพลตฟอร์ม</td><td>รวมในแพลตฟอร์ม</td></tr>
+          <tr><td>ราคา/slip (1K slips)</td><td>฿0.36</td><td style="color:var(--ok)">฿0.199</td><td>฿0.350</td><td>—</td><td>฿0.50</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>ราคา/slip (50K slips)</td><td>฿0.19</td><td style="color:var(--ok)">฿0.100</td><td>—</td><td>—</td><td style="color:var(--ok)">฿0.10</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>ราคา/slip (ต่ำสุด)</td><td>฿0.14 (120K)</td><td style="color:var(--ok)">฿0.093 (150K)</td><td>฿0.125 (320K)</td><td>—</td><td>฿0.10 (50K)</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>แพ็คเกจสูงสุด</td><td>฿17,280/เดือน</td><td>฿14,000/เดือน</td><td style="color:var(--gold)">฿40,000/เดือน</td><td>—</td><td>฿4,999/เดือน</td><td>Postpaid (contract)</td><td>Enterprise</td><td>—</td><td>—</td></tr>
+          <tr><td>Slips สูงสุด/เดือน</td><td>120,000</td><td>150,000</td><td style="color:var(--ok)">320,000</td><td>—</td><td>50,000</td><td>ไม่จำกัด (postpaid)</td><td>ไม่จำกัด</td><td>—</td><td>—</td></tr>
+          <tr><td>ส่วนลดระยะยาว</td><td>—</td><td>Annual packages</td><td>—</td><td style="color:var(--ok)">5% (3 เดือน) / 10% (6 เดือน)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Overage Rate</td><td>฿1.00/slip (Free)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
 
-          <tr><td colspan="6" style="color:var(--fire-2); font-weight:700; background:var(--bg-3); letter-spacing:1px;">CHANNELS & INTEGRATION</td></tr>
-          <tr><td>LINE Bot</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td></tr>
-          <tr><td>LINE OA</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td></tr>
-          <tr><td>LINE Group Chat</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td>—</td></tr>
-          <tr><td>Facebook Page</td><td>—</td><td>—</td><td>—</td><td style="color:var(--ok)">✓ (unique)</td><td>—</td></tr>
-          <tr><td>REST API</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td></tr>
-          <tr><td>WordPress Plugin</td><td style="color:var(--ok)">✓</td><td>—</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td></tr>
-          <tr><td>WooCommerce</td><td style="color:var(--ok)">✓</td><td>—</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td></tr>
-          <tr><td>Page365</td><td style="color:var(--ok)">✓ (unique)</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-          <tr><td>E-Catalog</td><td>—</td><td>—</td><td>—</td><td style="color:var(--ok)">✓ (unique)</td><td>—</td></tr>
-          <tr><td>Shopify</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-          <tr><td>Shopee / Lazada / TikTok Shop</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-          <tr><td>Discord / Telegram</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td colspan="10" style="color:var(--fire-2); font-weight:700; background:var(--bg-3); letter-spacing:1px;">CHANNELS & INTEGRATION</td></tr>
+          <tr><td>LINE Bot</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>LINE OA</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>LINE Group Chat</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Facebook Page</td><td>—</td><td>—</td><td>—</td><td style="color:var(--ok)">✓ (unique)</td><td>—</td><td>—</td><td>—</td><td style="color:var(--ok)">✓ (platform core)</td><td>—</td></tr>
+          <tr><td>REST API</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td></tr>
+          <tr><td>WordPress Plugin</td><td style="color:var(--ok)">✓</td><td>—</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td style="color:var(--ok)">✓ (platform)</td></tr>
+          <tr><td>WooCommerce</td><td style="color:var(--ok)">✓</td><td>—</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td style="color:var(--ok)">✓ (platform)</td></tr>
+          <tr><td>Page365</td><td style="color:var(--ok)">✓ (unique)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td style="color:var(--ok)">✓ (is Page365)</td><td>—</td></tr>
+          <tr><td>E-Catalog</td><td>—</td><td>—</td><td>—</td><td style="color:var(--ok)">✓ (unique)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Shopify</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Shopee / Lazada / TikTok Shop</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Discord / Telegram</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
 
-          <tr><td colspan="6" style="color:var(--fire-2); font-weight:700; background:var(--bg-3); letter-spacing:1px;">TECHNICAL</td></tr>
-          <tr><td>Verification Method</td><td>QR Code + Image</td><td>QR Code</td><td>QR + Image + Base64 + URL</td><td>QR Code</td><td>QR Code</td></tr>
-          <tr><td>Response Time</td><td>—</td><td>—</td><td style="color:var(--ok)">&lt;1 วินาที</td><td>—</td><td>—</td></tr>
-          <tr><td>Accuracy Claim</td><td>—</td><td style="color:var(--ok)">99.98%</td><td>—</td><td>—</td><td>—</td></tr>
-          <tr><td>Uptime SLA</td><td>—</td><td>—</td><td style="color:var(--ok)">99.9%</td><td>—</td><td>—</td></tr>
-          <tr><td>Authentication</td><td>API Key</td><td>API Key</td><td>Bearer Token + IP Whitelist</td><td>API Key</td><td>API Key</td></tr>
-          <tr><td>Duplicate Detection</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓ (built-in)</td><td>—</td><td>—</td></tr>
-          <tr><td>Supported Banks</td><td>ทุกธนาคาร + TrueMoney</td><td>7+ ธนาคาร</td><td style="color:var(--ok)">18+ ธนาคาร</td><td>ทุกธนาคาร</td><td>—</td></tr>
-          <tr><td>Official SDK</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-          <tr><td>Community SDK</td><td style="color:var(--ok)">✓ (TypeScript)</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-          <tr><td>API Documentation</td><td style="color:var(--ok)">✓ (เว็บ)</td><td style="color:var(--ok)">✓ (developer portal)</td><td style="color:var(--ok)">✓ (document.easyslip.com)</td><td>—</td><td>Postman Guide</td></tr>
-          <tr><td>Webhook / Event-driven</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-          <tr><td>Batch Processing</td><td style="color:var(--ok)">✓ (3 slips via Page365)</td><td>—</td><td>implied</td><td>—</td><td>—</td></tr>
-          <tr><td>Sandbox / Test Mode</td><td>—</td><td style="color:var(--ok)">✓ (free tester)</td><td style="color:var(--ok)">✓ (7-day trial)</td><td>—</td><td>—</td></tr>
-          <tr><td>API Versions</td><td>v1</td><td>v1</td><td style="color:var(--ok)">v1 + v2</td><td>—</td><td>—</td></tr>
+          <tr><td colspan="10" style="color:var(--fire-2); font-weight:700; background:var(--bg-3); letter-spacing:1px;">TECHNICAL</td></tr>
+          <tr><td>Verification Method</td><td>QR Code + Image</td><td>QR Code</td><td>QR + Image + Base64 + URL</td><td>QR Code</td><td>QR Code</td><td>QR + Image + Multipart</td><td>QR Code (KBank only)</td><td>QR Code</td><td>QR Code (via KBank API)</td></tr>
+          <tr><td>Response Time</td><td>—</td><td>—</td><td style="color:var(--ok)">&lt;1 วินาที</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Accuracy Claim</td><td>—</td><td style="color:var(--ok)">99.98%</td><td>—</td><td>—</td><td>—</td><td>—</td><td style="color:var(--ok)">100% (direct bank)</td><td>—</td><td>—</td></tr>
+          <tr><td>Uptime SLA</td><td>—</td><td>—</td><td style="color:var(--ok)">99.9%</td><td>—</td><td>—</td><td>—</td><td>Bank-grade</td><td>—</td><td>—</td></tr>
+          <tr><td>Authentication</td><td>API Key</td><td>API Key</td><td>Bearer Token + IP Whitelist</td><td>API Key</td><td>API Key</td><td>Basic Auth + IP Whitelist</td><td>OAuth 2.0</td><td>Platform login</td><td>Platform login</td></tr>
+          <tr><td>Duplicate Detection</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓ (built-in)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td style="color:var(--ok)">✓ (สลิปซ้ำ)</td></tr>
+          <tr><td>Supported Banks</td><td>ทุกธนาคาร + TrueMoney</td><td>7+ ธนาคาร</td><td style="color:var(--ok)">18+ ธนาคาร</td><td>ทุกธนาคาร</td><td>—</td><td>—</td><td>KBank only</td><td>ทุกธนาคาร</td><td>ทุกธนาคาร (via KBank)</td></tr>
+          <tr><td>Official SDK</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td style="color:var(--ok)">✓ (TypeScript)</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Community SDK</td><td style="color:var(--ok)">✓ (TypeScript)</td><td>—</td><td>—</td><td>—</td><td>—</td><td style="color:var(--ok)">✓ (TypeScript)</td><td style="color:var(--ok)">✓ (Python - thanakan)</td><td>—</td><td>—</td></tr>
+          <tr><td>API Documentation</td><td style="color:var(--ok)">✓ (เว็บ)</td><td style="color:var(--ok)">✓ (developer portal)</td><td style="color:var(--ok)">✓ (document.easyslip.com)</td><td>—</td><td>Postman Guide</td><td style="color:var(--ok)">✓ (docs site)</td><td style="color:var(--ok)">✓ (developer portal)</td><td>—</td><td>—</td></tr>
+          <tr><td>Webhook / Event-driven</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Batch Processing</td><td style="color:var(--ok)">✓ (3 slips via Page365)</td><td>—</td><td>implied</td><td>—</td><td>—</td><td>—</td><td>—</td><td style="color:var(--ok)">✓ (3 slips)</td><td>—</td></tr>
+          <tr><td>Sandbox / Test Mode</td><td>—</td><td style="color:var(--ok)">✓ (free tester)</td><td style="color:var(--ok)">✓ (7-day trial)</td><td>—</td><td>—</td><td>—</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td></tr>
+          <tr><td>API Versions</td><td>v1</td><td>v1</td><td style="color:var(--ok)">v1 + v2</td><td>—</td><td>—</td><td>v2</td><td>v1</td><td>—</td><td>—</td></tr>
 
-          <tr><td colspan="6" style="color:var(--fire-2); font-weight:700; background:var(--bg-3); letter-spacing:1px;">FRAUD DETECTION</td></tr>
-          <tr><td>สลิปปลอม</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td></tr>
-          <tr><td>สลิปซ้ำ</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td>—</td><td style="color:var(--ok)">✓</td></tr>
-          <tr><td>แก้ไขยอดเงิน</td><td>—</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td><td>—</td></tr>
-          <tr><td>ชื่อผู้รับไม่ตรง</td><td>—</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td><td>—</td></tr>
-          <tr><td>เวลาไม่ตรง</td><td>—</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td><td>—</td></tr>
-          <tr><td>ยอดต่ำกว่ากำหนด</td><td>—</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td><td>—</td></tr>
-          <tr><td>Account Verification</td><td>—</td><td>—</td><td style="color:var(--ok)">✓ (API v2)</td><td>—</td><td>—</td></tr>
+          <tr><td colspan="10" style="color:var(--fire-2); font-weight:700; background:var(--bg-3); letter-spacing:1px;">FRAUD DETECTION</td></tr>
+          <tr><td>สลิปปลอม</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓ (direct verify)</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td></tr>
+          <tr><td>สลิปซ้ำ</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td>—</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td><td>—</td><td style="color:var(--ok)">✓</td></tr>
+          <tr><td>แก้ไขยอดเงิน</td><td>—</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>ชื่อผู้รับไม่ตรง</td><td>—</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>เวลาไม่ตรง</td><td>—</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>ยอดต่ำกว่ากำหนด</td><td>—</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Account Verification</td><td>—</td><td>—</td><td style="color:var(--ok)">✓ (API v2)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
 
-          <tr><td colspan="6" style="color:var(--fire-2); font-weight:700; background:var(--bg-3); letter-spacing:1px;">DASHBOARD & ANALYTICS</td></tr>
-          <tr><td>Real-time Dashboard</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td></tr>
-          <tr><td>Branch Management</td><td>—</td><td style="color:var(--ok)">✓ (centralized)</td><td>—</td><td>—</td><td>—</td></tr>
-          <tr><td>Sales Summary</td><td>—</td><td style="color:var(--ok)">✓ (สาขา/วัน/เดือน)</td><td>—</td><td>—</td><td>—</td></tr>
-          <tr><td>FLEX Messages (LINE)</td><td>—</td><td>—</td><td>—</td><td>—</td><td style="color:var(--ok)">✓</td></tr>
-          <tr><td>Data Export</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-          <tr><td>Quota Monitoring</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td></tr>
+          <tr><td colspan="10" style="color:var(--fire-2); font-weight:700; background:var(--bg-3); letter-spacing:1px;">DASHBOARD & ANALYTICS</td></tr>
+          <tr><td>Real-time Dashboard</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td><td>—</td><td>—</td><td style="color:var(--ok)">✓ (platform dashboard)</td><td style="color:var(--ok)">✓ (platform)</td></tr>
+          <tr><td>Branch Management</td><td>—</td><td style="color:var(--ok)">✓ (centralized)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Sales Summary</td><td>—</td><td style="color:var(--ok)">✓ (สาขา/วัน/เดือน)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>FLEX Messages (LINE)</td><td>—</td><td>—</td><td>—</td><td>—</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Data Export</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Quota Monitoring</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
 
-          <tr><td colspan="6" style="color:var(--fire-2); font-weight:700; background:var(--bg-3); letter-spacing:1px;">BUSINESS & SUPPORT</td></tr>
-          <tr><td>24/7 Support</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td>—</td></tr>
-          <tr><td>Support: โทรศัพท์</td><td>—</td><td style="color:var(--ok)">✓ (02-114-8423)</td><td>—</td><td style="color:var(--ok)">✓ (090-236-9994)</td><td>—</td></tr>
-          <tr><td>Support: LINE</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td></tr>
-          <tr><td>Support: Email</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td>—</td><td style="color:var(--ok)">✓</td><td>—</td></tr>
-          <tr><td>Blog / Content</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td>—</td><td style="color:var(--ok)">✓</td><td>—</td></tr>
-          <tr><td>Partnership: AIS</td><td style="color:var(--ok)">✓ (ฟรี 3 เดือน)</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-          <tr><td>Partnership: Banks</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-          <tr><td>White-label / Reseller</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td colspan="10" style="color:var(--fire-2); font-weight:700; background:var(--bg-3); letter-spacing:1px;">BUSINESS & SUPPORT</td></tr>
+          <tr><td>24/7 Support</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td><td style="color:var(--ok)">✓ (bank)</td><td>—</td><td>—</td></tr>
+          <tr><td>Support: โทรศัพท์</td><td>—</td><td style="color:var(--ok)">✓ (02-114-8423)</td><td>—</td><td style="color:var(--ok)">✓ (090-236-9994)</td><td>—</td><td>—</td><td style="color:var(--ok)">✓ (KBank)</td><td style="color:var(--ok)">✓ (Zendesk)</td><td>—</td></tr>
+          <tr><td>Support: LINE</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td><td style="color:var(--ok)">✓ (Zendesk)</td><td>—</td></tr>
+          <tr><td>Support: Email</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td>—</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td><td style="color:var(--ok)">✓ (Apiportal_dev@kasikornbank.com)</td><td style="color:var(--ok)">✓ (Zendesk)</td><td>—</td></tr>
+          <tr><td>Blog / Content</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td>—</td><td style="color:var(--ok)">✓</td><td>—</td><td>—</td><td>—</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td></tr>
+          <tr><td>Partnership: AIS</td><td style="color:var(--ok)">✓ (ฟรี 3 เดือน)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Partnership: Banks</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td style="color:var(--ok)">✓ (is the bank)</td><td>—</td><td style="color:var(--ok)">✓ (KBank)</td></tr>
+          <tr><td>White-label / Reseller</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
 
-          <tr><td colspan="6" style="color:var(--fire-2); font-weight:700; background:var(--bg-3); letter-spacing:1px;">SEO & MARKETING (Ahrefs May 2026)</td></tr>
-          <tr><td>Domain Rating</td><td style="color:var(--ok)">46</td><td>31</td><td>36</td><td>37</td><td>—</td></tr>
-          <tr><td>Organic Keywords</td><td>416</td><td style="color:var(--ok)">542</td><td>77</td><td>44</td><td>3</td></tr>
-          <tr><td>Top 3 Keywords</td><td>101</td><td style="color:var(--ok)">143</td><td>11</td><td>4</td><td>0</td></tr>
-          <tr><td>Organic Traffic (TH)</td><td>4,127</td><td>3,824</td><td style="color:var(--ok)">4,249</td><td>860</td><td>0</td></tr>
-          <tr><td>Traffic Value (USD)</td><td style="color:var(--ok)">$424</td><td>$292</td><td>$65</td><td>$103</td><td>$0</td></tr>
-          <tr><td>Paid Keywords</td><td>5</td><td style="color:var(--ok)">21</td><td>3</td><td>10</td><td>0</td></tr>
-          <tr><td>Paid Traffic</td><td>34</td><td style="color:var(--ok)">147</td><td>50</td><td>86</td><td>0</td></tr>
+          <tr><td colspan="10" style="color:var(--fire-2); font-weight:700; background:var(--bg-3); letter-spacing:1px;">SEO & MARKETING (Ahrefs May 2026)</td></tr>
+          <tr><td>Domain Rating</td><td style="color:var(--ok)">46</td><td>31</td><td>36</td><td>37</td><td>—</td><td>57</td><td>N/A</td><td style="color:var(--gold)">56</td><td style="color:var(--gold)">61</td></tr>
+          <tr><td>Organic Keywords</td><td>416</td><td style="color:var(--ok)">542</td><td>77</td><td>44</td><td>3</td><td>3</td><td>N/A</td><td style="color:var(--gold)">2,988</td><td>33</td></tr>
+          <tr><td>Top 3 Keywords</td><td>101</td><td style="color:var(--ok)">143</td><td>11</td><td>4</td><td>0</td><td>1</td><td>N/A</td><td style="color:var(--gold)">874</td><td>2</td></tr>
+          <tr><td>Organic Traffic (TH)</td><td>4,127</td><td>3,824</td><td style="color:var(--ok)">4,249</td><td>860</td><td>0</td><td>28</td><td>N/A</td><td style="color:var(--gold)">26,431</td><td>51</td></tr>
+          <tr><td>Traffic Value (USD)</td><td style="color:var(--ok)">$424</td><td>$292</td><td>$65</td><td>$103</td><td>$0</td><td>$0</td><td>N/A</td><td style="color:var(--gold)">$3,985</td><td>$5</td></tr>
+          <tr><td>Paid Keywords</td><td>5</td><td style="color:var(--ok)">21</td><td>3</td><td>10</td><td>0</td><td>0</td><td>N/A</td><td>5</td><td>0</td></tr>
+          <tr><td>Paid Traffic</td><td>34</td><td style="color:var(--ok)">147</td><td>50</td><td>86</td><td>0</td><td>0</td><td>N/A</td><td>3</td><td>0</td></tr>
 
-          <tr><td colspan="6" style="color:var(--fire-2); font-weight:700; background:var(--bg-3); letter-spacing:1px;">MARKET GAPS (ไม่มีเจ้าไหนทำ)</td></tr>
-          <tr><td>Shopee / Lazada Integration</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td></tr>
-          <tr><td>Shopify Plugin</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td></tr>
-          <tr><td>Discord / Telegram Bot</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td></tr>
-          <tr><td>Official Multi-language SDK</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td></tr>
-          <tr><td>Webhook / Event Push</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td></tr>
-          <tr><td>CSV/Excel Batch Upload</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td></tr>
-          <tr><td>White-label Reseller</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td></tr>
-          <tr><td>OpenAPI / Swagger Spec</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td></tr>
-          <tr><td>Data Export (CSV/Excel)</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td></tr>
+          <tr><td colspan="10" style="color:var(--fire-2); font-weight:700; background:var(--bg-3); letter-spacing:1px;">MARKET GAPS (ไม่มีเจ้าไหนทำ)</td></tr>
+          <tr><td>Shopee / Lazada Integration</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td></tr>
+          <tr><td>Shopify Plugin</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td></tr>
+          <tr><td>Discord / Telegram Bot</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td></tr>
+          <tr><td>Official Multi-language SDK</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td></tr>
+          <tr><td>Webhook / Event Push</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td></tr>
+          <tr><td>CSV/Excel Batch Upload</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td></tr>
+          <tr><td>White-label Reseller</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td></tr>
+          <tr><td>OpenAPI / Swagger Spec</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td></tr>
+          <tr><td>Data Export (CSV/Excel)</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td><td style="color:var(--danger)">✗</td></tr>
         </tbody>
       </table>
     </div>
@@ -1273,11 +1277,16 @@
       <div style="color:var(--fire-2); font-weight:700; margin-bottom:12px;">KEY INSIGHTS จากตาราง</div>
       <ul style="color:var(--ink-2); list-style:none; padding:0;">
         <li style="margin-bottom:8px;">🔥 <strong>Thunder</strong> ชนะด้าน pricing (ถูกสุด ฿0.093/slip), tiers มากสุด (12), fraud detection ละเอียดสุด (6 ประเภท)</li>
-        <li style="margin-bottom:8px;">🔥 <strong>SlipOK</strong> ชนะด้าน brand (DR สูงสุด 46), partnerships (AIS), และ integrations (Page365)</li>
-        <li style="margin-bottom:8px;">🔥 <strong>EasySlip</strong> ชนะด้าน traffic สูงสุด, banks มากสุด (18+), API maturity (v2 + account verification)</li>
+        <li style="margin-bottom:8px;">🔥 <strong>SlipOK</strong> ชนะด้าน brand (DR สูงสุดในกลุ่ม standalone 46), partnerships (AIS), และ integrations (Page365)</li>
+        <li style="margin-bottom:8px;">🔥 <strong>EasySlip</strong> ชนะด้าน traffic สูงสุดในกลุ่ม standalone, banks มากสุด (18+), API maturity (v2 + account verification)</li>
         <li style="margin-bottom:8px;">🔥 <strong>Slip2Go</strong> ชนะด้าน multi-channel (Facebook unique), E-Catalog, ส่วนลดระยะยาว</li>
-        <li style="margin-bottom:8px;">❌ <strong>ไม่มีเจ้าไหน</strong>: Shopee/Lazada integration, Shopify, Webhook, Official SDK, Batch upload, White-label, Data export</li>
+        <li style="margin-bottom:8px;">🔥 <strong>RDCW</strong> เป็น developer-focused API เดียวที่มี Official TypeScript SDK และรองรับ postpaid model สำหรับ enterprise</li>
+        <li style="margin-bottom:8px;">🔥 <strong>KBank API</strong> เป็นเจ้าเดียวที่ verify ตรงจากธนาคาร — accuracy สูงสุด แต่จำกัดแค่ KBank สลิปเท่านั้น</li>
+        <li style="margin-bottom:8px;">🔥 <strong>Page365</strong> มี organic traffic สูงสุดทั้งตาราง (26,431/เดือน, DR 56) เพราะเป็น e-commerce platform หลักไม่ใช่ slip API</li>
+        <li style="margin-bottom:8px;">🔥 <strong>Commerzy</strong> เป็นเจ้าเดียวในกลุ่ม platform ที่มี duplicate detection ชัดเจน — ใช้ KBank API เป็น backend</li>
+        <li style="margin-bottom:8px;">❌ <strong>ไม่มีเจ้าไหน</strong>: Shopee/Lazada integration, Shopify, Webhook, Official Multi-language SDK, Batch upload, White-label, Data export</li>
         <li style="margin-bottom:8px;">⚠️ <strong>EasySlip + Thunder</strong> อยู่ที่อยู่เดียวกัน (629 หมู่ 6 บ้านเป็ด ขอนแก่น) — อาจเป็นทีมเดียวกันหรือ co-working</li>
+        <li style="margin-bottom:8px;">⚠️ <strong>Platform players</strong> (Page365, Commerzy) ไม่ใช่ standalone API — slip verification เป็น feature รองใน e-commerce ecosystem</li>
       </ul>
     </div>
 
